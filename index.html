@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marble Sculpture Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .language-switcher {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .lang-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .content-section {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .music-player {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .music-player h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .lyrics-container {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .lyrics-container p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .download-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .file-info {
+            color: #999;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .language-switcher {
+                flex-direction: column;
+            }
+
+            .lang-btn {
+                width: 100%;
+            }
+        }
+
+        /* Hidden content for different languages */
+        .en { display: block; }
+        .it { display: none; }
+
+        .it-active .en { display: none; }
+        .it-active .it { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="lang-btn" onclick="switchLanguage('it')">Italiano</button>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <h1><span class="en">Marble Sculpture Experience</span><span class="it">Esperienza della Scultura di Marmo</span></h1>
+            <p>
+                <span class="en">Welcome to the digital experience of this marble sculpture. Explore the music and story behind this artwork.</span>
+                <span class="it">Benvenuto nell'esperienza digitale di questa scultura di marmo. Esplora la musica e la storia dietro quest'opera d'arte.</span>
+            </p>
+        </div>
+
+        <!-- Music Section -->
+        <div class="content-section">
+            <h2><span class="en">🎵 Featured Music</span><span class="it">🎵 Musica in Evidenza</span></h2>
+            <div class="music-player">
+                <h3><span class="en">Listen to the Inspiration</span><span class="it">Ascolta l'Ispirazione</span></h3>
+                <audio controls>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                
+                <div class="lyrics-container">
+                    <p class="en"><strong>Lyrics (English):</strong></p>
+                    <p class="en">This is where the lyrics will appear when the music is playing. The melody inspires the marble, and the marble tells a story through motion and form.</p>
+                    
+                    <p class="it"><strong>Testo (Italiano):</strong></p>
+                    <p class="it">Qui è dove appariranno i testi quando la musica sta riproducendo. La melodia ispira il marmo, e il marmo racconta una storia attraverso il movimento e la forma.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Download Section -->
+        <div class="content-section">
+            <h2><span class="en">📖 Digital Book</span><span class="it">📖 Libro Digitale</span></h2>
+            <div class="download-section">
+                <div>
+                    <a href="sample-book-en.pdf" download="Marble-Sculpture-Story.pdf" class="download-btn">
+                        <span class="en">📥 Download Book (English)</span>
+                        <span class="it">📥 Scarica Libro (English)</span>
+                    </a>
+                    <p class="file-info en">PDF • English version</p>
+                    <p class="file-info it">PDF • Versione inglese</p>
+                </div>
+                
+                <div>
+                    <a href="sample-book-it.pdf" download="Storia-Scultura-Marmo.pdf" class="download-btn">
+                        <span class="en">📥 Download Book (Italian)</span>
+                        <span class="it">📥 Scarica Libro (Italiano)</span>
+                    </a>
+                    <p class="file-info en">PDF • Italian version</p>
+                    <p class="file-info it">PDF • Versione italiana</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span class="en">© 2026 Marble Sculpture Experience • Scan QR code to discover the story</span>
+            <span class="it">© 2026 Esperienza della Scultura di Marmo • Scansiona il codice QR per scoprire la storia</span>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            const container = document.querySelector('.container');
+            const buttons = document.querySelectorAll('.lang-btn');
+            
+            if (lang === 'it') {
+                container.classList.add('it-active');
+            } else {
+                container.classList.remove('it-active');
+            }
+            
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
