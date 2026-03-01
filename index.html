@@ -195,8 +195,8 @@
 
         <!-- Language Switcher -->
         <div class="lang-toggle">
-            <button class="lang-btn active" onclick="switchLang('en')">English</button>
-            <button class="lang-btn" onclick="switchLang('it')">italiano</button>
+            <button class="lang-btn en-btn active" onclick="switchLang('en')"><span class="en">English</span><span class="it">inglese</span></button>
+            <button class="lang-btn it-btn" onclick="switchLang('it')"><span class="en">Italian</span><span class="it">italiano</span></button>
         </div>
 
         <!-- Book Download Section -->
@@ -233,16 +233,18 @@
     <script>
         function switchLang(lang) {
             const container = document.querySelector('.container');
-            const buttons = document.querySelectorAll('.lang-btn');
+            const enBtn = document.querySelector('.en-btn');
+            const itBtn = document.querySelector('.it-btn');
             
             if (lang === 'it') {
                 container.classList.add('it-active');
+                enBtn.classList.remove('active');
+                itBtn.classList.add('active');
             } else {
                 container.classList.remove('it-active');
+                enBtn.classList.add('active');
+                itBtn.classList.remove('active');
             }
-            
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
         }
     </script>
 </body>
