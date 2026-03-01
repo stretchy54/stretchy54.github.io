@@ -195,8 +195,8 @@
 
         <!-- Language Switcher -->
         <div class="lang-toggle">
-            <button class="lang-btn en-btn active" onclick="switchLang('en')"><span class="en">English</span><span class="it">inglese</span></button>
-            <button class="lang-btn it-btn" onclick="switchLang('it')"><span class="en">Italian</span><span class="it">italiano</span></button>
+            <button class="lang-btn en-btn active" onclick="switchLang('en')" id="btn-lang-1"></button>
+            <button class="lang-btn it-btn" onclick="switchLang('it')" id="btn-lang-2"></button>
         </div>
 
         <!-- Book Download Section -->
@@ -231,6 +231,19 @@
     </div>
 
     <script>
+        function updateButtonLabels(lang) {
+            const btn1 = document.getElementById('btn-lang-1');
+            const btn2 = document.getElementById('btn-lang-2');
+            
+            if (lang === 'en') {
+                btn1.textContent = 'English';
+                btn2.textContent = 'Italian';
+            } else {
+                btn1.textContent = 'inglese';
+                btn2.textContent = 'italiano';
+            }
+        }
+
         function switchLang(lang) {
             const container = document.querySelector('.container');
             const enBtn = document.querySelector('.en-btn');
@@ -245,7 +258,12 @@
                 enBtn.classList.add('active');
                 itBtn.classList.remove('active');
             }
+            
+            updateButtonLabels(lang);
         }
+
+        // Initialize buttons on page load
+        updateButtonLabels('en');
     </script>
 </body>
 </html>
