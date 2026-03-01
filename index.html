@@ -1,272 +1,285 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Monteleone di Puglia, A Fantasy</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Strong Roots, Good Fruit</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+  <style>
+    :root{
+      --bg: #f2efe9;
+      --paper: rgba(255,255,255,0.72);
+      --ink: #1d1d1d;
+      --muted: rgba(29,29,29,0.45);
+      --line: rgba(29,29,29,0.15);
+      --accent: rgba(122,102,62,0.70);
+      --blue: #2f5f86;
+    }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-        }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    .page{
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 16px 16px 22px;
+      background: linear-gradient(180deg, var(--paper), rgba(255,255,255,0.35));
+      min-height: 100vh;
+    }
 
-        .title-main {
-            color: #667eea;
-            font-weight: bold;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+    /* Language selector (flags + words) */
+    .langbar{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 18px;
+      padding: 10px 0 8px;
+    }
+    .langbtn{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      letter-spacing: 0.08em;
+      font-size: 22px;
+      font-weight: 600;
+      padding-bottom: 8px;
+      border-bottom: 2px solid transparent;
+      user-select:none;
+    }
+    .langbtn img{
+      width: 34px;
+      height: 22px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+    }
+    .langbtn.active{
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
+    .langbtn.inactive{
+      color: var(--muted);
+    }
+    .divider{
+      color: rgba(29,29,29,0.25);
+      font-size: 22px;
+      padding-bottom: 8px;
+    }
 
-        .title-subtitle {
-            color: #333;
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
+    /* Typography */
+    .titleblock{ text-align:center; padding: 10px 4px 6px; }
+    h1{
+      margin: 10px 0 6px;
+      font-size: 40px;
+      line-height: 1.08;
+      font-weight: 600;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      font-style: italic;
+      font-size: 18px;
+      color: rgba(29,29,29,0.75);
+    }
+    .lede{
+      margin: 0 auto 14px;
+      max-width: 36ch;
+      font-size: 20px;
+      line-height: 1.55;
+      color: rgba(29,29,29,0.72);
+    }
 
-        .title-author {
-            color: #333;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
+    /* Buttons */
+    .ctas{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      padding: 8px 0 10px;
+    }
+    .btn{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      padding: 14px 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(47,95,134,0.95), rgba(47,95,134,0.85));
+      color: #fff;
+      border-color: rgba(0,0,0,0.06);
+    }
+    .btn-secondary{
+      background: rgba(255,255,255,0.70);
+      color: rgba(29,29,29,0.85);
+    }
+    .icon{
+      width: 38px;
+      height: 38px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 10px;
+      font-size: 22px;
+      background: rgba(0,0,0,0.06);
+      flex: 0 0 auto;
+    }
+    .btn-primary .icon{
+      background: rgba(255,255,255,0.18);
+    }
+    .btntext{
+      font-size: 20px;
+      line-height: 1.2;
+    }
+    .btntext small{
+      display:block;
+      margin-top: 4px;
+      font-size: 14px;
+      opacity: 0.92;
+    }
 
-        .lang-toggle {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #e0e0e0;
-        }
+    /* Hero image */
+    .hero{
+      margin: 10px 0 0;
+      border-radius: 14px;
+      overflow:hidden;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.12);
+    }
+    .hero img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
 
-        .lang-btn {
-            padding: 10px 20px;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active {
-            background: #667eea;
-            color: white;
-        }
-
-        .lang-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .book-section {
-            margin-top: 0;
-            padding-top: 0;
-            padding-bottom: 20px;
-            text-align: center;
-        }
-
-        .book-section h2 {
-            color: #667eea;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 10px;
-            text-decoration: none;
-            margin: 10px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .note {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            color: #555;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .about-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
-            text-align: center;
-        }
-
-        .about-section h2 {
-            color: #667eea;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .about-section p {
-            color: #555;
-            font-size: 14px;
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        .website-link {
-            display: block;
-            font-size: 12px;
-            margin-top: 8px;
-        }
-
-        .about-section a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .about-section a:hover {
-            text-decoration: underline;
-        }
-
-        .en { display: block; }
-        .it { display: none; }
-
-        .it-active .en { display: none; }
-        .it-active .it { display: block; }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-            .title-main {
-                font-size: 24px;
-            }
-        }
-    </style>
+    /* Language blocks */
+    .langblock{ display:none; }
+    .langblock.show{ display:block; }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="title-main">
-                <span class="en">Strong Roots, Good Fruit</span>
-                <span class="it">Radici forti, frutti buoni</span>
-            </div>
-            <div class="title-subtitle">
-                <span class="en">Monteleone di Puglia - A Fantasy, 2nd Edition</span>
-                <span class="it">Monteleone di Puglia - Una fiaba, 2a Edizione</span>
-            </div>
-            <div class="title-author">
-                <span class="en">Steven G. Kukla</span>
-                <span class="it">Steven G. Kukla</span>
-            </div>
-        </div>
+  <main class="page">
+    <!-- Language selector -->
+    <nav class="langbar" aria-label="Language selector">
+      <a href="#"
+         id="btn-it"
+         class="langbtn active"
+         aria-current="true"
+         onclick="setLang('it'); return false;">
+        <img src="assets/flag-it.png" alt="Italian flag">
+        ITALIANO
+      </a>
 
-        <!-- Language Switcher -->
-        <div class="lang-toggle">
-            <button class="lang-btn en-btn active" onclick="switchLang('en')" id="btn-lang-1"></button>
-            <button class="lang-btn it-btn" onclick="switchLang('it')" id="btn-lang-2"></button>
-        </div>
+      <span class="divider" aria-hidden="true">|</span>
 
-        <!-- Book Download Section -->
-        <div class="book-section">
-            <h2><span class="en">📖 Download the Book PDF</span><span class="it">📖 Scarica il PDF del Libro</span></h2>
-            <a href="books/FINAL_MdP_ENG_4Nov2025.pdf" download class="download-btn">
-                <span class="en">📥 English Edition</span><span class="it">📥 Edizione Inglese</span>
-            </a>
-            <a href="books/FINAL_ITA_MdP_1Nov2025.pdf" download class="download-btn">
-                <span class="en">📥 Italian Edition</span><span class="it">📥 Edizione Italiana</span>
-            </a>
+      <a href="#"
+         id="btn-en"
+         class="langbtn inactive"
+         aria-current="false"
+         onclick="setLang('en'); return false;">
+        <img src="assets/flag-uk.png" alt="UK flag">
+        INGLESE
+      </a>
+    </nav>
 
-            <!-- Note -->
-            <div class="note">
-                <span class="en">In PDF book, click on blue link to hear song version of a poem.</span>
-                <span class="it">Nel libro PDF, fai clic sul link blu per ascoltare la versione canzone di una poesia.</span>
-            </div>
-        </div>
+    <!-- ITALIAN -->
+    <section id="it" class="langblock show">
+      <section class="titleblock">
+        <h1>Strong Roots, Good Fruit</h1>
+        <p class="subtitle">A Family Story and the Gift of La Leonessa</p>
+        <p class="lede">
+          Scopri la storia dietro la scultura La Leonessa, un tributo all’eredità familiare e alla resilienza.
+        </p>
+      </section>
 
-        <!-- About the Author Section -->
-        <div class="about-section">
-            <h2><span class="en">About the Author</span><span class="it">Informazioni sull'autore</span></h2>
-            <p>
-                <span class="en">Steven G. Kukla is retired and lives with his wife Cynthia in Litchfield, Connecticut. He is grateful to fill his days with his passions: family, travel, yoga, hiking, figurative stone carving, geology, and writing.</span>
-                <span class="it">Steven G. Kukla è in pensione e vive con sua moglie Cynthia a Litchfield, Connecticut. È grato di riempire i suoi giorni con le sue passioni: famiglia, viaggi, yoga, escursionismo, scultura in pietra figurativa, geologia e scrittura.</span>
-            </p>
-            <span class="website-link">
-                <span class="en">Website: <a href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">https://stretchy54.wixsite.com/sgk-stone-sculptures</a></span>
-                <span class="it">Sito web: <a href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">https://stretchy54.wixsite.com/sgk-stone-sculptures</a></span>
-            </span>
-        </div>
-    </div>
+      <section class="ctas" aria-label="Links">
+        <a class="btn btn-primary" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">⬇</span>
+          <span class="btntext">
+            Scarica il Libro Gratuito (PDF)
+            <small>Versione Italiana</small>
+          </span>
+        </a>
 
-    <script>
-        function updateButtonLabels(lang) {
-            const btn1 = document.getElementById('btn-lang-1');
-            const btn2 = document.getElementById('btn-lang-2');
-            
-            if (lang === 'en') {
-                btn1.textContent = 'English';
-                btn2.textContent = 'Italian';
-            } else {
-                btn1.textContent = 'inglese';
-                btn2.textContent = 'italiano';
-            }
-        }
+        <a class="btn btn-secondary" href="https://www.youtube.com/" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">▶</span>
+          <span class="btntext">Ascolta la Musica su YouTube</span>
+        </a>
 
-        function switchLang(lang) {
-            const container = document.querySelector('.container');
-            const enBtn = document.querySelector('.en-btn');
-            const itBtn = document.querySelector('.it-btn');
-            
-            if (lang === 'it') {
-                container.classList.add('it-active');
-                enBtn.classList.remove('active');
-                itBtn.classList.add('active');
-            } else {
-                container.classList.remove('it-active');
-                enBtn.classList.add('active');
-                itBtn.classList.remove('active');
-            }
-            
-            updateButtonLabels(lang);
-        }
+        <a class="btn btn-secondary" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">🌐</span>
+          <span class="btntext">Visita il Mio Sito Web</span>
+        </a>
+      </section>
+    </section>
 
-        // Initialize buttons on page load
-        updateButtonLabels('en');
-    </script>
+    <!-- ENGLISH -->
+    <section id="en" class="langblock">
+      <section class="titleblock">
+        <h1>Strong Roots, Good Fruit</h1>
+        <p class="subtitle">A Family Story and the Gift of La Leonessa</p>
+        <p class="lede">
+          Discover the story behind the La Leonessa sculpture—a tribute to family heritage and resilience.
+        </p>
+      </section>
+
+      <section class="ctas" aria-label="Links">
+        <a class="btn btn-primary" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">⬇</span>
+          <span class="btntext">
+            Download Free Book (PDF)
+            <small>English Version</small>
+          </span>
+        </a>
+
+        <a class="btn btn-secondary" href="https://www.youtube.com/" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">▶</span>
+          <span class="btntext">Listen to Music on YouTube</span>
+        </a>
+
+        <a class="btn btn-secondary" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
+          <span class="icon" aria-hidden="true">🌐</span>
+          <span class="btntext">Visit My Website</span>
+        </a>
+      </section>
+    </section>
+
+    <!-- Bottom image -->
+    <figure class="hero">
+      <img src="assets/lioness.jpg" alt="La Leonessa sculpture">
+    </figure>
+  </main>
+
+  <script>
+    function setLang(lang){
+      // toggle blocks
+      document.getElementById('it').classList.toggle('show', lang === 'it');
+      document.getElementById('en').classList.toggle('show', lang === 'en');
+
+      // toggle header state
+      const itBtn = document.getElementById('btn-it');
+      const enBtn = document.getElementById('btn-en');
+
+      if(lang === 'it'){
+        itBtn.classList.add('active'); itBtn.classList.remove('inactive');
+        enBtn.classList.add('inactive'); enBtn.classList.remove('active');
+        itBtn.setAttribute('aria-current','true');
+        enBtn.setAttribute('aria-current','false');
+        document.documentElement.lang = 'it';
+      } else {
+        enBtn.classList.add('active'); enBtn.classList.remove('inactive');
+        itBtn.classList.add('inactive'); itBtn.classList.remove('active');
+        enBtn.setAttribute('aria-current','true');
+        itBtn.setAttribute('aria-current','false');
+        document.documentElement.lang = 'en';
+      }
+    }
+  </script>
 </body>
 </html>
