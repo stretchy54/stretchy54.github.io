@@ -1,47 +1,538 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Collection</title>
+    <title>Strong Roots, Good Fruit - Music Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .lang-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .volume {
+            margin: 40px 0;
+        }
+
+        .volume h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .song-player {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .song-player h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .lyrics {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .book-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .en { display: block; }
+        .it { display: none; }
+
+        .it-active .en { display: none; }
+        .it-active .it { display: block; }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Music Collection</h1>
-    <h2>Volume 1</h2>
-    <ul>
-        <li>
-            <a href="https://bit.ly/example1">Song Title 1 - Artist (English/Italian)</a>
-            <audio controls>
-                <source src="path/to/song1.mp3" type="audio/mpeg">
-                Your browser does not support the audio tag.
-            </audio>
-        </li>
-        <li>
-            <a href="https://bit.ly/example2">Song Title 2 - Artist (English/Italian)</a>
-            <audio controls>
-                <source src="path/to/song2.mp3" type="audio/mpeg">
-                Your browser does not support the audio tag.
-            </audio>
-        </li>
-        <!-- Add more songs from Volume 1 here -->
-    </ul>
-    <h2>Volume 2</h2>
-    <ul>
-        <li>
-            <a href="https://bit.ly/example3">Song Title 3 - Artist (English/Italian)</a>
-            <audio controls>
-                <source src="path/to/song3.mp3" type="audio/mpeg">
-                Your browser does not support the audio tag.
-            </audio>
-        </li>
-        <li>
-            <a href="https://bit.ly/example4">Song Title 4 - Artist (English/Italian)</a>
-            <audio controls>
-                <source src="path/to/song4.mp3" type="audio/mpeg">
-                Your browser does not support the audio tag.
-            </audio>
-        </li>
-        <!-- Add more songs from Volume 2 here -->
-    </ul>
+    <div class="container">
+        <div class="header">
+            <h1><span class="en">Strong Roots, Good Fruit</span><span class="it">Radici forti, frutti buoni</span></h1>
+            <p><span class="en">Music & Poetry Collection</span><span class="it">Collezione di Musica e Poesia</span></p>
+        </div>
+
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" onclick="switchLang('it')">Italiano</button>
+        </div>
+
+        <!-- VOLUME 1 -->
+        <div class="volume">
+            <h2><span class="en">📚 Volume 1 (19 Songs)</span><span class="it">📚 Volume 1 (19 Canzoni)</span></h2>
+
+            <div class="song-player">
+                <h3><span class="en">1-1 Opening</span><span class="it">1-1 Apertura</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4rwz1MZ" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Opening song placeholder lyrics for Volume 1.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo della canzone di apertura per il Volume 1.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-2 Strong Roots Good Fruit</span><span class="it">1-2 Radici Forti Frutti Buoni</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4cSeRIK" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-2 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-2.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-3 Daunia's Song</span><span class="it">1-3 Canzone di Daunia</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/3N1xH5O" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-3 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-3.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-4 Shepherd's Song</span><span class="it">1-4 Canzone del Pastore</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4aR4K4D" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-4 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-4.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-5 Song of the Traturri</span><span class="it">1-5 Canzone del Traturri</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4s9dlXi" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-5 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-5.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-6 Old Song of the Church Leaders</span><span class="it">1-6 Vecchia Canzone dei Leader della Chiesa</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/3OAbfRJ" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-6 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-6.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-7 Old Song of the Civic Leaders</span><span class="it">1-7 Vecchia Canzone dei Leader Civici</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/3ZR3Boz" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-7 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-7.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-8 New Song of Joy</span><span class="it">1-8 Nuova Canzone di Gioia</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4aBbi8D" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-8 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-8.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-9 Song of Babin the Stone Carver</span><span class="it">1-9 Canzone di Babin lo Scalpellino</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4cNaY81" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-9 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-9.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-10 Oh, Oh, Oh, Leo</span><span class="it">1-10 Oh, Oh, Oh, Leo</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4aFCj9q" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-10 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-10.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-11 Oh, Oh, Leo (Italian)</span><span class="it">1-11 Oh, Oh, Leo (Italiano)</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/3ZVEHnF" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-11 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-11.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-12 New Civic Song</span><span class="it">1-12 Nuova Canzone Civica</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4kSq2TT" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-12 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-12.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-13 Waldensian Song of Hope</span><span class="it">1-13 Canzone Valdese della Speranza</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4aRckvS" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-13 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-13.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-14 Song of the Great Grand Inquisitor</span><span class="it">1-14 Canzone del Grande Gran Inquisitore</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4rASPix" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-14 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-14.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-15 Village Women's Song of Protest</span><span class="it">1-15 Canzone di Protesta delle Donne del Villaggio</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4tPtKC1" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-15 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-15.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-16 Song of the Emigrants</span><span class="it">1-16 Canzone degli Emigranti</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4b75ALD" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-16 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-16.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-17 Song of the Agenti</span><span class="it">1-17 Canzone degli Agenti</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4kWcW87" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-17 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-17.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-18 Song of Despair and Decision</span><span class="it">1-18 Canzone della Disperazione e della Decisione</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4kQNpgy" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-18 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-18.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">1-19 Song of Despair and Decision (Italian)</span><span class="it">1-19 Canzone della Disperazione e della Decisione (Italiano)</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4cccKiX" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 1-19 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 1-19.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUME 2 -->
+        <div class="volume">
+            <h2><span class="en">📚 Volume 2 (12 Songs)</span><span class="it">📚 Volume 2 (12 Canzoni)</span></h2>
+
+            <div class="song-player">
+                <h3><span class="en">2-1 Song of Scaramuccia</span><span class="it">2-1 Canzone di Scaramuccia</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/3ZRIFxN" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-1 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-1.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-2 Song of the Women's Roar</span><span class="it">2-2 Canzone del Ruggito delle Donne</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4aBcjxt" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-2 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-2.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-3 Song of Acceptance</span><span class="it">2-3 Canzone dell'Accettazione</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/479eCFz" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-3 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-3.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-4 Song of Amadin</span><span class="it">2-4 Canzone di Amadin</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4b93s64" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-4 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-4.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-5 War No More</span><span class="it">2-5 Mai Più Guerra</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4tVm1lF" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-5 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-5.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-6 Educate and Advocate</span><span class="it">2-6 Educare e Sostenere</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/3MtvZtX" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-6 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-6.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-7 Educate and Advocate (Italian)</span><span class="it">2-7 Educare e Sostenere (Italiano)</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4s7lFGX" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-7 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-7.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-8 Song of the Spirits of the Ancestors</span><span class="it">2-8 Canzone degli Spiriti degli Antenati</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/40sitd5" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-8 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-8.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-9 Immigrants No More</span><span class="it">2-9 Non Più Immigrati</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4rC8Pkg" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-9 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-9.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-10 La Leonessa Foot Press</span><span class="it">2-10 La Leonessa Foot Press</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4b8vCyb" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-10 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-10.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-11 La Leonessa</span><span class="it">2-11 La Leonessa</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4tV1Owg" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-11 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-11.</p>
+                </div>
+            </div>
+
+            <div class="song-player">
+                <h3><span class="en">2-12 Closing</span><span class="it">2-12 Chiusura</span></h3>
+                <audio controls>
+                    <source src="https://bit.ly/4aY5dCa" type="audio/mpeg">
+                </audio>
+                <div class="lyrics">
+                    <p class="en"><strong>Lyrics (English):</strong> Song 2-12 placeholder lyrics.</p>
+                    <p class="it"><strong>Testo (Italiano):</strong> Testo canzone 2-12.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOOK DOWNLOADS -->
+        <div class="book-section">
+            <h2><span class="en">📖 Download the Books</span><span class="it">📖 Scarica i Libri</span></h2>
+            <a href="books/Strong%20Roots,%20Good%20Fruit,%202nd%20edition.pdf" download class="download-btn">
+                <span class="en">📥 English Edition</span><span class="it">📥 Edizione Inglese</span>
+            </a>
+            <a href="books/Radici%20forti,%20frutti%20buoni,%202a%20edizione.pdf" download class="download-btn">
+                <span class="en">📥 Italian Edition</span><span class="it">📥 Edizione Italiana</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            const container = document.querySelector('.container');
+            const buttons = document.querySelectorAll('.lang-btn');
+            
+            if (lang === 'it') {
+                container.classList.add('it-active');
+            } else {
+                container.classList.remove('it-active');
+            }
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
