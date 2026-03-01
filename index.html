@@ -34,8 +34,9 @@
 
         .header h1 {
             color: #333;
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         .header p {
@@ -104,6 +105,48 @@
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
 
+        .note {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .about-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .about-section a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .about-section a:hover {
+            text-decoration: underline;
+        }
+
         .en { display: block; }
         .it { display: none; }
 
@@ -115,7 +158,7 @@
                 padding: 20px;
             }
             .header h1 {
-                font-size: 24px;
+                font-size: 22px;
             }
         }
     </style>
@@ -124,13 +167,24 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1><span class="en">Monteleone di Puglia, A Fantasy</span><span class="it">Monteleone di Puglia, Una Fantasia</span></h1>
+            <h1>
+                <span class="en">
+                    Strong Roots, Good Fruit<br>
+                    Monteleone di Puglia - A Fantasy, 2nd Edition<br>
+                    Steven G Kukla
+                </span>
+                <span class="it">
+                    Radici forti, frutti buoni<br>
+                    Monteleone di Puglia - Una Fantasia, 2a Edizione<br>
+                    Steven G Kukla
+                </span>
+            </h1>
         </div>
 
         <!-- Language Switcher -->
         <div class="lang-toggle">
             <button class="lang-btn active" onclick="switchLang('en')">English</button>
-            <button class="lang-btn" onclick="switchLang('it')">Italiano</button>
+            <button class="lang-btn" onclick="switchLang('it')">Italian</button>
         </div>
 
         <!-- Book Download Section -->
@@ -142,6 +196,21 @@
             <a href="books/FINAL_ITA_MdP_1Nov2025.pdf" download class="download-btn">
                 <span class="en">📥 Italian Edition</span><span class="it">📥 Edizione Italiana</span>
             </a>
+
+            <!-- Note -->
+            <div class="note">
+                <span class="en">For most of the poems in the PDF, click its blue link to listen to it as a song.</span>
+                <span class="it">Per la maggior parte delle poesie nel PDF, fai clic sul suo link blu per ascoltarlo come canzone.</span>
+            </div>
+        </div>
+
+        <!-- About the Author Section -->
+        <div class="about-section">
+            <h2><span class="en">About the Author</span><span class="it">Informazioni sull'autore</span></h2>
+            <p>
+                <span class="en">Steven G. Kukla is retired and lives with his wife Cynthia in Litchfield, Connecticut. He is grateful to fill his days with his passions: family, travel, yoga, hiking, figurative stone carving, clay modeling, rockhounding, and now writing his first book. Website: <a href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">https://stretchy54.wixsite.com/sgk-stone-sculptures</a></span>
+                <span class="it">Steven G. Kukla è in pensione e vive con sua moglie Cynthia a Litchfield, Connecticut. È grato di riempire i suoi giorni con le sue passioni: famiglia, viaggi, yoga, escursionismo, scultura in pietra figurativa, modellazione in argilla, ricerca di rocce e ora la scrittura del suo primo libro. Sito web: <a href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">https://stretchy54.wixsite.com/sgk-stone-sculptures</a></span>
+            </p>
         </div>
     </div>
 
