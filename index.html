@@ -116,6 +116,39 @@
 }
 
   .langblock{ display:none; }
+  /* FINAL hero override — must be at end of CSS */
+.hero{
+  margin-top:22px !important;
+  position:relative !important;
+  height:260px !important;
+  overflow:hidden !important;
+  border-radius:18px !important;
+  background: transparent !important;
+}
+
+.hero img{
+  position:absolute !important;
+  right:-90px !important;   /* push right */
+  bottom:-40px !important;  /* push down */
+  width:560px !important;   /* zoom */
+  max-width:none !important;
+  height:auto !important;
+
+  opacity:0.28 !important;  /* fade */
+  filter: grayscale(15%) blur(0.8px) saturate(0.9) contrast(0.95) !important;
+  transform: scale(1.12) !important;
+}
+
+.hero::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  background: radial-gradient(circle at 25% 25%,
+              rgba(243,239,232,0.00) 0%,
+              rgba(243,239,232,0.60) 60%,
+              rgba(243,239,232,0.90) 100%) !important;
+  pointer-events:none !important;
+}
 </style>
 </head>
 
