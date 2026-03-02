@@ -113,8 +113,8 @@ h1{
 <div class="container">
 
 <div class="langbar">
-  <button id="btn-it" class="langbtn active" onclick="setLang('it')">🇮🇹 italiano</button>
-  <button id="btn-en" class="langbtn inactive" onclick="setLang('en')">🇬🇧 inglese</button>
+<button id="btn-it" class="langbtn active" onclick="setLang('it')">🇮🇹 <span id="label-it">italiano</span></button>
+<button id="btn-en" class="langbtn inactive" onclick="setLang('en')">🇬🇧 <span id="label-en">inglese</span></button>
 </div>
 
 <!-- ITALIAN -->
@@ -175,11 +175,28 @@ h1{
 
 <script>
 function setLang(lang){
-  document.getElementById('it').style.display = (lang === 'it') ? 'block' : 'none';
-  document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
+  const itBlock = document.getElementById('it');
+  const enBlock = document.getElementById('en');
+
+  itBlock.style.display = (lang === 'it') ? 'block' : 'none';
+  enBlock.style.display = (lang === 'en') ? 'block' : 'none';
 
   document.getElementById('btn-it').className = (lang==='it') ? "langbtn active" : "langbtn inactive";
   document.getElementById('btn-en').className = (lang==='en') ? "langbtn active" : "langbtn inactive";
+
+  // ✅ Change the button labels depending on current page language
+  const labelIt = document.getElementById('label-it');
+  const labelEn = document.getElementById('label-en');
+
+  if(lang === 'it'){
+    labelIt.textContent = 'italiano';
+    labelEn.textContent = 'inglese';
+    document.documentElement.lang = 'it';
+  } else {
+    labelIt.textContent = 'ITALIAN';
+    labelEn.textContent = 'ENGLISH';
+    document.documentElement.lang = 'en';
+  }
 }
 
 // Default to Italian (QR behavior)
