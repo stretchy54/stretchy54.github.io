@@ -100,12 +100,24 @@ h1{
   opacity:0.95;
 }
 
+.hero{
+  margin-top:28px;
+  display:flex;
+  justify-content:center;
+}
+
 .hero img{
-  width:100%;
+  width:65%;                 /* smaller */
+  max-width:280px;           /* prevents it from getting large */
   border-radius:14px;
-  margin-top:18px;
+  opacity:0.75;              /* subtle fade */
+  filter:grayscale(20%);     /* softens contrast */
+  transition: opacity 0.3s ease;
 }
 .langblock{ display:none; }
+  .hero img:hover{
+  opacity:0.9;
+}
 </style>
 </head>
 
