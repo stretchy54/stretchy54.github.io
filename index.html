@@ -3,151 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strong Roots, Good Fruit</title>
+<title>Radici forti, frutti buoni</title>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 
 <style>
-  body{
-    margin:0;
-    padding:20px;
-    font-family: Georgia, "Palatino Linotype", Palatino, serif;
-    background:#f3efe8;
-    text-align:center;
-  }
-  .container{ max-width:520px; margin:auto; }
+body{
+  margin:0;
+  padding:20px;
+  font-family: Georgia, "Palatino Linotype", Palatino, serif;
+  background:#f3efe8;
+  text-align:center;
+}
 
-  /* Language bar */
-  .langbar{ margin-bottom:18px; }
-  .langbtn{
-    font-size:18px;
-    text-transform:uppercase;
-    letter-spacing:.12em;
-    margin:0 14px;
-    cursor:pointer;
-    background:none;
-    border:none;
-    padding:4px 0;
-  }
-  .active{ border-bottom:2px solid #7a6a3a; color:#000; }
-  .inactive{ color:#888; }
+.container{
+  max-width:520px;
+  margin:auto;
+}
 
-  /* Typography */
-  h1{ font-size:28px; margin:10px 0 6px; line-height:1.08; }
-  .subtitle{ font-style:italic; color:#555; margin:0 0 10px; }
-  .author{ font-size:20px; margin:0 0 18px; color:#222; }
+/* Language */
+.langbar{
+  margin-bottom:20px;
+}
+.langbtn{
+  font-size:18px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin:0 14px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  padding:4px 0;
+}
+.active{
+  border-bottom:2px solid #7a6a3a;
+  color:#000;
+}
+.inactive{
+  color:#888;
+}
 
-  /* Buttons (one-line only) */
-  .btn{
-    display:grid;
-    grid-template-columns:64px 1fr;
-    align-items:center;
-    text-decoration:none;
-    padding:18px 20px;
-    margin:14px 0;
-    border-radius:14px;
-    font-size:20px;
-    line-height:1.2;
-    box-shadow:0 10px 18px rgba(0,0,0,0.12);
-    transition:transform .2s ease, box-shadow .2s ease;
-  }
-  .btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 14px 22px rgba(0,0,0,0.18);
-  }
-  .primary{ background:#2f5f86; color:#fff; } /* BLUE download */
-  .orange{ background:linear-gradient(135deg,#e7a338,#d98c20); color:#fff; } /* ORANGE website */
+/* Typography */
+h1{
+  font-size:28px;
+  margin:10px 0 6px;
+}
+.subtitle{
+  font-style:italic;
+  color:#555;
+  margin:0 0 10px;
+}
+.author{
+  font-size:20px;
+  margin:0 0 18px;
+  color:#222;
+}
 
-  /* Icon column: fixed box so icons align vertically across buttons */
-  .icon{
-    width:64px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .icon span{
-    font-size:26px;
-    line-height:1;
-    /* Optical nudge applied to BOTH icons equally */
-    position:relative;
-    top:-1px;
-  }
+/* Buttons */
+.btn{
+  display:grid;
+  grid-template-columns:60px 1fr;
+  align-items:center;
+  text-decoration:none;
+  padding:18px 20px;
+  margin:14px 0;
+  border-radius:14px;
+  font-size:18px;
+  line-height:1.25;
+  box-shadow:0 10px 18px rgba(0,0,0,0.12);
+  transition:transform .2s ease;
+}
 
-  /* Text column */
-  .btnText{
-    text-align:center;
-    padding-right:12px; /* balances visual centering against icon column */
-    white-space:nowrap;         /* keep single line */
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
+.btn:hover{
+  transform:translateY(-2px);
+}
 
-  /* Subtle lioness as an offset “background” element */
+.primary{
+  background:#2f5f86;
+  color:white;
+}
+
+.orange{
+  background:linear-gradient(135deg,#e7a338,#d98c20);
+  color:white;
+}
+
+/* ICON COLUMN */
+.icon{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.icon svg{
+  width:24px;
+  height:24px;
+  fill:white;
+}
+
+/* TEXT COLUMN */
+.btnText{
+  text-align:center;
+}
+
+/* Lioness */
 .hero{
-  margin-top:22px;
-  position:relative;
-  height:260px;            /* controls how much image shows */
-  overflow:hidden;
-  border-radius:18px;
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
 }
-
-/* image is intentionally oversized and pushed right */
 .hero img{
-  position:absolute;
-  right:-70px;             /* push image off to the right */
-  bottom:-30px;            /* drop slightly down */
-  width:520px;             /* zoom level */
-  max-width:none;
-  height:auto;
-
-  opacity:0.32;            /* fade */
-  filter: grayscale(15%) blur(0.6px) saturate(0.9) contrast(0.95);
-  transform: scale(1.12);  /* subtle zoom */
+  width:60%;
+  max-width:260px;
+  border-radius:14px;
+  opacity:.7;
+  filter:grayscale(20%);
 }
 
-/* optional soft fade overlay so the edges feel “designed” */
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(circle at 30% 30%,
-              rgba(243,239,232,0.00) 0%,
-              rgba(243,239,232,0.55) 55%,
-              rgba(243,239,232,0.85) 100%);
-  pointer-events:none;
-}
-
-  .langblock{ display:none; }
-  /* FINAL hero override — must be at end of CSS */
-.hero{
-  margin-top:22px !important;
-  position:relative !important;
-  height:260px !important;
-  overflow:hidden !important;
-  border-radius:18px !important;
-  background: transparent !important;
-}
-
-.hero img{
-  position:absolute !important;
-  right:-90px !important;   /* push right */
-  bottom:-40px !important;  /* push down */
-  width:560px !important;   /* zoom */
-  max-width:none !important;
-  height:auto !important;
-
-  opacity:0.28 !important;  /* fade */
-  filter: grayscale(15%) blur(0.8px) saturate(0.9) contrast(0.95) !important;
-  transform: scale(1.12) !important;
-}
-
-.hero::after{
-  content:"" !important;
-  position:absolute !important;
-  inset:0 !important;
-  background: radial-gradient(circle at 25% 25%,
-              rgba(243,239,232,0.00) 0%,
-              rgba(243,239,232,0.60) 60%,
-              rgba(243,239,232,0.90) 100%) !important;
-  pointer-events:none !important;
+.langblock{
+  display:none;
 }
 </style>
 </head>
@@ -155,71 +131,96 @@
 <body>
 <div class="container">
 
-  <div class="langbar">
-    <button id="btn-it" class="langbtn active" onclick="setLang('it')">🇮🇹 italiano</button>
-    <button id="btn-en" class="langbtn inactive" onclick="setLang('en')">🇬🇧 inglese</button>
+<div class="langbar">
+  <button id="btn-it" class="langbtn active" onclick="setLang('it')">🇮🇹 italiano</button>
+  <button id="btn-en" class="langbtn inactive" onclick="setLang('en')">🇬🇧 inglese</button>
+</div>
+
+<!-- ITALIAN -->
+<div id="it" class="langblock">
+
+<h1>Radici forti, frutti buoni</h1>
+<div class="subtitle">Monteleone di Puglia - Una fiaba, 2a edizione</div>
+<div class="author">Steven G Kukla</div>
+
+<a class="btn primary" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 16l-6-6h4V4h4v6h4zM5 18h14v2H5z"/>
+    </svg>
   </div>
-
-  <!-- ITALIAN -->
-  <div id="it" class="langblock">
-    <h1>Radici forti, frutti buoni</h1>
-    <div class="subtitle">Monteleone di Puglia - Una fiaba, 2a edizione</div>
-    <div class="author">Steven G Kukla</div>
-
-    <!-- DOWNLOAD (BLUE) -->
-    <a class="btn primary" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank" rel="noopener">
-      <div class="icon"><span>⬇️</span></div>
-      <div class="btnText">Scarica il Libro Gratuito (PDF)</div>
-    </a>
-
-    <!-- WEBSITE (ORANGE) -->
-    <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
-      <div class="icon"><span>🌐</span></div>
-      <div class="btnText">Visita il Mio Sito Web</div>
-    </a>
-
-    <div class="hero">
-      <img src="assets/lioness.jpg?v=1" alt="La Leonessa">
-    </div>
+  <div class="btnText">
+    Scarica il Libro Gratuito (PDF)<br>
+    <small>Versione Italiana</small><br>
+    <small>Nel PDF, clicca sul link blu di una poesia per ascoltarne la versione musicale</small>
   </div>
+</a>
 
-  <!-- ENGLISH -->
-  <div id="en" class="langblock">
-    <h1>Strong Roots, Good Fruit</h1>
-    <div class="subtitle">Monteleone di Puglia - A Fantasy, 2nd Edition</div>
-    <div class="author">Steven G Kukla</div>
-
-    <!-- DOWNLOAD (BLUE) -->
-    <a class="btn primary" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank" rel="noopener">
-      <div class="icon"><span>⬇️</span></div>
-      <div class="btnText">Download Free Book (PDF)</div>
-    </a>
-
-    <!-- WEBSITE (ORANGE) -->
-    <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
-      <div class="icon"><span>🌐</span></div>
-      <div class="btnText">Visit My Website</div>
-    </a>
-
-    <div class="hero">
-      <img src="assets/lioness.jpg?v=1" alt="The Lioness Sculpture">
-    </div>
+<a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.16a15.3 15.3 0 00-1.2-4.07A8.02 8.02 0 0119.93 11zM12 4c.8 1.16 1.46 2.79 1.84 4.93H10.16C10.54 6.79 11.2 5.16 12 4zM4.07 13h3.16c.23 1.47.66 2.83 1.2 4.07A8.02 8.02 0 014.07 13zm3.16-2H4.07a8.02 8.02 0 014.29-4.07A15.3 15.3 0 007.23 11zM12 20c-.8-1.16-1.46-2.79-1.84-4.93h3.68C13.46 17.21 12.8 18.84 12 20zm3.57-2.93c.54-1.24.97-2.6 1.2-4.07h3.16a8.02 8.02 0 01-4.36 4.07z"/>
+    </svg>
   </div>
+  <div class="btnText">
+    Visita il Mio Sito Web
+  </div>
+</a>
+
+<div class="hero">
+  <img src="assets/lioness.jpg?v=1" alt="La Leonessa">
+</div>
+
+</div>
+
+<!-- ENGLISH -->
+<div id="en" class="langblock">
+
+<h1>Strong Roots, Good Fruit</h1>
+<div class="subtitle">Monteleone di Puglia - A Fantasy, 2nd Edition</div>
+<div class="author">Steven G Kukla</div>
+
+<a class="btn primary" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 16l-6-6h4V4h4v6h4zM5 18h14v2H5z"/>
+    </svg>
+  </div>
+  <div class="btnText">
+    Download Free Book (PDF)<br>
+    <small>English Version</small><br>
+    <small>In the PDF, click a poem's blue link to hear its song version</small>
+  </div>
+</a>
+
+<a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.16a15.3 15.3 0 00-1.2-4.07A8.02 8.02 0 0119.93 11zM12 4c.8 1.16 1.46 2.79 1.84 4.93H10.16C10.54 6.79 11.2 5.16 12 4zM4.07 13h3.16c.23 1.47.66 2.83 1.2 4.07A8.02 8.02 0 014.07 13zm3.16-2H4.07a8.02 8.02 0 014.29-4.07A15.3 15.3 0 007.23 11zM12 20c-.8-1.16-1.46-2.79-1.84-4.93h3.68C13.46 17.21 12.8 18.84 12 20zm3.57-2.93c.54-1.24.97-2.6 1.2-4.07h3.16a8.02 8.02 0 01-4.36 4.07z"/>
+    </svg>
+  </div>
+  <div class="btnText">
+    Visit My Website
+  </div>
+</a>
+
+<div class="hero">
+  <img src="assets/lioness.jpg?v=1" alt="The Lioness Sculpture">
+</div>
+
+</div>
 
 </div>
 
 <script>
-  function setLang(lang){
-    document.getElementById('it').style.display = (lang === 'it') ? 'block' : 'none';
-    document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
-
-    document.getElementById('btn-it').className = (lang==='it') ? "langbtn active" : "langbtn inactive";
-    document.getElementById('btn-en').className = (lang==='en') ? "langbtn active" : "langbtn inactive";
-    document.documentElement.lang = lang;
-  }
-
-  /* Default to Italian for QR scans */
-  setLang('it');
+function setLang(lang){
+  document.getElementById('it').style.display = (lang === 'it') ? 'block' : 'none';
+  document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
+  document.getElementById('btn-it').className = (lang==='it') ? "langbtn active" : "langbtn inactive";
+  document.getElementById('btn-en').className = (lang==='en') ? "langbtn active" : "langbtn inactive";
+}
+setLang('it');
 </script>
+
 </body>
 </html>
