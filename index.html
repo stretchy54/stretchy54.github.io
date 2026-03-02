@@ -17,6 +17,7 @@ body{
   background:#f3efe8;
   text-align:center;
 }
+
 .container{
   max-width:520px;
   margin:auto;
@@ -62,21 +63,21 @@ h1{
 
 /* Buttons */
 .btn{
-  display:flex;
+  display:grid;
+  grid-template-columns:60px 1fr;
   align-items:center;
-  justify-content:center;
-  gap:14px;
   text-decoration:none;
-  padding:16px 20px;
+  padding:18px 20px;
   margin:14px 0;
   border-radius:14px;
   font-size:18px;
-  line-height:1.2;
-  box-shadow: 0 10px 18px rgba(0,0,0,0.12);
-  transition: transform 0.2s ease;
+  line-height:1.25;
+  box-shadow:0 10px 18px rgba(0,0,0,0.12);
+  transition:transform .2s ease;
 }
+
 .btn:hover{
-  transform: translateY(-2px);
+  transform:translateY(-2px);
 }
 
 .primary{
@@ -85,21 +86,29 @@ h1{
 }
 
 .orange{
-  background: linear-gradient(135deg,#e7a338,#d98c20);
+  background:linear-gradient(135deg,#e7a338,#d98c20);
   color:white;
 }
 
-/* Icon container */
+/* ICON COLUMN */
 .icon{
-  width:26px;
-  height:26px;
   display:flex;
-  align-items:center;
   justify-content:center;
-  flex:0 0 26px;
+  align-items:center;
 }
 
-/* Subtle lioness */
+.icon svg{
+  width:24px;
+  height:24px;
+  fill:white;
+}
+
+/* TEXT COLUMN */
+.btnText{
+  text-align:center;
+}
+
+/* Lioness */
 .hero{
   margin-top:30px;
   display:flex;
@@ -109,11 +118,10 @@ h1{
   width:60%;
   max-width:260px;
   border-radius:14px;
-  opacity:0.7;
+  opacity:.7;
   filter:grayscale(20%);
 }
 
-/* Hide language blocks */
 .langblock{
   display:none;
 }
@@ -136,27 +144,27 @@ h1{
 <div class="author">Steven G Kukla</div>
 
 <a class="btn primary" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank">
-  <span class="icon">
-    <!-- Download SVG -->
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
       <path d="M12 16l-6-6h4V4h4v6h4zM5 18h14v2H5z"/>
     </svg>
-  </span>
-  <span>
+  </div>
+  <div class="btnText">
     Scarica il Libro Gratuito (PDF)<br>
     <small>Versione Italiana</small><br>
     <small>Nel PDF, clicca sul link blu di una poesia per ascoltarne la versione musicale</small>
-  </span>
+  </div>
 </a>
 
 <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
-  <span class="icon">
-    <!-- Globe SVG -->
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
       <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.16a15.3 15.3 0 00-1.2-4.07A8.02 8.02 0 0119.93 11zM12 4c.8 1.16 1.46 2.79 1.84 4.93H10.16C10.54 6.79 11.2 5.16 12 4zM4.07 13h3.16c.23 1.47.66 2.83 1.2 4.07A8.02 8.02 0 014.07 13zm3.16-2H4.07a8.02 8.02 0 014.29-4.07A15.3 15.3 0 007.23 11zM12 20c-.8-1.16-1.46-2.79-1.84-4.93h3.68C13.46 17.21 12.8 18.84 12 20zm3.57-2.93c.54-1.24.97-2.6 1.2-4.07h3.16a8.02 8.02 0 01-4.36 4.07z"/>
     </svg>
-  </span>
-  <span>Visita il Mio Sito Web</span>
+  </div>
+  <div class="btnText">
+    Visita il Mio Sito Web
+  </div>
 </a>
 
 <div class="hero">
@@ -173,25 +181,27 @@ h1{
 <div class="author">Steven G Kukla</div>
 
 <a class="btn primary" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank">
-  <span class="icon">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
       <path d="M12 16l-6-6h4V4h4v6h4zM5 18h14v2H5z"/>
     </svg>
-  </span>
-  <span>
+  </div>
+  <div class="btnText">
     Download Free Book (PDF)<br>
     <small>English Version</small><br>
     <small>In the PDF, click a poem's blue link to hear its song version</small>
-  </span>
+  </div>
 </a>
 
 <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
-  <span class="icon">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+  <div class="icon">
+    <svg viewBox="0 0 24 24">
       <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.16a15.3 15.3 0 00-1.2-4.07A8.02 8.02 0 0119.93 11zM12 4c.8 1.16 1.46 2.79 1.84 4.93H10.16C10.54 6.79 11.2 5.16 12 4zM4.07 13h3.16c.23 1.47.66 2.83 1.2 4.07A8.02 8.02 0 014.07 13zm3.16-2H4.07a8.02 8.02 0 014.29-4.07A15.3 15.3 0 007.23 11zM12 20c-.8-1.16-1.46-2.79-1.84-4.93h3.68C13.46 17.21 12.8 18.84 12 20zm3.57-2.93c.54-1.24.97-2.6 1.2-4.07h3.16a8.02 8.02 0 01-4.36 4.07z"/>
     </svg>
-  </span>
-  <span>Visit My Website</span>
+  </div>
+  <div class="btnText">
+    Visit My Website
+  </div>
 </a>
 
 <div class="hero">
@@ -206,7 +216,6 @@ h1{
 function setLang(lang){
   document.getElementById('it').style.display = (lang === 'it') ? 'block' : 'none';
   document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
-
   document.getElementById('btn-it').className = (lang==='it') ? "langbtn active" : "langbtn inactive";
   document.getElementById('btn-en').className = (lang==='en') ? "langbtn active" : "langbtn inactive";
 }
