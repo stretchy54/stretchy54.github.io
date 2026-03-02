@@ -2,92 +2,75 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Strong Roots, Good Fruit</title>
+
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strong Roots, Good Fruit</title>
 
 <style>
 body{
   margin:0;
-  font-family: Georgia, serif;
+  padding:20px;
+  font-family: Georgia, "Palatino Linotype", serif;
   background:#f3efe8;
   text-align:center;
-  padding:20px;
 }
-.instruction{
-  display:block;
-  font-size:13px;
-  line-height:1.4;
-  margin-top:4px;
-}
+
 .container{
-  max-width:480px;
+  max-width:520px;
   margin:auto;
 }
 
-/* Language Selector */
 .langbar{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:20px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .langbtn{
-  display:flex;
-  align-items:center;
-  gap:10px;
+  font-size:18px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin:0 12px;
+  cursor:pointer;
   background:none;
   border:none;
-  font-size:22px;
-  font-weight:600;
-  letter-spacing:1px;
-  cursor:pointer;
-  padding-bottom:6px;
-  border-bottom:2px solid transparent;
-}
-
-.langbtn img{
-  width:32px;
-  height:20px;
+  padding:4px 0;
 }
 
 .active{
-  color:#1d1d1d;
-  border-bottom-color:#7a663e;
+  border-bottom:2px solid #7a6a3a;
+  color:#000;
 }
 
 .inactive{
   color:#888;
 }
 
-/* Title */
 h1{
   font-size:28px;
-  margin-bottom:5px;
+  margin:12px 0 6px;
+  line-height:1.05;
 }
 
 .subtitle{
   font-style:italic;
-  margin-bottom:20px;
-  color:#444;
+  color:#555;
+  margin-bottom:14px;
 }
 
-.lede{
-  font-size:18px;
-  margin-bottom:25px;
+.author{
+  font-size:20px;
+  margin-bottom:18px;
 }
 
-/* Buttons */
 .btn{
   display:block;
   text-decoration:none;
   padding:14px;
-  margin:10px 0;
-  border-radius:8px;
+  margin:12px 0;
+  border-radius:10px;
   font-size:18px;
 }
 
@@ -97,80 +80,103 @@ h1{
 }
 
 .secondary{
-  background:white;
+  background:#e9e6e0;
   color:#333;
   border:1px solid #ccc;
 }
 
-.hero{
-  margin-top:20px;
+.btn small{
+  display:block;
+  margin-top:4px;
+  font-size:15px;
+}
+
+.instruction{
+  display:block;
+  font-size:13px;
+  margin-top:6px;
 }
 
 .hero img{
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
+  margin-top:20px;
+}
+
+.langblock{
+  display:none;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <div class="langbar">
-  <button id="btn-it" class="langbtn active" onclick="setLang('it')">
-    <img src="assets/flag-it.png?v=1" alt="Italian flag"> ITALIANO
-  </button>
-  <button id="btn-en" class="langbtn inactive" onclick="setLang('en')">
-    <img src="assets/flag-uk.png?v=1" alt="UK flag"> INGLESE
-  </button>
+  <button id="btn-it" class="langbtn active" onclick="setLang('it')">🇮🇹 italiano</button>
+  <button id="btn-en" class="langbtn inactive" onclick="setLang('en')">🇬🇧 inglese</button>
 </div>
 
-<div id="it">
-  <h1>Radici forte, frutti buoni</h1>
-  <div class="subtitle">Monteleone di Puglia - Una fiabe, 2a edizione</div>
-  <div class="lede">
-    Steven G Kukla
-  </div>
+<!-- ITALIAN PAGE -->
+<div id="it" class="langblock">
 
-  <a class="btn primary" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank" rel="noopener">
-   Scarica il Libro Gratuito (PDF)<br>
-<small>Versione Italiana</small><br>
+<h1>Radici forti, frutti buoni</h1>
+
+<div class="subtitle">
+Monteleone di Puglia - Una fiaba, 2a edizione
+</div>
+
+<div class="author">
+Steven G Kukla
+</div>
+
+<a class="btn primary" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank">
+Scarica il Libro Gratuito (PDF)
+<small>Versione Italiana</small>
 <span class="instruction">
 Nel PDF, clicca sul link blu di una poesia per ascoltarne la versione musicale
 </span>
-  </a>
+</a>
 
+<a class="btn secondary" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
+Visita il Mio Sito Web
+</a>
 
-
-  <a class="btn secondary" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
-    Visita il Mio Sito Web
-  </a>
+<div class="hero">
+<img src="assets/lioness.jpg?v=1" alt="La Leonessa">
 </div>
 
-<div id="en" style="display:none;">
-  <h1>Strong Roots, Good Fruit</h1>
-  <div class="subtitle">Monteleone di Puglia - A Fantasy, 2nd Edition</div>
-  <div class="lede">
-    Steven G Kukla
-  </div>
+</div>
 
-  <a class="btn primary" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank" rel="noopener">
-    Download Free Book (PDF)<br>
-<small>English Version</small><br>
+<!-- ENGLISH PAGE -->
+<div id="en" class="langblock">
+
+<h1>Strong Roots, Good Fruit</h1>
+
+<div class="subtitle">
+Monteleone di Puglia - A Fantasy, 2nd Edition
+</div>
+
+<div class="author">
+Steven G Kukla
+</div>
+
+<a class="btn primary" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank">
+Download Free Book (PDF)
+<small>English Version</small>
 <span class="instruction">
 In the PDF, click a poem's blue link to hear its song version
 </span>
-  </a>
+</a>
 
-
-  <a class="btn secondary" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
-    Visit My Website
-  </a>
-</div>
+<a class="btn secondary" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
+Visit My Website
+</a>
 
 <div class="hero">
-  <img src="assets/lioness.jpg?v=1" alt="La Leonessa Sculpture">
+<img src="assets/lioness.jpg?v=1" alt="The Lioness Sculpture">
+</div>
+
 </div>
 
 </div>
@@ -180,46 +186,13 @@ function setLang(lang){
   document.getElementById('it').style.display = (lang === 'it') ? 'block' : 'none';
   document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
 
-  document.getElementById('btn-it').classList.toggle('active', lang==='it');
-  document.getElementById('btn-it').classList.toggle('inactive', lang!=='it');
-
-  document.getElementById('btn-en').classList.toggle('active', lang==='en');
-  document.getElementById('btn-en').classList.toggle('inactive', lang!=='en');
+  document.getElementById('btn-it').className = (lang==='it') ? "langbtn active" : "langbtn inactive";
+  document.getElementById('btn-en').className = (lang==='en') ? "langbtn active" : "langbtn inactive";
 }
+
+// Default to Italian on load (QR behavior)
+setLang('it');
 </script>
-  .btn{
-  padding: 10px 14px !important;
-  border-radius: 10px !important;
-}
 
-.primary{
-  box-shadow: 0 10px 18px rgba(0,0,0,0.12) !important;
-}
-<style>
-/* Elegant typography override */
-h1{
-  font-size:30px;
-  letter-spacing:0.3px;
-  line-height:1.08;
-}
-
-.subtitle{
-  margin-bottom:14px;
-}
-
-.btn{
-  padding:12px 14px;
-  font-size:18px;
-}
-
-.btnIcon{
-  width:34px;
-  height:34px;
-  border-radius:9px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-</style>
 </body>
 </html>
