@@ -64,7 +64,7 @@ h1{
 /* Buttons */
 .btn{
   display:flex;
-  align-items:flex-start;
+  align-items:flex-start;     /* KEY: align to the top, not the middle */
   justify-content:center;
   gap:12px;
   text-decoration:none;
@@ -74,7 +74,6 @@ h1{
   font-size:18px;
   line-height:1.2;
   box-shadow: 0 10px 18px rgba(0,0,0,0.12);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn:hover{
   transform: translateY(-2px);
