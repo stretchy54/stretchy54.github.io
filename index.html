@@ -22,7 +22,7 @@ body{
   margin:auto;
 }
 
-/* Language Bar */
+/* Language */
 .langbar{
   margin-bottom:20px;
 }
@@ -48,7 +48,6 @@ body{
 h1{
   font-size:28px;
   margin:10px 0 6px;
-  line-height:1.05;
 }
 .subtitle{
   font-style:italic;
@@ -64,20 +63,20 @@ h1{
 /* Buttons */
 .btn{
   display:flex;
-  align-items:flex-start;     /* KEY: align to the top, not the middle */
+  align-items:center;
   justify-content:center;
-  gap:12px;
+  gap:14px;
   text-decoration:none;
-  padding:14px 18px;
+  padding:16px 20px;
   margin:14px 0;
-  border-radius:12px;
+  border-radius:14px;
   font-size:18px;
   line-height:1.2;
   box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease;
 }
 .btn:hover{
   transform: translateY(-2px);
-  box-shadow: 0 14px 22px rgba(0,0,0,0.18);
 }
 
 .primary{
@@ -90,36 +89,17 @@ h1{
   color:white;
 }
 
-.btnIcon{
-  width:36px;
-  height:36px;
+/* Icon container */
+.icon{
+  width:26px;
+  height:26px;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex:0 0 36px;
-  line-height:1;
-
-  /* KEY: same top offset for both buttons */
-  margin-top:10px;
+  flex:0 0 26px;
 }
 
-.btnText{
-  text-align:center;
-}
-.btnText small{
-  display:block;
-  margin-top:4px;
-  font-size:15px;
-}
-.instruction{
-  display:block;
-  font-size:13px;
-  margin-top:6px;
-  line-height:1.35;
-  opacity:0.95;
-}
-
-/* Subtle Lioness */
+/* Subtle lioness */
 .hero{
   margin-top:30px;
   display:flex;
@@ -133,19 +113,9 @@ h1{
   filter:grayscale(20%);
 }
 
-/* Language blocks */
+/* Hide language blocks */
 .langblock{
   display:none;
-}
-  /* Force icon alignment */
-.btn span:first-child{
-  width:36px;
-  height:36px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex:0 0 36px;
-  line-height:1;
 }
 </style>
 </head>
@@ -154,8 +124,8 @@ h1{
 <div class="container">
 
 <div class="langbar">
-  <button id="btn-it" class="langbtn active" onclick="setLang('it')">🇮🇹 <span id="label-it">italiano</span></button>
-  <button id="btn-en" class="langbtn inactive" onclick="setLang('en')">🇬🇧 <span id="label-en">inglese</span></button>
+  <button id="btn-it" class="langbtn active" onclick="setLang('it')">🇮🇹 italiano</button>
+  <button id="btn-en" class="langbtn inactive" onclick="setLang('en')">🇬🇧 inglese</button>
 </div>
 
 <!-- ITALIAN -->
@@ -166,19 +136,27 @@ h1{
 <div class="author">Steven G Kukla</div>
 
 <a class="btn primary" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank">
-  <span class="btnIcon">⬇</span>
-  <span class="btnText">
-    Scarica il Libro Gratuito (PDF)
-    <small>Versione Italiana</small>
-    <span class="instruction">
-      Nel PDF, clicca sul link blu di una poesia per ascoltarne la versione musicale
-    </span>
+  <span class="icon">
+    <!-- Download SVG -->
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+      <path d="M12 16l-6-6h4V4h4v6h4zM5 18h14v2H5z"/>
+    </svg>
+  </span>
+  <span>
+    Scarica il Libro Gratuito (PDF)<br>
+    <small>Versione Italiana</small><br>
+    <small>Nel PDF, clicca sul link blu di una poesia per ascoltarne la versione musicale</small>
   </span>
 </a>
 
 <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
-  <span class="btnIcon">🌐</span>
-  <span class="btnText">Visita il Mio Sito Web</span>
+  <span class="icon">
+    <!-- Globe SVG -->
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.16a15.3 15.3 0 00-1.2-4.07A8.02 8.02 0 0119.93 11zM12 4c.8 1.16 1.46 2.79 1.84 4.93H10.16C10.54 6.79 11.2 5.16 12 4zM4.07 13h3.16c.23 1.47.66 2.83 1.2 4.07A8.02 8.02 0 014.07 13zm3.16-2H4.07a8.02 8.02 0 014.29-4.07A15.3 15.3 0 007.23 11zM12 20c-.8-1.16-1.46-2.79-1.84-4.93h3.68C13.46 17.21 12.8 18.84 12 20zm3.57-2.93c.54-1.24.97-2.6 1.2-4.07h3.16a8.02 8.02 0 01-4.36 4.07z"/>
+    </svg>
+  </span>
+  <span>Visita il Mio Sito Web</span>
 </a>
 
 <div class="hero">
@@ -195,19 +173,25 @@ h1{
 <div class="author">Steven G Kukla</div>
 
 <a class="btn primary" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank">
-  <span class="btnIcon">⬇</span>
-  <span class="btnText">
-    Download Free Book (PDF)
-    <small>English Version</small>
-    <span class="instruction">
-      In the PDF, click a poem's blue link to hear its song version
-    </span>
+  <span class="icon">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+      <path d="M12 16l-6-6h4V4h4v6h4zM5 18h14v2H5z"/>
+    </svg>
+  </span>
+  <span>
+    Download Free Book (PDF)<br>
+    <small>English Version</small><br>
+    <small>In the PDF, click a poem's blue link to hear its song version</small>
   </span>
 </a>
 
 <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
-  <span class="btnIcon">🌐</span>
-  <span class="btnText">Visit My Website</span>
+  <span class="icon">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.16a15.3 15.3 0 00-1.2-4.07A8.02 8.02 0 0119.93 11zM12 4c.8 1.16 1.46 2.79 1.84 4.93H10.16C10.54 6.79 11.2 5.16 12 4zM4.07 13h3.16c.23 1.47.66 2.83 1.2 4.07A8.02 8.02 0 014.07 13zm3.16-2H4.07a8.02 8.02 0 014.29-4.07A15.3 15.3 0 007.23 11zM12 20c-.8-1.16-1.46-2.79-1.84-4.93h3.68C13.46 17.21 12.8 18.84 12 20zm3.57-2.93c.54-1.24.97-2.6 1.2-4.07h3.16a8.02 8.02 0 01-4.36 4.07z"/>
+    </svg>
+  </span>
+  <span>Visit My Website</span>
 </a>
 
 <div class="hero">
@@ -225,22 +209,7 @@ function setLang(lang){
 
   document.getElementById('btn-it').className = (lang==='it') ? "langbtn active" : "langbtn inactive";
   document.getElementById('btn-en').className = (lang==='en') ? "langbtn active" : "langbtn inactive";
-
-  const labelIt = document.getElementById('label-it');
-  const labelEn = document.getElementById('label-en');
-
-  if(lang === 'it'){
-    labelIt.textContent = 'italiano';
-    labelEn.textContent = 'inglese';
-    document.documentElement.lang = 'it';
-  } else {
-    labelIt.textContent = 'ITALIAN';
-    labelEn.textContent = 'ENGLISH';
-    document.documentElement.lang = 'en';
-  }
 }
-
-/* Default to Italian for QR scans */
 setLang('it');
 </script>
 
