@@ -41,11 +41,24 @@
 
     /* BIG + obvious back button */
     .topbar{
-      display:flex;
-      justify-content: center;  /* center the back button so it’s unmissable */
-      align-items:center;
-      margin: 8px 0 14px;
-    }
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 10px 0;
+  margin: 0 0 14px;
+
+  /* keeps it readable over content while scrolling */
+  background: rgba(243,238,230,0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  display:flex;
+  justify-content: center;
+  align-items:center;
+
+  /* subtle separator line */
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
     .back{
       display:inline-flex;
       align-items:center;
@@ -60,6 +73,7 @@
       font-weight: 600;
       letter-spacing: .2px;
       border: 1px solid rgba(255,255,255,.22);
+      max-width: 92%;
     }
     .back:hover{ background: var(--backBgHover); }
     .back:active{ transform: translateY(1px); }
