@@ -32,29 +32,31 @@
     padding-bottom:4px;
   }
 
-  /* ✅ Title: identical styling for IT + EN, and forced to one line on mobile */
+  /* Title: identical IT + EN, forced one line */
   .title{
     margin:30px 16px 10px;
     font-weight:700;
     line-height:1.05;
-
-    /* responsive size that shrinks on small screens */
     font-size: clamp(28px, 6.2vw, 48px);
-
-    /* force single line */
     white-space: nowrap;
   }
 
-  /* subtitle + author MUST remain untouched (as requested) */
+  /* Base subtitle + author (desktop/tablet) */
   .subtitle{
     font-style: italic;
     font-size: 22px;
     color:#666;
     margin-bottom:10px;
+
+    /* keep on one line */
+    white-space: nowrap;
   }
   .author{
     font-size:26px;
     margin-bottom:40px;
+
+    /* keep on one line */
+    white-space: nowrap;
   }
 
   /* Buttons */
@@ -68,7 +70,6 @@
     margin:20px auto;
     padding:20px;
     border-radius:40px;
-    font-size:26px;
     font-weight:bold;
     text-decoration:none;
     color:#fff;
@@ -81,8 +82,41 @@
     line-height:1;
   }
 
-  /* extra safety: if a very small phone still wraps, shrink a touch more */
+  /* Desktop/tablet button text size */
+  .btnText{
+    font-size:26px;
+    line-height:1.1;
+    white-space: nowrap;  /* keep button text one line */
+  }
+
+  /* ✅ Mobile: make subtitle/author/buttons SAME size and fit one line */
+  @media (max-width: 520px){
+    .subtitle,
+    .author,
+    .btnText{
+      font-size: 18px;     /* one shared mobile size */
+    }
+
+    .btn{
+      padding:16px;
+      border-radius:34px;
+      width: 88%;
+    }
+
+    .btn .icon{
+      font-size:24px;
+    }
+
+    .author{ margin-bottom:32px; }
+  }
+
+  /* extra safety for very small phones */
   @media (max-width: 360px){
+    .subtitle,
+    .author,
+    .btnText{
+      font-size: 16px;
+    }
     .title{ font-size: 26px; }
   }
 </style>
@@ -103,12 +137,12 @@
 
   <a class="btn download" href="books/FINAL_ITA_MdP_1Nov2025.pdf">
     <span class="icon">⬇</span>
-    Scarica il Libro Gratuito (PDF)
+    <span class="btnText">Scarica il Libro Gratuito (PDF)</span>
   </a>
 
   <a class="btn website" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
     <span class="icon">🌐</span>
-    Visita il Mio Sito Web
+    <span class="btnText">Visita il Mio Sito Web</span>
   </a>
 </div>
 
@@ -120,12 +154,12 @@
 
   <a class="btn download" href="books/FINAL_MdP_ENG_4Nov2025.pdf">
     <span class="icon">⬇</span>
-    Download Free Book (PDF)
+    <span class="btnText">Download Free Book (PDF)</span>
   </a>
 
   <a class="btn website" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
     <span class="icon">🌐</span>
-    Visit My Website
+    <span class="btnText">Visit My Website</span>
   </a>
 </div>
 
