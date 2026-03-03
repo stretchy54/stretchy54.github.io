@@ -1,141 +1,90 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Strong Roots, Good Fruit</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Georgia, serif;
-  background: #f4f1eb;
-  text-align: center;
-  color: #222;
-}
+  body{
+    margin:0;
+    font-family: Georgia, serif;
+    background:#f4f1eb;
+    text-align:center;
+    color:#222;
+  }
 
-.langbar {
-  margin-top: 30px;
-  font-size: 18px;
-  letter-spacing: 1px;
-}
+  /* Language bar */
+  .langbar{
+    margin-top:30px;
+    font-size:18px;
+    letter-spacing:1px;
+  }
+  .langbar a{
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+    color:#666;
+  }
+  .langbar a.active{
+    color:#000;
+    border-bottom:2px solid #8c7a47;
+    padding-bottom:4px;
+  }
 
-.langbar a {
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-  color: #666;
-}
+  /* ✅ Title: identical styling for IT + EN, and forced to one line on mobile */
+  .title{
+    margin:30px 16px 10px;
+    font-weight:700;
+    line-height:1.05;
 
-.langbar a.active {
-  color: #000;
-  border-bottom: 2px solid #8c7a47;
-  padding-bottom: 4px;
-}
+    /* responsive size that shrinks on small screens */
+    font-size: clamp(28px, 6.2vw, 48px);
 
-h1 {
-  font-size: 30px;
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
+    /* force single line */
+    white-space: nowrap;
+  }
 
-.subtitle {
-  font-style: italic;
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 10px;
-}
+  /* subtitle + author MUST remain untouched (as requested) */
+  .subtitle{
+    font-style: italic;
+    font-size: 22px;
+    color:#666;
+    margin-bottom:10px;
+  }
+  .author{
+    font-size:26px;
+    margin-bottom:40px;
+  }
 
-.author {
-  font-size: 18px;
-  margin-bottom: 40px;
-}
+  /* Buttons */
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    width:80%;
+    max-width:700px;
+    margin:20px auto;
+    padding:20px;
+    border-radius:40px;
+    font-size:26px;
+    font-weight:bold;
+    text-decoration:none;
+    color:#fff;
+  }
+  .download{ background:#3f6687; }
+  .website{ background:#d6953b; }
 
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  width: 80%;
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 40px;
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-}
+  .btn .icon{
+    font-size:28px;
+    line-height:1;
+  }
 
-.download {
-  background: #3f6687;
-}
-
-.website {
-  background: #d6953b;
-}
-
-.btn span.icon {
-  font-size: 20px;
-  line-height: 1;
-}
-
-.hero {
-  margin-top: 40px;
-}
-
-.hero img {
-  width: 60%;
-  max-width: 500px;
-  border-radius: 20px;
-}
-  /* --- Lioness "depth of field" (blurred background + sharp subject) --- */
-.heroDOF{
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  margin: 34px auto 0;
-  height: 320px;            /* adjust for more/less lioness */
-  border-radius: 22px;
-  overflow: hidden;
-  background: #e9e3da;
-}
-
-/* blurred background layer */
-.heroBlur{
-  position:absolute; inset:-30px;   /* extra so blur doesn't clip */
-  background-image: url("assets/lioness.jpg?v=1");
-  background-size: cover;
-  background-position: 55% 45%;
-  filter: blur(14px);
-  transform: scale(1.08);
-  opacity: 0.35;                   /* subtle like your example */
-}
-
-/* sharp subject layer, anchored bottom-right */
-.heroSubject{
-  position:absolute;
-  right: -6%;
-  bottom: -18%;
-  width: 78%;
-  height: 120%;
-  background-image: url("assets/lioness.jpg?v=1");
-  background-size: cover;
-  background-position: 78% 60%;    /* aims at lioness face; tweak */
-  filter: none;
-  opacity: 0.95;
-}
-
-/* soft vignette to blend edges */
-.heroDOF::after{
-  content:"";
-  position:absolute; inset:0;
-  background: radial-gradient(ellipse at 75% 70%,
-              rgba(244,241,235,0) 0%,
-              rgba(244,241,235,0.55) 62%,
-              rgba(244,241,235,0.85) 100%);
-  pointer-events:none;
-}
+  /* extra safety: if a very small phone still wraps, shrink a touch more */
+  @media (max-width: 360px){
+    .title{ font-size: 26px; }
+  }
 </style>
 </head>
 
@@ -146,71 +95,70 @@ h1 {
   <a href="?lang=en" id="link-en">🇬🇧 <span id="label-en">INGLESE</span></a>
 </div>
 
+<!-- ITALIAN -->
 <div id="content-it">
-  <h1>Radici forti, frutti buoni</h1>
+  <h1 class="title">Radici forti, frutti buoni</h1>
   <div class="subtitle">Monteleone di Puglia - Una fiaba, 2a edizione</div>
   <div class="author">Steven G Kukla</div>
 
-  <a class="btn download" href="assets/RadiciFortiFruttiBuoni_Italian.pdf">
+  <a class="btn download" href="books/FINAL_ITA_MdP_1Nov2025.pdf">
     <span class="icon">⬇</span>
     Scarica il Libro Gratuito (PDF)
   </a>
 
-  <a class="btn website" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
+  <a class="btn website" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
     <span class="icon">🌐</span>
     Visita il Mio Sito Web
   </a>
 </div>
 
+<!-- ENGLISH -->
 <div id="content-en">
-  <h1>Strong Roots, Good Fruit</h1>
+  <h1 class="title">Strong Roots, Good Fruit</h1>
   <div class="subtitle">Monteleone di Puglia - A Fantasy, 2nd Edition</div>
   <div class="author">Steven G Kukla</div>
 
-  <a class="btn download" href="assets/StrongRootsGoodFruit_English.pdf">
+  <a class="btn download" href="books/FINAL_MdP_ENG_4Nov2025.pdf">
     <span class="icon">⬇</span>
     Download Free Book (PDF)
   </a>
 
-  <a class="btn website" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank">
+  <a class="btn website" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
     <span class="icon">🌐</span>
     Visit My Website
   </a>
 </div>
 
-<div class="heroDOF" aria-hidden="true">
-  <div class="heroBlur"></div>
-  <div class="heroSubject"></div>
-</div>
-
 <script>
-const params = new URLSearchParams(window.location.search);
-const lang = params.get("lang") || "it";
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get("lang") || "it";
 
-const contentIt = document.getElementById("content-it");
-const contentEn = document.getElementById("content-en");
-const linkIt = document.getElementById("link-it");
-const linkEn = document.getElementById("link-en");
-const labelIt = document.getElementById("label-it");
-const labelEn = document.getElementById("label-en");
+  const contentIt = document.getElementById("content-it");
+  const contentEn = document.getElementById("content-en");
 
-if (lang === "en") {
-  contentIt.style.display = "none";
-  contentEn.style.display = "block";
-  document.documentElement.lang = "en";
+  const linkIt = document.getElementById("link-it");
+  const linkEn = document.getElementById("link-en");
 
-  linkEn.classList.add("active");
-  labelIt.textContent = "ITALIAN";
-  labelEn.textContent = "ENGLISH";
-} else {
-  contentEn.style.display = "none";
-  contentIt.style.display = "block";
-  document.documentElement.lang = "it";
+  const labelIt = document.getElementById("label-it");
+  const labelEn = document.getElementById("label-en");
 
-  linkIt.classList.add("active");
-  labelIt.textContent = "ITALIANO";
-  labelEn.textContent = "INGLESE";
-}
+  if (lang === "en") {
+    contentIt.style.display = "none";
+    contentEn.style.display = "block";
+    document.documentElement.lang = "en";
+
+    linkEn.classList.add("active");
+    labelIt.textContent = "ITALIAN";
+    labelEn.textContent = "ENGLISH";
+  } else {
+    contentEn.style.display = "none";
+    contentIt.style.display = "block";
+    document.documentElement.lang = "it";
+
+    linkIt.classList.add("active");
+    labelIt.textContent = "ITALIANO";
+    labelEn.textContent = "INGLESE";
+  }
 </script>
 
 </body>
