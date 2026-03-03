@@ -4,100 +4,146 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Companion Songs and Music</title>
+
   <style>
     :root{
       --bg:#f3eee6;
       --ink:#1f1f1f;
       --muted:#5f5f5f;
-      --green:#5A8A6A;
+
+      /* Attention back button */
+      --backBg:#2B5F8E;        /* steel blue */
+      --backBgHover:#25557f;
+      --backText:#ffffff;
+
+      --cardBg: rgba(255,255,255,.72);
+      --border: rgba(0,0,0,.08);
       --radius:18px;
-      --shadow:0 10px 18px rgba(0,0,0,.10);
+      --shadow:0 12px 22px rgba(0,0,0,.10);
+      --shadowSoft:0 8px 16px rgba(0,0,0,.10);
     }
+
+    *{ box-sizing: border-box; }
+
     body{
       margin:0;
       font-family: Georgia, "Times New Roman", serif;
       background:var(--bg);
       color:var(--ink);
     }
+
     .wrap{
       max-width: 920px;
       margin: 0 auto;
-      padding: 20px 16px 30px;
+      padding: 18px 16px 34px;
+      text-align: center;
     }
+
+    /* BIG + obvious back button */
     .topbar{
       display:flex;
-      justify-content: space-between;
+      justify-content: center;  /* center the back button so it’s unmissable */
       align-items:center;
-      gap:12px;
-      margin-bottom: 14px;
+      margin: 8px 0 14px;
     }
     .back{
       display:inline-flex;
       align-items:center;
-      gap:10px;
+      gap: 10px;
       text-decoration:none;
-      background: #ffffffcc;
-      border: 1px solid rgba(0,0,0,.08);
-      padding: 10px 14px;
+      background: var(--backBg);
+      color: var(--backText);
+      padding: 14px 20px;       /* larger */
       border-radius: 999px;
       box-shadow: var(--shadow);
-      color: var(--ink);
-      font-size: 18px;
-      font-weight: 400;
+      font-size: 20px;          /* larger */
+      font-weight: 600;
+      letter-spacing: .2px;
+      border: 1px solid rgba(255,255,255,.22);
     }
+    .back:hover{ background: var(--backBgHover); }
+    .back:active{ transform: translateY(1px); }
+
     h1{
-      margin: 8px 0 12px;
-      font-size: clamp(24px, 5vw, 38px);
+      margin: 10px 0 18px;
+      font-size: clamp(24px, 5vw, 40px);
       text-align:center;
     }
+
+    /* Album section */
+    .album{
+      background: var(--cardBg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadowSoft);
+      padding: 16px 14px 18px;
+      margin: 16px auto 18px;
+    }
+
+    /* Smaller covers so links dominate */
+    .cover{
+      width: min(220px, 60%);   /* smaller */
+      border-radius: 14px;
+      display:block;
+      margin: 6px auto 12px;
+      box-shadow: var(--shadowSoft);
+    }
+
     .vol{
-      margin: 18px 0 8px;
+      margin: 6px 0 10px;
       font-size: 22px;
       font-weight: 600;
     }
-    .card{
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: var(--radius);
-      padding: 14px;
-      box-shadow: var(--shadow);
-      margin-bottom: 16px;
+
+    /* Centered list */
+    .tracklist{
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 760px;
     }
-    .cover{
-      width: 100%;
-      max-width: 420px;
-      border-radius: 14px;
-      display:block;
-      margin: 8px auto 12px;
-      box-shadow: var(--shadow);
+    .tracklist li{
+      margin: 10px 0;
+      font-size: 18px;
+      line-height: 1.25;
+      text-align: center;
     }
-    ul{ margin: 0; padding-left: 20px; }
-    li{ margin: 8px 0; }
+
     a{
       color: #1d4ed8;
       text-decoration: underline;
+      word-break: break-word;
     }
+
     .hint{
-      margin-top: 12px;
+      margin-top: 14px;
       color: var(--muted);
       font-size: 14px;
       text-align:center;
     }
+
+    @media (max-width: 380px){
+      .back{ width: 100%; justify-content: center; }
+      .tracklist li{ font-size: 16px; }
+      .cover{ width: min(200px, 70%); }
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="topbar">
-      <a class="back" id="backLink" href="index.html">← Back</a>
-      <div></div>
+      <a class="back" id="backLink" href="index.html">← Back to Main Page</a>
     </div>
 
-    <h1>Companion Songs and Music</h1>
+    <h1 id="pageTitle">Companion Songs and Music</h1>
 
-    <div class="card">
+    <!-- Volume 1 -->
+    <section class="album">
       <img class="cover" src="assets/Vol1.jpeg?v=1" alt="Volume 1 cover">
-      <div class="vol">Volume 1</div>
-      <ul>
+      <div class="vol" id="vol1Label">Volume 1</div>
+
+      <ul class="tracklist">
         <li>1-1 Opening: <a href="https://bit.ly/4rwz1MZ">https://bit.ly/4rwz1MZ</a></li>
         <li>1-2 Strong Roots Good Fruit: <a href="https://bit.ly/4cSeRIK">https://bit.ly/4cSeRIK</a></li>
         <li>1-3 Daunia's Song: <a href="https://bit.ly/3N1xH5O">https://bit.ly/3N1xH5O</a></li>
@@ -118,12 +164,14 @@
         <li>1-18 Song of Despair and Decision: <a href="https://bit.ly/4kQNpgy">https://bit.ly/4kQNpgy</a></li>
         <li>1-19 Song of Despair and Decision (Italian): <a href="https://bit.ly/4cccKiX">https://bit.ly/4cccKiX</a></li>
       </ul>
-    </div>
+    </section>
 
-    <div class="card">
+    <!-- Volume 2 -->
+    <section class="album">
       <img class="cover" src="assets/Vol2.jpeg?v=1" alt="Volume 2 cover">
-      <div class="vol">Volume 2</div>
-      <ul>
+      <div class="vol" id="vol2Label">Volume 2</div>
+
+      <ul class="tracklist">
         <li>2-1 Song of Scaramuccia: <a href="https://bit.ly/3ZRIFxN">https://bit.ly/3ZRIFxN</a></li>
         <li>2-2 Song of the Women's Roar: <a href="https://bit.ly/4aBcjxt">https://bit.ly/4aBcjxt</a></li>
         <li>2-3 Song of Acceptance: <a href="https://bit.ly/479eCFz">https://bit.ly/479eCFz</a></li>
@@ -137,23 +185,33 @@
         <li>2-11 La Leonessa: <a href="https://bit.ly/4tV1Owg">https://bit.ly/4tV1Owg</a></li>
         <li>2-12 Closing: <a href="https://bit.ly/4aY5dCa">https://bit.ly/4aY5dCa</a></li>
       </ul>
-    </div>
+    </section>
 
-    <div class="hint">
-      Note: these are external links (Bitly → YouTube/other). Browsers won’t auto-play audio without a user tap inside the player.
+    <div class="hint" id="hintText">
+      Note: these are external links. Browsers won’t auto-play audio without a user tap inside the player.
     </div>
   </div>
 
   <script>
-    // Keep language when returning to index
+    // Keep language when returning to index + translate the Music page heading/back label
     (function(){
       const url = new URL(window.location.href);
       const lang = url.searchParams.get('lang') || localStorage.getItem('preferredLang') || 'it';
-      document.getElementById('backLink').href = 'index.html?lang=' + encodeURIComponent(lang);
-      document.documentElement.lang = (lang === 'it') ? 'it' : 'en';
+
+      // Back link keeps language
+      const back = document.getElementById('backLink');
+      back.href = 'index.html?lang=' + encodeURIComponent(lang);
+
       if(lang === 'it'){
-        document.querySelector('h1').textContent = 'Canzoni e Musica di Accompagnamento';
-        document.getElementById('backLink').textContent = '← Indietro';
+        document.documentElement.lang = 'it';
+        document.getElementById('pageTitle').textContent = 'Canzoni e Musica di Accompagnamento';
+        back.textContent = '← Torna alla Pagina Principale';
+        document.getElementById('vol1Label').textContent = 'Volume 1';
+        document.getElementById('vol2Label').textContent = 'Volume 2';
+        document.getElementById('hintText').textContent =
+          'Nota: questi sono link esterni. I browser non avviano automaticamente l’audio senza un tocco nel player.';
+      } else {
+        document.documentElement.lang = 'en';
       }
     })();
   </script>
