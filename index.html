@@ -18,11 +18,14 @@
       --orange: #D4872A;   /* amber/gold */
       --green: #5A8A6A;    /* sage */
       --rose: #8B4A3C;     /* dusty rose-brick */
-      --space: 18px;
+
       --radius: 999px;
       --cardRadius: 18px;
       --shadow: 0 14px 28px rgba(0,0,0,.10);
       --shadowSoft: 0 10px 18px rgba(0,0,0,.10);
+
+      /* ✅ SINGLE KNOB: change this ONE value to tighten/loosen the whole page */
+      --space: 22px;
     }
 
     *{ box-sizing: border-box; }
@@ -36,7 +39,7 @@
     .wrap{
       max-width: 980px;
       margin: 0 auto;
-      padding: 22px 18px 30px;
+      padding: calc(var(--space) * 1.2) 18px calc(var(--space) * 1.6);
       text-align: center;
     }
 
@@ -44,9 +47,9 @@
     .langbar{
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: calc(var(--space) * 2.2);
       align-items: flex-end;
-      margin: 8px 0 22px;
+      margin: calc(var(--space) * .5) 0 calc(var(--space) * 1.2);
     }
     .langbtn{
       appearance: none;
@@ -55,7 +58,7 @@
       padding: 8px 6px;
       cursor: pointer;
       font-family: inherit;
-      font-size: 26px;
+      font-size: 22px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--muted);
@@ -94,63 +97,60 @@
 
     /* Title / subtitle / author */
     h1{
-      margin: 10px 0 8px;
+      margin: var(--space) 0 calc(var(--space) * .45);
       font-weight: 700;
       letter-spacing: .2px;
 
-      /* IMPORTANT: never wrap on mobile */
+      /* never wrap on mobile */
       white-space: nowrap;
       overflow: hidden;
       text-overflow: clip;
 
-      /* Same size for IT + EN, always single line */
+      /* identical sizing for IT + EN */
       font-size: clamp(26px, 6.2vw, 56px);
     }
     .subtitle{
-      margin: 0 0 12px;
+      margin: 0 0 calc(var(--space) * .6);
       color: #5f5f5f;
       font-style: italic;
-      font-size: clamp(16px, 3.6vw, 28px); /* already tuned to fit one line */
+      font-size: clamp(16px, 3.6vw, 28px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: clip;
     }
     .author{
-      margin: 0 0 34px;
+      margin: 0 0 var(--space);
       font-size: clamp(18px, 4vw, 32px);
       font-weight: 600;
     }
 
-    /* Buttons */
+    /* Buttons (not bold) */
     .btn{
       display: flex;
       align-items: center;
       gap: 16px;
       width: min(920px, 100%);
-      margin: 16px auto 0;
-      padding: 18px 22px;
+      padding: calc(var(--space) * .95) calc(var(--space) * 1.15);
       border-radius: var(--radius);
       text-decoration: none;
       color: #fff;
       box-shadow: var(--shadowSoft);
-
-      /* NOT bold */
       font-weight: 400;
-
-      /* unify button text sizing as you requested */
       font-size: clamp(18px, 3.8vw, 34px);
-
       line-height: 1.1;
       justify-content: center;
       position: relative;
+
+      /* ✅ unified vertical spacing between buttons */
+      margin: calc(var(--space) * .6) auto;
     }
 
-    /* Create a fixed left “icon lane” so icons align vertically */
+    /* fixed icon lane (vertical alignment across all buttons) */
     .btn::before{
       content: "";
       position: absolute;
       left: 26px;
-      width: 44px;  /* fixed column width */
+      width: 44px;
       height: 1px;
     }
     .btnIcon{
@@ -164,10 +164,10 @@
       line-height: 1;
       opacity: .95;
     }
-
     .btnText{
       text-align: center;
       padding: 0 10px;
+      white-space: nowrap;
     }
 
     .btn.blue{ background: var(--blue); }
@@ -178,11 +178,11 @@
     .btn:hover{ filter: brightness(1.03); }
     .btn:active{ transform: translateY(1px); }
 
-    /* Hero image (keep it simple, no “fancy” styling) */
+    /* Hero image (simple) */
     .hero{
-      margin: 26px auto 0;
+      margin: var(--space) auto 0;
       width: min(520px, 92%);
-      border-radius: 18px;
+      border-radius: var(--cardRadius);
       overflow: hidden;
       background: rgba(0,0,0,.06);
       box-shadow: var(--shadow);
@@ -197,11 +197,11 @@
     .langSection{ display: none; }
     .langSection.active{ display: block; }
 
-    /* Tighten on very small screens */
+    /* Small screens */
     @media (max-width: 380px){
-      .langbar{ gap: 22px; }
+      .langbar{ gap: calc(var(--space) * 1.3); }
       .langbtn{ font-size: 22px; }
-      .btn{ padding: 16px 18px; }
+      .btn{ padding: calc(var(--space) * .85) calc(var(--space) * 1.0); }
       .btnIcon{ left: 18px; }
       .btn::before{ left: 18px; }
     }
@@ -211,7 +211,6 @@
 <body>
   <div class="wrap">
 
-    <!-- Language buttons (text changes based on current language) -->
     <div class="langbar">
       <button id="btn-it" class="langbtn" type="button" onclick="setLang('it')">
         <span class="flag"><img src="assets/flag-it.png" alt="Italian flag"></span>
@@ -230,25 +229,21 @@
       <div class="subtitle">Monteleone di Puglia - Una fiaba, 2a edizione</div>
       <div class="author">Steven G Kukla</div>
 
-      <!-- Download IT PDF (single line only) -->
       <a class="btn blue" href="books/FINAL_ITA_MdP_1Nov2025.pdf?v=1">
         <span class="btnIcon" aria-hidden="true">⬇︎</span>
         <span class="btnText">Scarica il Libro Gratuito (PDF)</span>
       </a>
 
-      <!-- Website -->
       <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" rel="noopener">
         <span class="btnIcon" aria-hidden="true">🌐</span>
         <span class="btnText">Visita il Mio Sito Web</span>
       </a>
 
-      <!-- Music page -->
       <a class="btn green" href="music.html?lang=it">
         <span class="btnIcon" aria-hidden="true">▶︎</span>
         <span class="btnText">Canzoni e Musica di Accompagnamento</span>
       </a>
 
-      <!-- Project PDF -->
       <a class="btn rose" href="Project.pdf?v=1">
         <span class="btnIcon" aria-hidden="true">⬇︎</span>
         <span class="btnText">Sul Progetto <em>La Leonessa</em></span>
@@ -265,27 +260,23 @@
       <div class="subtitle">Monteleone di Puglia - A Fantasy, 2nd Edition</div>
       <div class="author">Steven G Kukla</div>
 
-      <!-- Download EN PDF (single line only) -->
       <a class="btn blue" href="books/FINAL_ENG_MdP_1Nov2025.pdf?v=1">
         <span class="btnIcon" aria-hidden="true">⬇︎</span>
         <span class="btnText">Download Free Book (PDF)</span>
       </a>
 
-      <!-- Website -->
       <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" rel="noopener">
         <span class="btnIcon" aria-hidden="true">🌐</span>
         <span class="btnText">Visit My Website</span>
       </a>
 
-      <!-- Music page -->
       <a class="btn green" href="music.html?lang=en">
         <span class="btnIcon" aria-hidden="true">▶︎</span>
         <span class="btnText">Companion Songs and Music</span>
       </a>
 
-      <!-- Project PDF -->
       <a class="btn rose" href="Project.pdf?v=1">
-        <span class="btnIcon" aria-hidden="true">🦁</span>
+        <span class="btnIcon" aria-hidden="true">⬇︎</span>
         <span class="btnText">About the <em>La Leonessa</em> Project</span>
       </a>
 
@@ -298,15 +289,12 @@
 
   <script>
     function setLang(lang){
-      // Show the right section
       document.getElementById('it').classList.toggle('active', lang === 'it');
       document.getElementById('en').classList.toggle('active', lang === 'en');
 
-      // Active button underline
       document.getElementById('btn-it').classList.toggle('active', lang === 'it');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
-      // IMPORTANT: language button labels change based on current page language
       if (lang === 'en'){
         document.getElementById('label-it').textContent = 'ITALIAN';
         document.getElementById('label-en').textContent = 'ENGLISH';
@@ -320,16 +308,11 @@
       localStorage.setItem('preferredLang', lang);
     }
 
-    // Default behavior:
-    // - If QR uses your normal URL, default Italian.
-    // - If user previously selected a language, respect it.
     (function init(){
       const url = new URL(window.location.href);
       const qLang = url.searchParams.get('lang');
       const saved = localStorage.getItem('preferredLang');
-
-      const lang = qLang || saved || 'it';
-      setLang(lang);
+      setLang(qLang || saved || 'it');  // default Italian for QR
     })();
   </script>
 </body>
