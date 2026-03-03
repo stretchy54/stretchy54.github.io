@@ -1,179 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Strong Roots, Good Fruit</title>
-
-  <!-- cache-busting / reduce “clear history” pain -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
+  <title>Strong Roots, Good Fruit</title>
 
   <style>
     :root{
-      --bg: #F3EEE6;
-      --text: #1E1E1E;
-      --muted: rgba(0,0,0,.55);
+      --bg: #f3eee6;
+      --ink: #1f1f1f;
+      --muted: #7a7a7a;
 
-      --blue: #2B5F8E;       /* steel blue */
-      --orange: #D4872A;     /* amber/gold */
-      --green: #5A8A6A;      /* sage */
-      --rose: #8B4A3C;       /* dusty rose-brick */
+      --blue: #2B5F8E;     /* steel blue */
+      --orange: #D4872A;   /* amber/gold */
+      --green: #5A8A6A;    /* sage */
+      --rose: #8B4A3C;     /* dusty rose-brick */
 
-      --btnRadius: 999px;
-      --maxW: 760px;
+      --radius: 999px;
+      --cardRadius: 18px;
+      --shadow: 0 14px 28px rgba(0,0,0,.10);
+      --shadowSoft: 0 10px 18px rgba(0,0,0,.10);
     }
 
-    *{ box-sizing:border-box; }
+    *{ box-sizing: border-box; }
     body{
-      margin:0;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
       background: var(--bg);
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", Times, serif;
+      color: var(--ink);
     }
 
     .wrap{
-      max-width: var(--maxW);
+      max-width: 980px;
       margin: 0 auto;
-      padding: 18px 18px 36px;
-      text-align:center;
+      padding: 22px 18px 30px;
+      text-align: center;
     }
 
-    /* language bar */
+    /* Language bar */
     .langbar{
-      display:flex;
-      justify-content:center;
-      gap: 34px;
-      align-items:flex-end;
-      margin: 8px 0 18px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      align-items: flex-end;
+      margin: 8px 0 22px;
     }
     .langbtn{
-      background: transparent;
+      appearance: none;
       border: none;
+      background: transparent;
+      padding: 8px 6px;
       cursor: pointer;
-      padding: 10px 6px 6px;
+      font-family: inherit;
       font-size: 26px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(0,0,0,.38);
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      position:relative;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1;
     }
     .langbtn .flag{
-      font-size: 30px;
-      line-height: 1;
-      transform: translateY(1px);
+      width: 34px;
+      height: 22px;
+      display: inline-block;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    }
+    .langbtn .flag img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .langbtn.active{
-      color: rgba(0,0,0,.85);
+      color: var(--ink);
+      position: relative;
     }
     .langbtn.active::after{
-      content:"";
-      position:absolute;
-      left: 44px;
+      content: "";
+      position: absolute;
+      left: 0;
       right: 0;
-      bottom: -6px;
+      bottom: -10px;
       height: 3px;
-      background: rgba(80,70,40,.70);
-      border-radius: 2px;
+      background: #7a6a4b;
     }
 
-    /* headings */
+    /* Title / subtitle / author */
     h1{
-      margin: 8px 0 6px;
+      margin: 10px 0 8px;
       font-weight: 700;
-      line-height: 1.06;
-      font-size: clamp(34px, 8vw, 64px);
+      letter-spacing: .2px;
+
+      /* IMPORTANT: never wrap on mobile */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+
+      /* Same size for IT + EN, always single line */
+      font-size: clamp(26px, 6.2vw, 56px);
     }
     .subtitle{
-      margin: 0 0 10px;
+      margin: 0 0 12px;
+      color: #5f5f5f;
       font-style: italic;
-      color: var(--muted);
-      font-size: clamp(18px, 4.2vw, 28px);
-      line-height: 1.25;
-      white-space: nowrap;   /* keep on one line */
+      font-size: clamp(16px, 3.6vw, 28px); /* already tuned to fit one line */
+      white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
+      text-overflow: clip;
     }
     .author{
-      margin: 0 0 20px;
-      font-size: clamp(18px, 4.2vw, 28px); /* same as subtitle per your request */
+      margin: 0 0 26px;
+      font-size: clamp(18px, 4vw, 32px);
       font-weight: 600;
     }
 
-    /* button system */
+    /* Buttons */
     .btn{
-      width: 100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap: 14px;
-      padding: 18px 18px;
-      border-radius: var(--btnRadius);
-      text-decoration:none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: min(920px, 100%);
+      margin: 16px auto 0;
+      padding: 18px 22px;
+      border-radius: var(--radius);
+      text-decoration: none;
       color: #fff;
-      font-weight: 700;
-      font-size: clamp(18px, 4.2vw, 28px); /* same size as subtitle/author per your request */
-      line-height: 1.1;
-      box-shadow: 0 10px 18px rgba(0,0,0,.12);
-      margin: 18px 0;
-      border: none;
-    }
-    .btn:active{ transform: translateY(1px); }
+      box-shadow: var(--shadowSoft);
 
-    /* icon alignment: fixed box so ALL icons line up vertically */
+      /* NOT bold */
+      font-weight: 400;
+
+      /* unify button text sizing as you requested */
+      font-size: clamp(18px, 3.8vw, 34px);
+
+      line-height: 1.1;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Create a fixed left “icon lane” so icons align vertically */
+    .btn::before{
+      content: "";
+      position: absolute;
+      left: 26px;
+      width: 44px;  /* fixed column width */
+      height: 1px;
+    }
     .btnIcon{
+      position: absolute;
+      left: 26px;
       width: 44px;
-      min-width: 44px;
-      height: 44px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
       line-height: 1;
-      transform: translateY(1px);
+      opacity: .95;
     }
 
     .btnText{
-      display:block;
-      text-align:center;
-      white-space: nowrap;
+      text-align: center;
+      padding: 0 10px;
     }
 
-    .blue{ background: var(--blue); }
-    .orange{ background: var(--orange); }
-    .green{ background: var(--green); }
-    .rose{ background: var(--rose); }
+    .btn.blue{ background: var(--blue); }
+    .btn.orange{ background: var(--orange); }
+    .btn.green{ background: var(--green); }
+    .btn.rose{ background: var(--rose); }
 
-    /* hero image (simple, no fancy edits) */
+    .btn:hover{ filter: brightness(1.03); }
+    .btn:active{ transform: translateY(1px); }
+
+    /* Hero image (keep it simple, no “fancy” styling) */
     .hero{
-      margin-top: 24px;
+      margin: 26px auto 0;
+      width: min(520px, 92%);
       border-radius: 18px;
-      overflow:hidden;
+      overflow: hidden;
       background: rgba(0,0,0,.06);
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      box-shadow: var(--shadow);
     }
     .hero img{
+      display: block;
       width: 100%;
       height: auto;
-      display:block;
     }
 
-    /* language sections */
-    .langSection{ display:none; }
-    .langSection.show{ display:block; }
+    /* Sections */
+    .langSection{ display: none; }
+    .langSection.active{ display: block; }
 
-    /* small screens */
-    @media (max-width: 420px){
+    /* Tighten on very small screens */
+    @media (max-width: 380px){
       .langbar{ gap: 22px; }
       .langbtn{ font-size: 22px; }
-      .langbtn .flag{ font-size: 26px; }
-      .btnIcon{ width: 40px; min-width: 40px; height: 40px; font-size: 26px; }
+      .btn{ padding: 16px 18px; }
+      .btnIcon{ left: 18px; }
+      .btn::before{ left: 18px; }
     }
   </style>
 </head>
@@ -181,41 +211,45 @@
 <body>
   <div class="wrap">
 
-    <!-- Language buttons (these labels swap depending on current language) -->
+    <!-- Language buttons (text changes based on current language) -->
     <div class="langbar">
-      <button id="btn-it" class="langbtn" onclick="setLang('it')" aria-label="Italiano">
-        <span class="flag">🇮🇹</span>
-        <span id="lbl-it">ITALIANO</span>
+      <button id="btn-it" class="langbtn" type="button" onclick="setLang('it')">
+        <span class="flag"><img src="assets/flag-it.png" alt="Italian flag"></span>
+        <span id="label-it">ITALIANO</span>
       </button>
 
-      <button id="btn-en" class="langbtn" onclick="setLang('en')" aria-label="English">
-        <span class="flag">🇬🇧</span>
-        <span id="lbl-en">INGLESE</span>
+      <button id="btn-en" class="langbtn" type="button" onclick="setLang('en')">
+        <span class="flag"><img src="assets/flag-uk.png" alt="UK flag"></span>
+        <span id="label-en">INGLESE</span>
       </button>
     </div>
 
     <!-- ITALIAN -->
-    <section id="it" class="langSection">
+    <div id="it" class="langSection">
       <h1>Radici forti, frutti buoni</h1>
       <div class="subtitle">Monteleone di Puglia - Una fiaba, 2a edizione</div>
       <div class="author">Steven G Kukla</div>
 
-      <a class="btn blue" href="books/FINAL_ITA_MdP_1Nov2025.pdf?v=1" target="_blank" rel="noopener">
+      <!-- Download IT PDF (single line only) -->
+      <a class="btn blue" href="books/FINAL_ITA_MdP_1Nov2025.pdf?v=1">
         <span class="btnIcon" aria-hidden="true">⬇︎</span>
         <span class="btnText">Scarica il Libro Gratuito (PDF)</span>
       </a>
 
-      <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
+      <!-- Website -->
+      <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" rel="noopener">
         <span class="btnIcon" aria-hidden="true">🌐</span>
         <span class="btnText">Visita il Mio Sito Web</span>
       </a>
 
-      <a class="btn green" href="music.html?v=1">
+      <!-- Music page -->
+      <a class="btn green" href="music.html?lang=it">
         <span class="btnIcon" aria-hidden="true">▶︎</span>
         <span class="btnText">Canzoni e Musica di Accompagnamento</span>
       </a>
 
-      <a class="btn rose" href="Project.pdf?v=1" target="_blank" rel="noopener">
+      <!-- Project PDF -->
+      <a class="btn rose" href="Project.pdf?v=1">
         <span class="btnIcon" aria-hidden="true">🦁</span>
         <span class="btnText">Sul Progetto <em>La Leonessa</em></span>
       </a>
@@ -223,30 +257,34 @@
       <div class="hero">
         <img src="assets/lioness.jpg?v=1" alt="La Leonessa">
       </div>
-    </section>
+    </div>
 
     <!-- ENGLISH -->
-    <section id="en" class="langSection">
+    <div id="en" class="langSection">
       <h1>Strong Roots, Good Fruit</h1>
       <div class="subtitle">Monteleone di Puglia - A Fantasy, 2nd Edition</div>
       <div class="author">Steven G Kukla</div>
 
-      <a class="btn blue" href="books/FINAL_MdP_ENG_4Nov2025.pdf?v=1" target="_blank" rel="noopener">
+      <!-- Download EN PDF (single line only) -->
+      <a class="btn blue" href="books/FINAL_ENG_MdP_1Nov2025.pdf?v=1">
         <span class="btnIcon" aria-hidden="true">⬇︎</span>
         <span class="btnText">Download Free Book (PDF)</span>
       </a>
 
-      <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
+      <!-- Website -->
+      <a class="btn orange" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" rel="noopener">
         <span class="btnIcon" aria-hidden="true">🌐</span>
         <span class="btnText">Visit My Website</span>
       </a>
 
-      <a class="btn green" href="music.html?v=1">
+      <!-- Music page -->
+      <a class="btn green" href="music.html?lang=en">
         <span class="btnIcon" aria-hidden="true">▶︎</span>
         <span class="btnText">Companion Songs and Music</span>
       </a>
 
-      <a class="btn rose" href="Project.pdf?v=1" target="_blank" rel="noopener">
+      <!-- Project PDF -->
+      <a class="btn rose" href="Project.pdf?v=1">
         <span class="btnIcon" aria-hidden="true">🦁</span>
         <span class="btnText">About the <em>La Leonessa</em> Project</span>
       </a>
@@ -254,38 +292,44 @@
       <div class="hero">
         <img src="assets/lioness.jpg?v=1" alt="La Leonessa">
       </div>
-    </section>
+    </div>
 
   </div>
 
   <script>
-    // Default behavior: QR scan should land on Italian by default.
-    // If user has chosen before, we remember it.
     function setLang(lang){
-      localStorage.setItem('srgf_lang', lang);
+      // Show the right section
+      document.getElementById('it').classList.toggle('active', lang === 'it');
+      document.getElementById('en').classList.toggle('active', lang === 'en');
 
-      document.getElementById('it').classList.toggle('show', lang === 'it');
-      document.getElementById('en').classList.toggle('show', lang === 'en');
-
+      // Active button underline
       document.getElementById('btn-it').classList.toggle('active', lang === 'it');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
-      // IMPORTANT: labels change depending on current language
-      if(lang === 'en'){
-        document.getElementById('lbl-it').textContent = 'ITALIAN';
-        document.getElementById('lbl-en').textContent = 'ENGLISH';
+      // IMPORTANT: language button labels change based on current page language
+      if (lang === 'en'){
+        document.getElementById('label-it').textContent = 'ITALIAN';
+        document.getElementById('label-en').textContent = 'ENGLISH';
+        document.documentElement.lang = 'en';
       } else {
-        document.getElementById('lbl-it').textContent = 'ITALIANO';
-        document.getElementById('lbl-en').textContent = 'INGLESE';
+        document.getElementById('label-it').textContent = 'ITALIANO';
+        document.getElementById('label-en').textContent = 'INGLESE';
+        document.documentElement.lang = 'it';
       }
 
-      // set document language for accessibility
-      document.documentElement.lang = (lang === 'en') ? 'en' : 'it';
+      localStorage.setItem('preferredLang', lang);
     }
 
+    // Default behavior:
+    // - If QR uses your normal URL, default Italian.
+    // - If user previously selected a language, respect it.
     (function init(){
-      const saved = localStorage.getItem('srgf_lang');
-      setLang(saved || 'it'); // Italian default (QR behavior)
+      const url = new URL(window.location.href);
+      const qLang = url.searchParams.get('lang');
+      const saved = localStorage.getItem('preferredLang');
+
+      const lang = qLang || saved || 'it';
+      setLang(lang);
     })();
   </script>
 </body>
