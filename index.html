@@ -41,21 +41,17 @@
     white-space: nowrap;
   }
 
-  /* Base subtitle + author (desktop/tablet) */
+  /* Subtitle + author (desktop/tablet) */
   .subtitle{
     font-style: italic;
     font-size: 22px;
     color:#666;
     margin-bottom:10px;
-
-    /* keep on one line */
     white-space: nowrap;
   }
   .author{
     font-size:26px;
     margin-bottom:40px;
-
-    /* keep on one line */
     white-space: nowrap;
   }
 
@@ -74,43 +70,47 @@
     text-decoration:none;
     color:#fff;
   }
-  .download{ background:#3f6687; }
-  .website{ background:#d6953b; }
+
+  /* New colors */
+  .download{ background:#2B5F8E; }     /* steel blue */
+  .website{  background:#D4872A; }     /* amber/gold orange */
+  .music{    background:#5A8A6A; }     /* sage/muted green */
+  .project{  background:#8B4A3C; }     /* dusty rose-brick */
 
   .btn .icon{
-    font-size:28px;
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     line-height:1;
   }
 
-  /* Desktop/tablet button text size */
   .btnText{
     font-size:26px;
     line-height:1.1;
-    white-space: nowrap;  /* keep button text one line */
+    white-space: nowrap;
   }
 
-  /* ✅ Mobile: make subtitle/author/buttons SAME size and fit one line */
+  /* Mobile: subtitle/author/buttons SAME size and fit one line */
   @media (max-width: 520px){
     .subtitle,
     .author,
     .btnText{
-      font-size: 18px;     /* one shared mobile size */
+      font-size: 18px;
     }
-
     .btn{
       padding:16px;
       border-radius:34px;
       width: 88%;
     }
-
     .btn .icon{
-      font-size:24px;
+      width:28px;
+      height:28px;
     }
-
     .author{ margin-bottom:32px; }
   }
 
-  /* extra safety for very small phones */
   @media (max-width: 360px){
     .subtitle,
     .author,
@@ -118,6 +118,14 @@
       font-size: 16px;
     }
     .title{ font-size: 26px; }
+  }
+
+  /* small inline svg icons */
+  .svgIcon{
+    width:22px;
+    height:22px;
+    fill:white;
+    display:block;
   }
 </style>
 </head>
@@ -144,6 +152,28 @@
     <span class="icon">🌐</span>
     <span class="btnText">Visita il Mio Sito Web</span>
   </a>
+
+  <!-- NEW: Music -->
+  <a class="btn music" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <!-- Play icon -->
+      <svg class="svgIcon" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </span>
+    <span class="btnText">Companion Songs and Music</span>
+  </a>
+
+  <!-- NEW: La Leonessa -->
+  <a class="btn project" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <!-- Simple lioness silhouette icon -->
+      <svg class="svgIcon" viewBox="0 0 24 24">
+        <path d="M6 15c0-2.2 1.8-4 4-4h2.1c.7-1.3 2.1-2.2 3.7-2.2 2.3 0 4.2 1.9 4.2 4.2 0 2.1-1.6 3.9-3.7 4.2l-.6 2H9l-.4-1.6C7.1 17.3 6 16.3 6 15zm5.2-6.2c.4-1.5 1.8-2.6 3.5-2.6 1.9 0 3.5 1.6 3.5 3.5 0 .2 0 .4-.1.6-.7-.8-1.8-1.4-3-1.4-1.6 0-3 .9-3.9 2.2H10c-.6 0-1.1.1-1.6.3.7-1.3 1.5-2.1 2.8-2.6z"></path>
+      </svg>
+    </span>
+    <span class="btnText">About the La Leonessa Project</span>
+  </a>
 </div>
 
 <!-- ENGLISH -->
@@ -160,6 +190,26 @@
   <a class="btn website" href="https://stretchy54.wixsite.com/sgk-stone-sculptures" target="_blank" rel="noopener">
     <span class="icon">🌐</span>
     <span class="btnText">Visit My Website</span>
+  </a>
+
+  <!-- NEW: Music -->
+  <a class="btn music" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg class="svgIcon" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </span>
+    <span class="btnText">Companion Songs and Music</span>
+  </a>
+
+  <!-- NEW: La Leonessa -->
+  <a class="btn project" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg class="svgIcon" viewBox="0 0 24 24">
+        <path d="M6 15c0-2.2 1.8-4 4-4h2.1c.7-1.3 2.1-2.2 3.7-2.2 2.3 0 4.2 1.9 4.2 4.2 0 2.1-1.6 3.9-3.7 4.2l-.6 2H9l-.4-1.6C7.1 17.3 6 16.3 6 15zm5.2-6.2c.4-1.5 1.8-2.6 3.5-2.6 1.9 0 3.5 1.6 3.5 3.5 0 .2 0 .4-.1.6-.7-.8-1.8-1.4-3-1.4-1.6 0-3 .9-3.9 2.2H10c-.6 0-1.1.1-1.6.3.7-1.3 1.5-2.1 2.8-2.6z"></path>
+      </svg>
+    </span>
+    <span class="btnText">About the La Leonessa Project</span>
   </a>
 </div>
 
