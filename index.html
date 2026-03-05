@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Companion Songs and Music</title>
+<title>Strong Roots, Good Fruit</title>
 
 <style>
 
@@ -17,88 +18,80 @@ text-align:center;
 color:#222;
 }
 
-.topbar{
-position:sticky;
-top:0;
-background:#f3efe8;
-padding:15px;
-border-bottom:1px solid #ddd;
-}
-
-.back{
-background:#2B5F8E;
-color:white;
-padding:14px 28px;
-border-radius:40px;
-font-size:22px;
-text-decoration:none;
-display:inline-block;
-}
-
 .container{
 max-width:900px;
 margin:auto;
 padding:20px;
 }
 
+.langbar{
+margin-top:10px;
+margin-bottom:20px;
+font-size:20px;
+}
+
+.langbar span{
+margin:0 10px;
+cursor:pointer;
+}
+
+.activeLang{
+border-bottom:3px solid #b59b6a;
+padding-bottom:4px;
+}
+
 h1{
-font-size:clamp(32px,6vw,64px);
-margin:25px 0 10px 0;
+font-size:clamp(36px,7vw,64px);
+margin:20px 0 5px 0;
 line-height:1.05;
 }
 
 .subtitle{
 font-style:italic;
 font-size:clamp(18px,3vw,28px);
-margin-bottom:20px;
 color:#666;
+margin-bottom:10px;
 }
 
-.album{
-background:white;
-border-radius:18px;
+.author{
+font-size:24px;
+margin-bottom:30px;
+}
+
+.btn{
+display:block;
+width:90%;
+max-width:650px;
+margin:14px auto;
 padding:20px;
-margin:30px 0;
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
+border-radius:50px;
+font-size:22px;
+color:white;
+text-decoration:none;
 }
 
-.cover img{
+.blue{
+background:#2B5F8E;
+}
+
+.orange{
+background:#D4872A;
+}
+
+.green{
+background:#5A8A6A;
+}
+
+.rose{
+background:#8B4A3C;
+}
+
+.lioness{
+margin-top:40px;
+}
+
+.lioness img{
 width:220px;
-border-radius:18px;
-}
-
-.volume{
-font-size:28px;
-margin:15px 0;
-font-weight:bold;
-}
-
-.tracks{
-text-align:left;
-max-width:720px;
-margin:auto;
-}
-
-.track{
-white-space:nowrap;
-overflow-x:auto;
-font-size:20px;
-padding:8px 0;
-border-bottom:1px solid #eee;
-}
-
-.track:last-child{
-border-bottom:none;
-}
-
-.track a{
-color:#1a54d3;
-font-size:0.75em;
-text-decoration:underline;
-}
-
-.flag{
-margin-right:6px;
 }
 
 </style>
@@ -107,92 +100,132 @@ margin-right:6px;
 
 <body>
 
-<div class="topbar">
-<a id="backBtn" class="back" href="index.html">← Back to Main Page</a>
-</div>
-
 <div class="container">
 
-<h1 id="title">Companion Songs and Music</h1>
-<div id="subtitle" class="subtitle">Flag icons designate Italian song versions</div>
+<div class="langbar">
 
-<div class="album">
+<span id="itBtn" onclick="setLang('it')">🇮🇹 ITALIANO</span>
 
-<div class="cover">
-<img src="assets/Vol1.jpeg">
-</div>
-
-<div class="volume">Volume 1</div>
-
-<div class="tracks">
-
-<div class="track">1-1 Opening: <a href="https://bit.ly/4rwz1MZ">bit.ly/4rwz1MZ</a></div>
-<div class="track">1-2 Strong Roots Good Fruit: <a href="https://bit.ly/4cSeRIK">bit.ly/4cSeRIK</a></div>
-<div class="track">1-3 Daunia's Song: <a href="https://bit.ly/3N1xH5O">bit.ly/3N1xH5O</a></div>
-<div class="track">1-4 Shepherd's Song: <a href="https://bit.ly/4aR4K4D">bit.ly/4aR4K4D</a></div>
-<div class="track">1-5 Song of the Traturri: <a href="https://bit.ly/4s9dlXi">bit.ly/4s9dlXi</a></div>
-<div class="track">1-6 Old Song of the Church Leaders: <a href="https://bit.ly/3OAbfRJ">bit.ly/3OAbfRJ</a></div>
-<div class="track">1-7 Old Song of the Civic Leaders: <a href="https://bit.ly/3ZR3Boz">bit.ly/3ZR3Boz</a></div>
-<div class="track">1-8 New Song of Joy: <a href="https://bit.ly/4aBbi8D">bit.ly/4aBbi8D</a></div>
-<div class="track">1-9 Song of Babin the Stone Carver: <a href="https://bit.ly/4cNaY81">bit.ly/4cNaY81</a></div>
-<div class="track">1-10 Oh, Oh, Oh, Leo: <a href="https://bit.ly/4aFCj9q">bit.ly/4aFCj9q</a></div>
-
-<div class="track"><span class="flag">🇮🇹</span>1-11 Oh, Oh, Leo (Italian): <a href="https://bit.ly/3ZVEHnF">bit.ly/3ZVEHnF</a></div>
-
-<div class="track">1-12 New Civic Song: <a href="https://bit.ly/4kSq2TT">bit.ly/4kSq2TT</a></div>
-<div class="track">1-13 Waldensian Song of Hope: <a href="https://bit.ly/4aRckvS">bit.ly/4aRckvS</a></div>
-<div class="track">1-14 Song of the Great Grand Inquisitor: <a href="https://bit.ly/4rASPix">bit.ly/4rASPix</a></div>
-<div class="track">1-15 Village Women's Song of Protest: <a href="https://bit.ly/4tPtKC1">bit.ly/4tPtKC1</a></div>
-<div class="track">1-16 Song of the Emigrants: <a href="https://bit.ly/4b75ALD">bit.ly/4b75ALD</a></div>
-<div class="track">1-17 Song of the Agenti: <a href="https://bit.ly/4kWcW87">bit.ly/4kWcW87</a></div>
-<div class="track">1-18 Song of Despair and Decision: <a href="https://bit.ly/4kQNpgy">bit.ly/4kQNpgy</a></div>
-
-<div class="track"><span class="flag">🇮🇹</span>1-19 Song of Despair and Decision (Italian): <a href="https://bit.ly/4cccKiX">bit.ly/4cccKiX</a></div>
+<span id="enBtn" onclick="setLang('en')" class="activeLang">🇬🇧 INGLESE</span>
 
 </div>
-</div>
 
-<div class="album">
 
-<div class="cover">
-<img src="assets/Vol2.jpeg">
-</div>
+<h1 id="title">Strong Roots, Good Fruit</h1>
 
-<div class="volume">Volume 2</div>
+<div id="subtitle" class="subtitle">Monteleone di Puglia - A Fantasy, 2nd Edition</div>
 
-<div class="tracks">
+<div class="author">Steven G Kukla</div>
 
-<div class="track">2-1 Song of Scaramuccia: <a href="https://bit.ly/3ZRIFxN">bit.ly/3ZRIFxN</a></div>
-<div class="track">2-2 Song of the Women's Roar: <a href="https://bit.ly/4aBcjxt">bit.ly/4aBcjxt</a></div>
-<div class="track">2-3 Song of Acceptance: <a href="https://bit.ly/479eCFz">bit.ly/479eCFz</a></div>
-<div class="track">2-4 Song of Amadin: <a href="https://bit.ly/4b93s64">bit.ly/4b93s64</a></div>
-<div class="track">2-5 War No More: <a href="https://bit.ly/4tVm1lF">bit.ly/4tVm1lF</a></div>
-<div class="track">2-6 Educate and Advocate: <a href="https://bit.ly/3MtvZtX">bit.ly/3MtvZtX</a></div>
 
-<div class="track"><span class="flag">🇮🇹</span>2-7 Educate and Advocate (Italian): <a href="https://bit.ly/4s7lFGX">bit.ly/4s7lFGX</a></div>
+<a id="downloadBtn" class="btn blue"
+href="books/FINAL_ENG_MdP_1Nov2025.pdf"
+onclick="return confirmDownload('Download the English PDF now?')">
 
-<div class="track">2-8 Song of the Spirits of the Ancestors: <a href="https://bit.ly/40sitd5">bit.ly/40sitd5</a></div>
-<div class="track">2-9 Immigrants No More: <a href="https://bit.ly/4rC8Pkg">bit.ly/4rC8Pkg</a></div>
-<div class="track">2-10 La Leonessa Foot Press: <a href="https://bit.ly/4b8vCyb">bit.ly/4b8vCyb</a></div>
-<div class="track">2-11 La Leonessa: <a href="https://bit.ly/4tV1Owg">bit.ly/4tV1Owg</a></div>
-<div class="track">2-12 Closing: <a href="https://bit.ly/4aY5dCa">bit.ly/4aY5dCa</a></div>
+⬇ Download Free Book (PDF)
 
-</div>
+</a>
+
+
+<a id="websiteBtn" class="btn orange"
+href="https://strongrootsgoodfruit.com">
+
+🌐 Visit My Website
+
+</a>
+
+
+<a id="musicBtn" class="btn green"
+href="music.html?lang=en">
+
+▶ Companion Songs and Music
+
+</a>
+
+
+<a id="projectBtn" class="btn rose"
+href="assets/Project.pdf"
+onclick="return confirmDownload('Open the La Leonessa Project PDF?')">
+
+⬇ About the <i>La Leonessa</i> Project
+
+</a>
+
+
+<div class="lioness">
+
+<img src="assets/lioness.jpg">
+
 </div>
 
 </div>
+
 
 <script>
 
-const urlParams = new URLSearchParams(window.location.search);
-const lang = urlParams.get("lang");
+function confirmDownload(message){
+
+return confirm(message)
+
+}
+
+
+function setLang(lang){
 
 if(lang==="it"){
-document.title="Canzoni e Musica di Accompagnamento";
-document.getElementById("title").textContent="Canzoni e Musica di Accompagnamento";
-document.getElementById("subtitle").textContent="Le icone con bandiera indicano le versioni cantate in italiano";
-document.getElementById("backBtn").textContent="← Torna alla Pagina Principale";
-document.getElementById("backBtn").href="index.html?lang=it";
+
+document.getElementById("title").textContent="Radici forti, frutti buoni"
+
+document.getElementById("subtitle").textContent="Monteleone di Puglia - Una fiaba, 2a edizione"
+
+document.getElementById("downloadBtn").textContent="⬇ Scarica il Libro Gratuito (PDF)"
+
+document.getElementById("downloadBtn").href="books/FINAL_ITA_MdP_1Nov2025.pdf"
+
+document.getElementById("downloadBtn").setAttribute("onclick","return confirmDownload('Scaricare il PDF italiano adesso?')")
+
+document.getElementById("websiteBtn").textContent="🌐 Visita il Mio Sito Web"
+
+document.getElementById("musicBtn").textContent="▶ Canzoni e Musica"
+
+document.getElementById("musicBtn").href="music.html?lang=it"
+
+document.getElementById("projectBtn").innerHTML="⬇ Informazioni sul progetto <i>La Leonessa</i>"
+
+document.getElementById("projectBtn").setAttribute("onclick","return confirmDownload('Aprire il PDF del progetto La Leonessa?')")
+
+document.getElementById("itBtn").classList.add("activeLang")
+document.getElementById("enBtn").classList.remove("activeLang")
+
+}
+
+else{
+
+document.getElementById("title").textContent="Strong Roots, Good Fruit"
+
+document.getElementById("subtitle").textContent="Monteleone di Puglia - A Fantasy, 2nd Edition"
+
+document.getElementById("downloadBtn").textContent="⬇ Download Free Book (PDF)"
+
+document.getElementById("downloadBtn").href="books/FINAL_ENG_MdP_1Nov2025.pdf"
+
+document.getElementById("downloadBtn").setAttribute("onclick","return confirmDownload('Download the English PDF now?')")
+
+document.getElementById("websiteBtn").textContent="🌐 Visit My Website"
+
+document.getElementById("musicBtn").textContent="▶ Companion Songs and Music"
+
+document.getElementById("musicBtn").href="music.html?lang=en"
+
+document.getElementById("projectBtn").innerHTML="⬇ About the <i>La Leonessa</i> Project"
+
+document.getElementById("projectBtn").setAttribute("onclick","return confirmDownload('Open the La Leonessa Project PDF?')")
+
+document.getElementById("itBtn").classList.remove("activeLang")
+document.getElementById("enBtn").classList.add("activeLang")
+
+}
+
 }
 
 </script>
