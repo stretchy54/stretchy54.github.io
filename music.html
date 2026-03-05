@@ -12,12 +12,12 @@
       --muted:#5f5f5f;
       --link:#1a54d3;
       --back:#2B5F8E;
-      --card:#ffffff;
       --shadow: 0 12px 26px rgba(0,0,0,0.12);
       --radius: 18px;
     }
 
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       font-family: Georgia, "Times New Roman", serif;
@@ -34,6 +34,7 @@
       background: linear-gradient(to bottom, rgba(243,239,231,0.98), rgba(243,239,231,0.82));
       backdrop-filter: blur(6px);
     }
+    .backWrap{ display:flex; justify-content:center; }
     .back{
       display:inline-flex;
       align-items:center;
@@ -47,9 +48,7 @@
       box-shadow: 0 10px 18px rgba(0,0,0,0.12);
       font-size: 22px;
       line-height: 1;
-      margin: 0 auto;
     }
-    .backWrap{ display:flex; justify-content:center; }
 
     .wrap{
       max-width: 920px;
@@ -58,21 +57,27 @@
       text-align:center;
     }
 
+    /* FIX: Title must stay on ONE LINE on mobile */
     h1{
-      margin: 10px 0 8px;
+      margin: 10px 0 6px;
       font-weight: 600;
-      font-size: 44px;
       letter-spacing: 0.2px;
+
+      /* responsive size without wrapping */
+      font-size: clamp(26px, 5.5vw, 44px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Subtitle style (matches the “subtitle vibe” from index.html) */
+    /* Subtitle: minimal styling, zero layout side effects */
     .subtitle{
-      margin: 0 auto 18px;
-      max-width: 780px;
+      margin: 0 auto 16px;
       color: var(--muted);
       font-style: italic;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1.25;
+      max-width: 820px;
     }
 
     .section{
@@ -83,9 +88,11 @@
       padding: 22px 18px 18px;
     }
 
+    /* Keep cover images stable (subtitle will not affect these) */
     .cover{
       display:block;
-      width: min(360px, 70vw);
+      width: 320px;          /* stable baseline */
+      max-width: 70vw;       /* responsive down */
       height: auto;
       border-radius: 18px;
       margin: 0 auto 14px;
@@ -118,17 +125,16 @@
       width: 1.2em;
       margin-right: 8px;
       transform: translateY(1px);
-      font-size: 0.95em; /* tiny, but visible */
+      font-size: 0.95em;
     }
 
     /* Mobile tuning */
     @media (max-width: 520px){
-      h1{ font-size: 34px; }
       .subtitle{ font-size: 18px; }
       .volTitle{ font-size: 32px; }
       .track{ font-size: 20px; }
       .back{ font-size: 20px; padding: 12px 18px; }
-      .cover{ width: min(320px, 72vw); }
+      .cover{ width: 280px; max-width: 72vw; } /* smaller cover on mobile */
     }
   </style>
 </head>
@@ -145,7 +151,7 @@
     <!-- ENGLISH -->
     <div id="en">
       <h1>Companion Songs and Music</h1>
-      <div class="subtitle">Songs sung in Italian have flag icons.</div>
+      <div class="subtitle">Flag icons designate Italian song versions</div>
 
       <div class="section">
         <img class="cover" src="Vol1.jpeg" alt="Volume 1 Cover">
@@ -199,7 +205,7 @@
     <!-- ITALIANO -->
     <div id="it" style="display:none;">
       <h1>Canzoni e Musica di Accompagnamento</h1>
-      <div class="subtitle">Le canzoni cantate in italiano hanno l’icona della bandiera.</div>
+      <div class="subtitle">Le icone con bandiera indicano le versioni cantate in italiano</div>
 
       <div class="section">
         <img class="cover" src="Vol1.jpeg" alt="Copertina Volume 1">
@@ -253,7 +259,6 @@
   </div>
 
   <script>
-    // language from URL: ?lang=en or ?lang=it
     function getLang(){
       const params = new URLSearchParams(window.location.search);
       const lang = (params.get('lang') || 'en').toLowerCase();
@@ -264,7 +269,6 @@
       document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
       document.getElementById('it').style.display = (lang === 'it') ? 'block' : 'none';
 
-      // Back button label is language-specific
       document.getElementById('backBtn').textContent =
         (lang === 'it') ? '← Torna alla Pagina Principale' : '← Back to Main Page';
     }
