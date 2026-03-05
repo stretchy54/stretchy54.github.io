@@ -385,8 +385,9 @@
     }
 
     function confirmModal() {
+      const href = pendingHref;
       closeModal();
-      if (pendingHref) window.location.href = pendingHref;
+      if (href) window.location.href = href;
     }
 
     function closeModal() {
