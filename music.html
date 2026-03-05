@@ -2,115 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Companion Songs & Music</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music</title>
 
   <style>
     :root{
-      --bg:#f3efe7;
-      --ink:#1d1d1d;
-      --muted:#5f5f5f;
-      --link:#1a54d3;
-      --back:#2B5F8E;
-      --card:#ffffff;
-      --shadow: 0 12px 26px rgba(0,0,0,0.12);
-      --radius: 18px;
+      /* Match index.html typography + vibe */
+      --bg: #f3eee6;
+      --ink: #1f1f1f;
+      --muted: #5f5f5f;
+
+      /* same title/subtitle sizing as index.html */
+      --titleSize: clamp(26px, 6.2vw, 56px);
+      --subtitleSize: clamp(16px, 3.6vw, 28px);
+
+      /* layout */
+      --space: 18px;
+      --cardRadius: 18px;
+      --shadow: 0 14px 28px rgba(0,0,0,.10);
+      --shadowSoft: 0 10px 18px rgba(0,0,0,.10);
+
+      /* button */
+      --backBg: #2B5F8E; /* same steel blue family */
     }
 
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
-      font-family: Georgia, "Times New Roman", serif;
-      color:var(--ink);
-      background:var(--bg);
+      font-family: Georgia, "Times New Roman", serif; /* matches index.html */
+      background: var(--bg);
+      color: var(--ink);
+      text-align:center;
     }
 
-    /* Sticky back button */
+    /* Sticky top bar with obvious back button */
     .topbar{
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 14px 14px 6px;
-      background: linear-gradient(to bottom, rgba(243,239,231,0.98), rgba(243,239,231,0.82));
+      padding: 14px 14px 10px;
+      background: rgba(243,238,230,0.92);
       backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
     }
     .back{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      text-decoration:none;
-      background: var(--back);
+      background: var(--backBg);
       color:#fff;
+      text-decoration:none;
       padding: 14px 22px;
       border-radius: 999px;
-      box-shadow: 0 10px 18px rgba(0,0,0,0.12);
-      font-size: 22px;
+      box-shadow: var(--shadowSoft);
+      font-size: clamp(18px, 3.8vw, 24px);
       line-height: 1;
-      margin: 0 auto;
+      max-width: 92%;
+      font-weight: 600;
     }
-    .backWrap{ display:flex; justify-content:center; }
+    .back:active{ transform: translateY(1px); }
 
     .wrap{
-      max-width: 920px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 10px 18px 34px;
-      text-align:center;
+      padding: calc(var(--space) * 1.1) 18px calc(var(--space) * 1.6);
     }
 
-    h1{
-      margin: 10px 0 8px;
-      font-weight: 600;
-      font-size: 36px;
-      letter-spacing: 0.2px;
+    /* PERFECT MATCH: title + subtitle behavior like index.html */
+    .musicTitle{
+      margin: var(--space) 0 calc(var(--space) * .45);
+      font-weight: 700;
+      letter-spacing: .2px;
+      font-size: var(--titleSize);
+
+      /* one line only, same as index.html */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
     }
 
-    /* Subtitle style (matches the “subtitle vibe” from index.html) */
-    .subtitle{
-      margin: 0 auto 18px;
-      max-width: 780px;
+    .musicSubtitle{
+      margin: 0 0 calc(var(--space) * .9);
       color: var(--muted);
       font-style: italic;
-      font-size: 22px;
+      font-size: var(--subtitleSize);
       line-height: 1.25;
+
+      /* keep it elegant + stable on mobile */
+      max-width: 920px;
+      margin-left:auto;
+      margin-right:auto;
     }
 
-    .section{
-      margin: 18px auto 34px;
+    /* Album “cards” */
+    .album{
       background: rgba(255,255,255,0.72);
-      border-radius: var(--radius);
+      border-radius: var(--cardRadius);
       box-shadow: var(--shadow);
-      padding: 22px 18px 18px;
+      padding: calc(var(--space) * 1.1) calc(var(--space) * 1.0);
+      margin: 0 auto calc(var(--space) * 1.2);
     }
 
+    /* Smaller cover art so tracks dominate */
     .cover{
       display:block;
-      width: min(360px, 70vw);
+      width: min(220px, 60vw);
       height: auto;
-      border-radius: 18px;
-      margin: 0 auto 14px;
-      box-shadow: 0 14px 26px rgba(0,0,0,0.16);
+      margin: 0 auto calc(var(--space) * .7);
+      border-radius: 16px;
+      box-shadow: var(--shadowSoft);
     }
 
+    /* Volume heading uses SAME SIZE as subtitle (your request) */
     .volTitle{
-      margin: 2px 0 12px;
-      font-size: 24px;
-      font-weight: 700;
+      font-size: var(--subtitleSize);
+      font-weight: 600;
+      margin: 0 0 calc(var(--space) * .6);
+      color: var(--ink);
     }
 
-    .track{
-      font-size: 24px;
+    /* Track list uses SAME SIZE as subtitle (your request) */
+    .trackList{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .trackList li{
+      font-size: var(--subtitleSize);
       line-height: 1.35;
       margin: 10px 0;
+      text-align:center;
       word-break: break-word;
     }
 
-    .track a{
-      color: var(--link);
+    .trackList a{
+      color: #1a54d3;
       text-decoration: underline;
     }
 
-    /* Small, visible inline flag badge */
+    /* Small inline flag badge like your mockup */
     .flagBadge{
       display:inline-flex;
       align-items:center;
@@ -118,158 +152,153 @@
       width: 1.2em;
       margin-right: 8px;
       transform: translateY(1px);
-      font-size: 0.95em; /* tiny, but visible */
+      font-size: 0.95em;
     }
 
-    /* Mobile tuning */
-    @media (max-width: 520px){
-      h1{ font-size: 34px; }
-      .subtitle{ font-size: 18px; }
-      .volTitle{ font-size: 32px; }
-      .track{ font-size: 20px; }
-      .back{ font-size: 20px; padding: 12px 18px; }
-      .cover{ width: min(320px, 72vw); }
+    /* Slightly tighter on very small screens */
+    @media (max-width: 380px){
+      .album{ padding: calc(var(--space) * .9) calc(var(--space) * .8); }
+      .cover{ width: min(200px, 68vw); }
+      .trackList li{ margin: 9px 0; }
     }
   </style>
 </head>
 
 <body>
   <div class="topbar">
-    <div class="backWrap">
-      <a class="back" href="index.html" id="backBtn">← Back to Main Page</a>
-    </div>
+    <a class="back" id="backBtn" href="index.html">← Back to Main Page</a>
   </div>
 
   <div class="wrap">
 
     <!-- ENGLISH -->
     <div id="en">
-      <h1>Companion Songs & Music</h1>
-      <div class="subtitle">Songs sung in Italian have flag icons.</div>
+      <div class="musicTitle">Companion Songs and Music</div>
+      <div class="musicSubtitle">Flag icons designate Italian song versions</div>
 
-      <div class="section">
-       <img class="cover" src="assets/Vol1.jpeg" alt="Volume 1 Cover">
+      <div class="album">
+        <img class="cover" src="assets/Vol1.jpeg?v=1" alt="Volume 1 cover">
         <div class="volTitle">Volume 1</div>
+        <ul class="trackList">
+          <li>1-1 Opening: <a href="https://bit.ly/4rwz1MZ">https://bit.ly/4rwz1MZ</a></li>
+          <li>1-2 Strong Roots Good Fruit: <a href="https://bit.ly/4cSeRIK">https://bit.ly/4cSeRIK</a></li>
+          <li>1-3 Daunia's Song: <a href="https://bit.ly/3N1xH5O">https://bit.ly/3N1xH5O</a></li>
+          <li>1-4 Shepherd's Song: <a href="https://bit.ly/4aR4K4D">https://bit.ly/4aR4K4D</a></li>
+          <li>1-5 Song of the Traturri: <a href="https://bit.ly/4s9dlXi">https://bit.ly/4s9dlXi</a></li>
+          <li>1-6 Old Song of the Church Leaders: <a href="https://bit.ly/3OAbfRJ">https://bit.ly/3OAbfRJ</a></li>
+          <li>1-7 Old Song of the Civic Leaders: <a href="https://bit.ly/3ZR3Boz">https://bit.ly/3ZR3Boz</a></li>
+          <li>1-8 New Song of Joy: <a href="https://bit.ly/4aBbi8D">https://bit.ly/4aBbi8D</a></li>
+          <li>1-9 Song of Babin the Stone Carver: <a href="https://bit.ly/4cNaY81">https://bit.ly/4cNaY81</a></li>
+          <li>1-10 Oh, Oh, Oh, Leo: <a href="https://bit.ly/4aFCj9q">https://bit.ly/4aFCj9q</a></li>
 
-        <div class="track">1-1 Opening: <a href="https://bit.ly/4rwz1MZ" target="_blank" rel="noopener">https://bit.ly/4rwz1MZ</a></div>
-        <div class="track">1-2 Strong Roots Good Fruit: <a href="https://bit.ly/4cSeRIK" target="_blank" rel="noopener">https://bit.ly/4cSeRIK</a></div>
-        <div class="track">1-3 Daunia's Song: <a href="https://bit.ly/3N1xH5O" target="_blank" rel="noopener">https://bit.ly/3N1xH5O</a></div>
-        <div class="track">1-4 Shepherd's Song: <a href="https://bit.ly/4aR4K4D" target="_blank" rel="noopener">https://bit.ly/4aR4K4D</a></div>
-        <div class="track">1-5 Song of the Traturri: <a href="https://bit.ly/4s9dlXi" target="_blank" rel="noopener">https://bit.ly/4s9dlXi</a></div>
-        <div class="track">1-6 Old Song of the Church Leaders: <a href="https://bit.ly/3OAbfRJ" target="_blank" rel="noopener">https://bit.ly/3OAbfRJ</a></div>
-        <div class="track">1-7 Old Song of the Civic Leaders: <a href="https://bit.ly/3ZR3Boz" target="_blank" rel="noopener">https://bit.ly/3ZR3Boz</a></div>
-        <div class="track">1-8 New Song of Joy: <a href="https://bit.ly/4aBbi8D" target="_blank" rel="noopener">https://bit.ly/4aBbi8D</a></div>
-        <div class="track">1-9 Song of Babin the Stone Carver: <a href="https://bit.ly/4cNaY81" target="_blank" rel="noopener">https://bit.ly/4cNaY81</a></div>
-        <div class="track">1-10 Oh, Oh, Oh, Leo: <a href="https://bit.ly/4aFCj9q" target="_blank" rel="noopener">https://bit.ly/4aFCj9q</a></div>
+          <li><span class="flagBadge" aria-label="Italian">🇮🇹</span>1-11 Oh, Oh, Leo (Italian): <a href="https://bit.ly/3ZVEHnF">https://bit.ly/3ZVEHnF</a></li>
 
-        <div class="track"><span class="flagBadge" aria-label="Italian">🇮🇹</span>1-11 Oh, Oh, Leo (Italian): <a href="https://bit.ly/3ZVEHnF" target="_blank" rel="noopener">https://bit.ly/3ZVEHnF</a></div>
+          <li>1-12 New Civic Song: <a href="https://bit.ly/4kSq2TT">https://bit.ly/4kSq2TT</a></li>
+          <li>1-13 Waldensian Song of Hope: <a href="https://bit.ly/4aRckvS">https://bit.ly/4aRckvS</a></li>
+          <li>1-14 Song of the Great Grand Inquisitor: <a href="https://bit.ly/4rASPix">https://bit.ly/4rASPix</a></li>
+          <li>1-15 Village Women's Song of Protest: <a href="https://bit.ly/4tPtKC1">https://bit.ly/4tPtKC1</a></li>
+          <li>1-16 Song of the Emigrants: <a href="https://bit.ly/4b75ALD">https://bit.ly/4b75ALD</a></li>
+          <li>1-17 Song of the Agenti: <a href="https://bit.ly/4kWcW87">https://bit.ly/4kWcW87</a></li>
+          <li>1-18 Song of Despair and Decision: <a href="https://bit.ly/4kQNpgy">https://bit.ly/4kQNpgy</a></li>
 
-        <div class="track">1-12 New Civic Song: <a href="https://bit.ly/4kSq2TT" target="_blank" rel="noopener">https://bit.ly/4kSq2TT</a></div>
-        <div class="track">1-13 Waldensian Song of Hope: <a href="https://bit.ly/4aRckvS" target="_blank" rel="noopener">https://bit.ly/4aRckvS</a></div>
-        <div class="track">1-14 Song of the Great Grand Inquisitor: <a href="https://bit.ly/4rASPix" target="_blank" rel="noopener">https://bit.ly/4rASPix</a></div>
-        <div class="track">1-15 Village Women's Song of Protest: <a href="https://bit.ly/4tPtKC1" target="_blank" rel="noopener">https://bit.ly/4tPtKC1</a></div>
-        <div class="track">1-16 Song of the Emigrants: <a href="https://bit.ly/4b75ALD" target="_blank" rel="noopener">https://bit.ly/4b75ALD</a></div>
-        <div class="track">1-17 Song of the Agenti: <a href="https://bit.ly/4kWcW87" target="_blank" rel="noopener">https://bit.ly/4kWcW87</a></div>
-        <div class="track">1-18 Song of Despair and Decision: <a href="https://bit.ly/4kQNpgy" target="_blank" rel="noopener">https://bit.ly/4kQNpgy</a></div>
-
-        <div class="track"><span class="flagBadge" aria-label="Italian">🇮🇹</span>1-19 Song of Despair and Decision (Italian): <a href="https://bit.ly/4cccKiX" target="_blank" rel="noopener">https://bit.ly/4cccKiX</a></div>
+          <li><span class="flagBadge" aria-label="Italian">🇮🇹</span>1-19 Song of Despair and Decision (Italian): <a href="https://bit.ly/4cccKiX">https://bit.ly/4cccKiX</a></li>
+        </ul>
       </div>
 
-      <div class="section">
-        <img class="cover" src="assets/Vol2.jpeg" alt="Volume 2 Cover">
+      <div class="album">
+        <img class="cover" src="assets/Vol2.jpeg?v=1" alt="Volume 2 cover">
         <div class="volTitle">Volume 2</div>
+        <ul class="trackList">
+          <li>2-1 Song of Scaramuccia: <a href="https://bit.ly/3ZRIFxN">https://bit.ly/3ZRIFxN</a></li>
+          <li>2-2 Song of the Women's Roar: <a href="https://bit.ly/4aBcjxt">https://bit.ly/4aBcjxt</a></li>
+          <li>2-3 Song of Acceptance: <a href="https://bit.ly/479eCFz">https://bit.ly/479eCFz</a></li>
+          <li>2-4 Song of Amadin: <a href="https://bit.ly/4b93s64">https://bit.ly/4b93s64</a></li>
+          <li>2-5 War No More: <a href="https://bit.ly/4tVm1lF">https://bit.ly/4tVm1lF</a></li>
+          <li>2-6 Educate and Advocate: <a href="https://bit.ly/3MtvZtX">https://bit.ly/3MtvZtX</a></li>
 
-        <div class="track">2-1 Song of Scaramuccia: <a href="https://bit.ly/3ZRIFxN" target="_blank" rel="noopener">https://bit.ly/3ZRIFxN</a></div>
-        <div class="track">2-2 Song of the Women's Roar: <a href="https://bit.ly/4aBcjxt" target="_blank" rel="noopener">https://bit.ly/4aBcjxt</a></div>
-        <div class="track">2-3 Song of Acceptance: <a href="https://bit.ly/479eCFz" target="_blank" rel="noopener">https://bit.ly/479eCFz</a></div>
-        <div class="track">2-4 Song of Amadin: <a href="https://bit.ly/4b93s64" target="_blank" rel="noopener">https://bit.ly/4b93s64</a></div>
-        <div class="track">2-5 War No More: <a href="https://bit.ly/4tVm1lF" target="_blank" rel="noopener">https://bit.ly/4tVm1lF</a></div>
-        <div class="track">2-6 Educate and Advocate: <a href="https://bit.ly/3MtvZtX" target="_blank" rel="noopener">https://bit.ly/3MtvZtX</a></div>
+          <li><span class="flagBadge" aria-label="Italian">🇮🇹</span>2-7 Educate and Advocate (Italian): <a href="https://bit.ly/4s7lFGX">https://bit.ly/4s7lFGX</a></li>
 
-        <div class="track"><span class="flagBadge" aria-label="Italian">🇮🇹</span>2-7 Educate and Advocate (Italian): <a href="https://bit.ly/4s7lFGX" target="_blank" rel="noopener">https://bit.ly/4s7lFGX</a></div>
-
-        <div class="track">2-8 Song of the Spirits of the Ancestors: <a href="https://bit.ly/40sitd5" target="_blank" rel="noopener">https://bit.ly/40sitd5</a></div>
-        <div class="track">2-9 Immigrants No More: <a href="https://bit.ly/4rC8Pkg" target="_blank" rel="noopener">https://bit.ly/4rC8Pkg</a></div>
-        <div class="track">2-10 La Leonessa Foot Press: <a href="https://bit.ly/4b8vCyb" target="_blank" rel="noopener">https://bit.ly/4b8vCyb</a></div>
-        <div class="track">2-11 La Leonessa: <a href="https://bit.ly/4tV1Owg" target="_blank" rel="noopener">https://bit.ly/4tV1Owg</a></div>
-        <div class="track">2-12 Closing: <a href="https://bit.ly/4aY5dCa" target="_blank" rel="noopener">https://bit.ly/4aY5dCa</a></div>
+          <li>2-8 Song of the Spirits of the Ancestors: <a href="https://bit.ly/40sitd5">https://bit.ly/40sitd5</a></li>
+          <li>2-9 Immigrants No More: <a href="https://bit.ly/4rC8Pkg">https://bit.ly/4rC8Pkg</a></li>
+          <li>2-10 La Leonessa Foot Press: <a href="https://bit.ly/4b8vCyb">https://bit.ly/4b8vCyb</a></li>
+          <li>2-11 La Leonessa: <a href="https://bit.ly/4tV1Owg">https://bit.ly/4tV1Owg</a></li>
+          <li>2-12 Closing: <a href="https://bit.ly/4aY5dCa">https://bit.ly/4aY5dCa</a></li>
+        </ul>
       </div>
     </div>
 
-    <!-- ITALIANO -->
+    <!-- ITALIAN -->
     <div id="it" style="display:none;">
-      <h1>Canzoni e Musica di Accompagnamento</h1>
-      <div class="subtitle">Le canzoni cantate in italiano hanno l’icona della bandiera.</div>
+      <div class="musicTitle">Canzoni e Musica di Accompagnamento</div>
+      <div class="musicSubtitle">Le icone con bandiera indicano le versioni cantate in italiano</div>
 
-      <div class="section">
-        <img class="cover" src="Vol1.jpeg" alt="Copertina Volume 1">
+      <div class="album">
+        <img class="cover" src="assets/Vol1.jpeg?v=1" alt="Copertina Volume 1">
         <div class="volTitle">Volume 1</div>
+        <ul class="trackList">
+          <li>1-1 Opening: <a href="https://bit.ly/4rwz1MZ">https://bit.ly/4rwz1MZ</a></li>
+          <li>1-2 Strong Roots Good Fruit: <a href="https://bit.ly/4cSeRIK">https://bit.ly/4cSeRIK</a></li>
+          <li>1-3 Daunia's Song: <a href="https://bit.ly/3N1xH5O">https://bit.ly/3N1xH5O</a></li>
+          <li>1-4 Shepherd's Song: <a href="https://bit.ly/4aR4K4D">https://bit.ly/4aR4K4D</a></li>
+          <li>1-5 Song of the Traturri: <a href="https://bit.ly/4s9dlXi">https://bit.ly/4s9dlXi</a></li>
+          <li>1-6 Old Song of the Church Leaders: <a href="https://bit.ly/3OAbfRJ">https://bit.ly/3OAbfRJ</a></li>
+          <li>1-7 Old Song of the Civic Leaders: <a href="https://bit.ly/3ZR3Boz">https://bit.ly/3ZR3Boz</a></li>
+          <li>1-8 New Song of Joy: <a href="https://bit.ly/4aBbi8D">https://bit.ly/4aBbi8D</a></li>
+          <li>1-9 Song of Babin the Stone Carver: <a href="https://bit.ly/4cNaY81">https://bit.ly/4cNaY81</a></li>
+          <li>1-10 Oh, Oh, Oh, Leo: <a href="https://bit.ly/4aFCj9q">https://bit.ly/4aFCj9q</a></li>
 
-        <div class="track">1-1 Opening: <a href="https://bit.ly/4rwz1MZ" target="_blank" rel="noopener">https://bit.ly/4rwz1MZ</a></div>
-        <div class="track">1-2 Strong Roots Good Fruit: <a href="https://bit.ly/4cSeRIK" target="_blank" rel="noopener">https://bit.ly/4cSeRIK</a></div>
-        <div class="track">1-3 Daunia's Song: <a href="https://bit.ly/3N1xH5O" target="_blank" rel="noopener">https://bit.ly/3N1xH5O</a></div>
-        <div class="track">1-4 Shepherd's Song: <a href="https://bit.ly/4aR4K4D" target="_blank" rel="noopener">https://bit.ly/4aR4K4D</a></div>
-        <div class="track">1-5 Song of the Traturri: <a href="https://bit.ly/4s9dlXi" target="_blank" rel="noopener">https://bit.ly/4s9dlXi</a></div>
-        <div class="track">1-6 Old Song of the Church Leaders: <a href="https://bit.ly/3OAbfRJ" target="_blank" rel="noopener">https://bit.ly/3OAbfRJ</a></div>
-        <div class="track">1-7 Old Song of the Civic Leaders: <a href="https://bit.ly/3ZR3Boz" target="_blank" rel="noopener">https://bit.ly/3ZR3Boz</a></div>
-        <div class="track">1-8 New Song of Joy: <a href="https://bit.ly/4aBbi8D" target="_blank" rel="noopener">https://bit.ly/4aBbi8D</a></div>
-        <div class="track">1-9 Song of Babin the Stone Carver: <a href="https://bit.ly/4cNaY81" target="_blank" rel="noopener">https://bit.ly/4cNaY81</a></div>
-        <div class="track">1-10 Oh, Oh, Oh, Leo: <a href="https://bit.ly/4aFCj9q" target="_blank" rel="noopener">https://bit.ly/4aFCj9q</a></div>
+          <li><span class="flagBadge" aria-label="Italiano">🇮🇹</span>1-11 Oh, Oh, Leo (Italian): <a href="https://bit.ly/3ZVEHnF">https://bit.ly/3ZVEHnF</a></li>
 
-        <div class="track"><span class="flagBadge" aria-label="Italiano">🇮🇹</span>1-11 Oh, Oh, Leo (Italian): <a href="https://bit.ly/3ZVEHnF" target="_blank" rel="noopener">https://bit.ly/3ZVEHnF</a></div>
+          <li>1-12 New Civic Song: <a href="https://bit.ly/4kSq2TT">https://bit.ly/4kSq2TT</a></li>
+          <li>1-13 Waldensian Song of Hope: <a href="https://bit.ly/4aRckvS">https://bit.ly/4aRckvS</a></li>
+          <li>1-14 Song of the Great Grand Inquisitor: <a href="https://bit.ly/4rASPix">https://bit.ly/4rASPix</a></li>
+          <li>1-15 Village Women's Song of Protest: <a href="https://bit.ly/4tPtKC1">https://bit.ly/4tPtKC1</a></li>
+          <li>1-16 Song of the Emigrants: <a href="https://bit.ly/4b75ALD">https://bit.ly/4b75ALD</a></li>
+          <li>1-17 Song of the Agenti: <a href="https://bit.ly/4kWcW87">https://bit.ly/4kWcW87</a></li>
+          <li>1-18 Song of Despair and Decision: <a href="https://bit.ly/4kQNpgy">https://bit.ly/4kQNpgy</a></li>
 
-        <div class="track">1-12 New Civic Song: <a href="https://bit.ly/4kSq2TT" target="_blank" rel="noopener">https://bit.ly/4kSq2TT</a></div>
-        <div class="track">1-13 Waldensian Song of Hope: <a href="https://bit.ly/4aRckvS" target="_blank" rel="noopener">https://bit.ly/4aRckvS</a></div>
-        <div class="track">1-14 Song of the Great Grand Inquisitor: <a href="https://bit.ly/4rASPix" target="_blank" rel="noopener">https://bit.ly/4rASPix</a></div>
-        <div class="track">1-15 Village Women's Song of Protest: <a href="https://bit.ly/4tPtKC1" target="_blank" rel="noopener">https://bit.ly/4tPtKC1</a></div>
-        <div class="track">1-16 Song of the Emigrants: <a href="https://bit.ly/4b75ALD" target="_blank" rel="noopener">https://bit.ly/4b75ALD</a></div>
-        <div class="track">1-17 Song of the Agenti: <a href="https://bit.ly/4kWcW87" target="_blank" rel="noopener">https://bit.ly/4kWcW87</a></div>
-        <div class="track">1-18 Song of Despair and Decision: <a href="https://bit.ly/4kQNpgy" target="_blank" rel="noopener">https://bit.ly/4kQNpgy</a></div>
-
-        <div class="track"><span class="flagBadge" aria-label="Italiano">🇮🇹</span>1-19 Song of Despair and Decision (Italian): <a href="https://bit.ly/4cccKiX" target="_blank" rel="noopener">https://bit.ly/4cccKiX</a></div>
+          <li><span class="flagBadge" aria-label="Italiano">🇮🇹</span>1-19 Song of Despair and Decision (Italian): <a href="https://bit.ly/4cccKiX">https://bit.ly/4cccKiX</a></li>
+        </ul>
       </div>
 
-      <div class="section">
-        <img class="cover" src="Vol2.jpeg" alt="Copertina Volume 2">
+      <div class="album">
+        <img class="cover" src="assets/Vol2.jpeg?v=1" alt="Copertina Volume 2">
         <div class="volTitle">Volume 2</div>
+        <ul class="trackList">
+          <li>2-1 Song of Scaramuccia: <a href="https://bit.ly/3ZRIFxN">https://bit.ly/3ZRIFxN</a></li>
+          <li>2-2 Song of the Women's Roar: <a href="https://bit.ly/4aBcjxt">https://bit.ly/4aBcjxt</a></li>
+          <li>2-3 Song of Acceptance: <a href="https://bit.ly/479eCFz">https://bit.ly/479eCFz</a></li>
+          <li>2-4 Song of Amadin: <a href="https://bit.ly/4b93s64">https://bit.ly/4b93s64</a></li>
+          <li>2-5 War No More: <a href="https://bit.ly/4tVm1lF">https://bit.ly/4tVm1lF</a></li>
+          <li>2-6 Educate and Advocate: <a href="https://bit.ly/3MtvZtX">https://bit.ly/3MtvZtX</a></li>
 
-        <div class="track">2-1 Song of Scaramuccia: <a href="https://bit.ly/3ZRIFxN" target="_blank" rel="noopener">https://bit.ly/3ZRIFxN</a></div>
-        <div class="track">2-2 Song of the Women's Roar: <a href="https://bit.ly/4aBcjxt" target="_blank" rel="noopener">https://bit.ly/4aBcjxt</a></div>
-        <div class="track">2-3 Song of Acceptance: <a href="https://bit.ly/479eCFz" target="_blank" rel="noopener">https://bit.ly/479eCFz</a></div>
-        <div class="track">2-4 Song of Amadin: <a href="https://bit.ly/4b93s64" target="_blank" rel="noopener">https://bit.ly/4b93s64</a></div>
-        <div class="track">2-5 War No More: <a href="https://bit.ly/4tVm1lF" target="_blank" rel="noopener">https://bit.ly/4tVm1lF</a></div>
-        <div class="track">2-6 Educate and Advocate: <a href="https://bit.ly/3MtvZtX" target="_blank" rel="noopener">https://bit.ly/3MtvZtX</a></div>
+          <li><span class="flagBadge" aria-label="Italiano">🇮🇹</span>2-7 Educate and Advocate (Italian): <a href="https://bit.ly/4s7lFGX">https://bit.ly/4s7lFGX</a></li>
 
-        <div class="track"><span class="flagBadge" aria-label="Italiano">🇮🇹</span>2-7 Educate and Advocate (Italian): <a href="https://bit.ly/4s7lFGX" target="_blank" rel="noopener">https://bit.ly/4s7lFGX</a></div>
-
-        <div class="track">2-8 Song of the Spirits of the Ancestors: <a href="https://bit.ly/40sitd5" target="_blank" rel="noopener">https://bit.ly/40sitd5</a></div>
-        <div class="track">2-9 Immigrants No More: <a href="https://bit.ly/4rC8Pkg" target="_blank" rel="noopener">https://bit.ly/4rC8Pkg</a></div>
-        <div class="track">2-10 La Leonessa Foot Press: <a href="https://bit.ly/4b8vCyb" target="_blank" rel="noopener">https://bit.ly/4b8vCyb</a></div>
-        <div class="track">2-11 La Leonessa: <a href="https://bit.ly/4tV1Owg" target="_blank" rel="noopener">https://bit.ly/4tV1Owg</a></div>
-        <div class="track">2-12 Closing: <a href="https://bit.ly/4aY5dCa" target="_blank" rel="noopener">https://bit.ly/4aY5dCa</a></div>
+          <li>2-8 Song of the Spirits of the Ancestors: <a href="https://bit.ly/40sitd5">https://bit.ly/40sitd5</a></li>
+          <li>2-9 Immigrants No More: <a href="https://bit.ly/4rC8Pkg">https://bit.ly/4rC8Pkg</a></li>
+          <li>2-10 La Leonessa Foot Press: <a href="https://bit.ly/4b8vCyb">https://bit.ly/4b8vCyb</a></li>
+          <li>2-11 La Leonessa: <a href="https://bit.ly/4tV1Owg">https://bit.ly/4tV1Owg</a></li>
+          <li>2-12 Closing: <a href="https://bit.ly/4aY5dCa">https://bit.ly/4aY5dCa</a></li>
+        </ul>
       </div>
     </div>
 
   </div>
 
   <script>
-    // language from URL: ?lang=en or ?lang=it
-    function getLang(){
-      const params = new URLSearchParams(window.location.search);
-      const lang = (params.get('lang') || 'en').toLowerCase();
-      return (lang === 'it') ? 'it' : 'en';
-    }
+    (function(){
+      const url = new URL(window.location.href);
+      const lang = (url.searchParams.get('lang') || localStorage.getItem('preferredLang') || 'it').toLowerCase();
+      const useIt = (lang === 'it');
 
-    function applyLang(lang){
-      document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
-      document.getElementById('it').style.display = (lang === 'it') ? 'block' : 'none';
+      document.getElementById('en').style.display = useIt ? 'none' : 'block';
+      document.getElementById('it').style.display = useIt ? 'block' : 'none';
+      document.documentElement.lang = useIt ? 'it' : 'en';
 
-      // Back button label is language-specific
-      document.getElementById('backBtn').textContent =
-        (lang === 'it') ? '← Torna alla Pagina Principale' : '← Back to Main Page';
-    }
-
-    applyLang(getLang());
+      const back = document.getElementById('backBtn');
+      back.href = 'index.html?lang=' + (useIt ? 'it' : 'en');
+      back.textContent = useIt ? '← Torna alla Pagina Principale' : '← Back to Main Page';
+    })();
   </script>
 </body>
 </html>
