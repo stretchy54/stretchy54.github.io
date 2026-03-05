@@ -1,234 +1,407 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="it">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Radici forti, frutti buoni</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
-<title>Strong Roots, Good Fruit</title>
+  <style>
+    :root {
+      --bg:       #f5f0e8;
+      --ink:      #1a1a1a;
+      --muted:    #6b6361;
+      --gold:     #b59440;
+      --blue:     #2B5F8E;
+      --orange:   #C97D28;
+      --green:    #4a7a5a;
+      --rose:     #7a3e32;
+      --card:     rgba(255,255,255,0.55);
+      --rule:     rgba(181,148,64,0.25);
+      --shadow:   0 8px 32px rgba(0,0,0,0.10);
+    }
 
-<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-font-family: Georgia, serif;
-background:#f3efe8;
-margin:0;
-text-align:center;
-color:#222;
-}
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      /* Subtle stone texture via gradient */
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(181,148,64,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 100%, rgba(43,95,142,0.06) 0%, transparent 60%);
+    }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-}
+    /* ── Language bar ── */
+    .langbar {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 18px 16px 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+    }
+    .langbtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      transition: all 0.2s ease;
+    }
+    .langbtn:hover { color: var(--ink); border-color: var(--rule); }
+    .langbtn.active {
+      color: var(--ink);
+      border-color: var(--gold);
+      background: rgba(181,148,64,0.08);
+    }
 
-.langbar{
-margin-top:10px;
-margin-bottom:20px;
-font-size:20px;
-}
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 10px 20px 0;
+      animation: fadeUp 0.7s ease both;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(16px, 5.5vw, 66px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+    .subtitle {
+      font-style: italic;
+      font-size: clamp(17px, 3vw, 26px);
+      color: var(--muted);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .author {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(14px, 2vw, 18px);
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
 
-.langbar span{
-margin:0 10px;
-cursor:pointer;
-}
+    /* ── Gold divider ── */
+    .divider {
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 28px;
+    }
 
-.activeLang{
-border-bottom:3px solid #b59b6a;
-padding-bottom:4px;
-}
+    /* ── Buttons ── */
+    .btns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 0 16px;
+      max-width: 640px;
+      margin: 0 auto;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 18px 28px;
+      border-radius: 60px;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(16px, 2.6vw, 20px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.15);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0);
+      transition: background 0.15s;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 14px 36px rgba(0,0,0,0.16); }
+    .btn:active { transform: translateY(0); filter: brightness(0.96); }
 
-h1{
-font-size:clamp(36px,7vw,64px);
-margin:20px 0 5px 0;
-line-height:1.05;
-}
+    .btn-blue   { background: linear-gradient(135deg, #2B5F8E, #1e4470); }
+    .btn-orange { background: linear-gradient(135deg, #C97D28, #a86318); }
+    .btn-green  { background: linear-gradient(135deg, #4a7a5a, #375c43); }
+    .btn-rose   { background: linear-gradient(135deg, #7a3e32, #5e2e24); }
 
-.subtitle{
-font-style:italic;
-font-size:clamp(18px,3vw,28px);
-color:#666;
-margin-bottom:10px;
-}
+    .btn-icon { font-size: 1.15em; line-height: 1; }
 
-.author{
-font-size:24px;
-margin-bottom:30px;
-}
+    /* ── Lioness image ── */
+    .lioness-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 40px auto 20px;
+      padding: 0 20px 48px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .lioness-wrap img {
+      width: min(260px, 68vw);
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+      display: block;
+    }
 
-.btn{
-display:block;
-width:90%;
-max-width:650px;
-margin:14px auto;
-padding:20px;
-border-radius:50px;
-font-size:22px;
-color:white;
-text-decoration:none;
-}
+    /* ── Custom modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,8,6,0.55);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--bg);
+      border-radius: 20px;
+      padding: 36px 28px 28px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+      border: 1px solid var(--rule);
+      animation: modalIn 0.22s ease both;
+    }
+    @keyframes modalIn {
+      from { transform: scale(0.93) translateY(10px); opacity: 0; }
+      to   { transform: scale(1) translateY(0);       opacity: 1; }
+    }
+    .modal-icon { font-size: 36px; margin-bottom: 14px; }
+    .modal-msg {
+      font-size: 20px;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.4;
+    }
+    .modal-btns { display: flex; gap: 12px; justify-content: center; }
+    .modal-ok, .modal-cancel {
+      padding: 13px 32px;
+      border-radius: 999px;
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border: none;
+      transition: filter 0.15s, transform 0.15s;
+    }
+    .modal-ok:hover, .modal-cancel:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .modal-ok { background: var(--blue); color: #fff; }
+    .modal-cancel { background: rgba(0,0,0,0.07); color: var(--ink); }
 
-.blue{
-background:#2B5F8E;
-}
-
-.orange{
-background:#D4872A;
-}
-
-.green{
-background:#5A8A6A;
-}
-
-.rose{
-background:#8B4A3C;
-}
-
-.lioness{
-margin-top:40px;
-}
-
-.lioness img{
-width:220px;
-}
-
-</style>
-
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<div class="langbar">
-
-<span id="itBtn" onclick="setLang('it')">🇮🇹 ITALIANO</span>
-
-<span id="enBtn" onclick="setLang('en')" class="activeLang">🇬🇧 INGLESE</span>
-
-</div>
-
-
-<h1 id="title">Strong Roots, Good Fruit</h1>
-
-<div id="subtitle" class="subtitle">Monteleone di Puglia - A Fantasy</div>
-
-<div class="author">Steven G Kukla</div>
-
-
-<a id="downloadBtn" class="btn blue"
-href="books/FINAL_ENG_MdP_4Nov2025.pdf"
-onclick="return confirmDownload('Download the English PDF now?')">
-
-⬇ Download Free Book (PDF)
-
-</a>
-
-
-<a id="websiteBtn" class="btn orange"
-href="https://stretchy54.wixsite.com/sgk-stone-sculptures">
-
-🌐 Visit My Website
-
-</a>
-
-
-<a id="musicBtn" class="btn green"
-href="music.html?lang=en">
-
-▶ Songs and Music
-
-</a>
-
-
-<a id="projectBtn" class="btn rose"
-href="assets/Project.pdf"
-onclick="return confirmDownload('Open Project PDF?')">
-
-⬇ About <i>La Leonessa</i> Project
-
-</a>
-
-
-<div class="lioness">
-
-<img src="assets/lioness.jpg">
-
-</div>
-
-</div>
-
-
-<script>
-
-function confirmDownload(message){
-
-return confirm(message)
-
-}
-
-
-function setLang(lang){
-
-if(lang==="it"){
-
-document.getElementById("title").textContent="Radici forti, frutti buoni"
-
-document.getElementById("subtitle").textContent="Monteleone di Puglia - Una fiaba"
-
-document.getElementById("downloadBtn").textContent="⬇ Scarica il Libro Gratuito (PDF)"
-
-document.getElementById("downloadBtn").href="books/FINAL_ITA_MdP_1Nov2025.pdf"
-
-document.getElementById("downloadBtn").setAttribute("onclick","return confirmDownload('Scaricare PDF?')")
-
-document.getElementById("websiteBtn").textContent="🌐 Visita il Mio Sito Web"
-
-document.getElementById("musicBtn").textContent="▶ Canzoni e Musica"
-
-document.getElementById("musicBtn").href="music.html?lang=it"
-
-document.getElementById("projectBtn").innerHTML="⬇ Sul Progetto <i>La Leonessa</i>"
-
-document.getElementById("projectBtn").setAttribute("onclick","return confirmDownload('Aprire il PDF?')")
-
-document.getElementById("itBtn").classList.add("activeLang")
-document.getElementById("enBtn").classList.remove("activeLang")
-
-}
-
-else{
-
-document.getElementById("title").textContent="Strong Roots, Good Fruit"
-
-document.getElementById("subtitle").textContent="Monteleone di Puglia - A Fantasy"
-
-document.getElementById("downloadBtn").textContent="⬇ Download Free Book (PDF)"
-
-document.getElementById("downloadBtn").href="books/FINAL_ENG_MdP_4Nov2025.pdf"
-
-document.getElementById("downloadBtn").setAttribute("onclick","return confirmDownload('Download PDF now?')")
-
-document.getElementById("websiteBtn").textContent="🌐 Visit My Website"
-
-document.getElementById("musicBtn").textContent="▶ Songs and Music"
-
-document.getElementById("musicBtn").href="music.html?lang=en"
-
-document.getElementById("projectBtn").innerHTML="⬇ About <i>La Leonessa</i> Project"
-
-document.getElementById("projectBtn").setAttribute("onclick","return confirmDownload('Open Project PDF?')")
-
-document.getElementById("itBtn").classList.remove("activeLang")
-document.getElementById("enBtn").classList.add("activeLang")
-
-}
-
-}
-
-</script>
+  <!-- Language selector -->
+  <div class="langbar">
+    <button class="langbtn active" id="itBtn" onclick="setLang('it')">🇮🇹 ITALIANO</button>
+    <button class="langbtn"        id="enBtn" onclick="setLang('en')">🇬🇧 INGLESE</button>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1 id="title">Radici forti, frutti buoni</h1>
+    <div id="subtitle" class="subtitle">Monteleone di Puglia — Una fiaba</div>
+    <div class="author">Steven G Kukla</div>
+    <span class="divider"></span>
+  </div>
+
+  <!-- Buttons -->
+  <div class="btns">
+    <a id="downloadBtn" class="btn btn-blue"
+       href="books/FINAL_ITA_MdP_1Nov2025.pdf"
+       data-confirm-it="Scaricare il PDF gratuito?"
+       data-confirm-en="Download the free PDF now?"
+       onclick="return openModal(this)">
+      <span class="btn-icon">⬇</span>
+      <span id="downloadLabel">Scarica il Libro Gratuito (PDF)</span>
+    </a>
+
+    <a id="projectBtn" class="btn btn-rose"
+       href="assets/Project.pdf"
+       data-confirm-it="Aprire il PDF del Progetto?"
+       data-confirm-en="Open the Project PDF?"
+       onclick="return openModal(this)">
+      <span class="btn-icon">⬇</span>
+      <span id="projectLabel">Sul Progetto <em>La Leonessa</em></span>
+    </a>
+
+    <a id="musicBtn" class="btn btn-green"
+       href="music.html?lang=it">
+      <span class="btn-icon">▶</span>
+      <span id="musicLabel">Canzoni e Musica</span>
+    </a>
+
+    <a id="websiteBtn" class="btn btn-orange"
+       href="https://stretchy54.wixsite.com/sgk-stone-sculptures"
+       target="_blank" rel="noopener">
+      <span class="btn-icon">🌐</span>
+      <span id="websiteLabel">Visita il Mio Sito Web</span>
+    </a>
+  </div>
+
+  <!-- Lioness image -->
+  <div class="lioness-wrap">
+    <img src="assets/lioness.jpg" alt="La Leonessa">
+  </div>
+
+  <!-- Custom download confirmation modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon">📄</div>
+      <div class="modal-msg" id="modalMsg"></div>
+      <div class="modal-btns">
+        <button class="modal-ok"     id="modalOk"     onclick="confirmModal()">OK</button>
+        <button class="modal-cancel" id="modalCancel" onclick="closeModal()">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Language state ──────────────────────────────────────────────
+    const STRINGS = {
+      it: {
+        htmlLang:    'it',
+        docTitle:    'Radici forti, frutti buoni',
+        title:       'Radici forti, frutti buoni',
+        subtitle:    'Monteleone di Puglia \u2014 Una fiaba',
+        downloadHref:'books/FINAL_ITA_MdP_1Nov2025.pdf',
+        downloadLabel:'Scarica il Libro Gratuito (PDF)',
+        websiteLabel: 'Visita il Mio Sito Web',
+        musicHref:   'music.html?lang=it',
+        musicLabel:  'Canzoni e Musica',
+        projectLabel: 'Sul Progetto La Leonessa',
+        cancelLabel: 'Annulla',
+      },
+      en: {
+        htmlLang:    'en',
+        docTitle:    'Strong Roots, Good Fruit',
+        title:       'Strong Roots, Good Fruit',
+        subtitle:    'Monteleone di Puglia \u2014 A Fantasy',
+        downloadHref:'books/FINAL_ENG_MdP_4Nov2025.pdf',
+        downloadLabel:'Download Free Book (PDF)',
+        websiteLabel: 'Visit My Website',
+        musicHref:   'music.html?lang=en',
+        musicLabel:  'Songs and Music',
+        projectLabel: 'About La Leonessa Project',
+        cancelLabel: 'Cancel',
+      }
+    };
+
+    let currentLang = 'it';
+    let pendingHref  = null;
+
+    function getLangFromURL() {
+      const p = new URLSearchParams(window.location.search);
+      return p.get('lang') === 'en' ? 'en' : 'it';
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      const s = STRINGS[lang];
+      document.documentElement.lang = s.htmlLang;
+      document.title = s.docTitle;
+
+      document.getElementById('title').textContent    = s.title;
+      document.getElementById('subtitle').textContent = s.subtitle;
+      document.getElementById('downloadLabel').textContent = s.downloadLabel;
+      document.getElementById('downloadBtn').href     = s.downloadHref;
+      document.getElementById('websiteLabel').textContent  = s.websiteLabel;
+      document.getElementById('musicLabel').textContent    = s.musicLabel;
+      document.getElementById('musicBtn').href         = s.musicHref;
+      // keep innerHTML for the <em> in project label
+      document.getElementById('projectLabel').innerHTML =
+        lang === 'it' ? 'Sul Progetto <em>La Leonessa</em>'
+                      : 'About <em>La Leonessa</em> Project';
+      document.getElementById('modalCancel').textContent = s.cancelLabel;
+
+      document.getElementById('itBtn').classList.toggle('active', lang === 'it');
+      document.getElementById('enBtn').classList.toggle('active', lang === 'en');
+
+      // Update URL without reload (suppressed in sandboxed previews)
+      try {
+        const url = new URL(window.location);
+        url.searchParams.set('lang', lang);
+        history.replaceState(null, '', url);
+      } catch(e) { /* sandboxed preview — safe to ignore */ }
+    }
+
+    // ── Modal logic ─────────────────────────────────────────────────
+    function openModal(anchor) {
+      const msg = currentLang === 'it'
+        ? anchor.getAttribute('data-confirm-it')
+        : anchor.getAttribute('data-confirm-en');
+      if (!msg) return true; // no confirm needed, follow link directly
+      pendingHref = anchor.href;
+      document.getElementById('modalMsg').textContent = msg;
+      document.getElementById('modalOverlay').classList.add('open');
+      return false; // block default navigation
+    }
+
+    function confirmModal() {
+      closeModal();
+      if (pendingHref) window.location.href = pendingHref;
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      pendingHref = null;
+    }
+
+    // Close modal on overlay click
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // ── Init ────────────────────────────────────────────────────────
+    setLang(getLangFromURL());
+  </script>
 
 </body>
 </html>
