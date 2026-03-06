@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Sito Web</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:     #f5f0e8;
+      --ink:    #1a1a1a;
+      --muted:  #6b6361;
+      --gold:   #b59440;
+      --blue:   #2B5F8E;
+      --orange: #C97D28;
+      --rule:   rgba(181,148,64,0.25);
+      --shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(ellipse at 20% 0%,   rgba(181,148,64,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 100%, rgba(43,95,142,0.06)  0%, transparent 60%);
+    }
+
+    /* ── Sticky back bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 14px 16px 10px;
+      background: linear-gradient(to bottom, rgba(245,240,232,0.98), rgba(245,240,232,0.86));
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(6px);
+    }
+    .backWrap { display: flex; justify-content: center; }
+    .backBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2B5F8E, #1e4470);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(15px, 2.4vw, 18px);
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow);
+      transition: filter 0.15s, transform 0.15s;
+    }
+    .backBtn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* ── Content area ── */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 70px);
+      padding: 40px 24px;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .site-icon { font-size: 48px; }
+
+    .content-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(20px, 4vw, 32px);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+
+    .content-msg {
+      font-style: italic;
+      font-size: clamp(16px, 2.4vw, 20px);
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 480px;
+    }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 36px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #C97D28, #a86318);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(16px, 2.4vw, 20px);
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow);
+      transition: filter 0.15s, transform 0.15s;
+    }
+    .open-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="backWrap">
+      <a id="backBtn" class="backBtn" href="index.html">← <span id="backLabel">Torna alla Pagina Principale</span></a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="site-icon">🌐</div>
+    <div id="contentTitle" class="content-title">Sito Web di SGK Stone Sculptures</div>
+    <p id="contentMsg" class="content-msg">Stai per visitare il sito web esterno. Usa il tasto indietro del browser per tornare all'app.</p>
+    <a id="openBtn" class="open-btn"
+       href="https://stretchy54.wixsite.com/sgk-stone-sculptures"
+       target="_blank" rel="noopener">
+      🌐 <span id="openLabel">Visita il Sito Web</span>
+    </a>
+  </div>
+
+  <script>
+    const lang = new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'it';
+
+    if (lang === 'en') {
+      document.documentElement.lang        = 'en';
+      document.title                       = 'Website';
+      document.getElementById('backLabel').textContent     = 'Back to Main Page';
+      document.getElementById('contentTitle').textContent  = 'SGK Stone Sculptures Website';
+      document.getElementById('contentMsg').textContent    = 'You are about to visit an external website. Use your browser\'s back button to return to the app.';
+      document.getElementById('openLabel').textContent     = 'Visit Website';
+    } else {
+      document.documentElement.lang        = 'it';
+      document.title                       = 'Sito Web';
+      document.getElementById('backLabel').textContent     = 'Torna alla Pagina Principale';
+      document.getElementById('contentTitle').textContent  = 'Sito Web di SGK Stone Sculptures';
+      document.getElementById('contentMsg').textContent    = 'Stai per visitare il sito web esterno. Usa il tasto indietro del browser per tornare all\'app.';
+      document.getElementById('openLabel').textContent     = 'Visita il Sito Web';
+    }
+
+    document.getElementById('backBtn').href = 'index.html?lang=' + lang;
+  </script>
+
+</body>
+</html>

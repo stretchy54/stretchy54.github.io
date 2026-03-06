@@ -297,8 +297,7 @@
     </a>
 
     <a id="websiteBtn" class="btn btn-orange"
-       href="https://stretchy54.wixsite.com/sgk-stone-sculptures"
-       target="_blank" rel="noopener">
+       href="outbound.html?lang=it">
       <span class="btn-icon">🌐</span>
       <span id="websiteLabel">Visita il Mio Sito Web</span>
       <span></span>
@@ -332,6 +331,7 @@
         subtitle:    'Monteleone di Puglia \u2014 Una fiaba',
         downloadHref:'viewer.html?file=books/FINAL_ITA_MdP_1Nov2025.pdf&lang=it',
         downloadLabel:'SCARICA LIBRO GRATIS (PDF)',
+        websiteHref:  'outbound.html?lang=it',
         websiteLabel: 'Visita il Mio Sito Web',
         musicHref:   'music.html?lang=it',
         musicLabel:  'Canzoni e Musica',
@@ -346,6 +346,7 @@
         subtitle:    'Monteleone di Puglia \u2014 A Fantasy',
         downloadHref:'viewer.html?file=books/FINAL_MdP_ENG_4Nov2025.pdf&lang=en',
         downloadLabel:'Download Free Book (PDF)',
+        websiteHref:  'outbound.html?lang=en',
         websiteLabel: 'Visit My Website',
         musicHref:   'music.html?lang=en',
         musicLabel:  'Songs and Music',
@@ -374,6 +375,7 @@
       document.getElementById('downloadLabel').textContent = s.downloadLabel;
       document.getElementById('downloadBtn').href     = s.downloadHref;
       document.getElementById('websiteLabel').textContent  = s.websiteLabel;
+      document.getElementById('websiteBtn').href           = s.websiteHref;
       document.getElementById('musicLabel').textContent    = s.musicLabel;
       document.getElementById('musicBtn').href         = s.musicHref;
       document.getElementById('projectBtn').href       = s.projectHref;
