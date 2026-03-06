@@ -110,10 +110,16 @@
     }
     .open-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-    /* On mobile, hide embed and show fallback */
+    /* Always show the fallback open button on ALL mobile browsers */
     @media (max-width: 700px) {
-      .pdf-embed      { display: none; }
+      .pdf-embed       { display: none; }
       .mobile-fallback { display: flex; }
+    }
+
+    /* On desktop, hide fallback and show embed */
+    @media (min-width: 701px) {
+      .pdf-embed       { display: block; }
+      .mobile-fallback { display: none; }
     }
   </style>
 </head>
@@ -132,7 +138,7 @@
 
     <!-- Mobile fallback -->
     <div class="mobile-fallback">
-      <p id="fallbackMsg">Il PDF si apre meglio nell'app predefinita del tuo dispositivo.</p>
+      <p id="fallbackMsg">Il PDF si apre nell'app del tuo dispositivo. Usa il tasto indietro del browser per tornare qui.</p>
       <a id="openBtn" class="open-btn" href="#" target="_blank" rel="noopener">⬇ <span id="openLabel">Apri PDF</span></a>
     </div>
   </div>
@@ -148,13 +154,13 @@
       document.documentElement.lang = 'en';
       document.title                = 'Document Viewer';
       document.getElementById('backLabel').textContent    = 'Back to Main Page';
-      document.getElementById('fallbackMsg').textContent  = 'This PDF opens best in your device\'s default app.';
+      document.getElementById('fallbackMsg').textContent  = 'The PDF opens in your device\'s app. Use your browser\'s back button to return here.';
       document.getElementById('openLabel').textContent    = 'Open PDF';
     } else {
       document.documentElement.lang = 'it';
       document.title                = 'Visualizzatore Documento';
       document.getElementById('backLabel').textContent    = 'Torna alla Pagina Principale';
-      document.getElementById('fallbackMsg').textContent  = 'Il PDF si apre meglio nell\'app predefinita del tuo dispositivo.';
+      document.getElementById('fallbackMsg').textContent  = 'Il PDF si apre nell\'app del tuo dispositivo. Usa il tasto indietro del browser per tornare qui.';
       document.getElementById('openLabel').textContent    = 'Apri PDF';
     }
 
