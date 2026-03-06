@@ -125,10 +125,9 @@
       animation: fadeUp 0.7s 0.15s ease both;
     }
     .btn {
-      display: flex;
+      display: grid;
+      grid-template-columns: 32px 1fr 32px;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
       width: 100%;
       padding: 18px 28px;
       border-radius: 60px;
@@ -145,6 +144,20 @@
       position: relative;
       overflow: hidden;
     }
+    .btn-icon {
+      font-size: 1.1em;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn span:last-child {
+      /* invisible spacer to balance the icon on the left */
+      display: block;
+    }
+    .btn > span:nth-child(2) {
+      text-align: center;
+    }
     .btn::after {
       content: '';
       position: absolute;
@@ -160,16 +173,8 @@
     .btn-green  { background: linear-gradient(135deg, #4a7a5a, #375c43); }
     .btn-rose   { background: linear-gradient(135deg, #7a3e32, #5e2e24); }
 
-    .btn-icon {
-      font-size: 1.15em;
-      line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 1em;
-      position: relative;
-      top: 0.05em;
-    }
+
+
 
     /* ── Lioness image ── */
     .lioness-wrap {
@@ -266,19 +271,22 @@
     <a id="downloadBtn" class="btn btn-blue"
        href="viewer.html?file=books/FINAL_ITA_MdP_1Nov2025.pdf&lang=it">
       <span class="btn-icon">⬇</span>
-      <span id="downloadLabel">Scarica libro gratis (PDF)</span>
+      <span id="downloadLabel">SCARICA LIBRO GRATIS (PDF)</span>
+      <span></span>
     </a>
 
     <a id="projectBtn" class="btn btn-rose"
        href="viewer.html?file=assets/Project.pdf&lang=it">
       <span class="btn-icon">⬇</span>
       <span id="projectLabel">Sul Progetto <em>La Leonessa</em></span>
+      <span></span>
     </a>
 
     <a id="musicBtn" class="btn btn-green"
        href="music.html?lang=it">
       <span class="btn-icon">▶</span>
       <span id="musicLabel">Canzoni e Musica</span>
+      <span></span>
     </a>
 
     <a id="websiteBtn" class="btn btn-orange"
@@ -286,6 +294,7 @@
        target="_blank" rel="noopener">
       <span class="btn-icon">🌐</span>
       <span id="websiteLabel">Visita il Mio Sito Web</span>
+      <span></span>
     </a>
   </div>
 
@@ -315,7 +324,7 @@
         title:       'Radici forti, frutti buoni',
         subtitle:    'Monteleone di Puglia \u2014 Una fiaba',
         downloadHref:'viewer.html?file=books/FINAL_ITA_MdP_1Nov2025.pdf&lang=it',
-        downloadLabel:'Scarica libro gratis (PDF)',
+        downloadLabel:'SCARICA LIBRO GRATIS (PDF)',
         websiteLabel: 'Visita il Mio Sito Web',
         musicHref:   'music.html?lang=it',
         musicLabel:  'Canzoni e Musica',
