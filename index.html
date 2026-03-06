@@ -319,6 +319,7 @@
         websiteLabel: 'Visita il Mio Sito Web',
         musicHref:   'music.html?lang=it',
         musicLabel:  'Canzoni e Musica',
+        projectHref: 'viewer.html?file=assets/Project.pdf&lang=it',
         projectLabel: 'Sul Progetto La Leonessa',
         cancelLabel: 'Annulla',
       },
@@ -332,6 +333,7 @@
         websiteLabel: 'Visit My Website',
         musicHref:   'music.html?lang=en',
         musicLabel:  'Songs and Music',
+        projectHref: 'viewer.html?file=assets/Project.pdf&lang=en',
         projectLabel: 'About La Leonessa Project',
         cancelLabel: 'Cancel',
       }
@@ -358,6 +360,7 @@
       document.getElementById('websiteLabel').textContent  = s.websiteLabel;
       document.getElementById('musicLabel').textContent    = s.musicLabel;
       document.getElementById('musicBtn').href         = s.musicHref;
+      document.getElementById('projectBtn').href       = s.projectHref;
       // keep innerHTML for the <em> in project label
       document.getElementById('projectLabel').innerHTML =
         lang === 'it' ? 'Sul Progetto <em>La Leonessa</em>'
