@@ -269,14 +269,20 @@
   <!-- Buttons -->
   <div class="btns">
     <a id="downloadBtn" class="btn btn-blue"
-       href="viewer.html?file=books/FINAL_ITA_MdP_1Nov2025.pdf&lang=it">
+       href="viewer.html?file=books/FINAL_ITA_MdP_1Nov2025.pdf&lang=it"
+       data-confirm-it="Scaricare il PDF gratuito?"
+       data-confirm-en="Download the free PDF now?"
+       onclick="return openModal(this)">
       <span class="btn-icon">⬇</span>
       <span id="downloadLabel">SCARICA LIBRO GRATIS (PDF)</span>
       <span></span>
     </a>
 
     <a id="projectBtn" class="btn btn-rose"
-       href="viewer.html?file=assets/Project.pdf&lang=it">
+       href="viewer.html?file=assets/Project.pdf&lang=it"
+       data-confirm-it="Aprire il PDF del Progetto?"
+       data-confirm-en="Open the Project PDF?"
+       onclick="return openModal(this)">
       <span class="btn-icon">⬇</span>
       <span id="projectLabel">Sul Progetto <em>La Leonessa</em></span>
       <span></span>
