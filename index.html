@@ -160,7 +160,16 @@
     .btn-green  { background: linear-gradient(135deg, #4a7a5a, #375c43); }
     .btn-rose   { background: linear-gradient(135deg, #7a3e32, #5e2e24); }
 
-    .btn-icon { font-size: 1.15em; line-height: 1; }
+    .btn-icon {
+      font-size: 1.15em;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 1em;
+      position: relative;
+      top: 0.05em;
+    }
 
     /* ── Lioness image ── */
     .lioness-wrap {
@@ -255,19 +264,13 @@
   <!-- Buttons -->
   <div class="btns">
     <a id="downloadBtn" class="btn btn-blue"
-       href="books/FINAL_ITA_MdP_1Nov2025.pdf"
-       data-confirm-it="Scaricare il PDF gratuito?"
-       data-confirm-en="Download the free PDF now?"
-       onclick="return openModal(this)">
+       href="viewer.html?file=books/FINAL_ITA_MdP_1Nov2025.pdf&lang=it">
       <span class="btn-icon">⬇</span>
       <span id="downloadLabel">Scarica il Libro Gratuito (PDF)</span>
     </a>
 
     <a id="projectBtn" class="btn btn-rose"
-       href="assets/Project.pdf"
-       data-confirm-it="Aprire il PDF del Progetto?"
-       data-confirm-en="Open the Project PDF?"
-       onclick="return openModal(this)">
+       href="viewer.html?file=assets/Project.pdf&lang=it">
       <span class="btn-icon">⬇</span>
       <span id="projectLabel">Sul Progetto <em>La Leonessa</em></span>
     </a>
@@ -311,7 +314,7 @@
         docTitle:    'Radici forti, frutti buoni',
         title:       'Radici forti, frutti buoni',
         subtitle:    'Monteleone di Puglia \u2014 Una fiaba',
-        downloadHref:'books/FINAL_ITA_MdP_1Nov2025.pdf',
+        downloadHref:'viewer.html?file=books/FINAL_ITA_MdP_1Nov2025.pdf&lang=it',
         downloadLabel:'Scarica il Libro Gratuito (PDF)',
         websiteLabel: 'Visita il Mio Sito Web',
         musicHref:   'music.html?lang=it',
@@ -324,7 +327,7 @@
         docTitle:    'Strong Roots, Good Fruit',
         title:       'Strong Roots, Good Fruit',
         subtitle:    'Monteleone di Puglia \u2014 A Fantasy',
-        downloadHref:'books/FINAL_MdP_ENG_4Nov2025.pdf',
+        downloadHref:'viewer.html?file=books/FINAL_MdP_ENG_4Nov2025.pdf&lang=en',
         downloadLabel:'Download Free Book (PDF)',
         websiteLabel: 'Visit My Website',
         musicHref:   'music.html?lang=en',

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Documento</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:     #f5f0e8;
+      --ink:    #1a1a1a;
+      --gold:   #b59440;
+      --blue:   #2B5F8E;
+      --rule:   rgba(181,148,64,0.25);
+      --shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Sticky back bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 14px 16px 10px;
+      background: linear-gradient(to bottom, rgba(245,240,232,0.98), rgba(245,240,232,0.86));
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(6px);
+    }
+    .backWrap { display: flex; justify-content: center; }
+    .backBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2B5F8E, #1e4470);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(15px, 2.4vw, 18px);
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow);
+      transition: filter 0.15s, transform 0.15s;
+    }
+    .backBtn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* ── PDF viewer ── */
+    .viewer-wrap {
+      width: 100%;
+      height: calc(100vh - 70px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Desktop: show embedded PDF */
+    .pdf-embed {
+      width: 100%;
+      flex: 1;
+      border: none;
+      display: block;
+    }
+
+    /* Mobile fallback: show download link instead of broken embed */
+    .mobile-fallback {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .mobile-fallback p {
+      font-style: italic;
+      font-size: 20px;
+      color: #6b6361;
+      line-height: 1.5;
+    }
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2B5F8E, #1e4470);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow);
+      transition: filter 0.15s, transform 0.15s;
+    }
+    .open-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* On mobile, hide embed and show fallback */
+    @media (max-width: 700px) {
+      .pdf-embed      { display: none; }
+      .mobile-fallback { display: flex; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="backWrap">
+      <a id="backBtn" class="backBtn" href="index.html">← <span id="backLabel">Torna alla Pagina Principale</span></a>
+    </div>
+  </div>
+
+  <div class="viewer-wrap">
+    <!-- Desktop PDF embed -->
+    <iframe id="pdfEmbed" class="pdf-embed" src="" title="PDF Viewer"></iframe>
+
+    <!-- Mobile fallback -->
+    <div class="mobile-fallback">
+      <p id="fallbackMsg">Il PDF si apre meglio nell'app predefinita del tuo dispositivo.</p>
+      <a id="openBtn" class="open-btn" href="#" target="_blank" rel="noopener">⬇ <span id="openLabel">Apri PDF</span></a>
+    </div>
+  </div>
+
+  <script>
+    // Read URL params: ?file=path/to/file.pdf&lang=it
+    const params   = new URLSearchParams(window.location.search);
+    const file     = params.get('file') || '';
+    const lang     = params.get('lang') === 'en' ? 'en' : 'it';
+
+    // Set language strings
+    if (lang === 'en') {
+      document.documentElement.lang = 'en';
+      document.title                = 'Document Viewer';
+      document.getElementById('backLabel').textContent    = 'Back to Main Page';
+      document.getElementById('fallbackMsg').textContent  = 'This PDF opens best in your device\'s default app.';
+      document.getElementById('openLabel').textContent    = 'Open PDF';
+    } else {
+      document.documentElement.lang = 'it';
+      document.title                = 'Visualizzatore Documento';
+      document.getElementById('backLabel').textContent    = 'Torna alla Pagina Principale';
+      document.getElementById('fallbackMsg').textContent  = 'Il PDF si apre meglio nell\'app predefinita del tuo dispositivo.';
+      document.getElementById('openLabel').textContent    = 'Apri PDF';
+    }
+
+    // Set back button href to preserve language
+    document.getElementById('backBtn').href = 'index.html?lang=' + lang;
+
+    // Point both the embed and the mobile open button to the file
+    if (file) {
+      document.getElementById('pdfEmbed').src = file;
+      document.getElementById('openBtn').href  = file;
+    }
+  </script>
+
+</body>
+</html>
