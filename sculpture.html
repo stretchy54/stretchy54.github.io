@@ -19,9 +19,9 @@
     .gallery-item { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); cursor: pointer; transition: transform 0.25s, box-shadow 0.25s; }
     .gallery-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
     .gallery-item.hidden { display: none; }
-    .gallery-img-wrap { position: relative; overflow: hidden; background: var(--parchment); aspect-ratio: 4/3; }
-    .gallery-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-    .gallery-item:hover .gallery-img-wrap img { transform: scale(1.04); }
+    .gallery-img-wrap { position: relative; overflow: hidden; background: var(--parchment); }
+    .gallery-img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .gallery-item:hover .gallery-img-wrap img { transform: scale(1.02); }
     .gallery-caption { padding: 1rem 1.1rem 1.2rem; }
     .gallery-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: var(--umber); margin-bottom: 0.2rem; line-height: 1.3; }
     .gallery-meta { font-family: var(--font-accent); font-size: 0.82rem; font-style: italic; color: var(--smoke); line-height: 1.5; }
@@ -171,7 +171,7 @@
 
       <article class="gallery-item fade-up delay-2" data-medium="clay" role="listitem">
         <div class="gallery-img-wrap">
-          <img src="sculpture/Franscesca_80%.jpg" alt="Francesca 80%" loading="lazy" />
+          <img src="sculpture/Franscesca_80pct.jpg" alt="Francesca 80%" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <div class="gallery-title">Francesca – 80%</div>
