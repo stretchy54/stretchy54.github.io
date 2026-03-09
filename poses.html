@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Figurative Poses – SGK | Steven G. Kukla</title>
+  <meta name="description" content="An exploration of human figurative poses with the A9 Rig flexible skeleton armature by Steven G. Kukla." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { background: var(--parchment); border-bottom: 1px solid var(--stone); padding: 3.5rem 2rem 2.5rem; text-align: center; }
+    .page-hero p { max-width: 520px; margin: 0.6rem auto 0; font-family: var(--font-accent); font-style: italic; color: var(--smoke); line-height: 1.7; }
+    .poses-layout { max-width: var(--max-w); margin: 0 auto; padding: 3.5rem 2rem 5rem; }
+    .armature-strip { background: var(--sand); border: 1px solid var(--parchment); border-left: 4px solid var(--clay); border-radius: 4px; padding: 1.2rem 1.8rem; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .armature-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .armature-text { font-family: var(--font-accent); font-size: 0.92rem; font-style: italic; color: var(--charcoal); line-height: 1.6; }
+    .armature-text strong { font-style: normal; color: var(--umber); }
+    .poses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+    .pose-item { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s; aspect-ratio: 3/4; position: relative; cursor: pointer; }
+    .pose-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+    .pose-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .pose-item:hover img { transform: scale(1.05); }
+    .pose-number { position: absolute; bottom: 0.6rem; right: 0.7rem; font-family: var(--font-display); font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(26,18,8,0.45); padding: 0.15rem 0.45rem; border-radius: 2rem; letter-spacing: 0.06em; }
+    @media (max-width: 500px) { .poses-grid { grid-template-columns: 1fr 1fr; gap: 0.7rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="sgk.html">SGK<span>.</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li><a href="sgk.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="sculpture.html">Sculpture</a></li>
+      <li><a href="poses.html">Poses</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="sgk-music.html">Music</a></li>
+      <li><a href="how-to-listen.html">How to Listen</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+
+  <header class="page-hero fade-up">
+    <p style="font-family:var(--font-accent);font-style:italic;color:var(--terracotta);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Study</p>
+    <h1 class="section-title">Figurative <em>Poses</em></h1>
+    <p>An exploration of human figurative poses with the A9 Rig flexible skeleton armature.</p>
+  </header>
+
+  <div class="poses-layout">
+
+    <div class="armature-strip fade-up">
+      <span class="armature-icon">🦴</span>
+      <p class="armature-text">
+        Poses created using the <strong>A9 Rig Rider — 6" ivory armature</strong>, a flexible poseable skeleton
+        used as a reference tool for studying gesture, weight distribution, and the full range of human movement.
+      </p>
+    </div>
+
+    <div class="poses-grid" id="poses-grid" role="list" aria-label="Figurative pose studies">
+      <!-- Pose images are loaded dynamically below -->
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-name">Steven G. Kukla</p>
+  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="mailto:alkuk23@gmail.com">alkuk23@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/stevekukla" target="_blank" rel="noopener">LinkedIn</a></p>
+  <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.6;">© 2026 Steven G. Kukla. All rights reserved.</p>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+  // List your actual pose image filenames here
+  const poseImages = [
+    'IMG_0145.jpeg',
+    'IMG_0146.jpeg',
+    'IMG_0149.jpeg',
+    'IMG_0151.jpeg',
+    'IMG_0156.jpeg',
+    'IMG_0159.jpeg',
+    'IMG_0161.jpeg',
+    'IMG_0182.jpeg',
+    'IMG_0185.jpeg',
+    'IMG_0186.jpeg',
+    'IMG_0190.jpeg',
+    'IMG_0258.jpg',
+    'IMG_0375.jpg',
+    'IMG_2109.jpg',
+    'IMG_2253.jpg',
+    'IMG_2258.jpg',
+    'IMG_2263.jpg',
+  ];
+
+  const grid = document.getElementById('poses-grid');
+  poseImages.forEach((filename, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    const item = document.createElement('div');
+    item.className = 'pose-item fade-up';
+    item.setAttribute('role', 'listitem');
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('aria-label', `Pose study ${num}`);
+    item.innerHTML = `
+      <img src="poses/${filename}" alt="Pose study ${num}" loading="lazy" />
+      <span class="pose-number">${num}</span>
+    `;
+    grid.appendChild(item);
+  });
+</script>
+</body>
+</html>
