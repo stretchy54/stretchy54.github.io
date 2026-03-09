@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music – SGK | Steven G. Kukla</title>
+  <meta name="description" content="Two albums of original songs by Steven G. Kukla — poems from Strong Roots, Good Fruit reimagined as music." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { background: var(--charcoal); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(160,115,90,0.15), transparent); pointer-events: none; }
+    .page-hero .section-title { color: var(--parchment); }
+    .page-hero .section-title em { color: var(--stone); }
+    .page-hero p { font-family: var(--font-accent); font-style: italic; color: var(--stone); margin-top: 0.6rem; }
+    .music-layout { max-width: 900px; margin: 0 auto; padding: 4rem 2rem 5rem; }
+    .credits-box { background: var(--parchment); border: 1px solid var(--stone); border-left: 4px solid var(--terracotta); border-radius: 4px; padding: 1.5rem 2rem; margin-bottom: 3.5rem; font-family: var(--font-accent); font-size: 0.95rem; font-style: italic; color: var(--charcoal); line-height: 1.8; }
+    .credits-box strong { font-style: normal; color: var(--umber); }
+    .albums-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3.5rem; }
+    .album-card { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
+    .album-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); }
+    .album-cover { position: relative; overflow: hidden; background: var(--charcoal); aspect-ratio: 1; }
+    .album-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, filter 0.3s; }
+    .album-card:hover .album-cover img { transform: scale(1.04); filter: brightness(0.85); }
+    .album-play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    .album-card:hover .album-play-overlay { opacity: 1; }
+    .play-btn { width: 64px; height: 64px; border-radius: 50%; background: rgba(245,239,228,0.92); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.2s; }
+    .album-card:hover .play-btn { transform: scale(1.1); }
+    .album-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .album-vol { font-family: var(--font-accent); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.3rem; }
+    .album-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--umber); margin-bottom: 0.4rem; }
+    .album-desc { font-family: var(--font-accent); font-style: italic; font-size: 0.85rem; color: var(--smoke); line-height: 1.6; flex: 1; margin-bottom: 1.2rem; }
+    .album-link { display: flex; align-items: center; gap: 0.4rem; font-family: var(--font-body); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terracotta); border-bottom: 1px solid transparent; transition: border-color 0.2s; width: fit-content; }
+    .album-link:hover { border-color: var(--terracotta); }
+    .distro-section { background: var(--parchment); border: 1px solid var(--stone); border-radius: 4px; padding: 2rem 2.5rem; text-align: center; }
+    .distro-section h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--umber); margin-bottom: 0.4rem; }
+    .distro-section p { font-family: var(--font-accent); font-style: italic; font-size: 0.9rem; color: var(--smoke); margin-bottom: 1.2rem; }
+    .platforms { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+    .platform-tag { background: var(--sand); border: 1px solid var(--stone); padding: 0.25rem 0.8rem; border-radius: 2rem; font-size: 0.8rem; color: var(--umber); font-family: var(--font-body); }
+    @media (max-width: 580px) { .albums-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="sgk.html">SGK<span>.</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li><a href="sgk.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="sculpture.html">Sculpture</a></li>
+      <li><a href="poses.html">Poses</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="sgk-music.html">Music</a></li>
+      <li><a href="how-to-listen.html">How to Listen</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+
+  <header class="page-hero fade-up">
+    <p style="font-family:var(--font-accent);font-style:italic;color:var(--terracotta);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Songs &amp; Albums</p>
+    <h1 class="section-title"><em>Music</em></h1>
+    <p>The poems of <em>Strong Roots, Good Fruit</em> reimagined as songs</p>
+  </header>
+
+  <div class="music-layout">
+
+    <aside class="credits-box fade-up">
+      Original lyrics, song structure, arrangement, vocal &amp; instrument choices, and song stylings by <strong>Steven G. Kukla</strong>.
+      Vocals and music generated by <strong>Suno AI</strong>.
+      Mastered with <strong>MasterChannel</strong>.
+      Albums distributed by <strong>DistroKid</strong> to over 20 major music platforms.
+    </aside>
+
+    <h2 class="section-title fade-up">The <em>Albums</em></h2>
+    <p class="section-subtitle fade-up delay-1">Click an album to listen on YouTube</p>
+    <hr class="divider" />
+
+    <div class="albums-grid">
+
+      <a class="album-card fade-up" href="https://www.youtube.com/playlist?list=OLAK5uy_kWr7iuxO4sa8CozTTx-0bVnxqv49Nzmxs" target="_blank" rel="noopener" aria-label="Strong Roots, Good Fruit Vol. 1 on YouTube">
+        <div class="album-cover">
+          <img src="media/SRGF_MdP_Album_Cover_Vol1.jpeg" alt="Strong Roots, Good Fruit Vol. 1 album cover" loading="lazy" />
+          <div class="album-play-overlay" aria-hidden="true">
+            <div class="play-btn">▶</div>
+          </div>
+        </div>
+        <div class="album-body">
+          <div class="album-vol">Volume 1</div>
+          <div class="album-title">Strong Roots, Good Fruit</div>
+          <p class="album-desc">The first album — poems from the book transformed into original songs.</p>
+          <span class="album-link">Listen on YouTube →</span>
+        </div>
+      </a>
+
+      <a class="album-card fade-up delay-1" href="https://www.youtube.com/playlist?list=OLAK5uy_kvHoPJBo4VX_8JuRpNDUcoLtDD1f-bRtI" target="_blank" rel="noopener" aria-label="Strong Roots, Good Fruit Vol. 2 on YouTube">
+        <div class="album-cover">
+          <img src="media/SRGF_MdP_Album_Cover_Vol2.png" alt="Strong Roots, Good Fruit Vol. 2 album cover" loading="lazy" />
+          <div class="album-play-overlay" aria-hidden="true">
+            <div class="play-btn">▶</div>
+          </div>
+        </div>
+        <div class="album-body">
+          <div class="album-vol">Volume 2</div>
+          <div class="album-title">Strong Roots, Good Fruit</div>
+          <p class="album-desc">The second album — continuing the musical journey of family, heritage, and memory.</p>
+          <span class="album-link">Listen on YouTube →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="background:var(--sand);border:1px solid var(--parchment);border-radius:4px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;" class="fade-up delay-2">
+      <div>
+        <p style="font-family:var(--font-display);font-weight:600;color:var(--umber);margin-bottom:0.2rem;">New to the music?</p>
+        <p style="font-family:var(--font-accent);font-style:italic;font-size:0.88rem;color:var(--smoke);">Learn about editions, formats, and the best way to listen.</p>
+      </div>
+      <a class="btn btn-primary" href="how-to-listen.html">How to Listen</a>
+    </div>
+
+    <div class="distro-section fade-up">
+      <h3>Available on Major Platforms</h3>
+      <p>Distributed by DistroKid to 20+ streaming services worldwide</p>
+      <div class="platforms">
+        <span class="platform-tag">Spotify</span>
+        <span class="platform-tag">Apple Music</span>
+        <span class="platform-tag">YouTube Music</span>
+        <span class="platform-tag">Amazon Music</span>
+        <span class="platform-tag">Tidal</span>
+        <span class="platform-tag">Deezer</span>
+        <span class="platform-tag">iHeart Radio</span>
+        <span class="platform-tag">Pandora</span>
+        <span class="platform-tag">+ more</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-name">Steven G. Kukla</p>
+  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="mailto:alkuk23@gmail.com">alkuk23@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/stevekukla" target="_blank" rel="noopener">LinkedIn</a></p>
+  <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.6;">© 2026 Steven G. Kukla. All rights reserved.</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>
