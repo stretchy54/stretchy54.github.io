@@ -10,7 +10,6 @@
     langBar.innerHTML =
       '<button class="nav-lang-btn" data-lang="en">🇬🇧</button>' +
       '<button class="nav-lang-btn" data-lang="it">🇮🇹</button>';
-    // Insert before the hamburger so order is: logo | links | flags | hamburger
     navInner.insertBefore(langBar, toggle);
   }
 
@@ -47,7 +46,11 @@
 
   // ── Language toggle ───────────────────────────────────────────────────
   function applyLang(lang) {
+    // Only touch elements that explicitly have data-en set,
+    // and skip the poses-grid and any dynamically populated containers
     document.querySelectorAll('[data-en]').forEach(el => {
+      // Skip the grid and its children entirely
+      if (el.id === 'poses-grid' || el.closest('#poses-grid')) return;
       el.innerHTML = (lang === 'it' && el.dataset.it) ? el.dataset.it : el.dataset.en;
     });
     document.querySelectorAll('.lang-content').forEach(el => {

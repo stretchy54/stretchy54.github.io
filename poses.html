@@ -89,53 +89,61 @@
 
 <footer class="site-footer">
   <p class="footer-name">Steven G Kukla</p>
-  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#2a4b46415f4118196a4d474b434604494547"><span class="__cf_email__" data-cfemail="9cfdf0f7e9f7aeafdcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a></p>
+  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="mailto:alkuk23@gmail.com">alkuk23@gmail.com</a></p>
   <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.6;">© <span class="copyright-year">2026</span> Steven G Kukla. All rights reserved.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="nav.js"></script>
+<script src="nav.js"></script>
 <script>
-  const poseImages = [
-    'IMG_0145.jpeg','IMG_0146.jpeg','IMG_0149.jpeg','IMG_0151.jpeg',
-    'IMG_0156.jpeg','IMG_0159.jpeg','IMG_0161.jpeg','IMG_0182.jpeg',
-    'IMG_0185.jpeg','IMG_0186.jpeg','IMG_0190.jpeg','IMG_0258.jpg',
-    'IMG_0375.jpg','IMG_2109.jpg','IMG_2253.jpg','IMG_2258.jpg','IMG_2263.jpg',
-  ];
+  // Defer slightly to ensure nav.js applyLang() has finished before we populate
+  requestAnimationFrame(function() {
+    const poseImages = [
+      'IMG_0145.jpeg','IMG_0146.jpeg','IMG_0149.jpeg','IMG_0151.jpeg',
+      'IMG_0156.jpeg','IMG_0159.jpeg','IMG_0161.jpeg','IMG_0182.jpeg',
+      'IMG_0185.jpeg','IMG_0186.jpeg','IMG_0190.jpeg','IMG_0258.jpg',
+      'IMG_0375.jpg','IMG_2109.jpg','IMG_2253.jpg','IMG_2258.jpg','IMG_2263.jpg',
+    ];
 
-  const grid = document.getElementById('poses-grid');
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lightbox-img');
-  const lbTitle = document.getElementById('lightbox-title');
+    const grid = document.getElementById('poses-grid');
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lightbox-img');
+    const lbTitle = document.getElementById('lightbox-title');
 
-  function openLb(src, title) {
-    lbImg.src = src;
-    lbImg.alt = title;
-    lbTitle.textContent = title;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLb() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+    function openLb(src, title) {
+      lbImg.src = src;
+      lbImg.alt = title;
+      lbTitle.textContent = title;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLb() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-  poseImages.forEach((filename, i) => {
-    const num   = String(i + 1).padStart(2, '0');
-    const label = 'Pose Study ' + num;
-    const src   = 'poses/' + filename;
+    poseImages.forEach((filename, i) => {
+      const num   = String(i + 1).padStart(2, '0');
+      const label = 'Pose Study ' + num;
+      const src   = 'poses/' + filename;
 
-    const item = document.createElement('article');
-    item.className = 'pose-item fade-up';
-    item.setAttribute('role', 'listitem');
-    item.setAttribute('tabindex', '0');
-    item.setAttribute('aria-label', label);
-    item.innerHTML =
-      '<div class="pose-img-wrap"><img src="' + src + '" alt="' + label + '" loading="lazy" /></div>' +
-      '<div class="pose-caption"><span class="pose-number">Pose ' + num + '</span></div>';
+      const item = document.createElement('article');
+      item.className = 'pose-item fade-up';
+      item.setAttribute('role', 'listitem');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', label);
+      item.innerHTML =
+        '<div class="pose-img-wrap"><img src="' + src + '" alt="' + label + '" loading="lazy" /></div>' +
+        '<div class="pose-caption"><span class="pose-number">Pose ' + num + '</span></div>';
 
-    item.addEventListener('click', () => openLb(src, label));
-    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(src, label); });
-    grid.appendChild(item);
+      item.addEventListener('click', () => openLb(src, label));
+      item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(src, label); });
+      grid.appendChild(item);
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLb);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
   });
-
-  document.getElementById(
+</script>
+</body>
+</html>
