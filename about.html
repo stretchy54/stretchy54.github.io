@@ -22,7 +22,7 @@
     .about-body p.italian { font-family: var(--font-accent); font-style: italic; color: var(--smoke); padding-left: 1.2rem; border-left: 2px solid var(--stone); margin-top: 0; }
     .passions-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0 1.2rem; }
     .passion-tag { background: var(--parchment); border: 1px solid var(--stone); border-radius: 2rem; padding: 0.25rem 0.9rem; font-family: var(--font-accent); font-size: 0.85rem; color: var(--umber); font-style: italic; }
-    @media (max-width: 720px) { .about-layout { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; } .about-sidebar { position: static; } .about-photo-wrap { max-width: 240px; margin: 0 auto 1.5rem; } }
+
   </style>
 </head>
 <body>
@@ -34,13 +34,13 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" role="list">
-      <li><a href="sgk.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="sculpture.html">Sculpture</a></li>
-      <li><a href="poses.html">Poses</a></li>
-      <li><a href="writing.html">Writing</a></li>
-      <li><a href="sgk-music.html">Music</a></li>
-      <li><a href="how-to-listen.html">How to Listen</a></li>
+      <li><a href="sgk.html" data-en="Home" data-it="Home">Home</a></li>
+      <li><a href="about.html" data-en="About" data-it="Chi Sono">About</a></li>
+      <li><a href="sculpture.html" data-en="Sculpture" data-it="Scultura">Sculpture</a></li>
+      <li><a href="poses.html" data-en="Poses" data-it="Pose">Poses</a></li>
+      <li><a href="writing.html" data-en="Writing" data-it="Scritti">Writing</a></li>
+      <li><a href="sgk-music.html" data-en="Music" data-it="Musica">Music</a></li>
+      <li><a href="how-to-listen.html" data-en="How to Listen" data-it="Come Ascoltare">How to Listen</a></li>
     </ul>
   </div>
 </nav>
@@ -69,32 +69,64 @@
     </aside>
 
     <article class="about-body fade-up delay-2">
-      <h2>Biography</h2>
-      <p>Steven G Kukla is retired and lives with his wife Cynthia in Litchfield, Connecticut. He is grateful to fill his days with his passions: family, travel, yoga, hiking, figurative stone carving, clay modeling, mineral collecting, writing, AI media creation, and rudimentary Italian.</p>
-      <p class="italian">Steven G Kukla è in pensione e vive con sua moglie Cynthia a Litchfield, nel Connecticut. È grato di riempire le sue giornate con le sue passioni: famiglia, viaggi, yoga, escursionismo, scultura figurativa su pietra, modellazione dell'argilla, collezionismo di minerali, scrittura, creazione di media con l'IA e un italiano rudimentale.</p>
 
-      <h2>Passions</h2>
-      <div class="passions-list">
-        <span class="passion-tag">Family</span>
-        <span class="passion-tag">Travel</span>
-        <span class="passion-tag">Yoga</span>
-        <span class="passion-tag">Hiking</span>
-        <span class="passion-tag">Stone Carving</span>
-        <span class="passion-tag">Clay Modeling</span>
-        <span class="passion-tag">Mineral Collecting</span>
-        <span class="passion-tag">Writing</span>
-        <span class="passion-tag">AI Media Creation</span>
-        <span class="passion-tag">Rudimentary Italian</span>
+      <!-- English Content -->
+      <div class="lang-content" data-lang="en">
+        <h2>Biography</h2>
+        <p>Steven G Kukla is retired and lives with his wife Cynthia in Litchfield, Connecticut. He is grateful to fill his days with his passions: family, travel, yoga, hiking, figurative stone carving, clay modeling, mineral collecting, writing, AI media creation, and rudimentary Italian.</p>
+
+        <h2>Passions</h2>
+        <div class="passions-list">
+          <span class="passion-tag">Family</span>
+          <span class="passion-tag">Travel</span>
+          <span class="passion-tag">Yoga</span>
+          <span class="passion-tag">Hiking</span>
+          <span class="passion-tag">Stone Carving</span>
+          <span class="passion-tag">Clay Modeling</span>
+          <span class="passion-tag">Mineral Collecting</span>
+          <span class="passion-tag">Writing</span>
+          <span class="passion-tag">AI Media Creation</span>
+          <span class="passion-tag">Rudimentary Italian</span>
+        </div>
+
+        <h2>As a Sculptor</h2>
+        <p>Working in marble, limestone, slate, alabaster, onyx, soapstone, and clay, Steven combines traditional stone carving techniques with pneumatic air chisels to create figurative and abstract works. His sculpture spans over a decade of serious practice, including a direct-carving workshop in Valdicastello, Italy — near the famous marble quarries of Carrara.</p>
+
+        <h2>As a Writer</h2>
+        <p><em>Strong Roots, Good Fruit</em> is a fantasy graphic novella, available in English and Italian versions. Far more than memoir, it reveals the sacred values and strength of the villagers of Monteleone di Puglia — its women's defiance and courage against religious intolerance and fascist oppression, the angst of despair and the decision to emigrate across the sea, its embrace of refugees and migrants, and its rebirth as a true beacon of acceptance and peace. And through it all, a fictionalized legend of a guardian lioness spirit weaves throughout each act, now immortalized in Carrara marble, with a message to humanity revealed on the final page.</p>
+
+        <h2>As an AI Composer</h2>
+        <p>Steven has transformed the poems of <em>Strong Roots, Good Fruit</em> into two albums of original songs — writing all lyrics, song structures, arrangements, and vocal and instrument choices. The music uses Suno AI to generate vocals and instrumentation, mastered with MasterChannel and distributed by DistroKid to over 20 major music platforms.</p>
       </div>
 
-      <h2>As a Sculptor</h2>
-      <p>Working in marble, limestone, slate, alabaster, onyx, soapstone, and clay, Steven combines traditional stone carving techniques with pneumatic air chisels to create figurative and abstract works. His sculpture spans over a decade of serious practice, including a direct-carving workshop in Valdicastello, Italy — near the famous marble quarries of Carrara.</p>
+      <!-- Italian Content -->
+      <div class="lang-content" data-lang="it" style="display:none;">
+        <h2>Biografia</h2>
+        <p>Steven G Kukla è in pensione e vive con sua moglie Cynthia a Litchfield, nel Connecticut. È grato di riempire le sue giornate con le sue passioni: famiglia, viaggi, yoga, escursionismo, scultura figurativa su pietra, modellazione dell'argilla, collezionismo di minerali, scrittura, creazione di media con l'IA e un italiano rudimentale.</p>
 
-      <h2>As a Writer</h2>
-      <p><em>Strong Roots, Good Fruit</em> is a fantasy graphic novella, available in English and Italian versions. Far more than memoir, it reveals the sacred values and strength of the villagers of Monteleone di Puglia — its women's defiance and courage against religious intolerance and fascist oppression, the angst of despair and the decision to emigrate across the sea, its embrace of refugees and migrants, and its rebirth as a true beacon of acceptance and peace. And through it all, a fictionalized legend of a guardian lioness spirit weaves throughout each act, now immortalized in Carrara marble, with a message to humanity revealed on the final page.</p>
+        <h2>Passioni</h2>
+        <div class="passions-list">
+          <span class="passion-tag">Famiglia</span>
+          <span class="passion-tag">Viaggi</span>
+          <span class="passion-tag">Yoga</span>
+          <span class="passion-tag">Escursionismo</span>
+          <span class="passion-tag">Scultura su Pietra</span>
+          <span class="passion-tag">Modellazione Argilla</span>
+          <span class="passion-tag">Collezionismo Minerali</span>
+          <span class="passion-tag">Scrittura</span>
+          <span class="passion-tag">Media con IA</span>
+          <span class="passion-tag">Italiano Rudimentale</span>
+        </div>
 
-      <h2>As an AI Composer</h2>
-      <p>Steven has transformed the poems of <em>Strong Roots, Good Fruit</em> into two albums of original songs — writing all lyrics, song structures, arrangements, and vocal and instrument choices. The music uses Suno AI to generate vocals and instrumentation, mastered with MasterChannel and distributed by DistroKid to over 20 major music platforms.</p>
+        <h2>Come Scultore</h2>
+        <p>Lavorando in marmo, calcare, ardesia, alabastro, onice, steatite e argilla, Steven combina le tecniche tradizionali di intaglio con scalpelli pneumatici ad aria per creare opere figurative e astratte. La sua scultura abbraccia oltre un decennio di pratica seria, incluso un laboratorio di intaglio diretto a Valdicastello, in Italia — vicino alle famose cave di marmo di Carrara.</p>
+
+        <h2>Come Scrittore</h2>
+        <p><em>Radici Forti, Frutti Buoni</em> è una novella grafica fantasy, disponibile in versione inglese e italiana. Ben più di un memoir, rivela i valori sacri e la forza degli abitanti di Monteleone di Puglia — la loro sfida e il coraggio delle donne contro l'intolleranza religiosa e l'oppressione fascista, l'angoscia della disperazione e la decisione di emigrare oltre il mare, l'accoglienza dei rifugiati e dei migranti, e la rinascita come autentico faro di accettazione e pace. E lungo tutto il racconto, la leggenda romanzata di uno spirito leonessa custode si intreccia in ogni atto, oggi immortalato nel marmo di Carrara, con un messaggio all'umanità rivelato nell'ultima pagina.</p>
+
+        <h2>Come Compositore IA</h2>
+        <p>Steven ha trasformato le poesie di <em>Radici Forti, Frutti Buoni</em> in due album di canzoni originali — scrivendo tutti i testi, le strutture delle canzoni, gli arrangiamenti e le scelte vocali e strumentali. La musica utilizza Suno AI per generare voci e strumentazione, masterizzata con MasterChannel e distribuita da DistroKid su oltre 20 piattaforme musicali principali.</p>
+      </div>
 
       <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
         <a class="btn btn-primary" href="sculpture.html">View Sculpture</a>
@@ -113,5 +145,6 @@
 </footer>
 
 <script src="nav.js"></script>
+
 </body>
 </html>
