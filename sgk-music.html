@@ -200,6 +200,12 @@
 
   document.getElementById('monthly-track-title').innerHTML = pick.title;
   document.getElementById('monthly-track-album').innerHTML = 'Strong Roots, Good Fruit · ' + pick.album;
-  document.getElementById('monthly-track-link').href = pick.url;
+  const outboundUrl = 'outbound.html?url=' + encodeURIComponent(pick.url)
+    + '&title=' + encodeURIComponent(pick.title)
+    + '&album=' + encodeURIComponent('Strong Roots, Good Fruit · ' + pick.album)
+    + '&back=sgk-music.html';
+  document.getElementById('monthly-track-link').href = outboundUrl;
+  document.getElementById('monthly-track-link').removeAttribute('target');
+  document.getElementById('monthly-track-link').removeAttribute('rel');
 </script>
 </html>

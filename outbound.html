@@ -1,160 +1,123 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google" content="notranslate">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Sito Web</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Track – SGK</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root {
-      --bg:     #f5f0e8;
-      --ink:    #1a1a1a;
-      --muted:  #6b6361;
-      --gold:   #b59440;
-      --blue:   #2B5F8E;
-      --orange: #C97D28;
-      --rule:   rgba(181,148,64,0.25);
-      --shadow: 0 8px 32px rgba(0,0,0,0.10);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      -webkit-font-smoothing: antialiased;
-      background-image:
-        radial-gradient(ellipse at 20% 0%,   rgba(181,148,64,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 100%, rgba(43,95,142,0.06)  0%, transparent 60%);
-    }
-
-    /* ── Sticky back bar ── */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 14px 16px 10px;
-      background: linear-gradient(to bottom, rgba(245,240,232,0.98), rgba(245,240,232,0.86));
-      border-bottom: 1px solid var(--rule);
-      backdrop-filter: blur(6px);
-    }
-    .backWrap { display: flex; justify-content: center; }
-    .backBtn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 26px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #2B5F8E, #1e4470);
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: clamp(15px, 2.4vw, 18px);
-      letter-spacing: 0.04em;
-      box-shadow: var(--shadow);
-      transition: filter 0.15s, transform 0.15s;
-    }
-    .backBtn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-    /* ── Content area ── */
-    .content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: calc(100vh - 70px);
-      padding: 40px 24px;
-      text-align: center;
-      gap: 24px;
-    }
-
-    .site-icon { font-size: 48px; }
-
-    .content-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(20px, 4vw, 32px);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-    }
-
-    .content-msg {
-      font-style: italic;
-      font-size: clamp(16px, 2.4vw, 20px);
-      color: var(--muted);
-      line-height: 1.5;
+    body { background: var(--charcoal); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .outbound-card {
+      background: var(--sand);
+      border: 1px solid var(--stone);
+      border-radius: 8px;
       max-width: 480px;
+      width: 100%;
+      padding: 2.5rem 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
-
-    .open-btn {
+    .outbound-icon { font-size: 2.8rem; margin-bottom: 0.8rem; }
+    .outbound-label {
+      font-family: var(--font-accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+    .outbound-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--umber);
+      margin-bottom: 0.3rem;
+      line-height: 1.25;
+    }
+    .outbound-album {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--smoke);
+      margin-bottom: 2rem;
+    }
+    .outbound-play {
+      display: block;
+      width: 100%;
+      background: var(--terracotta);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.9rem 1.5rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-bottom: 1rem;
+    }
+    .outbound-play:hover { background: var(--umber); }
+    .outbound-back {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 18px 36px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #C97D28, #a86318);
-      color: #fff;
+      gap: 0.4rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--smoke);
       text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: clamp(16px, 2.4vw, 20px);
-      letter-spacing: 0.04em;
-      box-shadow: var(--shadow);
-      transition: filter 0.15s, transform 0.15s;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius);
+      transition: color 0.2s;
     }
-    .open-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .outbound-back:hover { color: var(--umber); }
+    .outbound-back::before { content: '←'; font-size: 1rem; }
+    .sgk-logo {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--stone);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
   </style>
 </head>
-
 <body>
-
-  <div class="topbar">
-    <div class="backWrap">
-      <a id="backBtn" class="backBtn" href="index.html">← <span id="backLabel">Torna alla Pagina Principale</span></a>
-    </div>
-  </div>
-
-  <div class="content">
-    <div class="site-icon">🌐</div>
-    <div id="contentTitle" class="content-title">Sito Web di SGK Stone Sculptures</div>
-    <p id="contentMsg" class="content-msg">Stai per visitare il sito web esterno. Usa il tasto indietro del browser per tornare all'app.</p>
-    <a id="openBtn" class="open-btn"
-       href="https://stretchy54.wixsite.com/sgk-stone-sculptures"
-       target="_blank" rel="noopener">
-      🌐 <span id="openLabel">Visita il Sito Web</span>
-    </a>
+  <div class="outbound-card">
+    <span class="sgk-logo">SGK</span>
+    <div class="outbound-icon">🎵</div>
+    <div class="outbound-label" id="card-label">Track of the Month</div>
+    <div class="outbound-title" id="card-title">Loading…</div>
+    <div class="outbound-album" id="card-album"></div>
+    <a class="outbound-play" id="play-link" href="#" target="_blank" rel="noopener">▶ Play on YouTube / Streaming</a>
+    <a class="outbound-back" id="back-link" href="sgk.html">Return to SGK Website</a>
   </div>
 
   <script>
-    const lang = new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'it';
+    const params = new URLSearchParams(window.location.search);
+    const url    = params.get('url')  || 'sgk-music.html';
+    const title  = params.get('title')|| '';
+    const album  = params.get('album')|| '';
+    const back   = params.get('back') || 'sgk.html';
+    const lang   = params.get('lang') || (function(){ try{ return localStorage.getItem('sgk-lang')||'en'; }catch(e){ return 'en'; } })();
 
-    if (lang === 'en') {
-      document.documentElement.lang        = 'en';
-      document.title                       = 'Website';
-      document.getElementById('backLabel').textContent     = 'Back to Main Page';
-      document.getElementById('contentTitle').textContent  = 'SGK Stone Sculptures Website';
-      document.getElementById('contentMsg').textContent    = 'You are about to visit an external website. Use your browser\'s back button to return to the app.';
-      document.getElementById('openLabel').textContent     = 'Visit Website';
-    } else {
-      document.documentElement.lang        = 'it';
-      document.title                       = 'Sito Web';
-      document.getElementById('backLabel').textContent     = 'Torna alla Pagina Principale';
-      document.getElementById('contentTitle').textContent  = 'Sito Web di SGK Stone Sculptures';
-      document.getElementById('contentMsg').textContent    = 'Stai per visitare il sito web esterno. Usa il tasto indietro del browser per tornare all\'app.';
-      document.getElementById('openLabel').textContent     = 'Visita il Sito Web';
+    if (title) document.getElementById('card-title').textContent = title;
+    if (album) document.getElementById('card-album').textContent = album;
+
+    const playLink = document.getElementById('play-link');
+    playLink.href = url;
+
+    const backLink = document.getElementById('back-link');
+    backLink.href = back;
+
+    // Italian labels
+    if (lang === 'it') {
+      document.getElementById('card-label').textContent = 'Brano del Mese';
+      playLink.textContent = '▶ Ascolta su YouTube / Streaming';
+      backLink.textContent = 'Torna al Sito SGK';
     }
-
-    document.getElementById('backBtn').href = 'index.html?lang=' + lang;
   </script>
-
 </body>
 </html>
