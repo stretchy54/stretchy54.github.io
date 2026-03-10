@@ -177,12 +177,12 @@
     <p class="section-subtitle">A selection from across disciplines</p>
     <hr class="divider" />
     <div class="featured-grid">
-      <a class="featured-card" href="sculpture.html">
-        <img src="sculpture/Skater_slate_1Jun2023.jpg" alt="Skater — hand-carved relief in Green VT Slate" loading="lazy" onerror="this.style.display='none'" />
+      <a class="featured-card" href="sculpture.html" id="monthly-sculpture-card">
+        <img id="monthly-sculpture-img" src="" alt="" loading="lazy" onerror="this.style.display='none'" />
         <div class="featured-card-body">
-          <div class="featured-card-label">Sculpture Gallery</div>
-          <h3 class="featured-card-title">Stone &amp; Clay Works</h3>
-          <p class="featured-card-desc">Figurative works in marble, slate, limestone, onyx, alabaster, and clay — carved with traditional tools and pneumatic air chisels.</p>
+          <div class="featured-card-label">🗿 Sculpture of the Month</div>
+          <h3 class="featured-card-title" id="monthly-sculpture-title">Loading…</h3>
+          <p class="featured-card-desc" id="monthly-sculpture-desc"></p>
           <span class="btn btn-outline" style="font-size:0.75rem; padding:0.45rem 1rem;">Browse Gallery</span>
         </div>
       </a>
@@ -221,5 +221,43 @@
 </footer>
 
 <script src="nav.js"></script>
-</body>
+<script>
+  // Monthly featured sculpture — changes on the 1st of each month
+  const sculptures = [
+    { file: 'They_1_14July2025.JPG',            title: '"They"',                  desc: 'Naturalistic portrait bust. Water-based clay, July 2025.' },
+    { file: 'Pretty_Francesca copy.jpeg',        title: 'Pretty Francesca',        desc: 'Lyme Academy, Chad Fisher, Teacher. Green clay, March 2023.' },
+    { file: 'San Francesco_ 4_clay.jpg',         title: 'San Francesco d\'Assisi', desc: 'Original sculpture. Water-based Clay, January 2024.' },
+    { file: '1_Horsey_Alabaster_Jun2020.jpg',    title: 'Horsey',                  desc: 'Rainbow Alabaster on Marble base, June 2020.' },
+    { file: 'Skater_slate_1Jun2023.jpg',         title: 'Skater',                  desc: 'Hand-carved relief, enamel &amp; chalk. Green VT Slate, June 2023.' },
+    { file: 'Porpoise_Wave_Sep2020.jpg',         title: 'Porpoise Cresting Wave',  desc: 'Pakistan Banded Green Onyx, September 2020.' },
+    { file: 'marblegal1.JPG',                    title: 'Marble Gal',              desc: 'Inspired by F. Preiss Kneeling Nude. Danby Marble, Oct 2019.' },
+    { file: 'anaximander_clay.JPG',              title: '"Anaximander"',           desc: 'S14 Sheffield Clay, October 2019.' },
+    { file: 'SGK_barn_owl_Sep2017.JPG',          title: 'Barn Owl',                desc: 'Carrara Marble, 2017. Sold in fund raiser.' },
+    { file: 'Divad_1Feb2020.jpg',                title: '"Divad"',                 desc: 'Non-Dry Clay on A9-Rig armature, February 2020.' },
+    { file: 'IMG_6308.jpg',                      title: 'Ancient King',            desc: 'Brazilian Black Steatite Soapstone.' },
+    { file: 'Bruno2_SGK.jpeg',                   title: 'Bruno',                   desc: 'Carrara Marble, Valdicastello Italy.' },
+    { file: 'Arabic_Horse_Slate_Nov2020.jpg',    title: 'Arabic Horse',            desc: 'VT Black Slate, November 2020.' },
+    { file: 'Ibex_Final_1.jpeg',                 title: 'Athtar, the Ibex God',    desc: 'Indiana Limestone.' },
+    { file: 'SpiritBearMeet_Slate_Oct2020.jpg',  title: 'Makwa Meets Spirit Bear', desc: 'VT Black Slate, October 2020.' },
+    { file: 'SelfPortrait_Feb2020.JPG',          title: 'Self Portrait',           desc: 'Laguna Clay, February 2020.' },
+    { file: 'Leo_Aug2019.jpg',                   title: 'Leo',                     desc: 'VT Green Slate, August 2019.' },
+    { file: 'RedslateGal.jpg',                   title: 'Red Slate Gal',           desc: 'VT Red Slate.' },
+    { file: 'IMG_5101.jpg',                      title: 'Horse of Torino',         desc: 'Danby Marble.' },
+    { file: 'Taragina_Guilford_Week5_16Oct2016.jpg', title: 'Tanagrina',           desc: 'Danby Marble, October 2016.' },
+    { file: 'Cat_4May2014_2.JPG',                title: 'Cat (Elegance)',          desc: 'Indiana Limestone, May 2014.' },
+    { file: 'SOFE_Home_27Apr2013.JPG',           title: 'SOFE',                    desc: 'Indiana Limestone, April 2013.' },
+    { file: 'SGK_MarbleProject_VT_Oct2012.jpg',  title: 'Torso',                   desc: 'Danby Marble, October 2012.' },
+    { file: 'Greek_Guy_January_2024._waterbasedClay.jpg', title: 'Greek Guy',      desc: 'Water-based Clay, January 2024.' },
+  ];
+
+  // Pick deterministically by month+year so it's the same for all visitors that month
+  const now = new Date();
+  const monthSeed = now.getFullYear() * 12 + now.getMonth();
+  const pick = sculptures[monthSeed % sculptures.length];
+
+  document.getElementById('monthly-sculpture-img').src = 'sculpture/' + pick.file;
+  document.getElementById('monthly-sculpture-img').alt = pick.title;
+  document.getElementById('monthly-sculpture-title').textContent = pick.title;
+  document.getElementById('monthly-sculpture-desc').innerHTML = pick.desc;
+</script>
 </html>

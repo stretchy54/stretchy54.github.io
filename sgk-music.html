@@ -80,6 +80,17 @@
     <p class="section-subtitle fade-up delay-1">Click an album to listen on YouTube</p>
     <hr class="divider" />
 
+    <!-- Monthly Featured Track -->
+    <div class="fade-up" style="background:var(--charcoal);border-radius:6px;padding:1.8rem 2rem;margin-bottom:2.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <div style="font-size:2.5rem;">🎵</div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-family:var(--font-accent);font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone);margin-bottom:0.3rem;">Track of the Month</div>
+        <div id="monthly-track-title" style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--parchment);margin-bottom:0.2rem;">Loading…</div>
+        <div id="monthly-track-album" style="font-family:var(--font-accent);font-style:italic;font-size:0.88rem;color:var(--stone);"></div>
+      </div>
+      <a id="monthly-track-link" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="white-space:nowrap;">▶ Listen on YouTube</a>
+    </div>
+
     <div class="albums-grid">
 
       <a class="album-card fade-up" href="https://www.youtube.com/playlist?list=OLAK5uy_kWr7iuxO4sa8CozTTx-0bVnxqv49Nzmxs" target="_blank" rel="noopener" aria-label="Strong Roots, Good Fruit Vol. 1 on YouTube">
@@ -148,5 +159,31 @@
 </footer>
 
 <script src="nav.js"></script>
-</body>
+<script>
+  // Monthly featured track — cycles through known tracks, changes each month
+  const vol1url = 'https://www.youtube.com/playlist?list=OLAK5uy_kWr7iuxO4sa8CozTTx-0bVnxqv49Nzmxs';
+  const vol2url = 'https://www.youtube.com/playlist?list=OLAK5uy_kvHoPJBo4VX_8JuRpNDUcoLtDD1f-bRtI';
+  const tracks = [
+    { title: 'Strong Roots, Good Fruit',     album: 'Vol. 1 — Track 1',  url: vol1url },
+    { title: 'Monteleone di Puglia',          album: 'Vol. 1 — Track 2',  url: vol1url },
+    { title: 'The Women of the Village',      album: 'Vol. 1 — Track 3',  url: vol1url },
+    { title: 'The Lioness',                   album: 'Vol. 1 — Track 4',  url: vol1url },
+    { title: 'Across the Sea',                album: 'Vol. 1 — Track 5',  url: vol1url },
+    { title: 'Roots &amp; Wings',             album: 'Vol. 1 — Track 6',  url: vol1url },
+    { title: 'Sanctuary',                     album: 'Vol. 2 — Track 1',  url: vol2url },
+    { title: 'The Defiant Ones',              album: 'Vol. 2 — Track 2',  url: vol2url },
+    { title: 'A Message to Humanity',         album: 'Vol. 2 — Track 3',  url: vol2url },
+    { title: 'Beacon of Acceptance',          album: 'Vol. 2 — Track 4',  url: vol2url },
+    { title: 'Marble &amp; Memory',           album: 'Vol. 2 — Track 5',  url: vol2url },
+    { title: 'Cynthia',                       album: 'Vol. 2 — Track 6',  url: vol2url },
+  ];
+
+  const now = new Date();
+  const monthSeed = now.getFullYear() * 12 + now.getMonth();
+  const pick = tracks[monthSeed % tracks.length];
+
+  document.getElementById('monthly-track-title').innerHTML = pick.title;
+  document.getElementById('monthly-track-album').innerHTML = 'Strong Roots, Good Fruit · ' + pick.album;
+  document.getElementById('monthly-track-link').href = pick.url;
+</script>
 </html>
