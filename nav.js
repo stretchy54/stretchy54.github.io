@@ -28,4 +28,9 @@
     const href = a.getAttribute('href').split('/').pop();
     if (href === path) a.classList.add('active');
   });
+
+  // Auto-update copyright year every January 1st
+  document.querySelectorAll('.copyright-year').forEach(el => {
+    el.textContent = new Date().getFullYear();
+  });
 })();
