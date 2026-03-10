@@ -18,7 +18,8 @@
     .hero-content { position: relative; z-index: 2; max-width: 780px; }
     .hero-eyebrow { font-family: var(--font-accent); font-size: 0.85rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--stone); margin-bottom: 1.2rem; animation: fadeUp 0.7s ease both; }
     .hero-title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; color: var(--parchment); line-height: 1.05; margin-bottom: 0.5rem; animation: fadeUp 0.7s 0.15s ease both; }
-    .hero-tagline { font-family: var(--font-accent); font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--stone); font-style: italic; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.3s ease both; }
+    .hero-tagline { font-family: var(--font-accent); font-size: clamp(0.82rem, 2.2vw, 1.2rem); color: var(--stone); font-style: italic; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.3s ease both; line-height: 1.9; }
+    .hero-tagline span { display: block; white-space: nowrap; }
     .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.7s 0.45s ease both; }
     .disciplines { background: var(--parchment); border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); padding: 2.2rem 2rem; }
     .disciplines-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--stone); }
@@ -73,9 +74,9 @@
 <main class="page-wrap">
   <section class="hero" aria-label="Hero">
     <div class="hero-content">
-      <p class="hero-eyebrow" data-en="Figurative Sculpture · Writings · Music" data-it="Scultura Figurativa · Scritti · Musica">Figurative Sculpture · Writings · Music</p>
+      <p class="hero-eyebrow" style="white-space:nowrap;" data-en="FIGURATIVE SCULPTURE ◆ WRITING ◆ MUSIC" data-it="SCULTURA FIGURATIVA ◆ SCRITTI ◆ MUSICA">FIGURATIVE SCULPTURE ◆ WRITING ◆ MUSIC</p>
       <h1 class="hero-title" style="font-style:normal; font-size:clamp(1.8rem,6.5vw,4rem); white-space:nowrap; letter-spacing:0.02em;">Steven G Kukla</h1>
-      <p class="hero-tagline" data-en="Figurative sculptor, writer &amp; AI composer — Litchfield, Connecticut" data-it="Scultore figurativo, scrittore e compositore IA — Litchfield, Connecticut">Figurative sculptor, writer &amp; AI composer — Litchfield, Connecticut</p>
+      <p class="hero-tagline" data-en="<span>Figurative sculptor, writer &amp; AI media composer</span><span>Litchfield, CT USA</span>" data-it="<span>Scultore figurativo, scrittore e compositore media IA</span><span>Litchfield, CT USA</span>"><span>Figurative sculptor, writer &amp; AI media composer</span><span>Litchfield, CT USA</span></p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="sculpture.html" data-en="View Sculpture" data-it="Vedi Sculture">View Sculpture</a>
         <a class="btn" style="background:#6c3d32; color:#faf7f2; border:none;" href="writing.html" data-en="Strong Roots, Good Fruit" data-it="Radici Forti, Frutti Buoni">Strong Roots, Good Fruit</a>
