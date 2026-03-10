@@ -8,20 +8,18 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     .page-hero { background: var(--parchment); border-bottom: 1px solid var(--stone); padding: 3.5rem 2rem 2.5rem; text-align: center; }
-    .about-layout { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
-    .about-sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
-    .about-photo-wrap { width: 100%; aspect-ratio: 3/4; background: linear-gradient(160deg, var(--parchment) 0%, var(--stone) 100%); border-radius: 4px; box-shadow: var(--shadow-card); margin-bottom: 1.5rem; overflow: hidden; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 4rem; font-weight: 800; color: var(--warm-white); }
-    .about-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .contact-block { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; padding: 1.3rem; font-family: var(--font-accent); font-size: 0.9rem; }
-    .contact-block strong { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.6rem; }
-    .contact-block a { display: block; color: var(--umber); margin-bottom: 0.3rem; transition: color 0.2s; }
-    .contact-block a:hover { color: var(--terracotta); }
+    .about-layout { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 3rem; }
     .about-body h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--umber); margin: 2rem 0 0.6rem; }
     .about-body h2:first-of-type { margin-top: 0; }
     .about-body p { color: var(--charcoal); line-height: 1.85; margin-bottom: 1rem; font-size: 1rem; }
-    .about-body p.italian { font-family: var(--font-accent); font-style: italic; color: var(--smoke); padding-left: 1.2rem; border-left: 2px solid var(--stone); margin-top: 0; }
     .passions-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0 1.2rem; }
     .passion-tag { background: var(--parchment); border: 1px solid var(--stone); border-radius: 2rem; padding: 0.25rem 0.9rem; font-family: var(--font-accent); font-size: 0.85rem; color: var(--umber); font-style: italic; }
+    .about-portrait-strip { background: var(--charcoal); padding: 4rem 2rem; text-align: center; }
+    .about-portrait-circle { width: 300px; height: 300px; border-radius: 50%; background: var(--umber); border: 4px solid var(--clay); overflow: hidden; margin: 0 auto 1rem; }
+    .about-portrait-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center 8%; display: block; }
+    .about-portrait-label { font-family: var(--font-display); font-size: 1rem; font-weight: 800; color: var(--stone); letter-spacing: 0.15em; margin-bottom: 1.2rem; }
+    .about-contact-links { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem; }
+    @media (max-width: 480px) { .about-portrait-circle { width: 220px; height: 220px; } }
 
   </style>
 </head>
@@ -54,21 +52,7 @@
   </header>
 
   <div class="about-layout">
-    <aside class="about-sidebar fade-up delay-1">
-      <div class="about-photo-wrap" aria-label="Portrait of Steven G Kukla">
-        <img src="media/Steven_Gerard_Kukla_2018.png" alt="Steven G Kukla" onerror="this.outerHTML='SGK'" />
-      </div>
-      <div class="contact-block">
-        <strong>Contact &amp; Links</strong>
-        <a href="mailto:alkuk23@gmail.com">alkuk23@gmail.com</a>
-        <a href="https://www.linkedin.com/in/stevekukla" target="_blank" rel="noopener">LinkedIn Profile</a>
-        <a href="https://sgkpoems.blogspot.com/" target="_blank" rel="noopener">SGK Poems Blog</a>
-        <hr style="border:none;border-top:1px solid var(--stone);margin:0.8rem 0;" />
-        <span style="color:var(--smoke);">Litchfield, CT &nbsp;USA</span>
-      </div>
-    </aside>
-
-    <article class="about-body fade-up delay-2">
+    <article class="about-body fade-up delay-1">
 
       <!-- English Content -->
       <div class="lang-content" data-lang="en">
@@ -137,6 +121,18 @@
   </div>
 
 </main>
+
+<section class="about-portrait-strip">
+  <div class="about-portrait-circle">
+    <img src="media/Steven_Gerard_Kukla_2018.png" alt="Steven G Kukla" onerror="this.style.display='none'" />
+  </div>
+  <div class="about-portrait-label">SGK</div>
+  <div class="about-contact-links">
+    <a class="btn btn-ghost" href="mailto:alkuk23@gmail.com">alkuk23@gmail.com</a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/stevekukla" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn btn-ghost" href="https://sgkpoems.blogspot.com/" target="_blank" rel="noopener">SGK Poems Blog</a>
+  </div>
+</section>
 
 <footer class="site-footer">
   <p class="footer-name">Steven G Kukla</p>
