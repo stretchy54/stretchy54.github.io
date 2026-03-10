@@ -1,9 +1,21 @@
 /* nav.js – mobile hamburger, active link, auto copyright year, language toggle */
 (function () {
 
+  // ── Inject lang buttons BEFORE the hamburger toggle ───────────────────
+  const navInner = document.querySelector('.nav-inner');
+  const toggle   = document.querySelector('.nav-toggle');
+  if (navInner && toggle) {
+    const langBar = document.createElement('div');
+    langBar.className = 'nav-lang';
+    langBar.innerHTML =
+      '<button class="nav-lang-btn" data-lang="en">🇬🇧</button>' +
+      '<button class="nav-lang-btn" data-lang="it">🇮🇹</button>';
+    // Insert before the hamburger so order is: logo | links | flags | hamburger
+    navInner.insertBefore(langBar, toggle);
+  }
+
   // ── Mobile hamburger ──────────────────────────────────────────────────
-  const toggle = document.querySelector('.nav-toggle');
-  const links  = document.querySelector('.nav-links');
+  const links = document.querySelector('.nav-links');
   if (toggle && links) {
     toggle.addEventListener('click', () => {
       links.classList.toggle('open');
@@ -34,16 +46,6 @@
   });
 
   // ── Language toggle ───────────────────────────────────────────────────
-  const navInner = document.querySelector('.nav-inner');
-  if (navInner) {
-    const langBar = document.createElement('div');
-    langBar.className = 'nav-lang';
-    langBar.innerHTML =
-      '<button class="nav-lang-btn" data-lang="en">🇬🇧</button>' +
-      '<button class="nav-lang-btn" data-lang="it">🇮🇹</button>';
-    navInner.appendChild(langBar);
-  }
-
   function applyLang(lang) {
     document.querySelectorAll('[data-en]').forEach(el => {
       el.innerHTML = (lang === 'it' && el.dataset.it) ? el.dataset.it : el.dataset.en;

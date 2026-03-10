@@ -15,11 +15,21 @@
     .armature-text { font-family: var(--font-accent); font-size: 0.92rem; font-style: italic; color: var(--charcoal); line-height: 1.6; }
     .armature-text strong { font-style: normal; color: var(--umber); }
     .poses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
-    .pose-item { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s; aspect-ratio: 3/4; position: relative; cursor: pointer; }
+    .pose-item { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); cursor: pointer; transition: transform 0.25s, box-shadow 0.25s; }
     .pose-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
-    .pose-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-    .pose-item:hover img { transform: scale(1.05); }
-    .pose-number { position: absolute; bottom: 0.6rem; right: 0.7rem; font-family: var(--font-display); font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(26,18,8,0.45); padding: 0.15rem 0.45rem; border-radius: 2rem; letter-spacing: 0.06em; }
+    .pose-img-wrap { position: relative; overflow: hidden; background: var(--parchment); }
+    .pose-img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .pose-item:hover .pose-img-wrap img { transform: scale(1.02); }
+    .pose-caption { padding: 0.7rem 1rem 0.8rem; }
+    .pose-number { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; color: var(--smoke); letter-spacing: 0.06em; }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,18,8,0.92); align-items: center; justify-content: center; padding: 2rem; }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { max-width: 820px; width: 100%; position: relative; }
+    .lightbox-inner img { width: 100%; max-height: 70vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .lightbox-caption { text-align: center; margin-top: 1.2rem; }
+    .lightbox-caption strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--parchment); }
+    .lightbox-close { position: absolute; top: -1.5rem; right: 0; background: none; border: none; color: var(--stone); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0.25rem 0.5rem; transition: color 0.2s; }
+    .lightbox-close:hover { color: var(--parchment); }
     @media (max-width: 500px) { .poses-grid { grid-template-columns: 1fr 1fr; gap: 0.7rem; } }
   </style>
 </head>
@@ -67,49 +77,65 @@
   </div>
 </main>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption">
+      <strong id="lightbox-title"></strong>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <p class="footer-name">Steven G Kukla</p>
-  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="mailto:alkuk23@gmail.com">alkuk23@gmail.com</a></p>
+  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#2a4b46415f4118196a4d474b434604494547"><span class="__cf_email__" data-cfemail="9cfdf0f7e9f7aeafdcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a></p>
   <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.6;">© <span class="copyright-year">2026</span> Steven G Kukla. All rights reserved.</p>
 </footer>
 
-<script src="nav.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="nav.js"></script>
 <script>
-  // List your actual pose image filenames here
   const poseImages = [
-    'IMG_0145.jpeg',
-    'IMG_0146.jpeg',
-    'IMG_0149.jpeg',
-    'IMG_0151.jpeg',
-    'IMG_0156.jpeg',
-    'IMG_0159.jpeg',
-    'IMG_0161.jpeg',
-    'IMG_0182.jpeg',
-    'IMG_0185.jpeg',
-    'IMG_0186.jpeg',
-    'IMG_0190.jpeg',
-    'IMG_0258.jpg',
-    'IMG_0375.jpg',
-    'IMG_2109.jpg',
-    'IMG_2253.jpg',
-    'IMG_2258.jpg',
-    'IMG_2263.jpg',
+    'IMG_0145.jpeg','IMG_0146.jpeg','IMG_0149.jpeg','IMG_0151.jpeg',
+    'IMG_0156.jpeg','IMG_0159.jpeg','IMG_0161.jpeg','IMG_0182.jpeg',
+    'IMG_0185.jpeg','IMG_0186.jpeg','IMG_0190.jpeg','IMG_0258.jpg',
+    'IMG_0375.jpg','IMG_2109.jpg','IMG_2253.jpg','IMG_2258.jpg','IMG_2263.jpg',
   ];
 
   const grid = document.getElementById('poses-grid');
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lightbox-img');
+  const lbTitle = document.getElementById('lightbox-title');
+
+  function openLb(src, title) {
+    lbImg.src = src;
+    lbImg.alt = title;
+    lbTitle.textContent = title;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   poseImages.forEach((filename, i) => {
-    const num = String(i + 1).padStart(2, '0');
-    const item = document.createElement('div');
+    const num   = String(i + 1).padStart(2, '0');
+    const label = 'Pose Study ' + num;
+    const src   = 'poses/' + filename;
+
+    const item = document.createElement('article');
     item.className = 'pose-item fade-up';
     item.setAttribute('role', 'listitem');
     item.setAttribute('tabindex', '0');
-    item.setAttribute('aria-label', `Pose study ${num}`);
-    item.innerHTML = `
-      <img src="poses/${filename}" alt="Pose study ${num}" loading="lazy" />
-      <span class="pose-number">${num}</span>
-    `;
+    item.setAttribute('aria-label', label);
+    item.innerHTML =
+      '<div class="pose-img-wrap"><img src="' + src + '" alt="' + label + '" loading="lazy" /></div>' +
+      '<div class="pose-caption"><span class="pose-number">Pose ' + num + '</span></div>';
+
+    item.addEventListener('click', () => openLb(src, label));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLb(src, label); });
     grid.appendChild(item);
   });
-</script>
-</body>
-</html>
+
+  document.getElementById(
