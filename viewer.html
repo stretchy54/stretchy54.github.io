@@ -4,95 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google" content="notranslate">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Documento</title>
+  <title>Visualizzatore Documento</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg:     #f5f0e8;
       --ink:    #1a1a1a;
+      --muted:  #6b6361;
       --gold:   #b59440;
       --blue:   #2B5F8E;
-      --rule:   rgba(181,148,64,0.25);
       --shadow: 0 8px 32px rgba(0,0,0,0.10);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
+    body {
       background: var(--bg);
       color: var(--ink);
       font-family: 'Cormorant Garamond', Georgia, serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Sticky back bar ── */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 14px 16px 10px;
-      background: linear-gradient(to bottom, rgba(245,240,232,0.98), rgba(245,240,232,0.86));
-      border-bottom: 1px solid var(--rule);
-      backdrop-filter: blur(6px);
-    }
-    .backWrap { display: flex; justify-content: center; }
-    .backBtn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 26px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #2B5F8E, #1e4470);
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: clamp(15px, 2.4vw, 18px);
-      letter-spacing: 0.04em;
-      box-shadow: var(--shadow);
-      transition: filter 0.15s, transform 0.15s;
-    }
-    .backBtn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-    /* ── PDF viewer ── */
-    .viewer-wrap {
-      width: 100%;
-      height: calc(100vh - 70px);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Desktop: show embedded PDF */
-    .pdf-embed {
-      width: 100%;
+    /* ── Top bar ── */
+    .topbar {
+      background: var(--bg);
+      border-bottom: 1px solid rgba(181,148,64,0.2);
+      padding: 14px 20px;
+    }
+    .backWrap { max-width: 960px; margin: 0 auto; }
+    .backBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .backBtn:hover { color: var(--ink); }
+
+    /* ── PDF viewer ── */
+    .viewer-wrap {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pdf-embed {
+      flex: 1;
+      width: 100%;
       border: none;
-      display: block;
+      min-height: calc(100vh - 60px);
     }
 
-    /* Mobile fallback: show download link instead of broken embed */
+    /* ── Mobile fallback ── */
     .mobile-fallback {
       display: none;
-      flex: 1;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
-      padding: 40px 24px;
+      gap: 24px;
+      padding: 48px 24px;
       text-align: center;
+      flex: 1;
     }
     .mobile-fallback p {
-      font-style: italic;
-      font-size: 20px;
-      color: #6b6361;
+      font-size: 18px;
       line-height: 1.5;
+      color: var(--muted);
+      max-width: 360px;
     }
     .open-btn {
       display: inline-flex;
@@ -146,23 +131,23 @@
 
   <script>
     // Read URL params: ?file=path/to/file.pdf&lang=it
-    const params   = new URLSearchParams(window.location.search);
-    const file     = params.get('file') || '';
-    const lang     = params.get('lang') === 'en' ? 'en' : 'it';
+    const params = new URLSearchParams(window.location.search);
+    const file   = params.get('file') || '';
+    const lang   = params.get('lang') === 'en' ? 'en' : 'it';
 
     // Set language strings
     if (lang === 'en') {
-      document.documentElement.lang = 'en';
-      document.title                = 'Document Viewer';
-      document.getElementById('backLabel').textContent    = 'Back to Main Page';
-      document.getElementById('fallbackMsg').textContent  = 'Tap the button to open the PDF. Use your browser back button to return here.';
-      document.getElementById('openLabel').textContent    = 'Open PDF';
+      document.documentElement.lang            = 'en';
+      document.title                           = 'Document Viewer';
+      document.getElementById('backLabel').textContent   = 'Back to Main Page';
+      document.getElementById('fallbackMsg').textContent = 'Tap the button to open the PDF. Use your browser back button to return here.';
+      document.getElementById('openLabel').textContent   = 'Open PDF';
     } else {
-      document.documentElement.lang = 'it';
-      document.title                = 'Visualizzatore Documento';
-      document.getElementById('backLabel').textContent    = 'Torna alla Pagina Principale';
-      document.getElementById('fallbackMsg').textContent  = 'Tocca il pulsante per aprire il PDF. Usa il tasto indietro del browser per tornare qui.';
-      document.getElementById('openLabel').textContent    = 'Apri PDF';
+      document.documentElement.lang            = 'it';
+      document.title                           = 'Visualizzatore Documento';
+      document.getElementById('backLabel').textContent   = 'Torna alla Pagina Principale';
+      document.getElementById('fallbackMsg').textContent = 'Tocca il pulsante per aprire il PDF. Usa il tasto indietro del browser per tornare qui.';
+      document.getElementById('openLabel').textContent   = 'Apri PDF';
     }
 
     // Set back button href to preserve language
