@@ -46,11 +46,9 @@
 
   // ── Language toggle ───────────────────────────────────────────────────
   function applyLang(lang) {
-    // Only touch elements that explicitly have data-en set,
-    // and skip the poses-grid and any dynamically populated containers
     document.querySelectorAll('[data-en]').forEach(el => {
-      // Skip the grid and its children entirely
-      if (el.id === 'poses-grid' || el.closest('#poses-grid')) return;
+      // Never touch the dynamically-populated gallery grids
+      if (el.closest('#poses-grid') || el.closest('#gallery')) return;
       el.innerHTML = (lang === 'it' && el.dataset.it) ? el.dataset.it : el.dataset.en;
     });
     document.querySelectorAll('.lang-content').forEach(el => {
@@ -61,6 +59,8 @@
     });
     try { localStorage.setItem('sgk-lang', lang); } catch(e) {}
     document.documentElement.lang = lang;
+    // Signal to any page scripts that lang is set
+    document.dispatchEvent(new CustomEvent('sgk-lang-ready', { detail: { lang } }));
   }
 
   let savedLang = 'en';

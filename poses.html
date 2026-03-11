@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
   <meta charset="UTF-8" />
+  <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Figurative Poses – SGK | Steven G Kukla</title>
   <meta name="description" content="An exploration of human figurative poses with the A9 Rig flexible skeleton armature by Steven G Kukla." />
@@ -95,8 +96,8 @@
 
 <script src="nav.js"></script>
 <script>
-  // Defer slightly to ensure nav.js applyLang() has finished before we populate
-  requestAnimationFrame(function() {
+  // Populate grid after nav.js has finished its applyLang() pass
+  document.addEventListener('sgk-lang-ready', function() {
     const poseImages = [
       'IMG_0145.jpeg','IMG_0146.jpeg','IMG_0149.jpeg','IMG_0151.jpeg',
       'IMG_0156.jpeg','IMG_0159.jpeg','IMG_0161.jpeg','IMG_0182.jpeg',
