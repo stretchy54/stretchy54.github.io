@@ -1,4 +1,5 @@
-/* nav.js – mobile hamburger, active link, auto copyright year, language toggle */
+/* nav.js – mobile hamburger, active link, auto copyright year, language toggle
+ * Requires lang.js to be loaded first (provides window.SGKLang)             */
 (function () {
 
   // ── Inject lang buttons BEFORE the hamburger toggle ───────────────────
@@ -57,20 +58,19 @@
     document.querySelectorAll('.nav-lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
-    try { localStorage.setItem('sgk-lang', lang); } catch(e) {}
+    // Delegate storage + html[lang] to SGKLang
+    window.SGKLang.set(lang);
     document.documentElement.lang = lang;
   }
 
-  let savedLang = 'en';
+  // SGK site is English-first; URL param overrides localStorage
+  // SGKLang.get() reads ?lang= URL param; fall back to localStorage then 'en'
+  let savedLang;
   try {
-    // URL param takes priority (e.g. arriving from webapp with ?lang=it)
-    const urlLang = new URLSearchParams(window.location.search).get('lang');
-    if (urlLang === 'it' || urlLang === 'en') {
-      savedLang = urlLang;
-    } else {
-      savedLang = localStorage.getItem('sgk-lang') || 'en';
-    }
-  } catch(e) {}
+    savedLang = window.SGKLang.get(localStorage.getItem('sgk-lang') || 'en');
+  } catch(e) {
+    savedLang = 'en';
+  }
   applyLang(savedLang);
 
   document.addEventListener('click', function(e) {

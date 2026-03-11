@@ -9,31 +9,28 @@
   <meta http-equiv="Expires" content="0">
   <title>Canzoni e Musica</title>
 
+  <!-- Shared SGK stylesheet (provides reset, tokens, fonts, fadeUp, .divider) -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Cinzel is webapp-only; not in style.css -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* ── Webapp token aliases ─────────────────────────────────────────────
+       style.css uses SGK earthy palette; we alias a few extras the webapp
+       needs (blue accent, link colour, card glass) without redefining core. */
     :root {
-      --bg:     #f5f0e8;
-      --ink:    #1a1a1a;
-      --muted:  #6b6361;
-      --gold:   #b59440;
-      --blue:   #2B5F8E;
-      --link:   #1e4fd6;
-      --card:   rgba(255,255,255,0.60);
-      --rule:   rgba(181,148,64,0.25);
-      --shadow: 0 8px 32px rgba(0,0,0,0.10);
+      --webapp-blue:   #2B5F8E;
+      --webapp-link:   #1e4fd6;
+      --webapp-card:   rgba(255,255,255,0.60);
+      --webapp-rule:   rgba(181,148,64,0.25);
+      --webapp-shadow: 0 8px 32px rgba(0,0,0,0.10);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* Override body background for webapp's lighter parchment + gradient */
     body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
+      background-color: #f5f0e8;
       background-image:
         radial-gradient(ellipse at 20% 0%,   rgba(181,148,64,0.07) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 100%, rgba(43,95,142,0.06)  0%, transparent 60%);
@@ -46,7 +43,7 @@
       z-index: 50;
       padding: 14px 16px 10px;
       background: linear-gradient(to bottom, rgba(245,240,232,0.98), rgba(245,240,232,0.86));
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--webapp-rule);
       backdrop-filter: blur(6px);
     }
     .backWrap { display: flex; justify-content: center; }
@@ -56,23 +53,23 @@
       gap: 10px;
       padding: 13px 26px;
       border-radius: 999px;
-      background: var(--blue);
+      background: var(--webapp-blue);
       color: #fff;
       text-decoration: none;
       font-family: 'Cinzel', serif;
       font-size: clamp(15px, 2.4vw, 18px);
       letter-spacing: 0.04em;
-      box-shadow: var(--shadow);
+      box-shadow: var(--webapp-shadow);
       transition: filter 0.15s, transform 0.15s;
     }
     .backBtn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-    /* ── Page header ── */
+    /* ── Page wrapper ── */
     .wrap {
       max-width: 900px;
       margin: 0 auto;
       padding: 30px 18px 64px;
-      animation: fadeUp 0.6s ease both;
+      animation: fadeUp 0.6s ease both; /* fadeUp defined in style.css */
     }
     h1 {
       font-family: 'Cinzel', serif;
@@ -87,23 +84,27 @@
       text-align: center;
       font-style: italic;
       font-size: clamp(16px, 2.4vw, 22px);
-      color: var(--muted);
+      color: var(--smoke);
       margin-bottom: 10px;
     }
+
+    /* Override style.css .divider (56px terracotta rule) with webapp gold gradient */
     .divider {
       display: block;
       width: 80px;
       height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      background: linear-gradient(to right, transparent, #b59440, transparent);
+      border: none;
       margin: 16px auto 28px;
     }
 
-    /* ── Volume cards ── */
-    .section {
-      background: var(--card);
+    /* ── Volume cards ──
+       Named .vol-section to avoid collision with style.css .section utility  */
+    .vol-section {
+      background: var(--webapp-card);
       border-radius: 20px;
       padding: 28px 22px 24px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--webapp-shadow);
       border: 1px solid rgba(181,148,64,0.12);
       margin-bottom: 28px;
     }
@@ -127,7 +128,7 @@
       font-weight: 600;
       text-align: center;
       letter-spacing: 0.04em;
-      color: var(--ink);
+      color: var(--charcoal);
       margin-bottom: 14px;
     }
 
@@ -143,14 +144,14 @@
     .track:last-child { border-bottom: none; }
     .trackName { font-weight: 600; }
     .track a {
-      color: var(--link);
+      color: var(--webapp-link);
       text-decoration: underline;
       text-underline-offset: 3px;
       word-break: break-word;
       font-size: 0.84em;
       transition: color 0.15s;
     }
-    .track a:hover { color: var(--blue); }
+    .track a:hover { color: var(--webapp-blue); }
     .flag {
       display: inline-flex;
       align-items: center;
@@ -162,14 +163,9 @@
       transform: translateY(-1px);
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
     @media (max-width: 420px) {
-      .wrap    { padding-top: 20px; }
-      .section { padding: 20px 14px 18px; }
+      .wrap        { padding-top: 20px; }
+      .vol-section { padding: 20px 14px 18px; }
     }
   </style>
 </head>
@@ -188,7 +184,7 @@
     <span class="divider"></span>
 
     <!-- Volume 1 -->
-    <div class="section">
+    <div class="vol-section">
       <div class="cover">
         <img src="assets/Vol1.jpeg" alt="Volume 1 cover">
       </div>
@@ -217,7 +213,7 @@
     </div>
 
     <!-- Volume 2 -->
-    <div class="section">
+    <div class="vol-section">
       <div class="cover">
         <img src="assets/Vol2.jpeg" alt="Volume 2 cover">
       </div>
@@ -239,35 +235,36 @@
     </div>
   </div>
 
+  <!-- Shared language utility (must load before inline script) -->
+  <script src="lang.js"></script>
   <script>
-    function getLang() {
-      const p = new URLSearchParams(window.location.search);
-      return p.get('lang') === 'en' ? 'en' : 'it';
-    }
+    (function () {
+      var lang = window.SGKLang.get('it'); // webapp defaults to Italian
 
-    function applyLang(lang) {
-      if (lang === 'en') {
-        document.documentElement.lang = 'en';
-        document.title = 'Songs and Music';
-        document.getElementById('pageTitle').textContent = 'Songs and Music';
-        document.getElementById('pageSub').textContent   = 'Flag icons indicate Italian songs';
-        document.getElementById('backLabel').textContent = 'Back to Main Page';
-        document.getElementById('backBtn').href          = 'index.html?lang=en';
-        document.getElementById('vol1Title').textContent = 'Volume 1';
-        document.getElementById('vol2Title').textContent = 'Volume 2';
-      } else {
-        document.documentElement.lang = 'it';
-        document.title = 'Canzoni e Musica';
-        document.getElementById('pageTitle').textContent = 'Canzoni e Musica';
-        document.getElementById('pageSub').textContent   = 'Le bandiere indicano le canzoni in italiano';
-        document.getElementById('backLabel').textContent = 'Torna alla Pagina Principale';
-        document.getElementById('backBtn').href          = 'index.html?lang=it';
-        document.getElementById('vol1Title').textContent = 'Volume 1';
-        document.getElementById('vol2Title').textContent = 'Volume 2';
+      function applyLang(lang) {
+        if (lang === 'en') {
+          document.documentElement.lang              = 'en';
+          document.title                             = 'Songs and Music';
+          document.getElementById('pageTitle').textContent = 'Songs and Music';
+          document.getElementById('pageSub').textContent   = 'Flag icons indicate Italian songs';
+          document.getElementById('backLabel').textContent = 'Back to Main Page';
+          document.getElementById('backBtn').href          = 'index.html?lang=en';
+          document.getElementById('vol1Title').textContent = 'Volume 1';
+          document.getElementById('vol2Title').textContent = 'Volume 2';
+        } else {
+          document.documentElement.lang              = 'it';
+          document.title                             = 'Canzoni e Musica';
+          document.getElementById('pageTitle').textContent = 'Canzoni e Musica';
+          document.getElementById('pageSub').textContent   = 'Le bandiere indicano le canzoni in italiano';
+          document.getElementById('backLabel').textContent = 'Torna alla Pagina Principale';
+          document.getElementById('backBtn').href          = 'index.html?lang=it';
+          document.getElementById('vol1Title').textContent = 'Volume 1';
+          document.getElementById('vol2Title').textContent = 'Volume 2';
+        }
       }
-    }
 
-    applyLang(getLang());
+      applyLang(lang);
+    })();
   </script>
 
 </body>
