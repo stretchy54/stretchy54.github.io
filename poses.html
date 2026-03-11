@@ -96,8 +96,8 @@
 
 <script src="nav.js"></script>
 <script>
-  // Populate grid after nav.js has finished its applyLang() pass
-  document.addEventListener('sgk-lang-ready', function() {
+  // Grid population runs immediately — nav.js already guards #poses-grid from applyLang()
+  (function() {
     const poseImages = [
       'IMG_0145.jpeg','IMG_0146.jpeg','IMG_0149.jpeg','IMG_0151.jpeg',
       'IMG_0156.jpeg','IMG_0159.jpeg','IMG_0161.jpeg','IMG_0182.jpeg',
@@ -144,7 +144,7 @@
     document.getElementById('lightbox-close').addEventListener('click', closeLb);
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
-  });
+  })();
 </script>
 </body>
 </html>

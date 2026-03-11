@@ -59,12 +59,18 @@
     });
     try { localStorage.setItem('sgk-lang', lang); } catch(e) {}
     document.documentElement.lang = lang;
-    // Signal to any page scripts that lang is set
-    document.dispatchEvent(new CustomEvent('sgk-lang-ready', { detail: { lang } }));
   }
 
   let savedLang = 'en';
-  try { savedLang = localStorage.getItem('sgk-lang') || 'en'; } catch(e) {}
+  try {
+    // URL param takes priority (e.g. arriving from webapp with ?lang=it)
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (urlLang === 'it' || urlLang === 'en') {
+      savedLang = urlLang;
+    } else {
+      savedLang = localStorage.getItem('sgk-lang') || 'en';
+    }
+  } catch(e) {}
   applyLang(savedLang);
 
   document.addEventListener('click', function(e) {
