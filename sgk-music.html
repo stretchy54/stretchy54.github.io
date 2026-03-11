@@ -38,6 +38,65 @@
     .platforms { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
     .platform-tag { background: var(--sand); border: 1px solid var(--stone); padding: 0.25rem 0.8rem; border-radius: 2rem; font-size: 0.8rem; color: var(--umber); font-family: var(--font-body); }
     @media (max-width: 580px) { .albums-grid { grid-template-columns: 1fr; } }
+
+    /* ── Collapsible track listing ── */
+    .tracklist-section { margin-bottom: 2.5rem; }
+    .tracklist-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--sand);
+      border: 1px solid var(--stone);
+      border-radius: 4px;
+      padding: 1.1rem 1.6rem;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--umber);
+      text-align: left;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .tracklist-toggle:hover { background: var(--parchment); border-color: var(--clay); }
+    .tracklist-toggle[aria-expanded="true"] { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+    .tracklist-chevron { font-size: 0.9rem; color: var(--terracotta); transition: transform 0.25s; flex-shrink: 0; }
+    .tracklist-toggle[aria-expanded="true"] .tracklist-chevron { transform: rotate(180deg); }
+    .tracklist-body {
+      display: none;
+      border: 1px solid var(--stone);
+      border-top: none;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      background: var(--warm-white);
+      padding: 0.5rem 0 1rem;
+    }
+    .tracklist-body.open { display: block; }
+    .tracklist-vol {
+      font-family: var(--font-accent);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      padding: 1rem 1.6rem 0.4rem;
+    }
+    .tl-track {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+      padding: 0.45rem 1.6rem;
+      border-bottom: 1px solid rgba(200,184,154,0.3);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+    .tl-track:last-child { border-bottom: none; }
+    .tl-num { font-family: var(--font-accent); font-size: 0.75rem; color: var(--smoke); min-width: 2rem; flex-shrink: 0; }
+    .tl-name { font-family: var(--font-body); color: var(--charcoal); flex: 1; }
+    .tl-flag { flex-shrink: 0; font-size: 0.85rem; }
+    .tl-link { font-family: var(--font-body); font-size: 0.75rem; color: var(--terracotta); text-decoration: underline; text-underline-offset: 2px; flex-shrink: 0; transition: color 0.15s; }
+    .tl-link:hover { color: var(--umber); }
+    @media (max-width: 480px) { .tl-track { flex-wrap: wrap; } .tl-link { width: 100%; padding-left: 2.7rem; } }
   </style>
 </head>
 <body>
@@ -131,6 +190,51 @@
       <a class="btn btn-primary" href="how-to-listen.html" data-en="How to Listen" data-it="Come Ascoltare">How to Listen</a>
     </div>
 
+    <div class="tracklist-section fade-up">
+      <button class="tracklist-toggle" aria-expanded="false" aria-controls="tracklist-body" id="tracklist-toggle">
+        <span data-en="Full Track Listing — All 31 Songs" data-it="Elenco Completo — Tutti i 31 Brani">Full Track Listing — All 31 Songs</span>
+        <span class="tracklist-chevron">▼</span>
+      </button>
+      <div class="tracklist-body" id="tracklist-body" role="region" aria-labelledby="tracklist-toggle">
+
+        <div class="tracklist-vol" data-en="Volume 1" data-it="Volume 1">Volume 1</div>
+        <div class="tl-track"><span class="tl-num">1-1</span><span class="tl-name">Opening</span><a class="tl-link" href="https://bit.ly/4rwz1MZ" target="_blank" rel="noopener">bit.ly/4rwz1MZ</a></div>
+        <div class="tl-track"><span class="tl-num">1-2</span><span class="tl-name">Strong Roots Good Fruit</span><a class="tl-link" href="https://bit.ly/4cSeRIK" target="_blank" rel="noopener">bit.ly/4cSeRIK</a></div>
+        <div class="tl-track"><span class="tl-num">1-3</span><span class="tl-name">Daunia's Song</span><a class="tl-link" href="https://bit.ly/3N1xH5O" target="_blank" rel="noopener">bit.ly/3N1xH5O</a></div>
+        <div class="tl-track"><span class="tl-num">1-4</span><span class="tl-name">Shepherd's Song</span><a class="tl-link" href="https://bit.ly/4aR4K4D" target="_blank" rel="noopener">bit.ly/4aR4K4D</a></div>
+        <div class="tl-track"><span class="tl-num">1-5</span><span class="tl-name">Song of the Traturri</span><a class="tl-link" href="https://bit.ly/4s9dlXi" target="_blank" rel="noopener">bit.ly/4s9dlXi</a></div>
+        <div class="tl-track"><span class="tl-num">1-6</span><span class="tl-name">Old Song of the Church Leaders</span><a class="tl-link" href="https://bit.ly/3OAbfRJ" target="_blank" rel="noopener">bit.ly/3OAbfRJ</a></div>
+        <div class="tl-track"><span class="tl-num">1-7</span><span class="tl-name">Old Song of the Civic Leaders</span><a class="tl-link" href="https://bit.ly/3ZR3Boz" target="_blank" rel="noopener">bit.ly/3ZR3Boz</a></div>
+        <div class="tl-track"><span class="tl-num">1-8</span><span class="tl-name">New Song of Joy</span><a class="tl-link" href="https://bit.ly/4aBbi8D" target="_blank" rel="noopener">bit.ly/4aBbi8D</a></div>
+        <div class="tl-track"><span class="tl-num">1-9</span><span class="tl-name">Song of Babin the Stone Carver</span><a class="tl-link" href="https://bit.ly/4cNaY81" target="_blank" rel="noopener">bit.ly/4cNaY81</a></div>
+        <div class="tl-track"><span class="tl-num">1-10</span><span class="tl-name">Oh, Oh, Oh, Leo</span><a class="tl-link" href="https://bit.ly/4aFCj9q" target="_blank" rel="noopener">bit.ly/4aFCj9q</a></div>
+        <div class="tl-track"><span class="tl-num">1-11</span><span class="tl-name">Oh, Oh, Leo (Italiano)</span><span class="tl-flag">🇮🇹</span><a class="tl-link" href="https://bit.ly/3ZVEHnF" target="_blank" rel="noopener">bit.ly/3ZVEHnF</a></div>
+        <div class="tl-track"><span class="tl-num">1-12</span><span class="tl-name">New Civic Song</span><a class="tl-link" href="https://bit.ly/4kSq2TT" target="_blank" rel="noopener">bit.ly/4kSq2TT</a></div>
+        <div class="tl-track"><span class="tl-num">1-13</span><span class="tl-name">Waldensian Song of Hope</span><a class="tl-link" href="https://bit.ly/4aRckvS" target="_blank" rel="noopener">bit.ly/4aRckvS</a></div>
+        <div class="tl-track"><span class="tl-num">1-14</span><span class="tl-name">Song of the Great Grand Inquisitor</span><a class="tl-link" href="https://bit.ly/4rASPix" target="_blank" rel="noopener">bit.ly/4rASPix</a></div>
+        <div class="tl-track"><span class="tl-num">1-15</span><span class="tl-name">Village Women's Song of Protest</span><a class="tl-link" href="https://bit.ly/4tPtKC1" target="_blank" rel="noopener">bit.ly/4tPtKC1</a></div>
+        <div class="tl-track"><span class="tl-num">1-16</span><span class="tl-name">Song of the Emigrants</span><a class="tl-link" href="https://bit.ly/4b75ALD" target="_blank" rel="noopener">bit.ly/4b75ALD</a></div>
+        <div class="tl-track"><span class="tl-num">1-17</span><span class="tl-name">Song of the Agenti</span><a class="tl-link" href="https://bit.ly/4kWcW87" target="_blank" rel="noopener">bit.ly/4kWcW87</a></div>
+        <div class="tl-track"><span class="tl-num">1-18</span><span class="tl-name">Song of Despair and Decision</span><a class="tl-link" href="https://bit.ly/4kQNpgy" target="_blank" rel="noopener">bit.ly/4kQNpgy</a></div>
+        <div class="tl-track"><span class="tl-num">1-19</span><span class="tl-name">Song of Despair and Decision (Italiano)</span><span class="tl-flag">🇮🇹</span><a class="tl-link" href="https://bit.ly/4cccKiX" target="_blank" rel="noopener">bit.ly/4cccKiX</a></div>
+
+        <div class="tracklist-vol" style="margin-top:0.8rem;" data-en="Volume 2" data-it="Volume 2">Volume 2</div>
+        <div class="tl-track"><span class="tl-num">2-1</span><span class="tl-name">Song of Scaramuccia</span><a class="tl-link" href="https://bit.ly/3ZRIFxN" target="_blank" rel="noopener">bit.ly/3ZRIFxN</a></div>
+        <div class="tl-track"><span class="tl-num">2-2</span><span class="tl-name">Song of the Women's Roar</span><a class="tl-link" href="https://bit.ly/4aBcjxt" target="_blank" rel="noopener">bit.ly/4aBcjxt</a></div>
+        <div class="tl-track"><span class="tl-num">2-3</span><span class="tl-name">Song of Acceptance</span><a class="tl-link" href="https://bit.ly/479eCFz" target="_blank" rel="noopener">bit.ly/479eCFz</a></div>
+        <div class="tl-track"><span class="tl-num">2-4</span><span class="tl-name">Song of Amadin</span><a class="tl-link" href="https://bit.ly/4b93s64" target="_blank" rel="noopener">bit.ly/4b93s64</a></div>
+        <div class="tl-track"><span class="tl-num">2-5</span><span class="tl-name">War No More</span><a class="tl-link" href="https://bit.ly/4tVm1lF" target="_blank" rel="noopener">bit.ly/4tVm1lF</a></div>
+        <div class="tl-track"><span class="tl-num">2-6</span><span class="tl-name">Educate and Advocate</span><a class="tl-link" href="https://bit.ly/3MtvZtX" target="_blank" rel="noopener">bit.ly/3MtvZtX</a></div>
+        <div class="tl-track"><span class="tl-num">2-7</span><span class="tl-name">Educate and Advocate (Italiano)</span><span class="tl-flag">🇮🇹</span><a class="tl-link" href="https://bit.ly/4s7lFGX" target="_blank" rel="noopener">bit.ly/4s7lFGX</a></div>
+        <div class="tl-track"><span class="tl-num">2-8</span><span class="tl-name">Song of the Spirits of the Ancestors</span><a class="tl-link" href="https://bit.ly/40sitd5" target="_blank" rel="noopener">bit.ly/40sitd5</a></div>
+        <div class="tl-track"><span class="tl-num">2-9</span><span class="tl-name">Immigrants No More</span><a class="tl-link" href="https://bit.ly/4rC8Pkg" target="_blank" rel="noopener">bit.ly/4rC8Pkg</a></div>
+        <div class="tl-track"><span class="tl-num">2-10</span><span class="tl-name">La Leonessa Foot Press</span><a class="tl-link" href="https://bit.ly/4b8vCyb" target="_blank" rel="noopener">bit.ly/4b8vCyb</a></div>
+        <div class="tl-track"><span class="tl-num">2-11</span><span class="tl-name">La Leonessa</span><a class="tl-link" href="https://bit.ly/4tV1Owg" target="_blank" rel="noopener">bit.ly/4tV1Owg</a></div>
+        <div class="tl-track"><span class="tl-num">2-12</span><span class="tl-name">Closing</span><a class="tl-link" href="https://bit.ly/4aY5dCa" target="_blank" rel="noopener">bit.ly/4aY5dCa</a></div>
+
+      </div>
+    </div>
+
     <div class="distro-section fade-up">
       <h3 data-en="Available on Major Platforms" data-it="Disponibile sulle Principali Piattaforme">Available on Major Platforms</h3>
       <p data-en="Distributed by DistroKid to 20+ streaming services worldwide" data-it="Distribuito da DistroKid su oltre 20 servizi di streaming nel mondo">Distributed by DistroKid to 20+ streaming services worldwide</p>
@@ -159,6 +263,16 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
+  // Collapsible track listing
+  (function() {
+    var btn  = document.getElementById('tracklist-toggle');
+    var body = document.getElementById('tracklist-body');
+    btn.addEventListener('click', function() {
+      var isOpen = body.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    });
+  })();
+
   // Monthly featured track — cycles through known tracks, changes each month
   const vol1url = 'https://www.youtube.com/playlist?list=OLAK5uy_kWr7iuxO4sa8CozTTx-0bVnxqv49Nzmxs';
   const vol2url = 'https://www.youtube.com/playlist?list=OLAK5uy_kvHoPJBo4VX_8JuRpNDUcoLtDD1f-bRtI';
