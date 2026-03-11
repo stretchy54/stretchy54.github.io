@@ -33,6 +33,9 @@
       display: flex;
       flex-direction: column;
     }
+    /* style.css injects a body::before noise texture overlay (position:fixed, z-index:0).
+       Neutralize it for webapp pages — they don't use the SGK texture. */
+    body::before { display: none; }
 
     /* ── Sticky back bar ── */
     .topbar {
