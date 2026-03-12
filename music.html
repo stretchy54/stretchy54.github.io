@@ -325,7 +325,7 @@
         } catch(e) {}
       }
 
-      applyLang(window.SGKLang.get('it'));
+      applyLang(window.SGKLang ? window.SGKLang.get('it') : 'it');
 
       // ── Auto-pause: stop all other players when a new one starts ──────────
       var allAudio = document.querySelectorAll('audio.tl-audio');
