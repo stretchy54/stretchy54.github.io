@@ -138,6 +138,13 @@
       top: -1px;
     }
 
+    /* ── Web App card embedded in option 1 ── */
+    .option-webapp-card {
+      display: flex;
+      margin-top: 1rem;
+      max-width: 320px;
+    }
+
     /* ── Web app highlight box ── */
     .webapp-callout {
       background: var(--warm-white);
@@ -264,10 +271,12 @@
             <span class="listen-option-number">1</span>
             <div class="listen-option-body">
               <span class="best-label">Best Method</span> Use my <span class="companion-label">companion Web App</span> to download the PDF version of the book to your smartphone (3 MB) and either click on a blue song link in the PDF, or use the web app to select a song for instant streaming. It is available at no cost here:
-              <div class="webapp-callout">
-                <p>Web App</p>
-                <a href="https://stretchy54.github.io" target="_blank" rel="noopener">https://stretchy54.github.io</a>
-              </div>
+              <a class="quick-link-card option-webapp-card" href="https://stretchy54.github.io" target="_blank" rel="noopener">
+                <span class="quick-link-icon">📱</span>
+                <span class="quick-link-title">Companion Web App</span>
+                <p class="quick-link-desc">Download the free PDF book and stream any song instantly.</p>
+                <span class="quick-link-arrow">Open Web App →</span>
+              </a>
             </div>
           </li>
           <li class="listen-option">
@@ -314,10 +323,12 @@
             <span class="listen-option-number">1</span>
             <div class="listen-option-body">
               <span class="best-label">Metodo Migliore</span> Usa la mia <span class="companion-label">Web App</span> per scaricare la versione PDF del libro sul tuo smartphone (3 MB) e clicca su un link blu di una canzone nel PDF, oppure usa la web app per selezionare una canzone per l'ascolto immediato. È disponibile gratuitamente qui:
-              <div class="webapp-callout">
-                <p>Web App</p>
-                <a href="https://stretchy54.github.io" target="_blank" rel="noopener">https://stretchy54.github.io</a>
-              </div>
+              <a class="quick-link-card option-webapp-card" href="https://stretchy54.github.io" target="_blank" rel="noopener">
+                <span class="quick-link-icon">📱</span>
+                <span class="quick-link-title">Companion Web App</span>
+                <p class="quick-link-desc">Scarica il PDF gratuito del libro e ascolta qualsiasi canzone all'istante.</p>
+                <span class="quick-link-arrow">Apri Web App →</span>
+              </a>
             </div>
           </li>
           <li class="listen-option">
@@ -353,7 +364,7 @@
     <!-- ═══════════════ QUICK LINKS (shared, both languages) ═══════════════ -->
     <hr class="guide-spacer" />
 
-    <h2 class="section-title fade-up" data-en="Ready to &lt;em&gt;Listen?&lt;/em&gt;" data-it="Pronto ad &lt;em&gt;Ascoltare?&lt;/em&gt;">Ready to <em>Listen?</em></h2>
+    <h2 class="section-title fade-up" data-en="Listen on &lt;em&gt;YouTube&lt;/em&gt;" data-it="Ascolta su &lt;em&gt;YouTube&lt;/em&gt;">Listen on <em>YouTube</em></h2>
     <hr class="divider" />
 
     <div class="quick-links fade-up delay-1">
@@ -369,12 +380,7 @@
         <p class="quick-link-desc" data-en="Stream the second album directly on YouTube." data-it="Ascolta il secondo album direttamente su YouTube.">Stream the second album directly on YouTube.</p>
         <span class="quick-link-arrow" data-en="Open YouTube →" data-it="Apri YouTube →">Open YouTube →</span>
       </a>
-      <a class="quick-link-card" href="https://stretchy54.github.io" target="_blank" rel="noopener">
-        <span class="quick-link-icon">📱</span>
-        <span class="quick-link-title" data-en="Companion Web App" data-it="Web App Companion">Companion Web App</span>
-        <p class="quick-link-desc" data-en="Download the free PDF book and stream any song instantly." data-it="Scarica il PDF gratuito del libro e ascolta qualsiasi canzone all'istante.">Download the free PDF book and stream any song instantly.</p>
-        <span class="quick-link-arrow" data-en="Open Web App →" data-it="Apri Web App →">Open Web App →</span>
-      </a>
+
     </div>
 
   </div>
