@@ -61,6 +61,33 @@
     // Delegate storage + html[lang] to SGKLang
     window.SGKLang.set(lang);
     document.documentElement.lang = lang;
+
+    // Stamp ?lang= on every internal SGK link and cross-site webapp link
+    document.querySelectorAll('a[href]').forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (!href) return;
+      // Internal relative links (SGK pages)
+      if (!href.startsWith('http') && !href.startsWith('mailto') &&
+          !href.startsWith('#') && !href.startsWith('javascript')) {
+        try {
+          var url = new URL(href, window.location.href);
+          url.searchParams.set('lang', lang);
+          // Store as relative path to avoid absolute URLs for same-origin links
+          a.setAttribute('href', url.pathname + url.search + url.hash);
+        } catch(e) { /* ignore unparseable hrefs */ }
+      }
+      // Cross-site: stretchy54.github.io webapp
+      if (href.indexOf('stretchy54.github.io') !== -1) {
+        try {
+          var xurl = new URL(href);
+          xurl.searchParams.set('lang', lang);
+          a.setAttribute('href', xurl.toString());
+        } catch(e) { /* ignore */ }
+      }
+    });
+
+    // Update this page's own URL without reload
+    window.SGKLang.pushURL(lang);
   }
 
   // SGK site is English-first; URL param overrides localStorage

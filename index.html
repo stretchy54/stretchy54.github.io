@@ -280,7 +280,7 @@
     </a>
 
     <a id="projectBtn" class="btn btn-rose"
-       href="viewer.html?file=assets/Project.pdf&lang=it"
+       href="viewer.html?file=books/Project.pdf&lang=it"
        data-confirm-it="Aprire il PDF del Progetto?"
        data-confirm-en="Open the Project PDF?"
        onclick="return openModal(this)">
@@ -306,7 +306,7 @@
 
   <!-- Lioness image -->
   <div class="lioness-wrap">
-    <img src="assets/lioness.jpg" alt="La Leonessa">
+    <img src="media/lioness.jpg" alt="La Leonessa">
   </div>
 
   <!-- Custom download confirmation modal -->
@@ -335,9 +335,11 @@
         websiteLabel: 'Visita il Mio Sito Web',
         musicHref:   'music.html?lang=it',
         musicLabel:  'Canzoni e Musica',
-        projectHref: 'viewer.html?file=assets/Project.pdf&lang=it',
+        projectHref: 'viewer.html?file=books/Project.pdf&lang=it',
         projectLabel: 'Sul Progetto La Leonessa',
         cancelLabel: 'Annulla',
+        itBtnLabel:  '🇮🇹 ITALIANO',
+        enBtnLabel:  '🇬🇧 INGLESE',
       },
       en: {
         htmlLang:    'en',
@@ -350,9 +352,11 @@
         websiteLabel: 'Visit My Website',
         musicHref:   'music.html?lang=en',
         musicLabel:  'Songs and Music',
-        projectHref: 'viewer.html?file=assets/Project.pdf&lang=en',
+        projectHref: 'viewer.html?file=books/Project.pdf&lang=en',
         projectLabel: 'About La Leonessa Project',
         cancelLabel: 'Cancel',
+        itBtnLabel:  '🇮🇹 ITALIAN',
+        enBtnLabel:  '🇬🇧 ENGLISH',
       }
     };
 
@@ -385,6 +389,8 @@
                       : 'About <em>La Leonessa</em> Project';
       document.getElementById('modalCancel').textContent = s.cancelLabel;
 
+      document.getElementById('itBtn').textContent = s.itBtnLabel;
+      document.getElementById('enBtn').textContent = s.enBtnLabel;
       document.getElementById('itBtn').classList.toggle('active', lang === 'it');
       document.getElementById('enBtn').classList.toggle('active', lang === 'en');
 

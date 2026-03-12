@@ -68,11 +68,16 @@
 
     <article class="book-card fade-up" aria-labelledby="book-title">
       <div class="book-cover-wrap">
-        <img src="media/MdP_2ndEd_COVER.png" alt="Strong Roots, Good Fruit — 2nd Edition book cover" loading="lazy" />
+        <img id="book-cover-img"
+             src="media/MdP_Eng_8Aug2024.png"
+             alt="Strong Roots, Good Fruit book cover"
+             loading="lazy" />
       </div>
       <div class="book-body">
-        <p class="book-eyebrow" data-en="2nd Edition · Bilingual English / Italian" data-it="2ª Edizione · Bilingue Inglese / Italiano">2nd Edition · Bilingual English / Italian</p>
-        <h2 class="book-title" id="book-title">Strong Roots, Good Fruit</h2>
+        <p class="book-eyebrow" data-en="3rd Edition · Available in English &amp; Italian" data-it="3ª Edizione · Disponibile in Inglese e Italiano">3rd Edition · Available in English &amp; Italian</p>
+        <h2 class="book-title" id="book-title"
+            data-en="Strong Roots, Good Fruit"
+            data-it="Radici Forti, Frutti Buoni">Strong Roots, Good Fruit</h2>
         <p class="book-subtitle">
           A Family Story and the Gift of La Leonessa<br>
           <em style="font-size:0.9rem;">Radici Forti, Frutti Buoni — Una Storia di Famiglia e il Dono de La Leonessa</em>
@@ -88,7 +93,7 @@
           <a class="book-link" href="https://www.blurb.com/books/12561264-strong-roots-good-fruit" target="_blank" rel="noopener">
             <span class="link-icon">🔍</span> Online Preview
           </a>
-          <a class="book-link" href="https://drive.google.com/file/d/1VYJmSK_ZynP6A4R3VWRJVCVE0azlbuvb/view?usp=drive_link" target="_blank" rel="noopener">
+          <a class="book-link" href="books/FINAL_MdP_ENG_4Nov2025.pdf" target="_blank" rel="noopener">
             <span class="link-icon">📄</span> Download PDF
           </a>
           <a class="book-link" href="https://www.blurb.com/b/12561264-strong-roots-good-fruit" target="_blank" rel="noopener">
@@ -100,7 +105,7 @@
           <a class="book-link" href="https://www.blurb.com/books/12588320-radici-forti-frutti-buoni" target="_blank" rel="noopener">
             <span class="link-icon">🔍</span> Anteprima online
           </a>
-          <a class="book-link" href="https://drive.google.com/file/d/1tpGArlsOs1HXhAtzYQolQRgUuZHqvYQd/view?usp=sharing" target="_blank" rel="noopener">
+          <a class="book-link" href="books/FINAL_ITA_MdP_1Nov2025.pdf" target="_blank" rel="noopener">
             <span class="link-icon">📄</span> Scarica PDF
           </a>
           <a class="book-link" href="https://www.blurb.com/b/12588320-radici-forti-frutti-buoni" target="_blank" rel="noopener">
@@ -141,17 +146,54 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  const tabs = document.querySelectorAll('.lang-tab');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const lang = tab.dataset.lang;
-      document.getElementById('links-en').style.display = lang === 'en' ? '' : 'none';
-      document.getElementById('links-it').style.display = lang === 'it' ? '' : 'none';
+  // Sync book edition tabs and cover to the active language.
+  // Called by nav.js on init and on every language switch.
+  function syncBookToLang(lang) {
+    var isIt = lang === 'it';
+    // Cover image
+    var cover = document.getElementById('book-cover-img');
+    if (cover) {
+      cover.src = isIt
+        ? 'media/COVER_ITA_MdP_1Nov2025.png'
+        : 'media/MdP_Eng_8Aug2024.png';
+      cover.alt = isIt
+        ? 'Radici Forti, Frutti Buoni — copertina'
+        : 'Strong Roots, Good Fruit — book cover';
+    }
+    // Edition link panels
+    var enLinks = document.getElementById('links-en');
+    var itLinks = document.getElementById('links-it');
+    if (enLinks) enLinks.style.display = isIt ? 'none' : '';
+    if (itLinks) itLinks.style.display = isIt ? ''     : 'none';
+    // Tab button active state
+    document.querySelectorAll('.lang-tab').forEach(function(tab) {
+      var active = tab.dataset.lang === lang;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  }
+
+  // Hook into nav.js language toggle clicks
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.nav-lang-btn');
+    if (btn) syncBookToLang(btn.dataset.lang);
+  });
+
+  // Also allow the on-card tab buttons to drive both the book panel
+  // AND the main site language (so they stay in sync)
+  document.querySelectorAll('.lang-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var lang = tab.dataset.lang;
+      // Fire the main site language switch (nav.js listens via delegation)
+      document.querySelectorAll('.nav-lang-btn').forEach(function(nb) {
+        if (nb.dataset.lang === lang) nb.click();
+      });
+      syncBookToLang(lang);
     });
   });
+
+  // Init: read lang from URL (via SGKLang, already loaded by lang.js)
+  syncBookToLang(window.SGKLang.get('en'));
 </script>
 </body>
 </html>
