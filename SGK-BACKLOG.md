@@ -27,19 +27,9 @@ pages already use) would reduce duplication and keep language-switching logic in
 - Low risk — `index.html` works fine as-is
 - No user-facing change, purely a code quality improvement
 
-### `outbound.html` — review whether still needed
-Now that SGK site uses inline `<audio>` players for Track of the Month (home page)
-and Full Track Listing (music page), `outbound.html` may only be needed by the
-La Leonessa webapp's track links. Audit usage before deleting.
-
 ---
 
 ## 🟢 Ideas / Nice-to-Have
-
-### Music page — auto-pause on new play
-If a visitor opens the Full Track Listing and plays track 1, then clicks play on
-track 3, both will play simultaneously. JavaScript could pause all other `<audio>`
-elements when a new one starts.
 
 ### Music page — "Now Playing" indicator
 Highlight the currently playing track row with a subtle terracotta left border
@@ -80,8 +70,15 @@ browser tab shows something distinctive rather than a blank page icon.
 - `body::before` texture overlay neutralised on webapp pages
 - Track of the Month on home page: plays directly from GitHub `.m4a` files via
   native `<audio>` player — no intermediate page
-- Full Track Listing on Music page: all 31 tracks have inline `<audio>` players
-  pointing to `music/vol1/` and `music/vol2/` `.m4a` files
+- `music.html` (webapp): all 31 tracks replaced with inline `<audio>` players
+  pointing to `music/vol1/` and `music/vol2/` `.m4a` files; auto-pause added
 - How to Listen page: image replaced with rich bilingual text content
 - Music page: credits box removed, Track of the Month removed, layout reordered
 - Italian-only apology note added to Music page (hidden on English)
+- Asset consolidation: `assets/` folder eliminated, duplicates deleted, 9 unreferenced
+  files deleted, all references updated
+- Language system bugs 1–8 fixed across `index.html`, `nav.js`, `writing.html`
+- `.gitignore` added; stray `.DS_Store` files deleted
+- `.nojekyll` added to root — GitHub Pages Jekyll build disabled; deployment failures fixed
+- `outbound.html` deleted (orphan — no inbound links, purpose superseded by inline players)
+- Stray `outbound.html` and `sgk.html` deleted from `music/vol1/`
