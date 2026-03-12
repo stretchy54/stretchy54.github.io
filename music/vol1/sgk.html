@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGK – Steven G Kukla | Artist & Sculptor</title>
+  <meta name="description" content="Steven G Kukla – figurative stone sculptor, writer, and AI composer based in Litchfield, CT." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .hero {
+      min-height: 60vh;
+      background-color: var(--charcoal);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden; padding: 4rem 2rem;
+    }
+    .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 40%, transparent 40%, rgba(26,18,8,0.55) 100%); pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; max-width: 780px; }
+    .hero-eyebrow { font-family: var(--font-accent); font-size: clamp(0.65rem, 2.5vw, 1rem); letter-spacing: clamp(0.08em, 0.8vw, 0.25em); text-transform: uppercase; color: var(--stone); margin-bottom: 1.2rem; animation: fadeUp 0.7s ease both; }
+    .hero-title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; color: var(--parchment); line-height: 1.05; margin-bottom: 0.5rem; animation: fadeUp 0.7s 0.15s ease both; }
+    .hero-tagline { font-family: var(--font-accent); font-size: clamp(0.82rem, 2.2vw, 1.2rem); color: var(--stone); font-style: italic; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.3s ease both; line-height: 1.9; }
+    .hero-tagline span { display: block; white-space: nowrap; }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.7s 0.45s ease both; }
+    .disciplines { background: var(--parchment); border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); padding: 2.2rem 2rem; }
+    .disciplines-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--stone); }
+    .disc-item { background: var(--parchment); padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; }
+    .disc-item:hover { background: var(--sand); }
+    .disc-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+    .disc-label { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--umber); margin-bottom: 0.3rem; }
+    .disc-desc { font-family: var(--font-accent); font-size: 0.88rem; color: var(--smoke); font-style: italic; line-height: 1.5; }
+    .disc-link { display: inline-block; margin-top: 0.8rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); font-family: var(--font-body); font-weight: 500; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .disc-link:hover { border-color: var(--terracotta); }
+    @media (max-width: 640px) { .disciplines-inner { grid-template-columns: 1fr; } }
+    .featured { padding: 5rem 2rem; max-width: var(--max-w); margin: 0 auto; }
+    .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+    .featured-card { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s; }
+    .featured-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+    .featured-card img { width: 100%; height: auto; display: block; }
+    .featured-card-body { padding: 1.5rem; }
+    .featured-card-label { font-family: var(--font-accent); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.4rem; }
+    .featured-card-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--umber); margin-bottom: 0.5rem; }
+    .featured-card-desc { font-size: 0.88rem; color: var(--smoke); line-height: 1.6; margin-bottom: 1rem; }
+    @media (max-width: 900px) { .featured-grid { grid-template-columns: 1fr !important; } }
+    .bio-strip { background: var(--charcoal); color: var(--parchment); padding: 4rem 2rem; }
+    .bio-strip-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+    .bio-monogram-wrap { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .bio-monogram { width: 350px; height: 350px; border-radius: 50%; background: var(--umber); border: 4px solid var(--clay); overflow: hidden; }
+    .bio-monogram img { width: 100%; height: 100%; object-fit: cover; object-position: center 8%; display: block; }
+    .bio-monogram-label { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--stone); text-align: center; margin-top: 0.7rem; letter-spacing: 0.15em; }
+    .bio-text h2 { font-family: var(--font-display); font-size: 1.6rem; color: var(--parchment); margin-bottom: 0.5rem; }
+    .bio-text p { font-family: var(--font-accent); font-style: italic; font-size: 1rem; color: var(--stone); line-height: 1.8; margin-bottom: 1rem; }
+    @media (max-width: 700px) { .bio-strip-inner { grid-template-columns: 1fr; text-align: center; } .bio-monogram-wrap { margin: 0 auto; } .bio-monogram { width: 260px; height: 260px; } }
+  </style>
+</head>
+<body>
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="sgk.html">SGK</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li><a href="sgk.html" data-en="Home" data-it="Home">Home</a></li>
+      <li><a href="about.html" data-en="About" data-it="Chi Sono">About</a></li>
+      <li><a href="sculpture.html" data-en="Sculpture" data-it="Scultura">Sculpture</a></li>
+      <li><a href="poses.html" data-en="Poses" data-it="Pose">Poses</a></li>
+      <li><a href="writing.html" data-en="Writing" data-it="Scritti">Writing</a></li>
+      <li><a href="sgk-music.html" data-en="Music" data-it="Musica">Music</a></li>
+      <li><a href="how-to-listen.html" data-en="How to Listen" data-it="Come Ascoltare">How to Listen</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <section class="hero" aria-label="Hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow" style="white-space:nowrap;" data-en="FIGURATIVE SCULPTURE ◆ WRITING ◆ MUSIC" data-it="SCULTURA FIGURATIVA ◆ SCRITTI ◆ MUSICA">FIGURATIVE SCULPTURE ◆ WRITING ◆ MUSIC</p>
+      <h1 class="hero-title" style="font-style:normal; font-size:clamp(1.8rem,6.5vw,4rem); white-space:nowrap; letter-spacing:0.02em;">Steven G Kukla</h1>
+      <p class="hero-tagline" data-en="<span>Figurative sculptor, writer &amp; AI media composer</span><span>Litchfield, CT USA</span>" data-it="<span>Scultore figurativo, scrittore e compositore media IA</span><span>Litchfield, CT USA</span>"><span>Figurative sculptor, writer &amp; AI media composer</span><span>Litchfield, CT USA</span></p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="sculpture.html" data-en="View Sculptures" data-it="Vedi Sculture">View Sculptures</a>
+        <a class="btn" style="background:#6c3d32; color:#faf7f2; border:none;" href="writing.html" data-en="Strong Roots, Good Fruit" data-it="Radici Forti, Frutti Buoni">Strong Roots, Good Fruit</a>
+        <a class="btn" style="background:rgb(53,88,132); color:#faf7f2; border:none;" href="https://stretchy54.github.io" target="_blank" rel="noopener" data-en="La Leonessa Project" data-it="Il Progetto La Leonessa">La Leonessa Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="disciplines" aria-label="Disciplines">
+    <div class="disciplines-inner">
+      <div class="disc-item">
+        <div class="disc-icon">🗿</div>
+        <div class="disc-label" data-en="Sculpture" data-it="Scultura">Sculpture</div>
+        <p class="disc-desc" data-en="Marble, limestone, slate, alabaster, onyx, soapstone &amp; clay — carved by hand and pneumatic chisel." data-it="Marmo, calcare, ardesia, alabastro, onice, steatite e argilla — intagliati a mano e con scalpello pneumatico.">Marble, limestone, slate, alabaster, onyx, soapstone &amp; clay — carved by hand and pneumatic chisel.</p>
+        <a class="disc-link" href="sculpture.html" data-en="See the work →" data-it="Vedi il lavoro →">See the work →</a>
+      </div>
+      <div class="disc-item">
+        <div class="disc-icon">📖</div>
+        <div class="disc-label" data-en="Writing" data-it="Scritti">Writing</div>
+        <p class="disc-desc" data-en="Books, graphic novellas, poems &amp; stories — including &lt;em&gt;Strong Roots, Good Fruit&lt;/em&gt;." data-it="Libri, romanzi grafici, poesie e storie — incluso &lt;em&gt;Radici Forti, Frutti Buoni&lt;/em&gt;.">Books, graphic novellas, poems &amp; stories — including <em>Strong Roots, Good Fruit</em>.</p>
+        <a class="disc-link" href="writing.html" data-en="Read more →" data-it="Leggi di più →">Read more →</a>
+      </div>
+      <div class="disc-item">
+        <div class="disc-icon">🎵</div>
+        <div class="disc-label" data-en="Music" data-it="Musica">Music</div>
+        <p class="disc-desc" data-en="Poems from the book reimagined as songs — original lyrics, arrangements &amp; AI-generated music, released on all major platforms." data-it="Poesie del libro reimmaginare come canzoni — testi originali, arrangiamenti e musica generata con IA, su tutte le piattaforme.">Poems from the book reimagined as songs — original lyrics, arrangements &amp; AI-generated music, released on all major platforms.</p>
+        <a class="disc-link" href="sgk-music.html" data-en="Listen →" data-it="Ascolta →">Listen →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured" aria-labelledby="featured-heading">
+    <h2 class="section-title" id="featured-heading" data-en="Featured &lt;em&gt;Work&lt;/em&gt;" data-it="Lavoro &lt;em&gt;In Evidenza&lt;/em&gt;">Featured <em>Work</em></h2>
+    <p class="section-subtitle" data-en="A new selection each month from across disciplines" data-it="Una nuova selezione ogni mese da tutte le discipline">A new selection each month from across disciplines</p>
+    <hr class="divider" />
+    <div class="featured-grid" style="grid-template-columns: repeat(3,1fr);">
+
+      <!-- Sculpture of the Month -->
+      <div class="featured-card">
+        <img id="monthly-sculpture-img" src="" alt="" style="width:100%;height:auto;display:block;min-height:200px;background:var(--parchment);" />
+        <div class="featured-card-body">
+          <div class="featured-card-label" data-en="🗿 Sculpture of the Month" data-it="🗿 Scultura del Mese">🗿 Sculpture of the Month</div>
+          <h3 class="featured-card-title" id="monthly-sculpture-title">Loading…</h3>
+          <p class="featured-card-desc" id="monthly-sculpture-desc"></p>
+          <a href="sculpture.html" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;" data-en="Browse Gallery" data-it="Sfoglia Galleria">Browse Gallery</a>
+        </div>
+      </div>
+
+      <!-- Track of the Month -->
+      <div class="featured-card">
+        <img id="monthly-track-img" src="" alt="" style="width:100%;height:auto;display:block;min-height:200px;background:var(--parchment);" />
+        <div class="featured-card-body">
+          <div class="featured-card-label" data-en="🎵 Track of the Month" data-it="🎵 Brano del Mese">🎵 Track of the Month</div>
+          <h3 class="featured-card-title" id="monthly-track-title">Loading…</h3>
+          <p class="featured-card-desc" id="monthly-track-desc"></p>
+          <audio id="monthly-track-audio" controls style="width:100%;margin-bottom:0.8rem;"></audio>
+          <a href="sgk-music.html" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;" data-en="Music Page" data-it="Pagina Musica">Music Page</a>
+        </div>
+      </div>
+
+      <!-- Pose of the Month -->
+      <div class="featured-card">
+        <img id="monthly-pose-img" src="" alt="" style="width:100%;height:auto;display:block;min-height:200px;background:var(--parchment);" />
+        <div class="featured-card-body">
+          <div class="featured-card-label" data-en="🧍 Pose of the Month" data-it="🧍 Posa del Mese">🧍 Pose of the Month</div>
+          <h3 class="featured-card-title" data-en="Figurative Pose Study" data-it="Studio di Posa Figurativa">Figurative Pose Study</h3>
+          <p class="featured-card-desc" data-en="A9 Rig flexible skeleton armature — exploring the full range of human figurative poses." data-it="Armatura scheletrica flessibile A9 Rig — esplorando l'intera gamma di pose figurative umane.">A9 Rig flexible skeleton armature — exploring the full range of human figurative poses.</p>
+          <a href="poses.html" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;" data-en="View All Poses" data-it="Vedi Tutte le Pose">View All Poses</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bio-strip" aria-labelledby="bio-heading">
+    <div class="bio-strip-inner">
+      <div class="bio-monogram-wrap">
+        <div class="bio-monogram" aria-label="Portrait of Steven G Kukla">
+          <img src="media/Steven_Gerard_Kukla_2018.png" alt="Steven G Kukla" onerror="this.style.display='none'" />
+        </div>
+        <div class="bio-monogram-label">SGK</div>
+      </div>
+      <div class="bio-text">
+        <h2 id="bio-heading" data-en="About Steven" data-it="Chi è Steven">About Steven</h2>
+        <p data-en="Retired and living with his wife Cynthia in Litchfield, Connecticut — grateful to fill his days with family, travel, yoga, hiking, figurative stone carving, clay modeling, mineral collecting, and writing." data-it="In pensione e vive con sua moglie Cynthia a Litchfield, nel Connecticut — grato di riempire le sue giornate con famiglia, viaggi, yoga, escursionismo, scultura figurativa su pietra, modellazione dell'argilla, collezionismo di minerali e scrittura.">Retired and living with his wife Cynthia in Litchfield, Connecticut — grateful to fill his days with family, travel, yoga, hiking, figurative stone carving, clay modeling, mineral collecting, and writing.</p>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/stevekukla" target="_blank" rel="noopener" data-en="LinkedIn" data-it="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-name">Steven G Kukla</p>
+  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="mailto:alkuk23@gmail.com">alkuk23@gmail.com</a></p>
+  <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.6;">© <span class="copyright-year">2026</span> Steven G Kukla. All rights reserved.</p>
+</footer>
+
+<script src="lang.js"></script>
+<script src="nav.js"></script>
+<script>
+  const now = new Date();
+  const monthSeed = now.getFullYear() * 12 + now.getMonth();
+
+  const sculptures = [
+    { file: 'They_1_14July2025.JPG',                      title: '"They"',                  desc: 'Naturalistic portrait bust. Water-based clay, July 2025.' },
+    { file: 'Pretty_Francesca copy.jpeg',                 title: 'Pretty Francesca',        desc: 'Lyme Academy, Chad Fisher, Teacher. Green clay, March 2023.' },
+    { file: 'San Francesco_ 4_clay.jpg',                  title: "San Francesco d'Assisi",  desc: 'Original sculpture. Water-based Clay, January 2024.' },
+    { file: '1_Horsey_Alabaster_Jun2020.jpg',             title: 'Horsey',                  desc: 'Rainbow Alabaster on Marble base, June 2020.' },
+    { file: 'Skater_slate_1Jun2023.jpg',                  title: 'Skater',                  desc: 'Hand-carved relief, enamel & chalk. Green VT Slate, June 2023.' },
+    { file: 'Porpoise_Wave_Sep2020.jpg',                  title: 'Porpoise Cresting Wave',  desc: 'Pakistan Banded Green Onyx, September 2020.' },
+    { file: 'marblegal1.JPG',                             title: 'Marble Gal',              desc: 'Inspired by F. Preiss Kneeling Nude. Danby Marble, Oct 2019.' },
+    { file: 'anaximander_clay.JPG',                       title: '"Anaximander"',           desc: 'S14 Sheffield Clay, October 2019.' },
+    { file: 'SGK_barn_owl_Sep2017.JPG',                   title: 'Barn Owl',                desc: 'Carrara Marble, 2017. Sold in fund raiser.' },
+    { file: 'Divad_1Feb2020.jpg',                         title: '"Divad"',                 desc: 'Non-Dry Clay on A9-Rig armature, February 2020.' },
+    { file: 'IMG_6308.jpg',                               title: 'Ancient King',            desc: 'Brazilian Black Steatite Soapstone.' },
+    { file: 'Bruno2_SGK.jpeg',                            title: 'Bruno',                   desc: 'Carrara Marble, Valdicastello Italy.' },
+    { file: 'Arabic_Horse_Slate_Nov2020.jpg',             title: 'Arabic Horse',            desc: 'VT Black Slate, November 2020.' },
+    { file: 'Ibex_Final_1.jpeg',                          title: 'Athtar, the Ibex God',    desc: 'Indiana Limestone.' },
+    { file: 'SpiritBearMeet_Slate_Oct2020.jpg',           title: 'Makwa Meets Spirit Bear', desc: 'VT Black Slate, October 2020.' },
+    { file: 'SelfPortrait_Feb2020.JPG',                   title: 'Self Portrait',           desc: 'Laguna Clay, February 2020.' },
+    { file: 'Leo_Aug2019.jpg',                            title: 'Leo',                     desc: 'VT Green Slate, August 2019.' },
+    { file: 'RedslateGal.jpg',                            title: 'Red Slate Gal',           desc: 'VT Red Slate.' },
+    { file: 'IMG_5101.jpg',                               title: 'Horse of Torino',         desc: 'Danby Marble.' },
+    { file: 'Taragina_Guilford_Week5_16Oct2016.jpg',      title: 'Tanagrina',               desc: 'Danby Marble, October 2016.' },
+    { file: 'Cat_4May2014_2.JPG',                         title: 'Cat (Elegance)',          desc: 'Indiana Limestone, May 2014.' },
+    { file: 'SOFE_Home_27Apr2013.JPG',                    title: 'SOFE',                    desc: 'Indiana Limestone, April 2013.' },
+    { file: 'SGK_MarbleProject_VT_Oct2012.jpg',           title: 'Torso',                   desc: 'Danby Marble, October 2012.' },
+    { file: 'Greek_Guy_January_2024._waterbasedClay.jpg', title: 'Greek Guy',               desc: 'Water-based Clay, January 2024.' },
+  ];
+  const s = sculptures[monthSeed % sculptures.length];
+  document.getElementById('monthly-sculpture-img').src = 'sculpture/' + s.file;
+  document.getElementById('monthly-sculpture-img').alt = s.title;
+  document.getElementById('monthly-sculpture-title').textContent = s.title;
+  document.getElementById('monthly-sculpture-desc').textContent = s.desc;
+
+  const poses = [
+    'IMG_0145.jpeg','IMG_0146.jpeg','IMG_0149.jpeg','IMG_0151.jpeg',
+    'IMG_0156.jpeg','IMG_0159.jpeg','IMG_0161.jpeg','IMG_0182.jpeg',
+    'IMG_0185.jpeg','IMG_0186.jpeg','IMG_0190.jpeg','IMG_0258.jpg',
+    'IMG_0375.jpg','IMG_2109.jpg','IMG_2253.jpg','IMG_2258.jpg','IMG_2263.jpg'
+  ];
+  const p = poses[(monthSeed + 7) % poses.length];
+  document.getElementById('monthly-pose-img').src = 'poses/' + p;
+  document.getElementById('monthly-pose-img').alt = 'Pose study ' + p;
+
+  const tracks = [
+    { title: 'Opening',                               album: 'Vol. 1 · Track 1',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-1%20Opening.m4a' },
+    { title: 'Strong Roots Good Fruit',               album: 'Vol. 1 · Track 2',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-2%20Strong%20Roots%20Good%20Fruit.m4a' },
+    { title: "Daunia's Song",                         album: 'Vol. 1 · Track 3',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: "music/vol1/1-3%20Daunia's%20Song.m4a" },
+    { title: "Shepherd's Song",                       album: 'Vol. 1 · Track 4',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: "music/vol1/1-4%20Shepherd's%20Song.m4a" },
+    { title: 'Song of the Traturri',                  album: 'Vol. 1 · Track 5',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-5%20Song%20of%20the%20Traturri.m4a' },
+    { title: 'Old Song of the Church Leaders',        album: 'Vol. 1 · Track 6',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-6%20Old%20Song%20of%20the%20Church%20Leaders.m4a' },
+    { title: 'Old Song of the Civic Leaders',         album: 'Vol. 1 · Track 7',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-7%20Old%20Song%20of%20the%20Civic%20Leaders.m4a' },
+    { title: 'New Song of Joy',                       album: 'Vol. 1 · Track 8',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-8%20New%20Song%20of%20Joy.m4a' },
+    { title: 'Song of Babin the Stone Carver',        album: 'Vol. 1 · Track 9',  cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-9%20Song%20of%20Babin%20the%20Stone%20Carver.m4a' },
+    { title: 'Oh, Oh, Oh, Leo',                       album: 'Vol. 1 · Track 10', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-10%20Oh%2C%20Oh%2C%20Oh%2C%20Leo.m4a' },
+    { title: 'Oh, Oh, Leo (Italian)',                 album: 'Vol. 1 · Track 11', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-11%20Oh%2C%20Oh%2C%20Leo%20(Italian).m4a' },
+    { title: 'New Civic Song',                        album: 'Vol. 1 · Track 12', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-12%20New%20Civic%20Song.m4a' },
+    { title: 'Waldensian Song of Hope',               album: 'Vol. 1 · Track 13', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-13%20Waldensian%20Song%20of%20Hope.m4a' },
+    { title: 'Song of the Great Grand Inquisitor',    album: 'Vol. 1 · Track 14', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-14%20Song%20of%20the%20Great%20Grand%20Inquisitor.m4a' },
+    { title: "Village Women's Song of Protest",       album: 'Vol. 1 · Track 15', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: "music/vol1/1-15%20Village%20Women's%20Song%20of%20Protest.m4a" },
+    { title: 'Song of the Emigrants',                 album: 'Vol. 1 · Track 16', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-16%20Song%20of%20the%20Emigrants.m4a' },
+    { title: 'Song of the Agenti',                    album: 'Vol. 1 · Track 17', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-17%20Song%20of%20the%20Agenti.m4a' },
+    { title: 'Song of Despair and Decision',          album: 'Vol. 1 · Track 18', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-18%20Song%20of%20Despair%20and%20Decision.m4a' },
+    { title: 'Song of Despair and Decision (Italian)',album: 'Vol. 1 · Track 19', cover: 'media/SRGF_MdP_Album_Cover_Vol1.jpeg', url: 'music/vol1/1-19%20Song%20of%20Despair%20and%20Decision%20(Italian).m4a' },
+    { title: 'Song of Scaramuccia',                   album: 'Vol. 2 · Track 1',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-1%20Song%20of%20Scaramuccia.m4a' },
+    { title: "Song of the Women's Roar",              album: 'Vol. 2 · Track 2',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: "music/vol2/2-2%20Song%20of%20the%20Women's%20Roar.m4a" },
+    { title: 'Song of Acceptance',                    album: 'Vol. 2 · Track 3',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-3%20Song%20of%20Acceptance.m4a' },
+    { title: 'Song of Amadin',                        album: 'Vol. 2 · Track 4',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-4%20Song%20of%20Amadin.m4a' },
+    { title: 'War No More',                           album: 'Vol. 2 · Track 5',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-5%20War%20No%20More.m4a' },
+    { title: 'Educate and Advocate',                  album: 'Vol. 2 · Track 6',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-6%20Educate%20and%20Advocate.m4a' },
+    { title: 'Educate and Advocate (Italian)',        album: 'Vol. 2 · Track 7',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-7%20Educate%20and%20Advocate%20(Italian).m4a' },
+    { title: 'Song of the Spirits of the Ancestors',  album: 'Vol. 2 · Track 8',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-8%20Song%20of%20the%20Spirits%20of%20the%20Ancestors.m4a' },
+    { title: 'Immigrants No More',                    album: 'Vol. 2 · Track 9',  cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-9%20Immigrants%20No%20More.m4a' },
+    { title: 'La Leonessa Foot Press',                album: 'Vol. 2 · Track 10', cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-10%20La%20Leonessa%20Foot%20Press.m4a' },
+    { title: 'La Leonessa',                           album: 'Vol. 2 · Track 11', cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-11%20La%20Leonessa.m4a' },
+    { title: 'Closing',                               album: 'Vol. 2 · Track 12', cover: 'media/SRGF_MdP_Album_Cover_Vol2.png',  url: 'music/vol2/2-12%20Closing.m4a' },
+  ];
+  const t = tracks[monthSeed % tracks.length];
+  document.getElementById('monthly-track-img').src = t.cover;
+  document.getElementById('monthly-track-img').alt = 'Album cover ' + t.album;
+  document.getElementById('monthly-track-title').textContent = t.title;
+  document.getElementById('monthly-track-desc').textContent = 'Strong Roots, Good Fruit · ' + t.album;
+  const audioEl = document.getElementById('monthly-track-audio');
+  const outboundUrl = 'outbound.html?url=' + encodeURIComponent(t.url)
+    + '&title=' + encodeURIComponent(t.title)
+    + '&album=' + encodeURIComponent('Strong Roots, Good Fruit · ' + t.album)
+    + '&back=sgk.html';
+  const playLabel = (localStorage.getItem('sgk-lang') === 'it') ? '▶ Ascolta questo Brano' : '▶ Play This Track';
+  audioEl.outerHTML = '<a href="' + outboundUrl + '" class="btn btn-primary" style="display:block;text-align:center;margin-bottom:0.8rem;font-size:1rem;">' + playLabel + '</a>';
+</script>
+</body>
+</html>

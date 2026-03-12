@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Track – SGK</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body::before { display: none; }
+    body {
+      background: var(--charcoal);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+    }
+
+    /* ── Back bar ── */
+    .back-bar {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .back-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--stone);
+      text-decoration: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--radius);
+      transition: color 0.2s, background 0.2s;
+    }
+    .back-arrow:hover { color: var(--parchment); background: rgba(255,255,255,0.07); }
+    .back-arrow::before { content: '←'; font-size: 1.1rem; }
+
+    /* ── Card ── */
+    .outbound-card {
+      background: var(--sand);
+      border: 1px solid var(--stone);
+      border-radius: 8px;
+      max-width: 500px;
+      width: calc(100% - 2rem);
+      margin: 2.5rem auto 3rem;
+      padding: 2.5rem 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .outbound-icon { font-size: 2.8rem; margin-bottom: 0.8rem; }
+    .outbound-label {
+      font-family: var(--font-accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+    .outbound-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--umber);
+      margin-bottom: 0.3rem;
+      line-height: 1.25;
+    }
+    .outbound-album {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--smoke);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── Audio player ── */
+    #track-audio {
+      width: 100%;
+      margin-bottom: 1.4rem;
+      border-radius: 4px;
+      accent-color: var(--terracotta);
+    }
+
+    /* ── Play button (shown before audio loads / as fallback) ── */
+    .outbound-play {
+      display: block;
+      width: 100%;
+      background: var(--terracotta);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.9rem 1.5rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-bottom: 1rem;
+    }
+    .outbound-play:hover { background: var(--umber); }
+
+    .sgk-logo {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--stone);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    @media (max-width: 420px) {
+      .outbound-card { padding: 1.8rem 1.4rem 1.5rem; }
+      .outbound-title { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back bar -->
+  <div class="back-bar">
+    <a class="back-arrow" id="back-link" href="sgk.html">Return to SGK Website</a>
+  </div>
+
+  <!-- Player card -->
+  <div class="outbound-card">
+    <span class="sgk-logo">SGK</span>
+    <div class="outbound-icon">🎵</div>
+    <div class="outbound-label" id="card-label">Track of the Month</div>
+    <div class="outbound-title" id="card-title">Loading…</div>
+    <div class="outbound-album" id="card-album"></div>
+
+    <!-- Native audio player — src set by JS -->
+    <audio id="track-audio" controls preload="metadata"></audio>
+
+    <!-- Fallback direct-play button -->
+    <button class="outbound-play" id="play-btn">▶ Play Track Now</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const url   = params.get('url')   || '';
+    const title = params.get('title') || '';
+    const album = params.get('album') || '';
+    const back  = params.get('back')  || 'sgk.html';
+    const lang  = params.get('lang')  || (function(){ try{ return localStorage.getItem('sgk-lang')||'en'; }catch(e){ return 'en'; } })();
+
+    if (title) document.getElementById('card-title').textContent = title;
+    if (album) document.getElementById('card-album').textContent = album;
+
+    // Wire audio player
+    const audio = document.getElementById('track-audio');
+    if (url) audio.src = url;
+
+    // Play button triggers audio playback
+    const playBtn = document.getElementById('play-btn');
+    playBtn.addEventListener('click', function() {
+      audio.play().catch(function() {
+        // If inline play blocked, open directly
+        if (url) window.location.href = url;
+      });
+    });
+
+    // Back link
+    document.getElementById('back-link').href = back;
+
+    // Italian labels
+    if (lang === 'it') {
+      document.getElementById('card-label').textContent = 'Brano del Mese';
+      playBtn.textContent = '▶ Riproduci Brano Ora';
+      document.getElementById('back-link').textContent = '← Torna al Sito SGK';
+    } else {
+      document.getElementById('back-link').textContent = '← Return to SGK Website';
+    }
+  </script>
+</body>
+</html>
