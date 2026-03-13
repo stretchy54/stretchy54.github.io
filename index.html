@@ -573,6 +573,7 @@
         sending:    'Invio in corso…',
         error:      'Qualcosa è andato storto. Riprova.',
         success:    'Grazie! Il tuo messaggio è stato inviato.<br>Steve ti contatterà presto.',
+        thankYou:   'Grazie',
       },
       en: {
         contact:    '✉ Contact Me',
@@ -585,6 +586,7 @@
         sending:    'Sending…',
         error:      'Something went wrong. Please try again.',
         success:    'Thank you! Your message has been sent.<br>Steve will be in touch soon.',
+        thankYou:   'Thank you',
       }
     };
 
@@ -659,6 +661,7 @@
         if (res.ok) {
           cmFormWrap.style.display = 'none';
           cmSuccess.style.display  = 'block';
+          document.getElementById('cmTitle').textContent = CM[currentLang].thankYou;
         } else {
           cmError.style.display = 'block';
           cmSubmit.disabled = false;

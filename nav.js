@@ -207,6 +207,10 @@
       if (res.ok) {
         formWrap.style.display = 'none';
         successDiv.style.display = 'block';
+        const titleEl = document.getElementById('contactModalTitle');
+        titleEl.textContent = lang === 'it' ? 'Grazie' : 'Thank you';
+        titleEl.removeAttribute('data-en');
+        titleEl.removeAttribute('data-it');
       } else {
         errorMsg.style.display = 'block';
         submitBtn.disabled = false;
