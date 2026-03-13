@@ -5,30 +5,6 @@ Add new items freely. Mark done items ✅ and leave them for reference.
 
 ---
 
-## 🔴 Higher Priority
-
-### Contact Form (hide email address)
-Replace all visible `alkuk23@gmail.com` occurrences across the SGK site with a
-"Contact Me" link/button that opens a form. Use **Formspree** (free, no server needed)
-so the email address is never exposed in source code.
-- Appears in footer of all 7 SGK pages
-- Appears as a button on `about.html`
-- Decision needed: modal popup vs. dedicated `contact.html` page
-- Decision needed: link style (text / icon+text / button)
-
----
-
-## 🟡 Medium Priority
-
-### Consolidate `index.html` language system to use `lang.js`
-The La Leonessa webapp `index.html` still has its own hand-rolled `getLangFromURL` /
-`setLang` functions. Migrating it to use the shared `lang.js` utility (which all SGK
-pages already use) would reduce duplication and keep language-switching logic in one place.
-- Low risk — `index.html` works fine as-is
-- No user-facing change, purely a code quality improvement
-
----
-
 ## 🟢 Ideas / Nice-to-Have
 
 ### Music page — "Now Playing" indicator
@@ -82,3 +58,10 @@ browser tab shows something distinctive rather than a blank page icon.
 - `.nojekyll` added to root — GitHub Pages Jekyll build disabled; deployment failures fixed
 - `outbound.html` deleted (orphan — no inbound links, purpose superseded by inline players)
 - Stray `outbound.html` and `sgk.html` deleted from `music/vol1/`
+- Track 1-9 "Song of Babin" filename trailing space encoded correctly in `sgk-music.html`
+- Contact form implemented via Formspree (xgonzewl): modal popup on all 7 SGK website
+  pages + La Leonessa webapp landing page; email address removed from all HTML source;
+  ✉ Contact Me / ✉ Contattami link in every footer (terracotta, bold); bilingual throughout;
+  success state shows "Thank you" / "Grazie"; AJAX submit, no page reload
+- LinkedIn button removed from `sgk.html` and `about.html`
+- Webapp landing page footer added: ✉ Contattami / Contact Me + © copyright with auto-year
