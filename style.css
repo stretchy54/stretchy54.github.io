@@ -320,8 +320,15 @@ body::before {
   text-decoration: none;
   transition: color 0.2s;
 }
-.contact-trigger:hover { color: var(--parchment); }
-.btn.contact-trigger:hover { color: var(--terracotta); }
+/* Footer contact link — terracotta + bold so it stands out */
+.site-footer .contact-trigger {
+  color: var(--terracotta);
+  font-weight: 700;
+}
+.site-footer .contact-trigger:hover { color: var(--parchment); }
+/* About page button — match btn-ghost siblings */
+.btn.contact-trigger { color: var(--clay); }
+.btn.contact-trigger:hover { background: var(--clay); color: var(--warm-white); }
 
 /* ── Contact modal backdrop ── */
 .contact-modal-backdrop {

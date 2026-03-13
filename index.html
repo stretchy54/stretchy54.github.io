@@ -243,6 +243,96 @@
     .modal-ok { background: var(--blue); color: #fff; }
     .modal-cancel { background: rgba(0,0,0,0.07); color: var(--ink); }
 
+    /* ── Site footer ── */
+    .webapp-footer {
+      text-align: center;
+      padding: 2rem 1.5rem 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.92rem;
+      color: rgba(90,70,50,0.7);
+      border-top: 1px solid var(--rule);
+      margin-top: 2rem;
+    }
+    .webapp-footer a.footer-contact {
+      color: var(--gold);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .webapp-footer a.footer-contact:hover { color: var(--orange); }
+    .webapp-footer .footer-sep { margin: 0 0.6rem; opacity: 0.45; }
+
+    /* ── Contact modal (webapp) ── */
+    .cm-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,14,6,0.72);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(3px);
+    }
+    .cm-backdrop.open { display: flex; }
+    .cm-card {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 2.4rem 2.2rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.38);
+      position: relative;
+      animation: fadeUp 0.22s ease both;
+    }
+    .cm-close {
+      position: absolute; top: 1rem; right: 1.1rem;
+      background: none; border: none; font-size: 1.5rem;
+      cursor: pointer; color: var(--muted); transition: color 0.2s; padding: 0.2rem 0.4rem;
+    }
+    .cm-close:hover { color: var(--ink); }
+    .cm-card h2 {
+      font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.2rem; letter-spacing: 0.02em;
+    }
+    .cm-sub {
+      font-size: 0.88rem; color: var(--muted);
+      margin-bottom: 1.5rem; letter-spacing: 0.02em;
+    }
+    .cm-card label {
+      display: block; font-size: 0.78rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 0.3rem; margin-top: 1rem;
+    }
+    .cm-card label:first-of-type { margin-top: 0; }
+    .cm-card input, .cm-card textarea {
+      width: 100%; box-sizing: border-box;
+      background: #fff; border: 1.5px solid rgba(181,148,64,0.35);
+      border-radius: 7px; padding: 0.65rem 0.9rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      color: var(--ink); outline: none; transition: border-color 0.18s;
+    }
+    .cm-card input:focus, .cm-card textarea:focus { border-color: var(--gold); }
+    .cm-card textarea { min-height: 110px; resize: vertical; }
+    .cm-submit {
+      display: block; width: 100%; margin-top: 1.4rem;
+      padding: 0.85rem 1.5rem; background: var(--blue); color: #fff;
+      border: none; border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-weight: 600; letter-spacing: 0.06em; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cm-submit:hover { background: #1e4470; }
+    .cm-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .cm-error {
+      display: none; font-size: 0.88rem; color: #b91c1c;
+      margin-top: 0.8rem; text-align: center;
+    }
+    .cm-success { display: none; text-align: center; padding: 1.5rem 0 0.5rem; }
+    .cm-success .cm-icon { font-size: 2.6rem; margin-bottom: 0.5rem; }
+    .cm-success p { font-size: 1rem; color: var(--ink); line-height: 1.5; }
+
     /* ── Animations ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
@@ -432,6 +522,155 @@
 
     // ── Init ────────────────────────────────────────────────────────
     setLang(getLangFromURL());
+  </script>
+
+  <!-- ── Footer ── -->
+  <footer class="webapp-footer">
+    <a href="#" class="footer-contact" id="footerContact">✉ Contattami</a>
+    <span class="footer-sep">·</span>
+    <span id="footerCopyright">© <span id="footerYear"></span> Steven G Kukla</span>
+  </footer>
+
+  <!-- ── Contact modal ── -->
+  <div class="cm-backdrop" id="cmBackdrop" role="dialog" aria-modal="true">
+    <div class="cm-card">
+      <button class="cm-close" id="cmClose" aria-label="Close">&times;</button>
+      <h2 id="cmTitle">Contatta Steve</h2>
+      <p class="cm-sub" id="cmSub">Invia un messaggio — Steve risponderà via email.</p>
+      <div id="cmFormWrap">
+        <form id="cmForm" action="https://formspree.io/f/xgonzewl" method="POST">
+          <label id="cmLabelName">Il tuo Nome</label>
+          <input type="text" name="name" required autocomplete="name">
+          <label id="cmLabelEmail">La tua Email</label>
+          <input type="email" name="email" required autocomplete="email">
+          <label id="cmLabelMsg">Il tuo Messaggio</label>
+          <textarea name="message" required></textarea>
+          <div class="cm-error" id="cmError">Qualcosa è andato storto. Riprova.</div>
+          <button type="submit" class="cm-submit" id="cmSubmit">Invia Messaggio</button>
+        </form>
+      </div>
+      <div class="cm-success" id="cmSuccess">
+        <div class="cm-icon">✉️</div>
+        <p id="cmSuccessMsg">Grazie! Il tuo messaggio è stato inviato.<br>Steve ti contatterà presto.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Footer year ──────────────────────────────────────────────────
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // ── Contact modal language strings ──────────────────────────────
+    const CM = {
+      it: {
+        contact:    '✉ Contattami',
+        title:      'Contatta Steve',
+        sub:        'Invia un messaggio — Steve risponderà via email.',
+        labelName:  'Il tuo Nome',
+        labelEmail: 'La tua Email',
+        labelMsg:   'Il tuo Messaggio',
+        submit:     'Invia Messaggio',
+        sending:    'Invio in corso…',
+        error:      'Qualcosa è andato storto. Riprova.',
+        success:    'Grazie! Il tuo messaggio è stato inviato.<br>Steve ti contatterà presto.',
+      },
+      en: {
+        contact:    '✉ Contact Me',
+        title:      'Contact Steve',
+        sub:        'Send a message — Steve will reply by email.',
+        labelName:  'Your Name',
+        labelEmail: 'Your Email',
+        labelMsg:   'Your Message',
+        submit:     'Send Message',
+        sending:    'Sending…',
+        error:      'Something went wrong. Please try again.',
+        success:    'Thank you! Your message has been sent.<br>Steve will be in touch soon.',
+      }
+    };
+
+    // Hook into existing setLang to update footer + modal text
+    const _origSetLang = setLang;
+    setLang = function(lang) {
+      _origSetLang(lang);
+      const c = CM[lang] || CM.it;
+      document.getElementById('footerContact').textContent  = c.contact;
+      document.getElementById('cmTitle').textContent        = c.title;
+      document.getElementById('cmSub').textContent          = c.sub;
+      document.getElementById('cmLabelName').textContent    = c.labelName;
+      document.getElementById('cmLabelEmail').textContent   = c.labelEmail;
+      document.getElementById('cmLabelMsg').textContent     = c.labelMsg;
+      document.getElementById('cmSubmit').textContent       = c.submit;
+      document.getElementById('cmError').textContent        = c.error;
+      document.getElementById('cmSuccessMsg').innerHTML     = c.success;
+    };
+
+    // Re-run so footer + modal text get set on load
+    setLang(getLangFromURL());
+
+    // ── Modal open/close ────────────────────────────────────────────
+    const cmBackdrop = document.getElementById('cmBackdrop');
+    const cmClose    = document.getElementById('cmClose');
+    const cmForm     = document.getElementById('cmForm');
+    const cmSubmit   = document.getElementById('cmSubmit');
+    const cmError    = document.getElementById('cmError');
+    const cmSuccess  = document.getElementById('cmSuccess');
+    const cmFormWrap = document.getElementById('cmFormWrap');
+
+    document.getElementById('footerContact').addEventListener('click', function(e) {
+      e.preventDefault();
+      cmBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeCM() {
+      cmBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(function() {
+        cmForm.reset();
+        cmError.style.display   = 'none';
+        cmSuccess.style.display = 'none';
+        cmFormWrap.style.display = 'block';
+        cmSubmit.disabled = false;
+        cmSubmit.textContent = CM[currentLang].submit;
+      }, 300);
+    }
+
+    cmClose.addEventListener('click', closeCM);
+    cmBackdrop.addEventListener('click', function(e) {
+      if (e.target === cmBackdrop) closeCM();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && cmBackdrop.classList.contains('open')) closeCM();
+    });
+
+    // ── AJAX submit ─────────────────────────────────────────────────
+    cmForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      cmSubmit.disabled = true;
+      cmError.style.display = 'none';
+      cmSubmit.textContent = CM[currentLang].sending;
+
+      fetch(cmForm.action, {
+        method: 'POST',
+        body: new FormData(cmForm),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res) {
+        if (res.ok) {
+          cmFormWrap.style.display = 'none';
+          cmSuccess.style.display  = 'block';
+        } else {
+          cmError.style.display = 'block';
+          cmSubmit.disabled = false;
+          cmSubmit.textContent = CM[currentLang].submit;
+        }
+      })
+      .catch(function() {
+        cmError.style.display = 'block';
+        cmSubmit.disabled = false;
+        cmSubmit.textContent = CM[currentLang].submit;
+      });
+    });
   </script>
 
 </body>
