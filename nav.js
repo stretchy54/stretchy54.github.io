@@ -105,4 +105,119 @@
     if (btn) applyLang(btn.dataset.lang);
   });
 
+  // ── Contact modal ─────────────────────────────────────────────────────
+
+  // Inject modal HTML once into the page
+  const modalHTML = `
+<div class="contact-modal-backdrop" id="contactModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+  <div class="contact-modal">
+    <button class="contact-modal-close" id="contactModalClose" aria-label="Close">&times;</button>
+    <h2 id="contactModalTitle" data-en="Contact Steve" data-it="Contatta Steve">Contact Steve</h2>
+    <p class="contact-modal-sub" data-en="Send a message — Steve will reply by email." data-it="Invia un messaggio — Steve risponderà via email.">Send a message — Steve will reply by email.</p>
+
+    <div id="contactFormWrap">
+      <form id="contactForm" action="https://formspree.io/f/xgonzewl" method="POST">
+        <label for="contactName" data-en="Your Name" data-it="Il tuo Nome">Your Name</label>
+        <input type="text" id="contactName" name="name" required autocomplete="name">
+
+        <label for="contactEmail" data-en="Your Email" data-it="La tua Email">Your Email</label>
+        <input type="email" id="contactEmail" name="email" required autocomplete="email">
+
+        <label for="contactMessage" data-en="Your Message" data-it="Il tuo Messaggio">Your Message</label>
+        <textarea id="contactMessage" name="message" required></textarea>
+
+        <div class="contact-modal-error" id="contactError" data-en="Something went wrong. Please try again." data-it="Qualcosa è andato storto. Riprova.">Something went wrong. Please try again.</div>
+        <button type="submit" class="contact-modal-submit" id="contactSubmit" data-en="Send Message" data-it="Invia Messaggio">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-modal-success" id="contactSuccess">
+      <div class="success-icon">✉️</div>
+      <p data-en="Thank you! Your message has been sent.<br>Steve will be in touch soon." data-it="Grazie! Il tuo messaggio è stato inviato.<br>Steve ti contatterà presto.">Thank you! Your message has been sent.<br>Steve will be in touch soon.</p>
+    </div>
+  </div>
+</div>`;
+
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+  const backdrop = document.getElementById('contactModalBackdrop');
+  const closeBtn = document.getElementById('contactModalClose');
+  const form     = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('contactSubmit');
+  const errorMsg  = document.getElementById('contactError');
+  const successDiv = document.getElementById('contactSuccess');
+  const formWrap   = document.getElementById('contactFormWrap');
+
+  function openModal() {
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Apply current language to modal elements
+    const lang = (window.SGKLang ? window.SGKLang.get('en') : 'en');
+    backdrop.querySelectorAll('[data-en]').forEach(el => {
+      el.innerHTML = (lang === 'it' && el.dataset.it) ? el.dataset.it : el.dataset.en;
+    });
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset form state after a short delay
+    setTimeout(function() {
+      form.reset();
+      errorMsg.style.display = 'none';
+      successDiv.style.display = 'none';
+      formWrap.style.display = 'block';
+      submitBtn.disabled = false;
+    }, 300);
+  }
+
+  // Open on any .contact-trigger click
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.contact-trigger')) {
+      e.preventDefault();
+      openModal();
+    }
+  });
+
+  // Close on X button or backdrop click
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function(e) {
+    if (e.target === backdrop) closeModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
+  });
+
+  // AJAX submit to Formspree
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    errorMsg.style.display = 'none';
+    const lang = (window.SGKLang ? window.SGKLang.get('en') : 'en');
+    submitBtn.textContent = lang === 'it' ? 'Invio in corso…' : 'Sending…';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(res) {
+      if (res.ok) {
+        formWrap.style.display = 'none';
+        successDiv.style.display = 'block';
+      } else {
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = lang === 'it' ? 'Invia Messaggio' : 'Send Message';
+      }
+    })
+    .catch(function() {
+      errorMsg.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = lang === 'it' ? 'Invia Messaggio' : 'Send Message';
+    });
+  });
+
 })();

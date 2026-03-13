@@ -312,3 +312,154 @@ body::before {
 .nav-lang-btn:hover { border-color: var(--stone); }
 .nav-lang-btn.active { border-color: var(--terracotta); background: rgba(180,90,60,0.12); }
 @media (max-width: 768px) { .nav-lang { margin-left: 0.5rem; } .nav-lang-btn { font-size: 1rem; padding: 0.15rem 0.35rem; } }
+
+/* ── Contact trigger link ── */
+.contact-trigger {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-trigger:hover { color: var(--parchment); }
+.btn.contact-trigger:hover { color: var(--terracotta); }
+
+/* ── Contact modal backdrop ── */
+.contact-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 14, 6, 0.72);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(3px);
+}
+.contact-modal-backdrop.open {
+  display: flex;
+}
+
+/* ── Modal card ── */
+.contact-modal {
+  background: var(--parchment);
+  border-radius: 14px;
+  padding: 2.4rem 2.2rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.38);
+  position: relative;
+  animation: modalIn 0.22s ease both;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+.contact-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--smoke);
+  transition: color 0.2s;
+  padding: 0.2rem 0.4rem;
+}
+.contact-modal-close:hover { color: var(--charcoal); }
+.contact-modal h2 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.02em;
+}
+.contact-modal .contact-modal-sub {
+  font-family: var(--font-accent);
+  font-size: 0.88rem;
+  color: var(--smoke);
+  margin-bottom: 1.6rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Form fields ── */
+.contact-modal label {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--umber);
+  margin-bottom: 0.3rem;
+  margin-top: 1rem;
+}
+.contact-modal label:first-of-type { margin-top: 0; }
+.contact-modal input,
+.contact-modal textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 0.65rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--dark-ink);
+  transition: border-color 0.18s;
+  outline: none;
+}
+.contact-modal input:focus,
+.contact-modal textarea:focus {
+  border-color: var(--terracotta);
+}
+.contact-modal textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+.contact-modal-submit {
+  display: block;
+  width: 100%;
+  margin-top: 1.4rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--terracotta);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.contact-modal-submit:hover  { background: var(--umber); }
+.contact-modal-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Success / error states ── */
+.contact-modal-success {
+  display: none;
+  text-align: center;
+  padding: 1.5rem 0 0.5rem;
+}
+.contact-modal-success .success-icon { font-size: 2.6rem; margin-bottom: 0.5rem; }
+.contact-modal-success p {
+  font-family: var(--font-accent);
+  font-size: 1rem;
+  color: var(--charcoal);
+  line-height: 1.5;
+}
+.contact-modal-error {
+  display: none;
+  font-family: var(--font-accent);
+  font-size: 0.88rem;
+  color: #b91c1c;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .contact-modal { padding: 2rem 1.3rem 1.6rem; }
+  .contact-modal h2 { font-size: 1.4rem; }
+}
