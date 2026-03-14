@@ -22,14 +22,14 @@ webapp pages. Free, requires a Google account to set up a GA4 property and obtai
 a Measurement ID (G-XXXXXXXXXX). Shows visitor counts, page popularity, geography,
 device types, and traffic sources across both the website and webapp.
 
-### Writing page — add SGK Poems blog embed or preview
-The blog at `sgkpoems.blogspot.com` is linked but not previewed. A recent-posts
-widget or a few featured poems could enrich the Writing page.
-
 ### SEO & meta tags audit
 Confirm all pages have meaningful `<meta description>` tags, Open Graph tags
 (`og:title`, `og:image`), and that `sgk.html` has a Twitter card tag so links
 shared on social media display a preview image.
+
+### Writing page — SGK Poems blog (sgkpoems.blogspot.com)
+Now superseded by poems.html. Consider whether old Blogspot site should be
+retired or left as-is.
 
 ---
 
@@ -65,7 +65,14 @@ shared on social media display a preview image.
   auto-pause across all 31 players
 - `sgk-music.html`: "About the Songs & Music" collapsible added below "The Albums" heading;
   "New to the music?" / How to Listen banner removed
-- `how-to-listen.html` deleted from site; all navigation links removed from all pages;
-  How to Listen nav item removed from all 6 remaining SGK pages;
-  How to Listen button removed from `writing.html` content area
+- `how-to-listen.html` deleted from site; all navigation links removed from all pages
 - Mobile whitespace tightened across all pages (Claude Desktop session)
+- `poems.json` created: all 32 poems from sgkpoems.blogspot.com, newest first, with
+  line breaks and inline HTML formatting (bold, italic) preserved
+- `poems.html` created: dedicated Poems page with collapsible panels, bilingual chrome,
+  added to nav between Writing and Music on all 6 SGK pages
+- Home page: Poem of the Month card added to Featured Work section (now 2×2 grid);
+  "Read this Poem →" link passes poem title as URL param to auto-open on poems.html
+- `writing.html`: Blogspot link replaced with card linking to poems.html
+- Home page sculpture list corrected: stale filenames (Greek Guy, old Ibex, old Horse
+  of Torino) replaced with current correct filenames
