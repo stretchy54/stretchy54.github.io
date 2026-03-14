@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poems – SGK | Steven G Kukla</title>
+  <meta name="description" content="Poems, short stories and meditations by Steven G Kukla." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { background: var(--parchment); border-bottom: 1px solid var(--stone); padding: 3.5rem 2rem 2.5rem; text-align: center; }
+    .poems-layout { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    /* ── Loading / error state ── */
+    .poems-status { text-align: center; font-family: var(--font-accent); font-style: italic; color: var(--smoke); padding: 3rem 0; }
+
+    /* ── Poem count ── */
+    .poems-count { font-family: var(--font-accent); font-size: 0.82rem; letter-spacing: 0.1em; color: var(--smoke); text-align: center; margin-bottom: 2rem; text-transform: uppercase; }
+
+    /* ── Each poem panel ── */
+    .poem-panel { border: 1px solid var(--parchment); border-radius: 4px; background: var(--warm-white); box-shadow: var(--shadow-card); margin-bottom: 1rem; overflow: hidden; }
+
+    /* ── Toggle button ── */
+    .poem-toggle {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      background: transparent;
+      border: none;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.18s;
+    }
+    .poem-toggle:hover { background: var(--parchment); }
+    .poem-toggle[aria-expanded="true"] { background: var(--parchment); border-bottom: 1px solid var(--stone); }
+    .poem-toggle-left { flex: 1; min-width: 0; }
+    .poem-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--umber);
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+    .poem-date {
+      font-family: var(--font-accent);
+      font-size: 0.78rem;
+      color: var(--smoke);
+      letter-spacing: 0.06em;
+    }
+    .poem-chevron {
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      transition: transform 0.25s;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .poem-toggle[aria-expanded="true"] .poem-chevron { transform: rotate(180deg); }
+
+    /* ── Poem body ── */
+    .poem-body { display: none; padding: 1.6rem 1.8rem 1.8rem; }
+    .poem-body.open { display: block; }
+    .poem-note {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--parchment);
+    }
+    .poem-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--charcoal);
+      /* Preserve line breaks without collapsing spaces */
+      white-space: pre-line;
+    }
+    /* Allow HTML tags inside poem-text to render correctly */
+    .poem-text em  { font-style: italic; font-family: var(--font-accent); }
+    .poem-text strong { font-weight: 700; color: var(--umber); }
+
+    @media (max-width: 480px) {
+      .poem-toggle { padding: 1rem 1.1rem; }
+      .poem-body { padding: 1.2rem 1.2rem 1.5rem; }
+      .poem-title { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="sgk.html">SGK</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li><a href="sgk.html" data-en="Home" data-it="Home">Home</a></li>
+      <li><a href="about.html" data-en="About" data-it="Chi Sono">About</a></li>
+      <li><a href="sculpture.html" data-en="Sculpture" data-it="Scultura">Sculpture</a></li>
+      <li><a href="poses.html" data-en="Poses" data-it="Pose">Poses</a></li>
+      <li><a href="writing.html" data-en="Writing" data-it="Scritti">Writing</a></li>
+      <li><a href="poems.html" data-en="Poems" data-it="Poesie">Poems</a></li>
+      <li><a href="sgk-music.html" data-en="Music" data-it="Musica">Music</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <header class="page-hero fade-up">
+    <p style="font-family:var(--font-accent);font-style:italic;color:var(--terracotta);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;" data-en="Poems &amp; Stories" data-it="Poesie e Storie">Poems &amp; Stories</p>
+    <h1 class="section-title" data-en="SGK &lt;em&gt;Poems&lt;/em&gt;" data-it="Poesie &lt;em&gt;SGK&lt;/em&gt;">SGK <em>Poems</em></h1>
+    <p style="font-family:var(--font-accent);font-style:italic;color:var(--smoke);margin-top:0.5rem;" data-en="Click any title to read the poem." data-it="Clicca su un titolo per leggere la poesia.">Click any title to read the poem.</p>
+  </header>
+
+  <div class="poems-layout">
+    <div class="poems-status" id="poems-status" data-en="Loading poems…" data-it="Caricamento poesie…">Loading poems…</div>
+    <div class="poems-count" id="poems-count" style="display:none;"></div>
+    <div id="poems-list"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-name">Steven G Kukla</p>
+  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="#" class="contact-trigger" data-en="✉ Contact Me" data-it="✉ Contattami">✉ Contact Me</a></p>
+  <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.6;">© <span class="copyright-year">2026</span> Steven G Kukla. All rights reserved.</p>
+</footer>
+
+<script src="lang.js"></script>
+<script src="nav.js"></script>
+<script>
+(function() {
+
+  var currentLang = window.SGKLang ? window.SGKLang.get('en') : 'en';
+
+  function formatDate(dateStr) {
+    // dateStr is "YYYY-MM-DD"
+    var months_en = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var months_it = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+    var parts = dateStr.split('-');
+    var y = parts[0], m = parseInt(parts[1],10) - 1, d = parseInt(parts[2],10);
+    var months = currentLang === 'it' ? months_it : months_en;
+    return months[m] + ' ' + d + ', ' + y;
+  }
+
+  // Convert \n to <br> for rendering, while preserving HTML tags
+  function renderText(text) {
+    // Replace literal \n with <br>
+    return text.replace(/\n/g, '<br>');
+  }
+
+  // Plain text teaser (strip HTML tags, take first 3-4 non-empty lines)
+  function getTeaser(text, maxLines) {
+    var plain = text.replace(/<[^>]+>/g, '');
+    var lines = plain.split('\n').map(function(l){ return l.trim(); }).filter(function(l){ return l.length > 0; });
+    return lines.slice(0, maxLines || 4).join('\n');
+  }
+
+  function renderPoems(poems) {
+    var status  = document.getElementById('poems-status');
+    var countEl = document.getElementById('poems-count');
+    var list    = document.getElementById('poems-list');
+
+    status.style.display = 'none';
+    countEl.style.display = 'block';
+    countEl.textContent = currentLang === 'it'
+      ? poems.length + ' poesie e storie'
+      : poems.length + ' poems & stories';
+
+    list.innerHTML = '';
+
+    poems.forEach(function(poem, idx) {
+      var bodyId   = 'poem-body-' + idx;
+      var toggleId = 'poem-toggle-' + idx;
+
+      var panel = document.createElement('div');
+      panel.className = 'poem-panel fade-up';
+
+      var noteHtml = poem.note
+        ? '<div class="poem-note">' + poem.note + '</div>'
+        : '';
+
+      panel.innerHTML =
+        '<button class="poem-toggle" id="' + toggleId + '" aria-expanded="false" aria-controls="' + bodyId + '">' +
+          '<div class="poem-toggle-left">' +
+            '<div class="poem-title">' + poem.title + '</div>' +
+            '<div class="poem-date">' + formatDate(poem.date) + '</div>' +
+          '</div>' +
+          '<span class="poem-chevron">▼</span>' +
+        '</button>' +
+        '<div class="poem-body" id="' + bodyId + '">' +
+          noteHtml +
+          '<div class="poem-text">' + renderText(poem.text) + '</div>' +
+        '</div>';
+
+      var toggle = panel.querySelector('.poem-toggle');
+      var body   = panel.querySelector('.poem-body');
+      toggle.addEventListener('click', function() {
+        var isOpen = body.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      list.appendChild(panel);
+    });
+  }
+
+  fetch('poems.json')
+    .then(function(r) {
+      if (!r.ok) throw new Error('Failed to load poems.json');
+      return r.json();
+    })
+    .then(function(poems) {
+      // Already sorted newest first in the JSON
+      renderPoems(poems);
+    })
+    .catch(function(err) {
+      var status = document.getElementById('poems-status');
+      status.textContent = currentLang === 'it'
+        ? 'Impossibile caricare le poesie. Riprova più tardi.'
+        : 'Unable to load poems. Please try again later.';
+    });
+
+})();
+</script>
+</body>
+</html>

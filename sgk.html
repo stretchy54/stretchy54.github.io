@@ -72,6 +72,7 @@
       <li><a href="sculpture.html" data-en="Sculpture" data-it="Scultura">Sculpture</a></li>
       <li><a href="poses.html" data-en="Poses" data-it="Pose">Poses</a></li>
       <li><a href="writing.html" data-en="Writing" data-it="Scritti">Writing</a></li>
+      <li><a href="poems.html" data-en="Poems" data-it="Poesie">Poems</a></li>
       <li><a href="sgk-music.html" data-en="Music" data-it="Musica">Music</a></li>
     </ul>
   </div>
@@ -118,7 +119,7 @@
     <h2 class="section-title" id="featured-heading" data-en="Featured &lt;em&gt;Work&lt;/em&gt;" data-it="Lavoro &lt;em&gt;In Evidenza&lt;/em&gt;">Featured <em>Work</em></h2>
     <p class="section-subtitle" data-en="A new selection each month from across disciplines" data-it="Una nuova selezione ogni mese da tutte le discipline">A new selection each month from across disciplines</p>
     <hr class="divider" />
-    <div class="featured-grid" style="grid-template-columns: repeat(3,1fr);">
+    <div class="featured-grid" style="grid-template-columns: repeat(2,1fr);">
 
       <!-- Sculpture of the Month -->
       <div class="featured-card">
@@ -140,6 +141,17 @@
           <p class="featured-card-desc" id="monthly-track-desc"></p>
           <audio id="monthly-track-audio" controls style="width:100%;margin-bottom:0.8rem;"></audio>
           <a href="sgk-music.html" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;" data-en="Music Page" data-it="Pagina Musica">Music Page</a>
+        </div>
+      </div>
+
+      <!-- Poem of the Month -->
+      <div class="featured-card">
+        <div class="featured-card-body" style="padding-top:1.8rem;">
+          <div class="featured-card-label" data-en="📜 Poem of the Month" data-it="📜 Poesia del Mese">📜 Poem of the Month</div>
+          <h3 class="featured-card-title" id="monthly-poem-title">Loading…</h3>
+          <p class="featured-card-desc" id="monthly-poem-date"></p>
+          <p class="featured-card-desc" id="monthly-poem-teaser" style="font-style:italic;white-space:pre-line;line-height:1.8;"></p>
+          <a href="poems.html" class="btn btn-outline" style="font-size:0.75rem;padding:0.45rem 1rem;" data-en="Read this Poem →" data-it="Leggi questa Poesia →">Read this Poem →</a>
         </div>
       </div>
 
@@ -199,17 +211,17 @@
     { file: 'IMG_6308.jpg',                               title: 'Ancient King',            desc: 'Brazilian Black Steatite Soapstone.' },
     { file: 'Bruno2_SGK.jpeg',                            title: 'Bruno',                   desc: 'Carrara Marble, Valdicastello Italy.' },
     { file: 'Arabic_Horse_Slate_Nov2020.jpg',             title: 'Arabic Horse',            desc: 'VT Black Slate, November 2020.' },
-    { file: 'Ibex_Final_1.jpeg',                          title: 'Athtar, the Ibex God',    desc: 'Indiana Limestone.' },
+    { file: 'Ibex_Final_4.jpeg',                          title: 'Athtar, the Ibex God',    desc: 'Limestone, October 2022.' },
     { file: 'SpiritBearMeet_Slate_Oct2020.jpg',           title: 'Makwa Meets Spirit Bear', desc: 'VT Black Slate, October 2020.' },
     { file: 'SelfPortrait_Feb2020.JPG',                   title: 'Self Portrait',           desc: 'Laguna Clay, February 2020.' },
     { file: 'Leo_Aug2019.jpg',                            title: 'Leo',                     desc: 'VT Green Slate, August 2019.' },
     { file: 'RedslateGal.jpg',                            title: 'Red Slate Gal',           desc: 'VT Red Slate.' },
-    { file: 'IMG_5101.jpg',                               title: 'Horse of Torino',         desc: 'Danby Marble.' },
+    { file: 'TurinoHorse_VT_Marble_Aug2018.jpg',          title: 'Horse of Torino',         desc: 'Danby Marble, August 2018.' },
     { file: 'Taragina_Guilford_Week5_16Oct2016.jpg',      title: 'Tanagrina',               desc: 'Danby Marble, October 2016.' },
     { file: 'Cat_4May2014_2.JPG',                         title: 'Cat (Elegance)',          desc: 'Indiana Limestone, May 2014.' },
     { file: 'SOFE_Home_27Apr2013.JPG',                    title: 'SOFE',                    desc: 'Indiana Limestone, April 2013.' },
     { file: 'SGK_MarbleProject_VT_Oct2012.jpg',           title: 'Torso',                   desc: 'Danby Marble, October 2012.' },
-    { file: 'Greek_Guy_January_2024._waterbasedClay.jpg', title: 'Greek Guy',               desc: 'Water-based Clay, January 2024.' },
+    { file: 'IMG_6624.jpg',                               title: 'Halloween Cat',           desc: 'VT Black Slate, 2019.' },
   ];
   const s = sculptures[monthSeed % sculptures.length];
   document.getElementById('monthly-sculpture-img').src = 'sculpture/' + s.file;
@@ -266,8 +278,23 @@
   document.getElementById('monthly-track-title').textContent = t.title;
   document.getElementById('monthly-track-desc').textContent = 'Strong Roots, Good Fruit · ' + t.album;
   const audioEl = document.getElementById('monthly-track-audio');
-  audioEl.src = t.url;
-  audioEl.preload = 'metadata';
+  // Poem of the Month — random pick from poems.json
+  fetch('poems.json')
+    .then(function(r){ return r.json(); })
+    .then(function(poems) {
+      var poem = poems[monthSeed % poems.length];
+      var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var parts = poem.date.split('-');
+      var dateStr = months[parseInt(parts[1],10)-1] + ' ' + parseInt(parts[2],10) + ', ' + parts[0];
+      // Strip HTML tags for teaser, take first 4 non-empty lines
+      var plain = poem.text.replace(/<[^>]+>/g, '');
+      var lines = plain.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>0;});
+      var teaser = lines.slice(0,4).join('\n');
+      document.getElementById('monthly-poem-title').textContent = poem.title;
+      document.getElementById('monthly-poem-date').textContent  = dateStr;
+      document.getElementById('monthly-poem-teaser').textContent = teaser;
+    })
+    .catch(function(){});
 </script>
 </body>
 </html>
