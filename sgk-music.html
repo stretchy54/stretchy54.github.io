@@ -14,24 +14,14 @@
     .page-hero .section-title em { color: var(--stone); }
     .page-hero p { font-family: var(--font-accent); font-style: italic; color: var(--stone); margin-top: 0.6rem; }
     .music-layout { max-width: 900px; margin: 0 auto; padding: 4rem 2rem 5rem; }
-    .credits-box { background: var(--parchment); border: 1px solid var(--stone); border-left: 4px solid var(--terracotta); border-radius: 4px; padding: 1.5rem 2rem; margin-bottom: 3.5rem; font-family: var(--font-accent); font-size: 0.95rem; font-style: italic; color: var(--charcoal); line-height: 1.8; }
-    .credits-box strong { font-style: normal; color: var(--umber); }
     .albums-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3.5rem; }
-    .album-card { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
-    .album-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); }
+    .album-card { background: var(--sand); border: 1px solid var(--parchment); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; }
     .album-cover { position: relative; overflow: hidden; background: var(--charcoal); aspect-ratio: 1; }
-    .album-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, filter 0.3s; }
-    .album-card:hover .album-cover img { transform: scale(1.04); filter: brightness(0.85); }
-    .album-play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
-    .album-card:hover .album-play-overlay { opacity: 1; }
-    .play-btn { width: 64px; height: 64px; border-radius: 50%; background: rgba(245,239,228,0.92); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.2s; }
-    .album-card:hover .play-btn { transform: scale(1.1); }
+    .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .album-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
     .album-vol { font-family: var(--font-accent); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.3rem; }
     .album-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--umber); margin-bottom: 0.4rem; }
     .album-desc { font-family: var(--font-accent); font-style: italic; font-size: 0.85rem; color: var(--smoke); line-height: 1.6; flex: 1; margin-bottom: 1.2rem; }
-    .album-link { display: flex; align-items: center; gap: 0.4rem; font-family: var(--font-body); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terracotta); border-bottom: 1px solid transparent; transition: border-color 0.2s; width: fit-content; }
-    .album-link:hover { border-color: var(--terracotta); }
     .distro-section { background: var(--parchment); border: 1px solid var(--stone); border-radius: 4px; padding: 2rem 2.5rem; text-align: center; }
     .distro-section h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--umber); margin-bottom: 0.4rem; }
     .distro-section p { font-family: var(--font-accent); font-style: italic; font-size: 0.9rem; color: var(--smoke); margin-bottom: 1.2rem; }
@@ -39,74 +29,54 @@
     .platform-tag { background: var(--sand); border: 1px solid var(--stone); padding: 0.25rem 0.8rem; border-radius: 2rem; font-size: 0.8rem; color: var(--umber); font-family: var(--font-body); }
     @media (max-width: 580px) { .albums-grid { grid-template-columns: 1fr; } }
 
-    /* ── Collapsible track listing ── */
-    .tracklist-section { margin-bottom: 2.5rem; }
+    /* ── Track dropdown inside album card ── */
     .tracklist-toggle {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      background: var(--sand);
+      gap: 0.5rem;
+      background: var(--parchment);
       border: 1px solid var(--stone);
       border-radius: 4px;
-      padding: 1.1rem 1.6rem;
+      padding: 0.75rem 1rem;
       cursor: pointer;
       font-family: var(--font-display);
-      font-size: 1rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--umber);
       text-align: left;
       transition: background 0.2s, border-color 0.2s;
+      margin-top: auto;
     }
-    .tracklist-toggle:hover { background: var(--parchment); border-color: var(--clay); }
+    .tracklist-toggle:hover { background: var(--warm-white); border-color: var(--clay); }
     .tracklist-toggle[aria-expanded="true"] { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
-    .tracklist-chevron { font-size: 0.9rem; color: var(--terracotta); transition: transform 0.25s; flex-shrink: 0; }
+    .tracklist-chevron { font-size: 0.8rem; color: var(--terracotta); transition: transform 0.25s; flex-shrink: 0; }
     .tracklist-toggle[aria-expanded="true"] .tracklist-chevron { transform: rotate(180deg); }
     .tracklist-body {
       display: none;
       border: 1px solid var(--stone);
       border-top: none;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
+      border-radius: 0 0 4px 4px;
       background: var(--warm-white);
-      padding: 0.5rem 0 1rem;
+      padding: 0.25rem 0 0.75rem;
+      margin: 0 0 0 0;
     }
     .tracklist-body.open { display: block; }
-    .tracklist-vol {
-      font-family: var(--font-accent);
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      padding: 1rem 1.6rem 0.4rem;
-    }
     .tl-track {
       display: flex;
       align-items: baseline;
-      gap: 0.7rem;
-      padding: 0.45rem 1.6rem;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
       border-bottom: 1px solid rgba(200,184,154,0.3);
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       line-height: 1.4;
+      flex-wrap: wrap;
     }
     .tl-track:last-child { border-bottom: none; }
-    .tl-num { font-family: var(--font-accent); font-size: 0.75rem; color: var(--smoke); min-width: 2rem; flex-shrink: 0; }
-    .tl-name { font-family: var(--font-body); color: var(--charcoal); flex: 1; }
-    .tl-flag { flex-shrink: 0; font-size: 0.85rem; }
-    .tl-link { font-family: var(--font-body); font-size: 0.75rem; color: var(--terracotta); text-decoration: underline; text-underline-offset: 2px; flex-shrink: 0; transition: color 0.15s; }
-    .tl-link:hover { color: var(--umber); }
-    @media (max-width: 480px) { .tl-track { flex-wrap: wrap; } .tl-link { width: 100%; padding-left: 2.7rem; } }
-
-    /* ── Inline audio player in track rows ── */
-    .tl-audio {
-      width: 100%;
-      margin-top: 0.4rem;
-      accent-color: var(--terracotta);
-      height: 32px;
-    }
-    .tl-track { flex-wrap: wrap; }
-    .tl-track .tl-name { flex: 1; min-width: 120px; }
+    .tl-num { font-family: var(--font-accent); font-size: 0.72rem; color: var(--smoke); min-width: 1.8rem; flex-shrink: 0; }
+    .tl-name { font-family: var(--font-body); color: var(--charcoal); flex: 1; min-width: 100px; }
+    .tl-audio { width: 100%; margin-top: 0.3rem; accent-color: var(--terracotta); height: 30px; }
   </style>
 </head>
 <body>
@@ -140,7 +110,6 @@
   <div class="music-layout">
 
     <h2 class="section-title fade-up" data-en="The &lt;em&gt;Albums&lt;/em&gt;" data-it="Gli &lt;em&gt;Album&lt;/em&gt;">The <em>Albums</em></h2>
-    <p class="section-subtitle fade-up delay-1" data-en="Click an album to listen on YouTube" data-it="Clicca un album per ascoltare su YouTube">Click an album to listen on YouTube</p>
     <hr class="divider" />
 
     <p class="lang-content fade-up" data-lang="it" style="font-family:var(--font-accent);font-style:italic;color:var(--smoke);font-size:0.95rem;margin-bottom:1rem;padding:0.8rem 1rem;border-left:3px solid var(--stone);background:var(--sand);">Ci scusiamo: solo tre canzoni sono cantate in italiano. Forse un giorno troverò un collaboratore che mi aiuti a creare le versioni italiane degli album.</p>
@@ -153,144 +122,105 @@
       <a class="btn btn-primary" href="how-to-listen.html" data-en="How to Listen" data-it="Come Ascoltare">How to Listen</a>
     </div>
 
-    <div class="tracklist-section fade-up">
-      <button class="tracklist-toggle" aria-expanded="false" aria-controls="tracklist-body" id="tracklist-toggle">
-        <span data-en="Full Track Listing — All 31 Songs" data-it="Elenco Completo — Tutti i 31 Brani">Full Track Listing — All 31 Songs</span>
-        <span class="tracklist-chevron">▼</span>
-      </button>
-      <div class="tracklist-body" id="tracklist-body" role="region" aria-labelledby="tracklist-toggle">
-
-        <div class="tracklist-vol" data-en="Volume 1" data-it="Volume 1">Volume 1</div>
-
-        <div class="tl-track"><span class="tl-num">1-1</span><span class="tl-name">Opening</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-1%20Opening.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-2</span><span class="tl-name">Strong Roots Good Fruit</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-2%20Strong%20Roots%20Good%20Fruit.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-3</span><span class="tl-name">Daunia's Song</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-3%20Daunia's%20Song.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-4</span><span class="tl-name">Shepherd's Song</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-4%20Shepherd's%20Song.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-5</span><span class="tl-name">Song of the Traturri</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-5%20Song%20of%20the%20Traturri.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-6</span><span class="tl-name">Old Song of the Church Leaders</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-6%20Old%20Song%20of%20the%20Church%20Leaders.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-7</span><span class="tl-name">Old Song of the Civic Leaders</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-7%20Old%20Song%20of%20the%20Civic%20Leaders.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-8</span><span class="tl-name">New Song of Joy</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-8%20New%20Song%20of%20Joy.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-9</span><span class="tl-name">Song of Babin the Stone Carver</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-9%20Song%20of%20Babin%20the%20Stone%20Carver%20.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-10</span><span class="tl-name">Oh, Oh, Oh, Leo</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-10%20Oh%2C%20Oh%2C%20Oh%2C%20Leo.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-11</span><span class="tl-name">Oh, Oh, Leo (Italiano) 🇮🇹</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-11%20Oh%2C%20Oh%2C%20Leo%20(Italian).m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-12</span><span class="tl-name">New Civic Song</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-12%20New%20Civic%20Song.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-13</span><span class="tl-name">Waldensian Song of Hope</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-13%20Waldensian%20Song%20of%20Hope.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-14</span><span class="tl-name">Song of the Great Grand Inquisitor</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-14%20Song%20of%20the%20Great%20Grand%20Inquisitor.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-15</span><span class="tl-name">Village Women's Song of Protest</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-15%20Village%20Women's%20Song%20of%20Protest.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-16</span><span class="tl-name">Song of the Emigrants</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-16%20Song%20of%20the%20Emigrants.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-17</span><span class="tl-name">Song of the Agenti</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-17%20Song%20of%20the%20Agenti.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-18</span><span class="tl-name">Song of Despair and Decision</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-18%20Song%20of%20Despair%20and%20Decision.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">1-19</span><span class="tl-name">Song of Despair and Decision (Italiano) 🇮🇹</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol1/1-19%20Song%20of%20Despair%20and%20Decision%20(Italian).m4a"></audio></div>
-
-        <div class="tracklist-vol" style="margin-top:0.8rem;" data-en="Volume 2" data-it="Volume 2">Volume 2</div>
-
-        <div class="tl-track"><span class="tl-num">2-1</span><span class="tl-name">Song of Scaramuccia</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-1%20Song%20of%20Scaramuccia.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-2</span><span class="tl-name">Song of the Women's Roar</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-2%20Song%20of%20the%20Women's%20Roar.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-3</span><span class="tl-name">Song of Acceptance</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-3%20Song%20of%20Acceptance.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-4</span><span class="tl-name">Song of Amadin</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-4%20Song%20of%20Amadin.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-5</span><span class="tl-name">War No More</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-5%20War%20No%20More.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-6</span><span class="tl-name">Educate and Advocate</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-6%20Educate%20and%20Advocate.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-7</span><span class="tl-name">Educate and Advocate (Italiano) 🇮🇹</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-7%20Educate%20and%20Advocate%20(Italian).m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-8</span><span class="tl-name">Song of the Spirits of the Ancestors</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-8%20Song%20of%20the%20Spirits%20of%20the%20Ancestors.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-9</span><span class="tl-name">Immigrants No More</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-9%20Immigrants%20No%20More.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-10</span><span class="tl-name">La Leonessa Foot Press</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-10%20La%20Leonessa%20Foot%20Press.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-11</span><span class="tl-name">La Leonessa</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-11%20La%20Leonessa.m4a"></audio></div>
-
-        <div class="tl-track"><span class="tl-num">2-12</span><span class="tl-name">Closing</span>
-          <audio class="tl-audio" controls preload="none" src="music/vol2/2-12%20Closing.m4a"></audio></div>
-
-      </div>
-    </div>
-
     <div class="albums-grid">
 
-      <a class="album-card fade-up" href="https://www.youtube.com/playlist?list=OLAK5uy_kWr7iuxO4sa8CozTTx-0bVnxqv49Nzmxs" target="_blank" rel="noopener" aria-label="Strong Roots, Good Fruit Vol. 1 on YouTube">
+      <!-- ── Volume 1 ── -->
+      <div class="album-card fade-up">
         <div class="album-cover">
           <img src="media/SRGF_MdP_Album_Cover_Vol1.jpeg" alt="Strong Roots, Good Fruit Vol. 1 album cover" loading="lazy" />
-          <div class="album-play-overlay" aria-hidden="true">
-            <div class="play-btn">▶</div>
-          </div>
         </div>
         <div class="album-body">
           <div class="album-vol">Volume 1</div>
           <div class="album-title">Strong Roots, Good Fruit</div>
           <p class="album-desc" data-en="The first album — poems from the book transformed into original songs." data-it="Il primo album — poesie del libro trasformate in canzoni originali.">The first album — poems from the book transformed into original songs.</p>
-          <span class="album-link" data-en="Listen on YouTube →" data-it="Ascolta su YouTube →">Listen on YouTube →</span>
+          <button class="tracklist-toggle" aria-expanded="false" aria-controls="vol1-tracks" id="vol1-toggle">
+            <span data-en="Vol 1 Song Tracks (19 songs)" data-it="Tracce Vol 1 (19 canzoni)">Vol 1 Song Tracks (19 songs)</span>
+            <span class="tracklist-chevron">▼</span>
+          </button>
         </div>
-      </a>
+        <div class="tracklist-body" id="vol1-tracks" role="region" aria-labelledby="vol1-toggle">
+          <div class="tl-track"><span class="tl-num">1-1</span><span class="tl-name">Opening</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-1%20Opening.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-2</span><span class="tl-name">Strong Roots Good Fruit</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-2%20Strong%20Roots%20Good%20Fruit.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-3</span><span class="tl-name">Daunia's Song</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-3%20Daunia's%20Song.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-4</span><span class="tl-name">Shepherd's Song</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-4%20Shepherd's%20Song.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-5</span><span class="tl-name">Song of the Traturri</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-5%20Song%20of%20the%20Traturri.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-6</span><span class="tl-name">Old Song of the Church Leaders</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-6%20Old%20Song%20of%20the%20Church%20Leaders.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-7</span><span class="tl-name">Old Song of the Civic Leaders</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-7%20Old%20Song%20of%20the%20Civic%20Leaders.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-8</span><span class="tl-name">New Song of Joy</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-8%20New%20Song%20of%20Joy.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-9</span><span class="tl-name">Song of Babin the Stone Carver</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-9%20Song%20of%20Babin%20the%20Stone%20Carver%20.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-10</span><span class="tl-name">Oh, Oh, Oh, Leo</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-10%20Oh%2C%20Oh%2C%20Oh%2C%20Leo.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-11</span><span class="tl-name">Oh, Oh, Leo (Italiano) 🇮🇹</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-11%20Oh%2C%20Oh%2C%20Leo%20(Italian).m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-12</span><span class="tl-name">New Civic Song</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-12%20New%20Civic%20Song.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-13</span><span class="tl-name">Waldensian Song of Hope</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-13%20Waldensian%20Song%20of%20Hope.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-14</span><span class="tl-name">Song of the Great Grand Inquisitor</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-14%20Song%20of%20the%20Great%20Grand%20Inquisitor.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-15</span><span class="tl-name">Village Women's Song of Protest</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-15%20Village%20Women's%20Song%20of%20Protest.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-16</span><span class="tl-name">Song of the Emigrants</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-16%20Song%20of%20the%20Emigrants.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-17</span><span class="tl-name">Song of the Agenti</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-17%20Song%20of%20the%20Agenti.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-18</span><span class="tl-name">Song of Despair and Decision</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-18%20Song%20of%20Despair%20and%20Decision.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">1-19</span><span class="tl-name">Song of Despair and Decision (Italiano) 🇮🇹</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol1/1-19%20Song%20of%20Despair%20and%20Decision%20(Italian).m4a"></audio></div>
+        </div>
+      </div>
 
-      <a class="album-card fade-up delay-1" href="https://www.youtube.com/playlist?list=OLAK5uy_kvHoPJBo4VX_8JuRpNDUcoLtDD1f-bRtI" target="_blank" rel="noopener" aria-label="Strong Roots, Good Fruit Vol. 2 on YouTube">
+      <!-- ── Volume 2 ── -->
+      <div class="album-card fade-up delay-1">
         <div class="album-cover">
           <img src="media/SRGF_MdP_Album_Cover_Vol2.png" alt="Strong Roots, Good Fruit Vol. 2 album cover" loading="lazy" />
-          <div class="album-play-overlay" aria-hidden="true">
-            <div class="play-btn">▶</div>
-          </div>
         </div>
         <div class="album-body">
           <div class="album-vol">Volume 2</div>
           <div class="album-title">Strong Roots, Good Fruit</div>
           <p class="album-desc" data-en="The second album — continuing the musical journey of family, heritage, and memory." data-it="Il secondo album — continuando il viaggio musicale di famiglia, eredità e memoria.">The second album — continuing the musical journey of family, heritage, and memory.</p>
-          <span class="album-link" data-en="Listen on YouTube →" data-it="Ascolta su YouTube →">Listen on YouTube →</span>
+          <button class="tracklist-toggle" aria-expanded="false" aria-controls="vol2-tracks" id="vol2-toggle">
+            <span data-en="Vol 2 Song Tracks (12 songs)" data-it="Tracce Vol 2 (12 canzoni)">Vol 2 Song Tracks (12 songs)</span>
+            <span class="tracklist-chevron">▼</span>
+          </button>
         </div>
-      </a>
+        <div class="tracklist-body" id="vol2-tracks" role="region" aria-labelledby="vol2-toggle">
+          <div class="tl-track"><span class="tl-num">2-1</span><span class="tl-name">Song of Scaramuccia</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-1%20Song%20of%20Scaramuccia.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-2</span><span class="tl-name">Song of the Women's Roar</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-2%20Song%20of%20the%20Women's%20Roar.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-3</span><span class="tl-name">Song of Acceptance</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-3%20Song%20of%20Acceptance.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-4</span><span class="tl-name">Song of Amadin</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-4%20Song%20of%20Amadin.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-5</span><span class="tl-name">War No More</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-5%20War%20No%20More.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-6</span><span class="tl-name">Educate and Advocate</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-6%20Educate%20and%20Advocate.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-7</span><span class="tl-name">Educate and Advocate (Italiano) 🇮🇹</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-7%20Educate%20and%20Advocate%20(Italian).m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-8</span><span class="tl-name">Song of the Spirits of the Ancestors</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-8%20Song%20of%20the%20Spirits%20of%20the%20Ancestors.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-9</span><span class="tl-name">Immigrants No More</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-9%20Immigrants%20No%20More.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-10</span><span class="tl-name">La Leonessa Foot Press</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-10%20La%20Leonessa%20Foot%20Press.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-11</span><span class="tl-name">La Leonessa</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-11%20La%20Leonessa.m4a"></audio></div>
+          <div class="tl-track"><span class="tl-num">2-12</span><span class="tl-name">Closing</span>
+            <audio class="tl-audio" controls preload="none" src="music/vol2/2-12%20Closing.m4a"></audio></div>
+        </div>
+      </div>
 
     </div>
 
@@ -322,14 +252,24 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  // Collapsible track listing
-  (function() {
-    var btn  = document.getElementById('tracklist-toggle');
-    var body = document.getElementById('tracklist-body');
+  // Collapsible track dropdowns
+  ['vol1', 'vol2'].forEach(function(vol) {
+    var btn  = document.getElementById(vol + '-toggle');
+    var body = document.getElementById(vol + '-tracks');
     btn.addEventListener('click', function() {
       var isOpen = body.classList.toggle('open');
       btn.setAttribute('aria-expanded', isOpen);
     });
-  })();
+  });
+
+  // Auto-pause: stop all other players when a new one starts
+  var allAudio = document.querySelectorAll('audio.tl-audio');
+  allAudio.forEach(function(player) {
+    player.addEventListener('play', function() {
+      allAudio.forEach(function(other) {
+        if (other !== player) other.pause();
+      });
+    });
+  });
 </script>
 </html>
