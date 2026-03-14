@@ -94,7 +94,6 @@
       <li><a href="poses.html" data-en="Poses" data-it="Pose">Poses</a></li>
       <li><a href="writing.html" data-en="Writing" data-it="Scritti">Writing</a></li>
       <li><a href="sgk-music.html" data-en="Music" data-it="Musica">Music</a></li>
-      <li><a href="how-to-listen.html" data-en="How to Listen" data-it="Come Ascoltare">How to Listen</a></li>
     </ul>
   </div>
 </nav>
@@ -114,12 +113,29 @@
 
     <p class="lang-content fade-up" data-lang="it" style="font-family:var(--font-accent);font-style:italic;color:var(--smoke);font-size:0.95rem;margin-bottom:1rem;padding:0.8rem 1rem;border-left:3px solid var(--stone);background:var(--sand);">Ci scusiamo: solo tre canzoni sono cantate in italiano. Forse un giorno troverò un collaboratore che mi aiuti a creare le versioni italiane degli album.</p>
 
-    <div style="background:var(--sand);border:1px solid var(--parchment);border-radius:4px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;" class="fade-up">
-      <div>
-        <p style="font-family:var(--font-display);font-weight:600;color:var(--umber);margin-bottom:0.2rem;" data-en="New to the music?" data-it="Nuovo alla musica?">New to the music?</p>
-        <p style="font-family:var(--font-accent);font-style:italic;font-size:0.88rem;color:var(--smoke);" data-en="Learn about editions, formats, and the best way to listen." data-it="Scopri le edizioni, i formati e il modo migliore per ascoltare.">Learn about editions, formats, and the best way to listen.</p>
+    <!-- ── About the Songs collapsible ── -->
+    <div class="tracklist-section fade-up" style="margin-bottom:2.5rem;">
+      <button class="tracklist-toggle" aria-expanded="false" aria-controls="about-songs-body" id="about-songs-toggle">
+        <span data-en="About the Songs &amp; Music" data-it="Le Canzoni e la Musica">About the Songs &amp; Music</span>
+        <span class="tracklist-chevron">▼</span>
+      </button>
+      <div class="tracklist-body" id="about-songs-body" role="region" aria-labelledby="about-songs-toggle" style="padding:1.5rem 1.8rem;">
+
+        <div class="lang-content" data-lang="en">
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin-bottom:1rem;">My book <em>"Strong Roots, Good Fruit"</em> contains over 25 poems, intended as song lyrics. However, I'm not a singer nor musician, so I leveraged AI tools to turn my poems into digital song and music tracks.</p>
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin-bottom:1rem;">My contributions as the <em>AI media composer</em> included: writing the original lyrics, specifying the song structure, arrangement, song styling, vocal and instrument types, while the tool (Suno AI) actually generated what you hear.</p>
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin-bottom:1rem;">The resultant song and music audio files were mastered with the tool MasterChannel, and two albums created and digitally distributed by DistroKid to over 20 online music sites, worldwide, as well as on YouTube.</p>
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin:0;"><strong>The songs and instrumentals are now available</strong> (sung in English, with only 3 in Italian) to help bring the story to life. I hope you enjoy listening to them as you read the book.</p>
+        </div>
+
+        <div class="lang-content" data-lang="it" style="display:none;">
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin-bottom:1rem;">Il mio libro <em>"Radici Forti, Frutti Buoni"</em> contiene oltre 25 poesie, concepite come testi di canzoni. Tuttavia, non sono un cantante né un musicista, quindi ho utilizzato strumenti di intelligenza artificiale per trasformare le mie poesie in tracce musicali digitali.</p>
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin-bottom:1rem;">Il mio contributo come <em>compositore AI media</em> ha incluso: la scrittura dei testi originali, la definizione della struttura delle canzoni, l'arrangiamento, lo stile, i tipi di voce e di strumento, mentre lo strumento (Suno AI) ha generato ciò che si ascolta.</p>
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin-bottom:1rem;">I file audio risultanti sono stati masterizzati con MasterChannel e due album sono stati creati e distribuiti digitalmente da DistroKid su oltre 20 siti musicali online, in tutto il mondo, oltre che su YouTube.</p>
+          <p style="font-family:var(--font-body);font-size:0.95rem;line-height:1.85;color:var(--charcoal);margin:0;"><strong>Le canzoni e le composizioni strumentali sono ora disponibili</strong> (cantate in inglese, con solo 3 in italiano) per dare vita alla storia. Spero che vi piacciano mentre leggete il libro.</p>
+        </div>
+
       </div>
-      <a class="btn btn-primary" href="how-to-listen.html" data-en="How to Listen" data-it="Come Ascoltare">How to Listen</a>
     </div>
 
     <div class="albums-grid">
@@ -252,14 +268,16 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  // Collapsible track dropdowns
-  ['vol1', 'vol2'].forEach(function(vol) {
-    var btn  = document.getElementById(vol + '-toggle');
-    var body = document.getElementById(vol + '-tracks');
-    btn.addEventListener('click', function() {
-      var isOpen = body.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen);
-    });
+  // Collapsible track dropdowns + About the Songs
+  ['vol1', 'vol2', 'about-songs'].forEach(function(id) {
+    var btn  = document.getElementById(id + '-toggle');
+    var body = document.getElementById(id + '-tracks') || document.getElementById(id + '-body');
+    if (btn && body) {
+      btn.addEventListener('click', function() {
+        var isOpen = body.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    }
   });
 
   // Auto-pause: stop all other players when a new one starts
