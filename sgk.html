@@ -293,6 +293,9 @@
       document.getElementById('monthly-poem-title').textContent = poem.title;
       document.getElementById('monthly-poem-date').textContent  = dateStr;
       document.getElementById('monthly-poem-teaser').textContent = teaser;
+      // Wire the link to auto-open this poem on poems.html
+      var readLink = document.querySelector('[data-en="Read this Poem →"]');
+      if (readLink) readLink.href = 'poems.html?open=' + encodeURIComponent(poem.title);
     })
     .catch(function(){});
 </script>

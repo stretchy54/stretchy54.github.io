@@ -217,6 +217,27 @@
     .then(function(poems) {
       // Already sorted newest first in the JSON
       renderPoems(poems);
+
+      // Auto-open a poem if ?open=Title is in the URL
+      var params = new URLSearchParams(window.location.search);
+      var openTitle = params.get('open');
+      if (openTitle) {
+        // Find the panel whose title matches
+        var panels = document.querySelectorAll('.poem-panel');
+        panels.forEach(function(panel) {
+          var titleEl = panel.querySelector('.poem-title');
+          if (titleEl && titleEl.textContent.trim() === openTitle.trim()) {
+            var toggle = panel.querySelector('.poem-toggle');
+            var body   = panel.querySelector('.poem-body');
+            body.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+            // Scroll smoothly to it after a short delay
+            setTimeout(function() {
+              panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+          }
+        });
+      }
     })
     .catch(function(err) {
       var status = document.getElementById('poems-status');
