@@ -30,11 +30,15 @@
     .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,18,8,0.92); align-items: center; justify-content: center; padding: 2rem; }
     .lightbox.open { display: flex; }
     .lightbox-inner { max-width: 820px; width: 100%; position: relative; }
-    .lightbox-inner img { width: 100%; max-height: 70vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
-    .lightbox-caption { text-align: center; margin-top: 1.2rem; }
-    .lightbox-caption strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--parchment); }
-    .lightbox-caption span { font-family: var(--font-accent); font-style: italic; font-size: 0.9rem; color: var(--stone); }
-    .lightbox-close { position: absolute; top: -1.5rem; right: 0; background: none; border: none; color: var(--stone); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0.25rem 0.5rem; transition: color 0.2s; }
+    .lightbox-inner img { width: 100%; max-height: 62vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .lightbox-caption { text-align: center; margin-top: 1.2rem; padding: 0 0.5rem; }
+    .lightbox-title { display: block; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--parchment); margin-bottom: 0.5rem; letter-spacing: 0.02em; line-height: 1.3; }
+    .lightbox-pills { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.6rem; }
+    .lightbox-year { font-family: var(--font-accent); font-size: 0.78rem; letter-spacing: 0.12em; color: #b59440; background: rgba(181,148,64,0.15); border: 1px solid rgba(181,148,64,0.35); padding: 0.15rem 0.65rem; border-radius: 2rem; }
+    .lightbox-medium { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); background: rgba(255,255,255,0.08); border: 1px solid rgba(200,184,154,0.25); padding: 0.15rem 0.65rem; border-radius: 2rem; }
+    .lightbox-desc { font-family: var(--font-accent); font-style: italic; font-size: 0.9rem; color: var(--stone); line-height: 1.6; max-width: 600px; margin: 0 auto; }
+    .lightbox-note { display: block; margin-top: 0.45rem; font-family: var(--font-accent); font-size: 0.78rem; color: var(--terracotta); letter-spacing: 0.04em; }
+    .lightbox-close { position: absolute; top: -1.8rem; right: 0; background: none; border: none; color: var(--stone); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0.25rem 0.5rem; transition: color 0.2s; }
     .lightbox-close:hover { color: var(--parchment); }
     @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; } .gallery-caption { padding: 0.7rem; } }
     @media (max-width: 380px) { .gallery-grid { grid-template-columns: 1fr; } }
@@ -422,8 +426,13 @@
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
     <img id="lightbox-img" src="" alt="" />
     <div class="lightbox-caption">
-      <strong id="lightbox-title"></strong>
-      <span id="lightbox-meta"></span>
+      <strong class="lightbox-title" id="lightbox-title"></strong>
+      <div class="lightbox-pills">
+        <span class="lightbox-year" id="lightbox-year"></span>
+        <span class="lightbox-medium" id="lightbox-medium"></span>
+      </div>
+      <p class="lightbox-desc" id="lightbox-desc"></p>
+      <span class="lightbox-note" id="lightbox-note"></span>
     </div>
   </div>
 </div>
@@ -450,19 +459,38 @@
     });
   });
 
-  const lb = document.getElementById('lightbox');
+  const lb    = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
-  const lbTitle = document.getElementById('lightbox-title');
-  const lbMeta = document.getElementById('lightbox-meta');
 
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => {
-      const img = item.querySelector('img');
+      const img    = item.querySelector('img');
       if (!img) return;
+      const title  = item.querySelector('.gallery-title').textContent.trim();
+      const meta   = item.querySelector('.gallery-meta').textContent.trim();
+      const medium = item.querySelector('.gallery-medium-tag').textContent.trim();
+
+      // Extract year — look for 4-digit year in meta text
+      const yearMatch = meta.match(/\b(20\d{2}|19\d{2})\b/);
+      const year = yearMatch ? yearMatch[1] : '';
+
+      // Extract destiny note — anything indicating what happened to the piece
+      const noteMatch = meta.match(/\b(sold[^.]*|commission[^.]*|gifted[^.]*|donated[^.]*)/i);
+      const note = noteMatch ? noteMatch[0].charAt(0).toUpperCase() + noteMatch[0].slice(1) : '';
+
+      // Build clean description — strip the destiny note from the displayed description
+      const cleanMeta = meta.replace(/[.\s]*\b(sold[^.]*|commission[^.]*|gifted[^.]*|donated[^.]*)/i, '').trim().replace(/\.$/, '');
+
       lbImg.src = img.src;
       lbImg.alt = img.alt;
-      lbTitle.textContent = item.querySelector('.gallery-title').textContent;
-      lbMeta.textContent = item.querySelector('.gallery-meta').textContent;
+      document.getElementById('lightbox-title').textContent  = title;
+      document.getElementById('lightbox-year').textContent   = year;
+      document.getElementById('lightbox-medium').textContent = medium;
+      document.getElementById('lightbox-desc').textContent   = cleanMeta;
+      const noteEl = document.getElementById('lightbox-note');
+      noteEl.textContent  = note;
+      noteEl.style.display = note ? 'block' : 'none';
+
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
     });
@@ -471,7 +499,6 @@
   document.getElementById('lightbox-close').addEventListener('click', closeLb);
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
-  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-</script>
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }</script>
 </body>
 </html>
