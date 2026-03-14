@@ -30,15 +30,11 @@
     .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(26,18,8,0.92); align-items: center; justify-content: center; padding: 2rem; }
     .lightbox.open { display: flex; }
     .lightbox-inner { max-width: 820px; width: 100%; position: relative; }
-    .lightbox-inner img { width: 100%; max-height: 62vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
-    .lightbox-caption { text-align: center; margin-top: 1.2rem; padding: 0 0.5rem; }
-    .lightbox-title { display: block; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--parchment); margin-bottom: 0.5rem; letter-spacing: 0.02em; line-height: 1.3; }
-    .lightbox-pills { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.6rem; }
-    .lightbox-year { font-family: var(--font-accent); font-size: 0.78rem; letter-spacing: 0.12em; color: #b59440; background: rgba(181,148,64,0.15); border: 1px solid rgba(181,148,64,0.35); padding: 0.15rem 0.65rem; border-radius: 2rem; }
-    .lightbox-medium { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); background: rgba(255,255,255,0.08); border: 1px solid rgba(200,184,154,0.25); padding: 0.15rem 0.65rem; border-radius: 2rem; }
-    .lightbox-desc { font-family: var(--font-accent); font-style: italic; font-size: 0.9rem; color: var(--stone); line-height: 1.6; max-width: 600px; margin: 0 auto; }
-    .lightbox-note { display: block; margin-top: 0.45rem; font-family: var(--font-accent); font-size: 0.78rem; color: var(--terracotta); letter-spacing: 0.04em; }
-    .lightbox-close { position: absolute; top: -1.8rem; right: 0; background: none; border: none; color: var(--stone); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0.25rem 0.5rem; transition: color 0.2s; }
+    .lightbox-inner img { width: 100%; max-height: 70vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .lightbox-caption { text-align: center; margin-top: 1.2rem; }
+    .lightbox-caption strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--parchment); }
+    .lightbox-caption span { font-family: var(--font-accent); font-style: italic; font-size: 0.9rem; color: var(--stone); }
+    .lightbox-close { position: absolute; top: -1.5rem; right: 0; background: none; border: none; color: var(--stone); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0.25rem 0.5rem; transition: color 0.2s; }
     .lightbox-close:hover { color: var(--parchment); }
     @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; } .gallery-caption { padding: 0.7rem; } }
     @media (max-width: 380px) { .gallery-grid { grid-template-columns: 1fr; } }
@@ -86,7 +82,6 @@
   <div class="gallery-wrap">
     <div class="gallery-grid" id="gallery" role="list">
 
-      <!-- 2025 -->
       <article class="gallery-item fade-up" data-medium="clay" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/They_1_14July2025.JPG" alt="They — Naturalistic Portrait" loading="lazy" />
@@ -98,31 +93,7 @@
         </div>
       </article>
 
-      <!-- 2024 -->
       <article class="gallery-item fade-up delay-1" data-medium="clay" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/San Francesco_ 4_clay.jpg" alt="San Francesco d'Assisi" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">San Francesco d'Assisi</div>
-          <div class="gallery-meta">Original sculpture. Water-based Clay, January 2024</div>
-          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up delay-2" data-medium="clay" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Greek_Guy_January_2024._waterbasedClay.jpg" alt="Greek Guy — Water-based Clay" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Greek Guy</div>
-          <div class="gallery-meta">Water-based Clay, January 2024</div>
-          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
-        </div>
-      </article>
-
-      <!-- 2023 -->
-      <article class="gallery-item fade-up" data-medium="clay" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/Pretty_Francesca copy.jpeg" alt="Pretty Francesca" loading="lazy" />
         </div>
@@ -133,53 +104,18 @@
         </div>
       </article>
 
-      <article class="gallery-item fade-up delay-1" data-medium="clay" role="listitem">
+      <article class="gallery-item fade-up delay-2" data-medium="clay" role="listitem">
         <div class="gallery-img-wrap">
-          <img src="sculpture/Franscesca_80pct.jpg" alt="Francesca 80%" loading="lazy" />
+          <img src="sculpture/San Francesco_ 4_clay.jpg" alt="San Francesco d'Assisi" loading="lazy" />
         </div>
         <div class="gallery-caption">
-          <div class="gallery-title">Francesca – 80%</div>
-          <div class="gallery-meta">Lyme Academy, Chad Fisher, Teacher. Chavaut Touche green clay, March 2023</div>
+          <div class="gallery-title">San Francesco d'Assisi</div>
+          <div class="gallery-meta">Original sculpture. Water-based Clay, January 2024</div>
           <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
         </div>
       </article>
 
-      <article class="gallery-item fade-up delay-2" data-medium="slate" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Skater_slate_1Jun2023.jpg" alt="Skater — hand-carved relief in Green VT Slate" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Skater</div>
-          <div class="gallery-meta">Hand-carved relief, enamel paint &amp; chalk dust. Inspired by Alex Colville. Green VT Slate, June 2023</div>
-          <span class="gallery-medium-tag" data-en="Slate" data-it="Ardesia">Slate</span>
-        </div>
-      </article>
-
-      <!-- 2022 -->
       <article class="gallery-item fade-up" data-medium="stone" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Ibex_Final_1.jpeg" alt="Athtar the Ibex God — Limestone" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Athtar, the Ibex God</div>
-          <div class="gallery-meta">Abstract interpretation of an ancient 1st century BC South Arabian sculpture. Limestone, October 2022</div>
-          <span class="gallery-medium-tag" data-en="Limestone" data-it="Calcare">Limestone</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up delay-1" data-medium="stone" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Ibex_Final_2.jpeg" alt="Athtar the Ibex God — detail view" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Athtar, the Ibex God (Detail)</div>
-          <div class="gallery-meta">Limestone, October 2022</div>
-          <span class="gallery-medium-tag" data-en="Limestone" data-it="Calcare">Limestone</span>
-        </div>
-      </article>
-
-      <!-- 2020 -->
-      <article class="gallery-item fade-up delay-2" data-medium="stone" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/1_Horsey_Alabaster_Jun2020.jpg" alt="Horsey — Rainbow Alabaster" loading="lazy" />
         </div>
@@ -190,7 +126,18 @@
         </div>
       </article>
 
-      <article class="gallery-item fade-up" data-medium="stone" role="listitem">
+      <article class="gallery-item fade-up delay-1" data-medium="slate" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Skater_slate_1Jun2023.jpg" alt="Skater — hand-carved relief in Green VT Slate" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Skater</div>
+          <div class="gallery-meta">Hand-carved relief, enamel paint &amp; chalk dust. Inspired by Alex Colville. Green VT Slate, June 2023</div>
+          <span class="gallery-medium-tag" data-en="Slate" data-it="Ardesia">Slate</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up delay-2" data-medium="stone" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/Porpoise_Wave_Sep2020.jpg" alt="Porpoise Cresting Wave — Pakistan Banded Green Onyx" loading="lazy" />
         </div>
@@ -201,69 +148,13 @@
         </div>
       </article>
 
-      <article class="gallery-item fade-up delay-1" data-medium="clay" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Divad_1Feb2020.jpg" alt="Divad figure — Non-Dry Clay" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">"Divad"</div>
-          <div class="gallery-meta">Non-Dry Clay, A9-Rig Rider 6" ivory armature, Feb 2020</div>
-          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up delay-2" data-medium="slate" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Arabic_Horse_Slate_Nov2020.jpg" alt="Arabic Horse — VT Black Slate" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Arabic Horse</div>
-          <div class="gallery-meta">VT Black Slate, Nov 2020</div>
-          <span class="gallery-medium-tag" data-en="Slate" data-it="Ardesia">Slate</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up" data-medium="slate" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/SpiritBearMeet_Slate_Oct2020.jpg" alt="Makwa Meets Spirit Bear — VT Black Slate" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Makwa Meets Spirit Bear</div>
-          <div class="gallery-meta">VT Black Slate, Oct 2020</div>
-          <span class="gallery-medium-tag" data-en="Slate" data-it="Ardesia">Slate</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up delay-1" data-medium="clay" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/SelfPortrait_Feb2020.JPG" alt="Self Portrait — Laguna Clay" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Self Portrait</div>
-          <div class="gallery-meta">Laguna Clay, Feb 2020</div>
-          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
-        </div>
-      </article>
-
-      <!-- 2019 -->
-      <article class="gallery-item fade-up delay-2" data-medium="marble" role="listitem">
+      <article class="gallery-item fade-up" data-medium="marble" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/marblegal1.JPG" alt="Marble Gal — Danby Marble" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <div class="gallery-title">Marble Gal</div>
           <div class="gallery-meta">Inspired by F. Preiss Kneeling Nude. Danby Marble, Oct 2019</div>
-          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up" data-medium="marble" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/marblegal2.JPG" alt="Marble Gal rear view — Danby Marble" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Marble Gal (Rear)</div>
-          <div class="gallery-meta">Danby Marble, Oct 2019</div>
           <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
         </div>
       </article>
@@ -275,6 +166,39 @@
         <div class="gallery-caption">
           <div class="gallery-title">"Anaximander"</div>
           <div class="gallery-meta">S14 Sheffield Clay, Oct 2019</div>
+          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up delay-2" data-medium="clay" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Franscesca_80pct.jpg" alt="Francesca 80%" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Francesca – 80%</div>
+          <div class="gallery-meta">Lyme Academy, Chad Fisher, Teacher. Chavaut Touche green clay, March 2023</div>
+          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up" data-medium="marble" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/SGK_barn_owl_Sep2017.JPG" alt="Barn Owl — Carrara Marble" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Barn Owl</div>
+          <div class="gallery-meta">Inspired by Daina Ferguson. Carrara Marble, 2017. <em>Sold in fund raiser.</em></div>
+          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up delay-1" data-medium="clay" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Divad_1Feb2020.jpg" alt="Divad figure — Non-Dry Clay" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">"Divad"</div>
+          <div class="gallery-meta">Non-Dry Clay, A9-Rig Rider 6" ivory armature, Feb 2020</div>
           <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
         </div>
       </article>
@@ -301,7 +225,62 @@
         </div>
       </article>
 
+      <article class="gallery-item fade-up delay-1" data-medium="marble" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Bruno2_SGK.jpeg" alt="Bruno — Carrara Marble, Valdicastello Italy" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Bruno</div>
+          <div class="gallery-meta">Workshop Direct Carving, Valdicastello, Italy. Carrara Marble, 2018</div>
+          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up delay-2" data-medium="slate" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Arabic_Horse_Slate_Nov2020.jpg" alt="Arabic Horse — VT Black Slate" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Arabic Horse</div>
+          <div class="gallery-meta">VT Black Slate, Nov 2020</div>
+          <span class="gallery-medium-tag" data-en="Slate" data-it="Ardesia">Slate</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up" data-medium="stone" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Ibex_Final_1.jpeg" alt="Athtar the Ibex God — Limestone" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Athtar, the Ibex God</div>
+          <div class="gallery-meta">Abstract interpretation of an ancient 1st century BC South Arabian sculpture. Limestone, October 2022</div>
+          <span class="gallery-medium-tag" data-en="Limestone" data-it="Calcare">Limestone</span>
+        </div>
+      </article>
+
       <article class="gallery-item fade-up delay-1" data-medium="slate" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/SpiritBearMeet_Slate_Oct2020.jpg" alt="Makwa Meets Spirit Bear — VT Black Slate" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Makwa Meets Spirit Bear</div>
+          <div class="gallery-meta">VT Black Slate, Oct 2020</div>
+          <span class="gallery-medium-tag" data-en="Slate" data-it="Ardesia">Slate</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up delay-2" data-medium="clay" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/SelfPortrait_Feb2020.JPG" alt="Self Portrait — Laguna Clay" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Self Portrait</div>
+          <div class="gallery-meta">Laguna Clay, Feb 2020</div>
+          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up" data-medium="slate" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/Leo_Aug2019.jpg" alt="Leo — VT Green Slate" loading="lazy" />
         </div>
@@ -309,6 +288,17 @@
           <div class="gallery-title">Leo</div>
           <div class="gallery-meta">Created for a friend. VT Green Slate, 2019</div>
           <span class="gallery-medium-tag" data-en="Slate" data-it="Ardesia">Slate</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up delay-1" data-medium="marble" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/marblegal2.JPG" alt="Marble Gal rear view — Danby Marble" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Marble Gal (Rear)</div>
+          <div class="gallery-meta">Danby Marble, Oct 2019</div>
+          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
         </div>
       </article>
 
@@ -323,30 +313,7 @@
         </div>
       </article>
 
-      <!-- 2018 -->
       <article class="gallery-item fade-up" data-medium="marble" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Bruno2_SGK.jpeg" alt="Bruno — Carrara Marble, Valdicastello Italy" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Bruno</div>
-          <div class="gallery-meta">Workshop Direct Carving, Valdicastello, Italy. Carrara Marble, 2018</div>
-          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up delay-1" data-medium="marble" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/Bruno1_SGK.jpeg" alt="Bruno 1 — Carrara Marble" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Bruno (Study)</div>
-          <div class="gallery-meta">Workshop Direct Carving, Valdicastello, Italy. Carrara Marble, 2018</div>
-          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
-        </div>
-      </article>
-
-      <article class="gallery-item fade-up delay-2" data-medium="marble" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/IMG_5101.jpg" alt="Horse of Torino — Danby Marble" loading="lazy" />
         </div>
@@ -357,19 +324,6 @@
         </div>
       </article>
 
-      <!-- 2017 -->
-      <article class="gallery-item fade-up" data-medium="marble" role="listitem">
-        <div class="gallery-img-wrap">
-          <img src="sculpture/SGK_barn_owl_Sep2017.JPG" alt="Barn Owl — Carrara Marble" loading="lazy" />
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-title">Barn Owl</div>
-          <div class="gallery-meta">Inspired by Daina Ferguson. Carrara Marble, 2017. <em>Sold in fund raiser.</em></div>
-          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
-        </div>
-      </article>
-
-      <!-- 2016 -->
       <article class="gallery-item fade-up delay-1" data-medium="marble" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/Taragina_Guilford_Week5_16Oct2016.jpg" alt="Tanagrina — Danby Marble" loading="lazy" />
@@ -381,7 +335,6 @@
         </div>
       </article>
 
-      <!-- 2014 -->
       <article class="gallery-item fade-up delay-2" data-medium="stone" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/Cat_4May2014_2.JPG" alt="Cat Elegance — Indiana Limestone" loading="lazy" />
@@ -393,7 +346,6 @@
         </div>
       </article>
 
-      <!-- 2012 -->
       <article class="gallery-item fade-up" data-medium="stone" role="listitem">
         <div class="gallery-img-wrap">
           <img src="sculpture/SOFE_Home_27Apr2013.JPG" alt="SOFE — Indiana Limestone" loading="lazy" />
@@ -416,6 +368,39 @@
         </div>
       </article>
 
+      <article class="gallery-item fade-up delay-2" data-medium="clay" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Greek_Guy_January_2024._waterbasedClay.jpg" alt="Greek Guy — Water-based Clay" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Greek Guy</div>
+          <div class="gallery-meta">Water-based Clay, January 2024</div>
+          <span class="gallery-medium-tag" data-en="Clay" data-it="Argilla">Clay</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up" data-medium="marble" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Bruno1_SGK.jpeg" alt="Bruno 1 — Carrara Marble" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Bruno (Study)</div>
+          <div class="gallery-meta">Workshop Direct Carving, Valdicastello, Italy. Carrara Marble, 2018</div>
+          <span class="gallery-medium-tag" data-en="Marble" data-it="Marmo">Marble</span>
+        </div>
+      </article>
+
+      <article class="gallery-item fade-up delay-1" data-medium="stone" role="listitem">
+        <div class="gallery-img-wrap">
+          <img src="sculpture/Ibex_Final_2.jpeg" alt="Athtar the Ibex God — detail view" loading="lazy" />
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-title">Athtar, the Ibex God (Detail)</div>
+          <div class="gallery-meta">Limestone, October 2022</div>
+          <span class="gallery-medium-tag" data-en="Limestone" data-it="Calcare">Limestone</span>
+        </div>
+      </article>
+
     </div>
   </div>
 
@@ -426,13 +411,8 @@
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
     <img id="lightbox-img" src="" alt="" />
     <div class="lightbox-caption">
-      <strong class="lightbox-title" id="lightbox-title"></strong>
-      <div class="lightbox-pills">
-        <span class="lightbox-year" id="lightbox-year"></span>
-        <span class="lightbox-medium" id="lightbox-medium"></span>
-      </div>
-      <p class="lightbox-desc" id="lightbox-desc"></p>
-      <span class="lightbox-note" id="lightbox-note"></span>
+      <strong id="lightbox-title"></strong>
+      <span id="lightbox-meta"></span>
     </div>
   </div>
 </div>
@@ -459,38 +439,19 @@
     });
   });
 
-  const lb    = document.getElementById('lightbox');
+  const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
+  const lbTitle = document.getElementById('lightbox-title');
+  const lbMeta = document.getElementById('lightbox-meta');
 
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => {
-      const img    = item.querySelector('img');
+      const img = item.querySelector('img');
       if (!img) return;
-      const title  = item.querySelector('.gallery-title').textContent.trim();
-      const meta   = item.querySelector('.gallery-meta').textContent.trim();
-      const medium = item.querySelector('.gallery-medium-tag').textContent.trim();
-
-      // Extract year — look for 4-digit year in meta text
-      const yearMatch = meta.match(/\b(20\d{2}|19\d{2})\b/);
-      const year = yearMatch ? yearMatch[1] : '';
-
-      // Extract destiny note — anything indicating what happened to the piece
-      const noteMatch = meta.match(/\b(sold[^.]*|commission[^.]*|gifted[^.]*|donated[^.]*)/i);
-      const note = noteMatch ? noteMatch[0].charAt(0).toUpperCase() + noteMatch[0].slice(1) : '';
-
-      // Build clean description — strip the destiny note from the displayed description
-      const cleanMeta = meta.replace(/[.\s]*\b(sold[^.]*|commission[^.]*|gifted[^.]*|donated[^.]*)/i, '').trim().replace(/\.$/, '');
-
       lbImg.src = img.src;
       lbImg.alt = img.alt;
-      document.getElementById('lightbox-title').textContent  = title;
-      document.getElementById('lightbox-year').textContent   = year;
-      document.getElementById('lightbox-medium').textContent = medium;
-      document.getElementById('lightbox-desc').textContent   = cleanMeta;
-      const noteEl = document.getElementById('lightbox-note');
-      noteEl.textContent  = note;
-      noteEl.style.display = note ? 'block' : 'none';
-
+      lbTitle.textContent = item.querySelector('.gallery-title').textContent;
+      lbMeta.textContent = item.querySelector('.gallery-meta').textContent;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
     });
@@ -499,6 +460,7 @@
   document.getElementById('lightbox-close').addEventListener('click', closeLb);
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
-  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }</script>
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+</script>
 </body>
 </html>
