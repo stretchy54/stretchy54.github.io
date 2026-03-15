@@ -217,10 +217,7 @@ English when Italian is selected. Add `data-en` / `data-it` attributes to every
 
 ## 🟢 Ideas / Nice-to-Have
 
-### SEO & Open Graph meta tags audit
-Confirm all pages have meaningful `<meta description>` tags, Open Graph tags
-(`og:title`, `og:image`), and that `sgk.html` has a Twitter/X card tag so links
-shared on social media display a preview image.
+
 
 ### Blogspot retirement
 `sgkpoems.blogspot.com` is superseded by `poems.html`. Steve plans to keep it
@@ -230,6 +227,12 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- SEO & Open Graph meta tags added to all 10 pages (7 SGK + 3 webapp):
+  - `<meta name="description">` on all pages
+  - Full Open Graph tags (`og:type`, `og:site_name`, `og:url`, `og:title`, `og:description`, `og:image`)
+  - Twitter/X card tags (`summary_large_image`) on all pages
+  - SGK pages: portrait for Home/About, sculpture for Sculpture/Poses, book cover for Writing/Poems, album cover for Music
+  - Webapp pages: `assets/lioness.jpg` as preview image for all 3 pages
 - Google Analytics (GA4) added to all pages — two separate properties under account **Steven G Kukla** (387635517):
   - **SGK Website** — property ID 528439226, Measurement ID G-FSH461958Y → all 7 SGK pages
   - **La Leonessa Webapp** — property ID 528385271, Measurement ID G-H006E6GDXT → index.html, music.html, viewer.html
