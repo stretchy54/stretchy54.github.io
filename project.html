@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="it" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Il Progetto La Leonessa — Steven G Kukla</title>
+  <meta name="description" content="Il progetto Strong Roots, Good Fruit — la storia di La Leonessa e di Monteleone di Puglia di Steven G Kukla." />
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="La Leonessa" />
+  <meta property="og:url"         content="https://stretchy54.github.io/project.html" />
+  <meta property="og:title"       content="Il Progetto La Leonessa — Steven G Kukla" />
+  <meta property="og:description" content="Il progetto Strong Roots, Good Fruit — la storia di La Leonessa e di Monteleone di Puglia." />
+  <meta property="og:image"       content="https://stretchy54.github.io/media/sgk_og_image.png" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Il Progetto La Leonessa — Steven G Kukla" />
+  <meta name="twitter:description" content="Il progetto Strong Roots, Good Fruit — la storia di La Leonessa e di Monteleone di Puglia." />
+  <meta name="twitter:image"       content="https://stretchy54.github.io/media/sgk_og_image.png" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H006E6GDXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H006E6GDXT');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:       #f5f0e8;
+      --ink:      #1a1a1a;
+      --muted:    #6b6361;
+      --gold:     #b59440;
+      --blue:     #2B5F8E;
+      --rose:     #7a3e32;
+      --rule:     rgba(181,148,64,0.25);
+      --shadow:   0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(181,148,64,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 100%, rgba(43,95,142,0.06) 0%, transparent 60%);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Back bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 16px;
+      background: rgba(245,240,232,0.97);
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+    }
+    .backBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), #1e4470);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(13px, 2vw, 16px);
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow);
+      transition: filter 0.15s, transform 0.15s;
+    }
+    .backBtn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    /* ── Content wrapper ── */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* ── Page title ── */
+    .page-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+    .page-subtitle {
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .gold-rule {
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── Body text ── */
+    .prose p {
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ── Section headings ── */
+    .prose h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      margin: 2.5rem 0 1rem;
+      text-align: center;
+    }
+
+    /* ── Quote / pull block ── */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      margin: 2rem 0;
+      padding: 1rem 1.5rem;
+      background: rgba(181,148,64,0.06);
+      border-radius: 0 6px 6px 0;
+    }
+    .pull-quote p {
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.3vw, 1.2rem);
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ── Lioness poem block ── */
+    .lioness-poem {
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 480px;
+      padding: 1.5rem 1rem;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .lioness-poem p {
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      line-height: 2;
+      color: var(--ink);
+      margin: 0;
+    }
+    .lioness-poem strong { font-weight: 700; }
+
+    /* ── Images ── */
+    .img-block {
+      margin: 2.5rem 0;
+      text-align: center;
+    }
+    .img-block img {
+      max-width: 100%;
+      width: auto;
+      max-height: 420px;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+    }
+    .img-caption {
+      margin-top: 0.7rem;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Two-column portrait + lioness ── */
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+      align-items: end;
+    }
+    .img-pair .img-block { margin: 0; }
+    @media (max-width: 480px) {
+      .img-pair { grid-template-columns: 1fr; }
+    }
+
+    /* ── Gratitude list ── */
+    .gratitude {
+      background: rgba(43,95,142,0.06);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+    }
+    .gratitude ul {
+      list-style: none;
+      padding: 0;
+    }
+    .gratitude li {
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      line-height: 1.8;
+      color: var(--ink);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .gratitude li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Thank you / closing ── */
+    .closing {
+      text-align: center;
+      margin: 2rem 0 0;
+      font-style: italic;
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      color: var(--muted);
+    }
+    .closing strong {
+      display: block;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+    .closing a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── Section divider ── */
+    .section-rule {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rule), transparent);
+      margin: 3rem 0;
+    }
+
+    /* ── Language content blocks ── */
+    .lang-block { display: none; }
+    .lang-block.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .content { animation: fadeUp 0.55s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- Back bar -->
+  <div class="topbar">
+    <a id="backBtn" class="backBtn" href="index.html">← <span id="backLabel">Torna alla Pagina Principale</span></a>
+  </div>
+
+  <div class="content">
+
+    <!-- ══════════════════════════════════════
+         ITALIAN CONTENT
+    ══════════════════════════════════════ -->
+    <div class="lang-block" id="block-it">
+
+      <h1 class="page-title">PROGETTO: <em>Strong Roots, Good Fruit</em></h1>
+      <p class="page-subtitle">La storia di La Leonessa e di Monteleone di Puglia</p>
+      <span class="gold-rule"></span>
+
+      <div class="prose">
+        <p>Nell'aprile 2024, io e mio figlio Daniel abbiamo intrapreso un viaggio alle radici: un tour genealogico nei luoghi di nascita dei miei nonni materni italiani, a Monteleone di Puglia e a Baranello (Molise), accompagnati da Stefano Ammirati di Southern Italy Travel. A Baranello abbiamo incontrato discendenti ancora viventi della famiglia di mio nonno: ci hanno accolto con un calore commovente, ci hanno raccontato storie di famiglia e ci hanno mostrato la grande casa in pietra dove mio nonno era nato, affacciata sulle splendide montagne del Matese.</p>
+
+        <p>A Monteleone di Puglia, il Sindaco Giovanni Campese ci ha guidati nella storia del paese: ci ha presentato immigrati e rifugiati che oggi vivono nelle strutture di accoglienza, e ci ha raccontato la trasformazione straordinaria di Monteleone in un borgo di pace, ospitalità e non violenza. A un certo punto mi ha guardato negli occhi e mi ha detto:</p>
+
+        <div class="pull-quote">
+          <p>"Le loro radici forti hanno prodotto buoni frutti. Tua nonna è partita, ma tu sei tornato. Ti accogliamo come Monteleonese. Forse, un giorno, potrai realizzare per noi una scultura, da esporre in modo permanente nel nostro paese."</p>
+        </div>
+
+        <p>Dopo quel tour ho visitato Assisi e poi sono andato a trovare un amico a Carrara. Sul volo di ritorno verso il Connecticut mi sono sentito travolto da gratitudine ed emozione: da lì è nata un'ondata creativa che non si è più fermata. Ho scritto e autopubblicato <em>Strong Roots, Good Fruit</em>, una novella grafica fantasy ispirata a questa storia; ho creato due album di musica digitale; e ho progettato una scultura digitale 3D di La Leonessa, poi scolpita in marmo Carrara Bianco Venato dal maestro artigiano Massimo Baldoni.</p>
+
+        <p>Il mio libro, più che un semplice memoir, rende omaggio al coraggio delle donne di Monteleone, al dolore dell'emigrazione e alla rinascita del paese come simbolo di pace — raccontando tutto attraverso una leggenda fantastica: una leonessa guardiana che compare nei momenti decisivi della sua storia. La scultura <em>La Leonessa</em> è il mio dono a questo piccolo paese e alla comunità di monteleonesi emigrati nel mondo. È dedicata a mia nonna Assunta (Susan), la cui presenza vive, discreta ma potente, nel racconto, nella musica, nella scultura e nei miei ricordi.</p>
+
+        <h2>Le Mie Radici</h2>
+
+        <p>Mia nonna materna Maria Assunta Capobianco (1900–1984) nacque a Monteleone di Puglia, figlia di Rocco Capobianco (1863–1941) e Maria Maddalena Casullo (1863–1909). Rocco era calzolaio; i suoi genitori erano Giovanni Capobianco e Maria Amata Nunno. I genitori di Maria Maddalena erano Lorenzo Casullo e Marianna Pozzulo, anche loro di Monteleone.</p>
+
+        <p>Nel 1906, Assunta e la sua famiglia emigrarono a Welland, in Canada, e poco dopo a Little Falls e Herkimer, nello Stato di New York (USA). Mi raccontava spesso che, a Monteleone, viveva in una casa di pietra fredda, quasi una grotta, e che ogni giorno lei e sua madre andavano a prendere l'acqua risalendo un sentiero ripido da una fontana alimentata da sorgente. Ritrovare oggi quella casa in rovina, bere la stessa acqua limpida e ripercorrere quella salita faticosa mi ha commosso fino alle lacrime.</p>
+
+        <p>Nel 1917 Assunta sposò mio nonno Angelo Gualtieri (1893–1973), nato a Baranello (Molise) ed emigrato a Herkimer nel 1910. Il loro primo figlio, mia madre Maria Gualtieri (1918–2005), nacque a Herkimer. In seguito la famiglia si trasferì nell'area di Cleveland, Ohio. Nel 1934 i miei nonni adottarono nomi americanizzati, Susan e Charles Wills, e vissero con noi quando io crescevo in un sobborgo di Cleveland.</p>
+
+        <p>Sebbene mio padre, Steve Kukla Jr., fosse di origine slovacca, la nostra casa era profondamente italoamericana. Aiutavo mio nonno a scavare fossi, posare mattoni e pigiare l'uva per fare il vino; con mia nonna raccoglievo cicoria e tarassaco, arrostivo castagne e preparavo il sugo di pomodoro e i pranzi delle feste. Loro parlavano italiano tra loro, perciò io non ho mai imparato la lingua e, per molti anni, non ho conosciuto davvero la terra da cui provenivano.</p>
+      </div>
+
+      <!-- Wedding photo -->
+      <div class="img-block">
+        <img src="media/Wedding_AngeloGualtieri-AssuntaCapobianco_26May1917.jpg" alt="Matrimonio di Angelo Gualtieri e Assunta Capobianco, 26 maggio 1917" />
+        <p class="img-caption">M. Assunta Capobianco &amp; Angelo Gualtieri — Matrimonio, Herkimer, NY USA, 1917</p>
+      </div>
+
+      <div class="prose">
+        <h2>Visione Futura</h2>
+
+        <p>La mia intenzione è portare avanti questo progetto nei prossimi anni: vorrei realizzare un trailer animato della storia e sviluppare un'esperienza immersiva e interattiva per chi osserva la statua <em>La Leonessa</em>. Credo che la storia di Monteleone di Puglia meriti di essere conosciuta da tutti e, chissà, un giorno potrebbe diventare un film d'animazione, uno spettacolo teatrale o un'operetta.</p>
+
+        <p>Questo progetto è dedicato alla memoria di mia nonna e alla mia eredità italiana; spero possa incoraggiare altri discendenti della diaspora a ritrovare e onorare le proprie radici.</p>
+      </div>
+
+      <!-- Portrait + Lioness pair -->
+      <div class="img-pair">
+        <div class="img-block">
+          <img src="media/sgk_og_image.png" alt="Steven G Kukla" />
+          <p class="img-caption">Steven G Kukla</p>
+        </div>
+        <div class="img-block">
+          <img src="media/lioness_Full_Length.jpg" alt="La Leonessa — scultura in marmo Carrara" />
+          <p class="img-caption"><em>La Leonessa</em></p>
+        </div>
+      </div>
+
+      <!-- Lioness poem -->
+      <div class="lioness-poem">
+        <p>Su <strong>due zampe posteriori</strong> —<br>una postura di <strong>ferma determinazione</strong>.</p>
+        <p><strong>Sguardo</strong> dal fuoco dell'intento —<br>chiarezza sicura per <strong>guidare</strong> e <strong>illuminare</strong> il cammino.</p>
+        <p><strong>Zampa sinistra</strong> alta, artigli pronti a colpire —<br>segno di <strong>difesa</strong> e <strong>forza</strong>.</p>
+        <p>Ma la <strong>zampa destra</strong> tesa, palmo aperto, artigli retratti —<br>segno di <strong>accoglienza, pace, compassione</strong> e <strong>carità</strong>.</p>
+        <p>E un <strong>volto fiero</strong> e <strong>fauci ringhianti</strong> —<br>coraggiosa, per <strong>ruggire la verità</strong>.</p>
+      </div>
+
+      <!-- Gratitude -->
+      <div class="gratitude">
+        <p style="font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.8rem;">Con profonda gratitudine verso chi ha reso possibile questo percorso:</p>
+        <ul>
+          <li>Giovanni Campese, Sindaco pro tempore di Monteleone di Puglia</li>
+          <li>Massimo Baldoni, maestro artigiano del marmo</li>
+          <li>Stefano Ammirati, genealogista, Southern Italy Travel</li>
+          <li>Antonio Mazzoni, maestro artigiano di utensili diamantati</li>
+          <li>Immacolata Scelzo, Consigliere comunale</li>
+        </ul>
+      </div>
+
+      <div class="closing">
+        <strong>Grazie a tutti, di cuore.</strong>
+        <p>Steven G. Kukla e sua moglie Cynthia vivono a Litchfield, Connecticut, e hanno due figli maschi e una figlia. Steven è grato di poter dedicare le sue giornate alle sue passioni: famiglia, viaggi, yoga, scrittura, escursioni, scultura figurativa su pietra e collezionismo di minerali.</p>
+        <p style="margin-top:0.8rem;"><a href="https://stretchy54.github.io/sgk.html">stretchy54.github.io/sgk.html</a></p>
+      </div>
+
+    </div><!-- end #block-it -->
+
+
+    <!-- ══════════════════════════════════════
+         ENGLISH CONTENT
+    ══════════════════════════════════════ -->
+    <div class="lang-block" id="block-en">
+
+      <h1 class="page-title">PROJECT: <em>Strong Roots, Good Fruit</em></h1>
+      <p class="page-subtitle">The Story of La Leonessa and Monteleone di Puglia</p>
+      <span class="gold-rule"></span>
+
+      <div class="prose">
+        <p>In April 2024, my son Daniel and I embarked on a genealogy tour of the birthplaces of my maternal Italian grandparents, in Monteleone di Puglia and Baranello (Molise), escorted by Stefano Ammirati of Southern Italy Travel. In Baranello we met living descendants of my grandfather's family, who welcomed us warmly, shared stories, and showed us the large stone house where my grandfather was born, overlooking the magnificent Matese Mountains.</p>
+
+        <p>In Monteleone di Puglia, Mayor Giovanni Campese shared Monteleone's detailed history, introduced us to immigrants and refugees now living in village reception facilities, and described its amazing transformation as a village of peace, acceptance and non-violence. Then he looked deeply into my eyes and said:</p>
+
+        <div class="pull-quote">
+          <p>"Their strong roots made good fruit. Your grandmother left, but you returned. We accept you back as Monteleonese. Perhaps you can one day make us a sculpture, for permanent display in our village."</p>
+        </div>
+
+        <p>After these tours, I visited Assisi and then visited a friend in Carrara. On my flight home to Connecticut, I was overwhelmed with deep gratitude and emotion, which unleashed a creative burst of activity. I wrote and self-published <em>Strong Roots, Good Fruit</em>, a historically-inspired fantasy graphic novella, created two digital music albums, and designed a 3D digital sculpture of La Leonessa, which was carved in Carrara Bianco Venato marble by master artisan Massimo Baldoni.</p>
+
+        <p>Far more than a memoir, my book honors the courage of Monteleone's women, the anguish of emigration, and celebrates the village's rebirth as a beacon of peace — told through the fantasy legend of a guardian lioness who intervenes at key moments in its history. The sculpture <em>La Leonessa</em> is my gift to this small village and its worldwide Monteleone emigrant community, and is dedicated to my grandmother Assunta (Susan), whose spirit quietly lives within my story, music, sculpture and in my memories.</p>
+
+        <h2>My Roots</h2>
+
+        <p>My maternal grandmother Maria Assunta Capobianco (1900–1984) was born in Monteleone di Puglia, daughter of Rocco Capobianco (1863–1941) and Maria Maddalena Casullo (1863–1909). Rocco was a shoemaker; his parents were Giovanni Capobianco and Maria Amata Nunno. Maria Maddalena's parents were Lorenzo Casullo and Marianna Pozzulo, also of Monteleone.</p>
+
+        <p>In 1906, Assunta and her family emigrated to Welland, Canada, and soon after to Little Falls and Herkimer, New York, USA. She told me she lived in a cold, cave-like stone home in Monteleone and carried water each day with her mother, up a steep path from a spring-fed fountain. Seeing her home now lying in ruins, tasting that same sweet fountain water, and recognizing the challenge of the steep climb brought many tears to my eyes on my tour.</p>
+
+        <p>In 1917, Assunta married my grandfather Angelo Gualtieri (1893–1973), born in Baranello, Molise, who emigrated to Herkimer in 1910. Their first child, my mother Maria Gualtieri (1918–2005), was born in Herkimer. The family later moved to the Cleveland, Ohio area. In 1934 my grandparents adopted Americanized names Susan and Charles Wills, and they lived with us when I was growing up in a suburb of Cleveland, Ohio.</p>
+
+        <p>Although my father Steve Kukla Jr. was of Slovak heritage, our household was Italian-American. I helped my grandfather dig ditches, lay bricks, and stomp grapes to make his wine, and I worked with my grandmother to gather dandelion greens and chicory, roast chestnuts, and prepare tomato sauce and holiday feasts. They spoke Italian privately, so I never learned the language and knew nothing about their homeland.</p>
+      </div>
+
+      <!-- Wedding photo -->
+      <div class="img-block">
+        <img src="media/Wedding_AngeloGualtieri-AssuntaCapobianco_26May1917.jpg" alt="Wedding of Angelo Gualtieri and Assunta Capobianco, May 26, 1917" />
+        <p class="img-caption">M. Assunta Capobianco &amp; Angelo Gualtieri — 1917 Wedding, Herkimer, NY USA</p>
+      </div>
+
+      <div class="prose">
+        <h2>Looking Ahead</h2>
+
+        <p>My intent is to continue my project over the next few years, hopefully to create an animated movie trailer of the story and develop an immersive, interactive experience for viewers of the <em>La Leonessa</em> statue. I believe the story of Monteleone di Puglia needs to be shouted from the mountaintops, and perhaps one day it may become an animated film, theatrical play or operetta.</p>
+
+        <p>My project is dedicated to the memory of my grandmother and my Italian heritage, and hopefully encourages other descendants of diaspora immigrants to reconnect with their roots.</p>
+      </div>
+
+      <!-- Portrait + Lioness pair -->
+      <div class="img-pair">
+        <div class="img-block">
+          <img src="media/sgk_og_image.png" alt="Steven G Kukla" />
+          <p class="img-caption">Steven G Kukla</p>
+        </div>
+        <div class="img-block">
+          <img src="media/lioness_Full_Length.jpg" alt="La Leonessa — Carrara marble sculpture" />
+          <p class="img-caption"><em>La Leonessa</em></p>
+        </div>
+      </div>
+
+      <!-- Lioness poem -->
+      <div class="lioness-poem">
+        <p>On hind feet —<br>a <strong>Stance</strong> of firm resolve.</p>
+        <p><strong>Gaze</strong> of fiery aim —<br>confident clarity, to lead &amp; light the way.</p>
+        <p><strong>Left</strong> arm high, claws ready to strike —<br>a sign of defense &amp; strength.</p>
+        <p>But <strong>Right</strong> arm extended, open paw, claws retracted —<br>a welcome sign of acceptance, peace &amp; non-violence.</p>
+        <p>And a fearsome <strong>Face &amp;</strong> snarling <strong>Jaws</strong> —<br>brave, to roar the truth.</p>
+      </div>
+
+      <!-- Gratitude -->
+      <div class="gratitude">
+        <p style="font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.8rem;">With deep gratitude to those who made my project possible:</p>
+        <ul>
+          <li>Giovanni Campese, Sindaco pro tempore di Monteleone di Puglia</li>
+          <li>Massimo Baldoni, maestro artigiano del marmo</li>
+          <li>Stefano Ammirati, genealogista, Southern Italy Travel</li>
+          <li>Antonio Mazzoni, maestro artigiano di utensili diamantati</li>
+          <li>Immacolata Scelzo, Consigliere comunale</li>
+        </ul>
+      </div>
+
+      <div class="closing">
+        <strong>Thank you all, from the bottom of my heart.</strong>
+        <p>Steven G Kukla and his wife Cynthia live in Litchfield, Connecticut and have 2 boys and a girl. He is grateful to fill his days with his passions: family, travel, yoga, writing, hiking, figurative stone carving, and mineral collecting.</p>
+        <p style="margin-top:0.8rem;"><a href="https://stretchy54.github.io/sgk.html">stretchy54.github.io/sgk.html</a></p>
+      </div>
+
+    </div><!-- end #block-en -->
+
+  </div><!-- end .content -->
+
+  <script src="lang.js"></script>
+  <script>
+    (function() {
+      const lang = window.SGKLang ? window.SGKLang.get('it') : 'it';
+
+      // Show correct language block
+      document.getElementById('block-it').classList.toggle('active', lang === 'it');
+      document.getElementById('block-en').classList.toggle('active', lang === 'en');
+
+      // Back button
+      document.getElementById('backBtn').href = 'index.html?lang=' + lang;
+      document.getElementById('backLabel').textContent =
+        lang === 'it' ? 'Torna alla Pagina Principale' : 'Back to Main Page';
+
+      // Update html lang attribute
+      document.documentElement.lang = lang;
+    })();
+  </script>
+
+</body>
+</html>
