@@ -148,6 +148,66 @@
       content: '♪ '; color: #2B5F8E; font-weight: 700;
     }
 
+    /* ── Sticky volume header (webapp) ── */
+    .vol-sticky-header {
+      position: sticky;
+      top: 70px; /* below the topbar */
+      z-index: 20;
+      background: rgba(245,240,232,0.97);
+      border-bottom: 1px solid rgba(181,148,64,0.2);
+      border-radius: 16px 16px 0 0;
+      padding: 14px 18px 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      backdrop-filter: blur(6px);
+      transition: box-shadow 0.2s;
+    }
+    .vol-sticky-header.is-playing {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+      border-bottom-color: #2B5F8E;
+    }
+    .vol-sticky-cover {
+      flex-shrink: 0;
+      width: 60px; height: 60px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .vol-sticky-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vol-sticky-info { flex: 1; min-width: 0; }
+    .vol-sticky-label {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b59440;
+      margin-bottom: 2px;
+    }
+    .vol-sticky-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(13px, 2vw, 16px);
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .vol-sticky-controls {
+      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    }
+    .vol-sticky-nowlabel {
+      font-style: italic;
+      font-size: clamp(11px, 1.6vw, 13px);
+      color: var(--smoke);
+      display: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+    }
+
     @media (max-width: 420px) {
       .wrap { padding-top: 20px; }
       .vol-section { padding: 20px 14px 18px; }
@@ -178,17 +238,23 @@
 
     <!-- ── Volume 1 ── -->
     <div class="vol-section">
-      <div class="cover">
-        <img src="media/SRGF_MdP_Album_Cover_Vol1.jpeg" alt="Volume 1 cover">
-      </div>
-      <div class="volTitle">Volume 1</div>
-      <div class="tracks">
-        <div class="play-all-bar" id="vol1-bar">
-          <button class="play-all-btn start" id="vol1-play-btn">▶ Play All</button>
-          <button class="play-all-btn skip"  id="vol1-skip-btn">⏭ Skip</button>
-          <button class="play-all-btn stop"  id="vol1-stop-btn">⏹ Stop</button>
-          <span class="play-all-label" id="vol1-now-label"></span>
+      <!-- Sticky header -->
+      <div class="vol-sticky-header" id="vol1-sticky">
+        <div class="vol-sticky-cover">
+          <img src="media/SRGF_MdP_Album_Cover_Vol1.jpeg" alt="Volume 1 cover" />
         </div>
+        <div class="vol-sticky-info">
+          <div class="vol-sticky-label" id="vol1-label">Volume 1</div>
+          <div class="vol-sticky-title">Strong Roots, Good Fruit</div>
+          <div class="vol-sticky-controls">
+            <button class="play-all-btn start" id="vol1-play-btn">▶ Play All</button>
+            <button class="play-all-btn skip"  id="vol1-skip-btn">⏭ Skip</button>
+            <button class="play-all-btn stop"  id="vol1-stop-btn">⏹ Stop</button>
+            <span class="vol-sticky-nowlabel" id="vol1-now-label"></span>
+          </div>
+        </div>
+      </div>
+      <div class="tracks">
 
         <div class="track">
           <div class="track-header"><span class="trackName">1-1 Opening</span></div>
@@ -290,17 +356,23 @@
 
     <!-- ── Volume 2 ── -->
     <div class="vol-section">
-      <div class="cover">
-        <img src="media/SRGF_MdP_Album_Cover_Vol2.png" alt="Volume 2 cover">
-      </div>
-      <div class="volTitle">Volume 2</div>
-      <div class="tracks">
-        <div class="play-all-bar" id="vol2-bar">
-          <button class="play-all-btn start" id="vol2-play-btn">▶ Play All</button>
-          <button class="play-all-btn skip"  id="vol2-skip-btn">⏭ Skip</button>
-          <button class="play-all-btn stop"  id="vol2-stop-btn">⏹ Stop</button>
-          <span class="play-all-label" id="vol2-now-label"></span>
+      <!-- Sticky header -->
+      <div class="vol-sticky-header" id="vol2-sticky">
+        <div class="vol-sticky-cover">
+          <img src="media/SRGF_MdP_Album_Cover_Vol2.png" alt="Volume 2 cover" />
         </div>
+        <div class="vol-sticky-info">
+          <div class="vol-sticky-label" id="vol2-label">Volume 2</div>
+          <div class="vol-sticky-title">Strong Roots, Good Fruit</div>
+          <div class="vol-sticky-controls">
+            <button class="play-all-btn start" id="vol2-play-btn">▶ Play All</button>
+            <button class="play-all-btn skip"  id="vol2-skip-btn">⏭ Skip</button>
+            <button class="play-all-btn stop"  id="vol2-stop-btn">⏹ Stop</button>
+            <span class="vol-sticky-nowlabel" id="vol2-now-label"></span>
+          </div>
+        </div>
+      </div>
+      <div class="tracks">
 
         <div class="track">
           <div class="track-header"><span class="trackName">2-1 Song of Scaramuccia</span></div>
@@ -382,12 +454,14 @@
           document.getElementById('pageSub').textContent   = 'Flag icons indicate Italian-language songs';
           document.getElementById('backLabel').textContent = 'Back to Main Page';
           document.getElementById('backBtn').href          = 'index.html?lang=en';
-          // Update Play All button labels
-          ['vol1', 'vol2'].forEach(function(v) {
+          // Update Play All button labels + volume labels
+          ['vol1', 'vol2'].forEach(function(v, i) {
             var pb = document.getElementById(v + '-play-btn');
             var sb = document.getElementById(v + '-skip-btn');
+            var lb = document.getElementById(v + '-label');
             if (pb) pb.textContent = '▶ Play All';
             if (sb) sb.textContent = '⏭ Skip';
+            if (lb) lb.textContent = i === 0 ? 'Volume 1' : 'Volume 2';
           });
         } else {
           document.documentElement.lang                    = 'it';
@@ -396,12 +470,14 @@
           document.getElementById('pageSub').textContent   = 'Le bandiere indicano le canzoni in italiano';
           document.getElementById('backLabel').textContent = 'Torna alla Pagina Principale';
           document.getElementById('backBtn').href          = 'index.html?lang=it';
-          // Update Play All button labels
-          ['vol1', 'vol2'].forEach(function(v) {
+          // Update Play All button labels + volume labels
+          ['vol1', 'vol2'].forEach(function(v, i) {
             var pb = document.getElementById(v + '-play-btn');
             var sb = document.getElementById(v + '-skip-btn');
+            var lb = document.getElementById(v + '-label');
             if (pb) pb.textContent = '▶ Riproduci Tutti';
             if (sb) sb.textContent = '⏭ Salta';
+            if (lb) lb.textContent = i === 0 ? 'Volume 1' : 'Volume 2';
           });
         }
         try {
@@ -425,11 +501,9 @@
 
       // ── Play All playlist mode ──────────────────────────────────────────
       function setupPlayAll(volId) {
-        // Find all .track divs that are direct children of the same .tracks
-        // container as the play-all-bar
-        var bar      = document.getElementById(volId + '-bar');
-        if (!bar) return;
-        var container = bar.parentNode; // the .tracks div
+        var stickyHdr = document.getElementById(volId + '-sticky');
+        var container = stickyHdr ? stickyHdr.parentNode.querySelector('.tracks') : null;
+        if (!container) return;
         var tracks   = Array.from(container.querySelectorAll('.track'));
         var audios   = tracks.map(function(t) { return t.querySelector('audio'); });
         var playBtn  = document.getElementById(volId + '-play-btn');
@@ -441,7 +515,7 @@
 
         function getTrackName(idx) {
           var el = tracks[idx].querySelector('.trackName');
-          return el ? el.textContent.replace('♪ ', '') : '';
+          return el ? el.textContent.replace('\u266a ', '') : '';
         }
 
         function setPlaying(idx) {
@@ -465,6 +539,7 @@
           stopBtn.style.display = 'none';
           nowLabel.style.display = 'none';
           nowLabel.textContent = '';
+          if (stickyHdr) stickyHdr.classList.remove('is-playing');
         }
 
         function startPlayAll() {
@@ -473,6 +548,7 @@
           skipBtn.style.display = 'inline-flex';
           stopBtn.style.display = 'inline-flex';
           nowLabel.style.display = 'inline';
+          if (stickyHdr) stickyHdr.classList.add('is-playing');
           setPlaying(0);
         }
 

@@ -127,6 +127,74 @@
     .tl-track.now-playing .tl-name::before {
       content: '♪ '; color: var(--terracotta); font-weight: 700;
     }
+
+    /* ── Sticky volume header ── */
+    .vol-sticky-header {
+      position: sticky;
+      top: var(--nav-h);
+      z-index: 20;
+      background: var(--sand);
+      border: 1px solid var(--stone);
+      border-radius: 4px 4px 0 0;
+      padding: 1rem 1.2rem 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: box-shadow 0.2s;
+    }
+    .vol-sticky-header.is-playing {
+      box-shadow: 0 4px 16px rgba(30,18,8,0.18);
+      border-bottom-color: var(--terracotta);
+    }
+    /* Cover thumbnail — full size at rest, small when playing */
+    .vol-sticky-cover {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: width 0.25s, height 0.25s;
+    }
+    .vol-sticky-cover img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .vol-sticky-info { flex: 1; min-width: 0; }
+    .vol-sticky-label {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.15rem;
+    }
+    .vol-sticky-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--umber);
+      margin-bottom: 0.4rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .vol-sticky-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .vol-sticky-nowlabel {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 0.75rem;
+      color: var(--smoke);
+      display: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSH461958Y"></script>
@@ -201,12 +269,24 @@
 
       <!-- ── Volume 1 ── -->
       <div class="album-card fade-up">
-        <div class="album-cover">
-          <img src="media/SRGF_MdP_Album_Cover_Vol1.jpeg" alt="Strong Roots, Good Fruit Vol. 1 album cover" loading="lazy" />
+        <!-- Sticky header: cover + controls -->
+        <div class="vol-sticky-header" id="vol1-sticky">
+          <div class="vol-sticky-cover">
+            <img src="media/SRGF_MdP_Album_Cover_Vol1.jpeg" alt="Vol. 1 cover" />
+          </div>
+          <div class="vol-sticky-info">
+            <div class="vol-sticky-label" data-en="Volume 1" data-it="Volume 1">Volume 1</div>
+            <div class="vol-sticky-title">Strong Roots, Good Fruit</div>
+            <div class="vol-sticky-controls">
+              <button class="play-all-btn start" id="vol1-play-btn" data-en="▶ Play All" data-it="▶ Riproduci Tutti">▶ Play All</button>
+              <button class="play-all-btn skip"  id="vol1-skip-btn" data-en="⏭ Skip" data-it="⏭ Salta">⏭ Skip</button>
+              <button class="play-all-btn stop"  id="vol1-stop-btn" data-en="⏹ Stop" data-it="⏹ Stop">⏹ Stop</button>
+              <span class="vol-sticky-nowlabel" id="vol1-now-label"></span>
+            </div>
+          </div>
         </div>
+        <!-- Album description + track toggle -->
         <div class="album-body">
-          <div class="album-vol">Volume 1</div>
-          <div class="album-title">Strong Roots, Good Fruit</div>
           <p class="album-desc" data-en="The first album — poems from the book transformed into original songs." data-it="Il primo album — poesie del libro trasformate in canzoni originali.">The first album — poems from the book transformed into original songs.</p>
           <button class="tracklist-toggle" aria-expanded="false" aria-controls="vol1-tracks" id="vol1-toggle">
             <span data-en="Vol 1 Song Tracks (19 songs)" data-it="Tracce Vol 1 (19 canzoni)">Vol 1 Song Tracks (19 songs)</span>
@@ -214,12 +294,6 @@
           </button>
         </div>
         <div class="tracklist-body" id="vol1-tracks" role="region" aria-labelledby="vol1-toggle">
-          <div class="play-all-bar" id="vol1-bar">
-            <button class="play-all-btn start" id="vol1-play-btn" data-en="▶ Play All" data-it="▶ Riproduci Tutti">▶ Play All</button>
-            <button class="play-all-btn skip"  id="vol1-skip-btn" data-en="⏭ Skip" data-it="⏭ Salta">⏭ Skip</button>
-            <button class="play-all-btn stop"  id="vol1-stop-btn" data-en="⏹ Stop" data-it="⏹ Stop">⏹ Stop</button>
-            <span class="play-all-label" id="vol1-now-label"></span>
-          </div>
           <div class="tl-track"><span class="tl-num">1-1</span><span class="tl-name">Opening</span>
             <audio class="tl-audio" controls preload="none" src="music/vol1/1-1%20Opening.m4a"></audio></div>
           <div class="tl-track"><span class="tl-num">1-2</span><span class="tl-name">Strong Roots Good Fruit</span>
@@ -263,12 +337,24 @@
 
       <!-- ── Volume 2 ── -->
       <div class="album-card fade-up delay-1">
-        <div class="album-cover">
-          <img src="media/SRGF_MdP_Album_Cover_Vol2.png" alt="Strong Roots, Good Fruit Vol. 2 album cover" loading="lazy" />
+        <!-- Sticky header: cover + controls -->
+        <div class="vol-sticky-header" id="vol2-sticky">
+          <div class="vol-sticky-cover">
+            <img src="media/SRGF_MdP_Album_Cover_Vol2.png" alt="Vol. 2 cover" />
+          </div>
+          <div class="vol-sticky-info">
+            <div class="vol-sticky-label" data-en="Volume 2" data-it="Volume 2">Volume 2</div>
+            <div class="vol-sticky-title">Strong Roots, Good Fruit</div>
+            <div class="vol-sticky-controls">
+              <button class="play-all-btn start" id="vol2-play-btn" data-en="▶ Play All" data-it="▶ Riproduci Tutti">▶ Play All</button>
+              <button class="play-all-btn skip"  id="vol2-skip-btn" data-en="⏭ Skip" data-it="⏭ Salta">⏭ Skip</button>
+              <button class="play-all-btn stop"  id="vol2-stop-btn" data-en="⏹ Stop" data-it="⏹ Stop">⏹ Stop</button>
+              <span class="vol-sticky-nowlabel" id="vol2-now-label"></span>
+            </div>
+          </div>
         </div>
+        <!-- Album description + track toggle -->
         <div class="album-body">
-          <div class="album-vol">Volume 2</div>
-          <div class="album-title">Strong Roots, Good Fruit</div>
           <p class="album-desc" data-en="The second album — continuing the musical journey of family, heritage, and memory." data-it="Il secondo album — continuando il viaggio musicale di famiglia, eredità e memoria.">The second album — continuing the musical journey of family, heritage, and memory.</p>
           <button class="tracklist-toggle" aria-expanded="false" aria-controls="vol2-tracks" id="vol2-toggle">
             <span data-en="Vol 2 Song Tracks (12 songs)" data-it="Tracce Vol 2 (12 canzoni)">Vol 2 Song Tracks (12 songs)</span>
@@ -276,12 +362,6 @@
           </button>
         </div>
         <div class="tracklist-body" id="vol2-tracks" role="region" aria-labelledby="vol2-toggle">
-          <div class="play-all-bar" id="vol2-bar">
-            <button class="play-all-btn start" id="vol2-play-btn" data-en="▶ Play All" data-it="▶ Riproduci Tutti">▶ Play All</button>
-            <button class="play-all-btn skip"  id="vol2-skip-btn" data-en="⏭ Skip" data-it="⏭ Salta">⏭ Skip</button>
-            <button class="play-all-btn stop"  id="vol2-stop-btn" data-en="⏹ Stop" data-it="⏹ Stop">⏹ Stop</button>
-            <span class="play-all-label" id="vol2-now-label"></span>
-          </div>
           <div class="tl-track"><span class="tl-num">2-1</span><span class="tl-name">Song of Scaramuccia</span>
             <audio class="tl-audio" controls preload="none" src="music/vol2/2-1%20Song%20of%20Scaramuccia.m4a"></audio></div>
           <div class="tl-track"><span class="tl-num">2-2</span><span class="tl-name">Song of the Women's Roar</span>
@@ -369,16 +449,16 @@
     var skipBtn   = document.getElementById(volId + '-skip-btn');
     var stopBtn   = document.getElementById(volId + '-stop-btn');
     var nowLabel  = document.getElementById(volId + '-now-label');
+    var stickyHdr = document.getElementById(volId + '-sticky');
     var current   = -1;
     var active    = false;
 
     function getTrackName(idx) {
       var el = tracks[idx].querySelector('.tl-name');
-      return el ? el.textContent.replace('♪ ', '') : '';
+      return el ? el.textContent.replace('\u266a ', '') : '';
     }
 
     function setPlaying(idx) {
-      // Clear previous highlight
       tracks.forEach(function(t) { t.classList.remove('now-playing'); });
       current = idx;
       if (idx < 0 || idx >= audios.length) { stopPlayAll(); return; }
@@ -400,6 +480,7 @@
       stopBtn.style.display = 'none';
       nowLabel.style.display = 'none';
       nowLabel.textContent = '';
+      if (stickyHdr) stickyHdr.classList.remove('is-playing');
     }
 
     function startPlayAll() {
@@ -408,10 +489,10 @@
       skipBtn.style.display = 'inline-flex';
       stopBtn.style.display = 'inline-flex';
       nowLabel.style.display = 'inline';
+      if (stickyHdr) stickyHdr.classList.add('is-playing');
       setPlaying(0);
     }
 
-    // Wire up ended event on each audio to advance to next
     audios.forEach(function(audio, idx) {
       audio.addEventListener('ended', function() {
         if (!active || current !== idx) return;
