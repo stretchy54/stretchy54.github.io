@@ -395,7 +395,7 @@
       current = -1;
       tracks.forEach(function(t) { t.classList.remove('now-playing'); });
       audios.forEach(function(a) { a.pause(); });
-      playBtn.style.display = '';
+      playBtn.style.display = 'inline-flex';
       skipBtn.style.display = 'none';
       stopBtn.style.display = 'none';
       nowLabel.style.display = 'none';
@@ -405,9 +405,9 @@
     function startPlayAll() {
       active = true;
       playBtn.style.display = 'none';
-      skipBtn.style.display = '';
-      stopBtn.style.display = '';
-      nowLabel.style.display = '';
+      skipBtn.style.display = 'inline-flex';
+      stopBtn.style.display = 'inline-flex';
+      nowLabel.style.display = 'inline';
       setPlaying(0);
     }
 
