@@ -298,6 +298,9 @@
   document.getElementById('monthly-track-title').textContent = t.title;
   document.getElementById('monthly-track-desc').textContent = 'Strong Roots, Good Fruit · ' + t.album;
   const audioEl = document.getElementById('monthly-track-audio');
+  audioEl.src = t.url;
+  audioEl.preload = 'metadata';
+
   // Poem of the Month — random pick from poems.json
   fetch('poems.json')
     .then(function(r){ return r.json(); })

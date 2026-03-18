@@ -425,14 +425,12 @@
 
       // ── Play All playlist mode ──────────────────────────────────────────
       function setupPlayAll(volId) {
-        var tracks   = Array.from(document.querySelectorAll('#' + volId + '-bar').length
-                         ? document.getElementById(volId + '-bar').closest('.tracks').querySelectorAll('.track')
-                         : []);
-        // Re-select correctly: all .track siblings after the bar
-        var container = document.getElementById(volId + '-bar') ?
-                        document.getElementById(volId + '-bar').closest('.tracks') : null;
-        if (!container) return;
-        tracks  = Array.from(container.querySelectorAll('.track'));
+        // Find all .track divs that are direct children of the same .tracks
+        // container as the play-all-bar
+        var bar      = document.getElementById(volId + '-bar');
+        if (!bar) return;
+        var container = bar.parentNode; // the .tracks div
+        var tracks   = Array.from(container.querySelectorAll('.track'));
         var audios   = tracks.map(function(t) { return t.querySelector('audio'); });
         var playBtn  = document.getElementById(volId + '-play-btn');
         var skipBtn  = document.getElementById(volId + '-skip-btn');
@@ -462,7 +460,7 @@
           active = false; current = -1;
           tracks.forEach(function(t) { t.classList.remove('now-playing'); });
           audios.forEach(function(a) { a.pause(); });
-          playBtn.style.display = '';
+          playBtn.style.display = 'inline-flex';
           skipBtn.style.display = 'none';
           stopBtn.style.display = 'none';
           nowLabel.style.display = 'none';
@@ -472,9 +470,9 @@
         function startPlayAll() {
           active = true;
           playBtn.style.display = 'none';
-          skipBtn.style.display = '';
-          stopBtn.style.display = '';
-          nowLabel.style.display = '';
+          skipBtn.style.display = 'inline-flex';
+          stopBtn.style.display = 'inline-flex';
+          nowLabel.style.display = 'inline';
           setPlaying(0);
         }
 
