@@ -165,7 +165,7 @@ Two separate GA4 properties under Google account **Steven G Kukla** (387635517):
 | Property | Measurement ID | Pages |
 |---|---|---|
 | SGK Website (528439226) | G-FSH461958Y | all 7 SGK pages |
-| La Leonessa Webapp (528385271) | G-H006E6GDXT | index.html, music.html, viewer.html, project.html |
+| La Leonessa Webapp (528385271) | G-H006E6GDXT | index.html, music.html, viewer.html |
 
 GA4 snippet (replace `G-XXXXXXXXXX` with correct ID for each page set):
 ```html
@@ -218,7 +218,18 @@ English when Italian is selected. Add `data-en` / `data-it` attributes to every
 
 ## 🟢 Ideas / Nice-to-Have
 
+### Music — Sticky "Now Playing" bar for Play All mode
+When Play All is active, the album cover image, album caption, and playback controls
+(▶ Play All / ⏭ Skip / ⏹ Stop / "Now playing: ...") should be **pinned to the top
+of the screen** as a persistent sticky bar. This solves the mobile UX problem where
+the user must scroll back up to see Skip/Stop as playback advances down the track list.
 
+Applies to both:
+- `sgk-music.html` — Vol 1 and Vol 2 track dropdowns (SGK website)
+- `music.html` — Vol 1 and Vol 2 track sections (La Leonessa webapp)
+
+Both languages (EN/IT) must be supported.
+The sticky bar should only appear when Play All is active and disappear when stopped.
 
 ### Blogspot retirement
 `sgkpoems.blogspot.com` is superseded by `poems.html`. Steve plans to keep it
@@ -228,17 +239,21 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- Music — Play All bug fixes (v2):
+  - `sgk.html` Track of the Month: restored missing `audioEl.src = t.url` assignment
+  - `sgk-music.html` and `music.html`: fixed `style.display = ''` → explicit `'inline-flex'`
+    so Skip/Stop buttons correctly appear on Safari iOS after clicking Play All
+  - `music.html`: rewrote `setupPlayAll` track-finding logic using `bar.parentNode`
+    instead of fragile `closest()` chain that failed on Safari iOS
 - Music — "Play All" playlist mode added to `sgk-music.html` and `music.html` (webapp):
-  - **▶ Play All** button above each volume's track list (Vol 1 and Vol 2)
+  - ▶ Play All button above each volume's track list (Vol 1 and Vol 2)
   - Tracks play in sequence; when one ends the next starts automatically
-  - **♪ Now Playing** highlight on the active track row
-  - **⏭ Skip** button advances to next track immediately
-  - **⏹ Stop** button exits playlist mode entirely
+  - ♪ Now Playing highlight on the active track row
+  - ⏭ Skip button advances to next track immediately
+  - ⏹ Stop button exits playlist mode entirely
   - Bilingual labels on webapp (EN: Play All/Skip, IT: Riproduci Tutti/Salta)
   - Auto-pause preserved throughout
-- `writing.html`: Blurb links updated to 3rd edition:
-  - English: preview /books/12813442, purchase /b/12813442
-  - Italian: preview /books/12813453, purchase /b/12813453
+- `writing.html`: Blurb links updated to 3rd edition (book IDs 12813442 EN / 12813453 IT)
 
 - PDF book filenames updated across `writing.html` and `index.html`:
   - English: `SRGF_3ed_ENG_17Mar2026.pdf`
