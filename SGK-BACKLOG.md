@@ -51,6 +51,7 @@ Claude Code, no command-line workflow.
 ├── index.html             ← La Leonessa webapp landing page (Italian-first)
 ├── music.html             ← La Leonessa webapp music player (31 tracks)
 ├── viewer.html            ← La Leonessa webapp PDF book viewer
+├── project.html           ← La Leonessa project story page (replaces Project.pdf viewer)
 
 ├── media/                 ← images: covers, portrait, album art
 ├── sculpture/             ← sculpture photos (JPG/JPEG/PNG)
@@ -164,7 +165,7 @@ Two separate GA4 properties under Google account **Steven G Kukla** (387635517):
 | Property | Measurement ID | Pages |
 |---|---|---|
 | SGK Website (528439226) | G-FSH461958Y | all 7 SGK pages |
-| La Leonessa Webapp (528385271) | G-H006E6GDXT | index.html, music.html, viewer.html |
+| La Leonessa Webapp (528385271) | G-H006E6GDXT | index.html, music.html, viewer.html, project.html |
 
 GA4 snippet (replace `G-XXXXXXXXXX` with correct ID for each page set):
 ```html
@@ -217,39 +218,7 @@ English when Italian is selected. Add `data-en` / `data-it` attributes to every
 
 ## 🟢 Ideas / Nice-to-Have
 
-### SGK Projects page — new nav item + sgkprojects.html
-Add a new **"SGK Projects"** item to the main nav on all 7 SGK pages (between Music and the end).
-Create a new page `sgkprojects.html` that lists Steve's major projects as cards or tiles.
 
-**Projects to feature (content TBD for each):**
-1. La Leonessa
-2. Vibe Coding
-3. FaceProj Webapp
-4. SRGF Movie Trailer
-5. SRGF Projection Mapping Show
-6. Vizi Tests
-7. SGK Genealogy
-
-**Nav approach (decided):** Add a **"More ▾"** dropdown as the last nav item on all 7 SGK pages.
-Clicking it reveals a dropdown menu containing "SGK Projects" (and room for future items).
-This avoids widening the nav bar while keeping Projects accessible from every page.
-Dropdown will be injected by `nav.js` — no manual markup changes needed on individual pages.
-
-**Approach when building:**
-- Match existing site aesthetic (warm artisan, same nav/footer/style.css)
-- Each project shown as a card with title and a placeholder for future content
-- Bilingual (EN/IT) nav label and page chrome required
-- Add GA4 snippet (G-FSH461958Y) and OG meta tags to `sgkprojects.html`
-
-### Music — "Play All" playlist mode with Skip
-Add a **"▶ Play All"** button above each track listing (Vol 1, Vol 2) on both
-`sgk-music.html` and `music.html` (webapp). When activated:
-- Tracks play in sequence automatically — when one ends the next begins
-- Currently playing track row gets a ♪ highlight indicator
-- A **"⏭ Skip"** button appears to advance to the next track immediately
-- A **"⏹ Stop"** button exits playlist mode entirely
-- Bilingual labels required (EN/IT)
-- Speed/tempo control explicitly excluded
 
 ### Blogspot retirement
 `sgkpoems.blogspot.com` is superseded by `poems.html`. Steve plans to keep it
@@ -258,6 +227,31 @@ active for approximately one year then delete it. No action needed until then.
 ---
 
 ## ✅ Completed (for reference)
+
+- Music — "Play All" playlist mode added to `sgk-music.html` and `music.html` (webapp):
+  - **▶ Play All** button above each volume's track list (Vol 1 and Vol 2)
+  - Tracks play in sequence; when one ends the next starts automatically
+  - **♪ Now Playing** highlight on the active track row
+  - **⏭ Skip** button advances to next track immediately
+  - **⏹ Stop** button exits playlist mode entirely
+  - Bilingual labels on webapp (EN: Play All/Skip, IT: Riproduci Tutti/Salta)
+  - Auto-pause preserved throughout
+- `writing.html`: Blurb links updated to 3rd edition:
+  - English: preview /books/12813442, purchase /b/12813442
+  - Italian: preview /books/12813453, purchase /b/12813453
+
+- PDF book filenames updated across `writing.html` and `index.html`:
+  - English: `SRGF_3ed_ENG_17Mar2026.pdf`
+  - Italian: `SRGF_3ed_ITA_17Mar2026.pdf`
+- `Project.pdf` updated: old Wix URL replaced with `https://stretchy54.github.io/sgk.html` (both IT and EN sections)
+- `project.html` created — replaces PDF viewer for "About La Leonessa Project" button on webapp:
+  - Bilingual (IT/EN) controlled by `?lang=` parameter
+  - 5 collapsible accordion sections (all collapsed on load): Project Origin / My Roots / Looking Ahead / La Leonessa / Acknowledgements
+  - Italian titles: Origine del Progetto / Le Mie Radici / Visione Futura / La Leonessa / Ringraziamenti
+  - Includes wedding photo, lioness image, gesture poem, gratitude box, portrait
+  - Sticky back bar returns to `index.html` in correct language
+  - GA4 (G-H006E6GDXT) and OG meta tags included
+- `index.html` updated: project button points to `project.html` (not PDF viewer); confirmation modal removed from project button; icon changed to 📖
 
 - SEO & Open Graph meta tags added to all 10 pages (7 SGK + 3 webapp):
   - `<meta name="description">` on all pages

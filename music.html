@@ -112,6 +112,42 @@
       width: 20px; font-size: 16px; flex-shrink: 0;
     }
 
+    .tl-audio { width: 100%; margin-top: 2px; accent-color: #2B5F8E; display: block; }
+
+    /* ── Play All controls ── */
+    .play-all-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 4px 10px; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(181,148,64,0.2);
+      margin-bottom: 4px;
+    }
+    .play-all-btn {
+      font-family: 'Cinzel', serif; font-size: clamp(12px, 1.8vw, 14px);
+      letter-spacing: 0.06em; padding: 8px 18px;
+      border-radius: 999px; cursor: pointer; transition: all 0.18s;
+      border: 1.5px solid transparent;
+    }
+    .play-all-btn.start { background: #2B5F8E; color: #fff; border-color: #2B5F8E; }
+    .play-all-btn.start:hover { filter: brightness(1.1); }
+    .play-all-btn.skip  { background: transparent; color: #2B5F8E; border-color: #2B5F8E; display: none; }
+    .play-all-btn.skip:hover  { background: rgba(43,95,142,0.08); }
+    .play-all-btn.stop  { background: transparent; color: #888; border-color: #ccc; display: none; }
+    .play-all-btn.stop:hover  { background: rgba(0,0,0,0.05); }
+    .play-all-label {
+      font-style: italic; font-size: clamp(12px, 1.8vw, 14px);
+      color: var(--smoke); display: none; flex: 1; min-width: 100px;
+    }
+
+    /* ── Now Playing highlight ── */
+    .track.now-playing {
+      background: rgba(43,95,142,0.07);
+      border-left: 3px solid #2B5F8E;
+      padding-left: 5px;
+    }
+    .track.now-playing .trackName::before {
+      content: '♪ '; color: #2B5F8E; font-weight: 700;
+    }
+
     @media (max-width: 420px) {
       .wrap { padding-top: 20px; }
       .vol-section { padding: 20px 14px 18px; }
@@ -147,6 +183,12 @@
       </div>
       <div class="volTitle">Volume 1</div>
       <div class="tracks">
+        <div class="play-all-bar" id="vol1-bar">
+          <button class="play-all-btn start" id="vol1-play-btn">▶ Play All</button>
+          <button class="play-all-btn skip"  id="vol1-skip-btn">⏭ Skip</button>
+          <button class="play-all-btn stop"  id="vol1-stop-btn">⏹ Stop</button>
+          <span class="play-all-label" id="vol1-now-label"></span>
+        </div>
 
         <div class="track">
           <div class="track-header"><span class="trackName">1-1 Opening</span></div>
@@ -253,6 +295,12 @@
       </div>
       <div class="volTitle">Volume 2</div>
       <div class="tracks">
+        <div class="play-all-bar" id="vol2-bar">
+          <button class="play-all-btn start" id="vol2-play-btn">▶ Play All</button>
+          <button class="play-all-btn skip"  id="vol2-skip-btn">⏭ Skip</button>
+          <button class="play-all-btn stop"  id="vol2-stop-btn">⏹ Stop</button>
+          <span class="play-all-label" id="vol2-now-label"></span>
+        </div>
 
         <div class="track">
           <div class="track-header"><span class="trackName">2-1 Song of Scaramuccia</span></div>
@@ -323,7 +371,10 @@
     (function () {
 
       // ── Language ──────────────────────────────────────────────────────────
+      var currentLang = 'it';
+
       function applyLang(lang) {
+        currentLang = lang;
         if (lang === 'en') {
           document.documentElement.lang                    = 'en';
           document.title                                   = 'Songs and Music';
@@ -331,6 +382,13 @@
           document.getElementById('pageSub').textContent   = 'Flag icons indicate Italian-language songs';
           document.getElementById('backLabel').textContent = 'Back to Main Page';
           document.getElementById('backBtn').href          = 'index.html?lang=en';
+          // Update Play All button labels
+          ['vol1', 'vol2'].forEach(function(v) {
+            var pb = document.getElementById(v + '-play-btn');
+            var sb = document.getElementById(v + '-skip-btn');
+            if (pb) pb.textContent = '▶ Play All';
+            if (sb) sb.textContent = '⏭ Skip';
+          });
         } else {
           document.documentElement.lang                    = 'it';
           document.title                                   = 'Canzoni e Musica';
@@ -338,6 +396,13 @@
           document.getElementById('pageSub').textContent   = 'Le bandiere indicano le canzoni in italiano';
           document.getElementById('backLabel').textContent = 'Torna alla Pagina Principale';
           document.getElementById('backBtn').href          = 'index.html?lang=it';
+          // Update Play All button labels
+          ['vol1', 'vol2'].forEach(function(v) {
+            var pb = document.getElementById(v + '-play-btn');
+            var sb = document.getElementById(v + '-skip-btn');
+            if (pb) pb.textContent = '▶ Riproduci Tutti';
+            if (sb) sb.textContent = '⏭ Salta';
+          });
         }
         try {
           var url = new URL(window.location.href);
@@ -357,6 +422,88 @@
           });
         });
       });
+
+      // ── Play All playlist mode ──────────────────────────────────────────
+      function setupPlayAll(volId) {
+        var tracks   = Array.from(document.querySelectorAll('#' + volId + '-bar').length
+                         ? document.getElementById(volId + '-bar').closest('.tracks').querySelectorAll('.track')
+                         : []);
+        // Re-select correctly: all .track siblings after the bar
+        var container = document.getElementById(volId + '-bar') ?
+                        document.getElementById(volId + '-bar').closest('.tracks') : null;
+        if (!container) return;
+        tracks  = Array.from(container.querySelectorAll('.track'));
+        var audios   = tracks.map(function(t) { return t.querySelector('audio'); });
+        var playBtn  = document.getElementById(volId + '-play-btn');
+        var skipBtn  = document.getElementById(volId + '-skip-btn');
+        var stopBtn  = document.getElementById(volId + '-stop-btn');
+        var nowLabel = document.getElementById(volId + '-now-label');
+        var current  = -1;
+        var active   = false;
+
+        function getTrackName(idx) {
+          var el = tracks[idx].querySelector('.trackName');
+          return el ? el.textContent.replace('♪ ', '') : '';
+        }
+
+        function setPlaying(idx) {
+          tracks.forEach(function(t) { t.classList.remove('now-playing'); });
+          current = idx;
+          if (idx < 0 || idx >= audios.length) { stopPlayAll(); return; }
+          tracks[idx].classList.add('now-playing');
+          tracks[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          nowLabel.textContent = (currentLang === 'it' ? 'In riproduzione: ' : 'Now playing: ')
+                                 + getTrackName(idx);
+          audios[idx].currentTime = 0;
+          audios[idx].play().catch(function(){});
+        }
+
+        function stopPlayAll() {
+          active = false; current = -1;
+          tracks.forEach(function(t) { t.classList.remove('now-playing'); });
+          audios.forEach(function(a) { a.pause(); });
+          playBtn.style.display = '';
+          skipBtn.style.display = 'none';
+          stopBtn.style.display = 'none';
+          nowLabel.style.display = 'none';
+          nowLabel.textContent = '';
+        }
+
+        function startPlayAll() {
+          active = true;
+          playBtn.style.display = 'none';
+          skipBtn.style.display = '';
+          stopBtn.style.display = '';
+          nowLabel.style.display = '';
+          setPlaying(0);
+        }
+
+        audios.forEach(function(audio, idx) {
+          audio.addEventListener('ended', function() {
+            if (!active || current !== idx) return;
+            if (idx + 1 < audios.length) {
+              setPlaying(idx + 1);
+            } else {
+              stopPlayAll();
+            }
+          });
+        });
+
+        playBtn.addEventListener('click', startPlayAll);
+        skipBtn.addEventListener('click', function() {
+          if (!active) return;
+          audios[current] && audios[current].pause();
+          if (current + 1 < audios.length) {
+            setPlaying(current + 1);
+          } else {
+            stopPlayAll();
+          }
+        });
+        stopBtn.addEventListener('click', stopPlayAll);
+      }
+
+      setupPlayAll('vol1');
+      setupPlayAll('vol2');
 
     })();
   </script>
