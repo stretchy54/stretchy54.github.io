@@ -210,14 +210,16 @@ GA4 snippet (replace `G-XXXXXXXXXX` with correct ID for each page set):
 
 ## 🟡 Deferred
 
-### Sculpture page — Italian translations of gallery captions
-All sculpture captions (material, date, inspiration notes) currently stay in
-English when Italian is selected. Add `data-en` / `data-it` attributes to every
-`gallery-meta` div with full Italian translations.
+Nothing currently deferred.
 
 ---
 
 ## 🟢 Ideas / Nice-to-Have
+
+### Wix website retirement
+`https://stretchy54.wixsite.com/sgk-stone-sculptures` is superseded by the SGK website.
+Steve plans to keep it active for approximately one year then delete it.
+No action needed until then.
 
 ### Blogspot retirement
 `sgkpoems.blogspot.com` is superseded by `poems.html`. Steve plans to keep it
@@ -227,6 +229,13 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- `sgk-music.html`: "Flag icons indicate Italian-language songs" line added below
+  hero subtitle; bilingual (IT: "Le icone bandiera indicano le canzoni in italiano")
+- `sgk-music.html`: "Ci scusiamo: solo tre canzoni" bolded in Italian apology note
+- `nav.js`: removed `#gallery` from `applyLang()` exclusion — fixes Italian sculpture
+  captions not translating; guard was intended only for `#poses-grid`
+- Sculpture page Italian captions: confirmed working — all `gallery-meta` divs already
+  had correct `data-en`/`data-it` attributes; root fix was in `nav.js`
 - `sgkprojects.html` created — new SGK Projects page:
   - 7 collapsible accordion sections, all collapsed on load, one-at-a-time expand
   - Projects: La Leonessa, Vibe Coding, FaceProj Webapp, SRGF Movie Trailer,
