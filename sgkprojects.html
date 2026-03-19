@@ -219,9 +219,92 @@
           <span class="acc-chevron">▼</span>
         </button>
         <div class="acc-body">
-          <div class="content-placeholder"
-               data-en="Content coming soon — check back in a few weeks."
-               data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+          <div class="acc-prose">
+
+            <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--umber);margin-bottom:0.6rem;"
+                data-en="My Projects" data-it="I Miei Progetti">My Projects</h3>
+            <p data-en="My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>."
+               data-it="I miei primi due progetti di vibe coding sono stati la <em>pagina di destinazione avviata da QR code</em> — creata per la cerimonia di inaugurazione della mia scultura La Leonessa — e questo <em>sito personale SGK</em>.">My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>.</p>
+
+            <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--umber);margin:1.4rem 0 0.6rem;"
+                data-en="My Approach" data-it="Il Mio Approccio">My Approach</h3>
+            <p data-en="My approach is somewhat atypical. I use a standards file (SGK-BACKLOG.md) containing coding conventions, color palette choices, rules, and a feature backlog. I work with Claude (Anthropic) on a Pro subscription, with a unified GitHub repository. At the start of each session I attach the latest code files and backlog, and ask Claude to be ready to begin."
+               data-it="Il mio approccio è piuttosto atipico. Utilizzo un file di standard (SGK-BACKLOG.md) contenente convenzioni di codifica, palette di colori, regole e un backlog di funzionalità. Lavoro con Claude (Anthropic) in abbonamento Pro, con un repository GitHub unificato. All'inizio di ogni sessione allego i file di codice più recenti e il backlog, e chiedo a Claude di essere pronto a iniziare.">My approach is somewhat atypical. I use a standards file (SGK-BACKLOG.md) containing coding conventions, color palette choices, rules, and a feature backlog. I work with Claude (Anthropic) on a Pro subscription, with a unified GitHub repository. At the start of each session I attach the latest code files and backlog, and ask Claude to be ready to begin.</p>
+            <p data-en="I proceed slowly and incrementally — not because I have to, but because it gives me time to test and think. The process is deliberately iterative and organic, converging toward my vision one session at a time. I keep Claude actively involved throughout but remain the orchestrator: I provide context, request changes, validate results, and commit to GitHub manually."
+               data-it="Procedo lentamente e in modo incrementale — non perché sia necessario, ma perché mi dà il tempo di testare e riflettere. Il processo è deliberatamente iterativo e organico, convergendo verso la mia visione una sessione alla volta. Mantengo Claude attivamente coinvolto ma resto l'orchestratore: fornisco il contesto, richiedo modifiche, valido i risultati e faccio commit su GitHub manualmente.">I proceed slowly and incrementally — not because I have to, but because it gives me time to test and think. The process is deliberately iterative and organic, converging toward my vision one session at a time. I keep Claude actively involved throughout but remain the orchestrator: I provide context, request changes, validate results, and commit to GitHub manually.</p>
+            <p data-en="It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control."
+               data-it="È una combinazione di <em>sviluppo con IA nel ciclo</em> e un ciclo di vita software guidato manualmente — pianificazione tramite il file backlog, implementazione tramite Claude, integrazione tramite commit GitHub e test tramite validazione manuale. Nessuno strato di automazione, nessun CI/CD — solo controllo conversazionale.">It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control.</p>
+
+            <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--umber);margin:1.4rem 0 0.6rem;"
+                data-en="Strengths &amp; Challenges" data-it="Punti di Forza e Sfide">Strengths &amp; Challenges</h3>
+            <p data-en="The approach offers <strong>high control, clarity, and reproducibility</strong> — deterministic context injection, tight GitHub integration, and deliberate pacing. But it also comes with real costs: it is error-prone due to manual syncing, slow, cognitively demanding, and vulnerable to stale context if I am careless about keeping Claude up to date."
+               data-it="L'approccio offre <strong>alto controllo, chiarezza e riproducibilità</strong> — iniezione deterministica del contesto, stretta integrazione con GitHub e ritmo deliberato. Ma comporta anche costi reali: è soggetto a errori dovuti alla sincronizzazione manuale, lento, cognitivamente impegnativo e vulnerabile a contesti obsoleti se non mantengo Claude aggiornato."  >The approach offers <strong>high control, clarity, and reproducibility</strong> — deterministic context injection, tight GitHub integration, and deliberate pacing. But it also comes with real costs: it is error-prone due to manual syncing, slow, cognitively demanding, and vulnerable to stale context if I am careless about keeping Claude up to date.</p>
+            <p data-en="When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in."
+               data-it="Quando gli strumenti di vibe coding offriranno contesto persistente, agenti consapevoli del repository e sincronizzazione automatica dei file — ho intenzione di adottarli.">When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in.</p>
+
+            <!-- ── Vibe Coding cycle diagram ── -->
+            <div style="margin-top:1.8rem;">
+              <svg width="100%" viewBox="0 0 680 520" style="display:block;">
+                <defs>
+                  <marker id="vc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </marker>
+                </defs>
+
+                <!-- Centre label -->
+                <text font-family="var(--font-accent)" font-style="italic" font-size="12" fill="var(--smoke)" x="340" y="238" text-anchor="middle">Manually-driven</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="12" fill="var(--smoke)" x="340" y="255" text-anchor="middle">AI dev cycle</text>
+
+                <!-- 1. Backlog + context (top) -->
+                <rect x="248" y="46" width="184" height="52" rx="8" fill="var(--parchment)" stroke="var(--stone)" stroke-width="0.5"/>
+                <text font-family="var(--font-display)" font-size="13" font-weight="600" fill="var(--umber)" x="340" y="68" text-anchor="middle" dominant-baseline="central">Backlog + codebase</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="340" y="86" text-anchor="middle" dominant-baseline="central">Context injected each session</text>
+
+                <!-- 2. Claude codes (right) -->
+                <rect x="482" y="158" width="164" height="52" rx="8" fill="#e1f0e8" stroke="#7aaf8a" stroke-width="0.5"/>
+                <text font-family="var(--font-display)" font-size="13" font-weight="600" fill="#2e6b44" x="564" y="180" text-anchor="middle" dominant-baseline="central">Claude codes</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="#4a8c60" x="564" y="198" text-anchor="middle" dominant-baseline="central">Outputs edited files</text>
+
+                <!-- 3. Steve validates (lower-right) -->
+                <rect x="452" y="318" width="168" height="52" rx="8" fill="#fdf0d8" stroke="#d4a84b" stroke-width="0.5"/>
+                <text font-family="var(--font-display)" font-size="13" font-weight="600" fill="#7a4f10" x="536" y="340" text-anchor="middle" dominant-baseline="central">Steve validates</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="#a06820" x="536" y="358" text-anchor="middle" dominant-baseline="central">Tests in browser</text>
+
+                <!-- 4. GitHub commit (lower-left) -->
+                <rect x="62" y="318" width="168" height="52" rx="8" fill="#fdeee8" stroke="#d4846a" stroke-width="0.5"/>
+                <text font-family="var(--font-display)" font-size="13" font-weight="600" fill="#7a3820" x="146" y="340" text-anchor="middle" dominant-baseline="central">GitHub commit</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="#a05040" x="146" y="358" text-anchor="middle" dominant-baseline="central">Manual upload &amp; deploy</text>
+
+                <!-- 5. Request changes (left) -->
+                <rect x="36" y="158" width="164" height="52" rx="8" fill="var(--sand)" stroke="var(--stone)" stroke-width="0.5"/>
+                <text font-family="var(--font-display)" font-size="13" font-weight="600" fill="var(--umber)" x="118" y="180" text-anchor="middle" dominant-baseline="central">Request changes</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="118" y="198" text-anchor="middle" dominant-baseline="central">Conversational control</text>
+
+                <!-- Arrows clockwise -->
+                <path d="M432 80 Q500 80 504 156" fill="none" stroke="var(--stone)" stroke-width="1" marker-end="url(#vc-arrow)"/>
+                <path d="M564 210 L536 316" fill="none" stroke="var(--stone)" stroke-width="1" marker-end="url(#vc-arrow)"/>
+                <path d="M452 352 L232 352" fill="none" stroke="var(--stone)" stroke-width="1" marker-end="url(#vc-arrow)"/>
+                <path d="M146 318 L118 212" fill="none" stroke="var(--stone)" stroke-width="1" marker-end="url(#vc-arrow)"/>
+                <path d="M176 160 Q200 90 246 80" fill="none" stroke="var(--stone)" stroke-width="1" marker-end="url(#vc-arrow)"/>
+
+                <!-- Divider -->
+                <line x1="40" y1="415" x2="640" y2="415" stroke="var(--parchment)" stroke-width="1"/>
+
+                <!-- Strengths -->
+                <text font-family="var(--font-display)" font-size="13" font-weight="600" fill="var(--umber)" x="40" y="432">Strengths</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="40" y="450">High control &amp; reproducibility</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="40" y="466">Deliberate pacing &amp; validation</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="40" y="482">Tight GitHub integration</text>
+
+                <!-- Challenges -->
+                <text font-family="var(--font-display)" font-size="13" font-weight="600" fill="var(--umber)" x="640" y="432" text-anchor="end">Challenges</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="640" y="450" text-anchor="end">Manual sync = fragile</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="640" y="466" text-anchor="end">High cognitive overhead</text>
+                <text font-family="var(--font-accent)" font-style="italic" font-size="11" fill="var(--smoke)" x="640" y="482" text-anchor="end">Risk of stale context</text>
+              </svg>
+            </div>
+
+          </div>
         </div>
       </div>
 
