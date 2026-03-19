@@ -229,6 +229,13 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- `sgkprojects.html` Vibe Coding section: inline SVG cycle diagram added below prose
+  showing the 5-node manually-driven AI dev cycle (Backlog + codebase → Claude codes →
+  Steve validates → GitHub commit → Request changes → back to context); styled using
+  site CSS variables; strengths and challenges summarised below a divider line
+- `sgkprojects.html` Vibe Coding section: full content added from PDF source —
+  three headed sections (My Projects, My Approach, Strengths & Challenges);
+  condensed and restated; fully bilingual EN/IT
 - `sgk-music.html`: "Flag icons indicate Italian-language songs" line added below
   hero subtitle; bilingual (IT: "Le icone bandiera indicano le canzoni in italiano")
 - `sgk-music.html`: "Ci scusiamo: solo tre canzoni" bolded in Italian apology note
