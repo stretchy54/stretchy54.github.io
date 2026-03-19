@@ -48,8 +48,8 @@
   // ── Language toggle ───────────────────────────────────────────────────
   function applyLang(lang) {
     document.querySelectorAll('[data-en]').forEach(el => {
-      // Never touch the dynamically-populated gallery grids
-      if (el.closest('#poses-grid') || el.closest('#gallery')) return;
+      // Never touch the dynamically-populated poses grid
+      if (el.closest('#poses-grid')) return;
       el.innerHTML = (lang === 'it' && el.dataset.it) ? el.dataset.it : el.dataset.en;
     });
     document.querySelectorAll('.lang-content').forEach(el => {
