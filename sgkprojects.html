@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGK Projects – Steven G Kukla</title>
+  <meta name="description" content="Major creative projects by Steven G Kukla — La Leonessa, Vibe Coding, FaceProj, SRGF Movie Trailer, Projection Mapping, Vizi Video, and SGK Genealogy." />
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Steven G Kukla" />
+  <meta property="og:url"         content="https://stretchy54.github.io/sgkprojects.html" />
+  <meta property="og:title"       content="SGK Projects — Steven G Kukla" />
+  <meta property="og:description" content="Major creative projects by Steven G Kukla — La Leonessa, Vibe Coding, FaceProj, SRGF Movie Trailer, Projection Mapping, Vizi Video, and SGK Genealogy." />
+  <meta property="og:image"       content="https://stretchy54.github.io/media/sgk_og_image.png" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="SGK Projects — Steven G Kukla" />
+  <meta name="twitter:description" content="Major creative projects by Steven G Kukla — La Leonessa, Vibe Coding, FaceProj, SRGF Movie Trailer, Projection Mapping, Vizi Video, and SGK Genealogy." />
+  <meta name="twitter:image"       content="https://stretchy54.github.io/media/sgk_og_image.png" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { background: var(--charcoal); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(160,115,90,0.15), transparent); pointer-events: none; }
+    .page-hero .section-title { color: var(--parchment); }
+    .page-hero .section-title em { color: var(--stone); }
+    .page-hero p { font-family: var(--font-accent); font-style: italic; color: var(--stone); margin-top: 0.6rem; }
+
+    .projects-layout { max-width: 800px; margin: 0 auto; padding: 4rem 2rem 5rem; }
+
+    /* ── Accordion ── */
+    .accordion { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .acc-item {
+      border: 1px solid var(--parchment);
+      border-radius: 4px;
+      background: var(--warm-white);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .acc-item.open { box-shadow: var(--shadow-lift); }
+
+    .acc-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: transparent;
+      border: none;
+      padding: 1.3rem 1.6rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.18s;
+    }
+    .acc-toggle:hover { background: var(--parchment); }
+    .acc-item.open .acc-toggle { background: var(--parchment); border-bottom: 1px solid var(--stone); }
+
+    .acc-toggle-left { flex: 1; min-width: 0; }
+    .acc-project-label {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.2rem;
+    }
+    .acc-title {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 600;
+      color: var(--umber);
+      line-height: 1.25;
+    }
+    .acc-chevron {
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+    .acc-item.open .acc-chevron { transform: rotate(180deg); }
+
+    .acc-body { display: none; padding: 2rem 2rem 2.2rem; }
+    .acc-item.open .acc-body { display: block; }
+
+    /* ── Prose inside accordion ── */
+    .acc-prose p {
+      font-family: var(--font-body);
+      font-size: 0.97rem;
+      line-height: 1.85;
+      color: var(--charcoal);
+      margin-bottom: 1.1rem;
+    }
+    .acc-prose p:last-child { margin-bottom: 0; }
+    .acc-prose em { font-style: italic; }
+    .acc-prose strong { font-weight: 700; color: var(--umber); }
+    .acc-prose a { color: var(--terracotta); text-decoration: underline; text-underline-offset: 3px; }
+    .acc-prose a:hover { color: var(--umber); }
+
+    /* ── Placeholder style for upcoming content ── */
+    .content-placeholder {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--smoke);
+      padding: 1.2rem 1.5rem;
+      border-left: 3px solid var(--stone);
+      background: var(--sand);
+      border-radius: 0 4px 4px 0;
+      line-height: 1.7;
+    }
+
+    /* ── La Leonessa section extras ── */
+    .leonessa-img {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+    .leonessa-img img {
+      max-height: 360px;
+      width: auto;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: var(--shadow-lift);
+    }
+    .leonessa-img p {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--smoke);
+      margin-top: 0.5rem;
+    }
+    .acc-cta {
+      display: inline-block;
+      margin-top: 1.4rem;
+    }
+
+    @media (max-width: 580px) {
+      .acc-toggle { padding: 1rem 1.1rem; }
+      .acc-body   { padding: 1.4rem 1.2rem 1.6rem; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSH461958Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FSH461958Y');
+  </script>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="sgk.html">SGK</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li><a href="sgk.html"         data-en="Home"         data-it="Home">Home</a></li>
+      <li><a href="about.html"        data-en="About"        data-it="Chi Sono">About</a></li>
+      <li><a href="sculpture.html"    data-en="Sculpture"    data-it="Scultura">Sculpture</a></li>
+      <li><a href="poses.html"        data-en="Poses"        data-it="Pose">Poses</a></li>
+      <li><a href="writing.html"      data-en="Writing"      data-it="Scritti">Writing</a></li>
+      <li><a href="sgkprojects.html"  data-en="SGK Projects" data-it="Progetti SGK">SGK Projects</a></li>
+      <li><a href="sgk-music.html"    data-en="Music"        data-it="Musica">Music</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+
+  <header class="page-hero fade-up">
+    <p style="font-family:var(--font-accent);font-style:italic;color:var(--terracotta);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;"
+       data-en="Creative Works" data-it="Opere Creative">Creative Works</p>
+    <h1 class="section-title"
+        data-en="SGK &lt;em&gt;Projects&lt;/em&gt;"
+        data-it="Progetti &lt;em&gt;SGK&lt;/em&gt;">SGK <em>Projects</em></h1>
+    <p data-en="Major projects spanning sculpture, technology, film, and family heritage."
+       data-it="Grandi progetti che spaziano dalla scultura alla tecnologia, dal cinema all'eredità familiare.">Major projects spanning sculpture, technology, film, and family heritage.</p>
+  </header>
+
+  <div class="projects-layout">
+    <div class="accordion" id="projects-accordion">
+
+      <!-- 1. La Leonessa -->
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <div class="acc-toggle-left">
+            <div class="acc-project-label" data-en="Sculpture · Donation · Cultural Heritage" data-it="Scultura · Donazione · Patrimonio Culturale">Sculpture · Donation · Cultural Heritage</div>
+            <div class="acc-title" data-en="La Leonessa" data-it="La Leonessa">La Leonessa</div>
+          </div>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="leonessa-img">
+            <img src="media/lioness_Full_Length.jpg" alt="La Leonessa — Carrara marble sculpture" loading="lazy" />
+            <p data-en="La Leonessa — Carrara Bianco Venato marble" data-it="La Leonessa — marmo Carrara Bianco Venato">La Leonessa — Carrara Bianco Venato marble</p>
+          </div>
+          <div class="acc-prose">
+            <p data-en="La Leonessa is a marble lioness sculpture carved from Carrara Bianco Venato marble, created as a permanent cultural donation to the village of Monteleone di Puglia, Foggia Province, Puglia, Italy — the birthplace of Steven's maternal grandmother, Assunta Capobianco (1897–1983)."
+               data-it="La Leonessa è una scultura di leonessa in marmo Carrara Bianco Venato, creata come dono culturale permanente al comune di Monteleone di Puglia, in provincia di Foggia, Puglia — il luogo di nascita della nonna materna di Steven, Assunta Capobianco (1897–1983).">La Leonessa is a marble lioness sculpture carved from Carrara Bianco Venato marble, created as a permanent cultural donation to the village of Monteleone di Puglia, Foggia Province, Puglia, Italy — the birthplace of Steven's maternal grandmother, Assunta Capobianco (1897–1983).</p>
+            <p data-en="The project encompasses a bilingual graphic novella — &lt;em&gt;Strong Roots, Good Fruit&lt;/em&gt; (3rd edition, 2026) — 31 original AI-composed songs across two albums, a companion webapp, and Steven's forthcoming donation trip to Italy to present the sculpture to Mayor Giovanni Campese and the citizens of Monteleone."
+               data-it="Il progetto comprende una novella grafica bilingue — &lt;em&gt;Radici Forti, Frutti Buoni&lt;/em&gt; (3ª edizione, 2026) — 31 canzoni originali composte con l'IA su due album, una webapp di accompagnamento e il prossimo viaggio di donazione di Steven in Italia per presentare la scultura al Sindaco Giovanni Campese e ai cittadini di Monteleone.">The project encompasses a bilingual graphic novella — <em>Strong Roots, Good Fruit</em> (3rd edition, 2026) — 31 original AI-composed songs across two albums, a companion webapp, and Steven's forthcoming donation trip to Italy to present the sculpture to Mayor Giovanni Campese and the citizens of Monteleone.</p>
+          </div>
+          <a class="btn btn-primary acc-cta" href="index.html"
+             data-en="Explore La Leonessa →" data-it="Scopri La Leonessa →">Explore La Leonessa →</a>
+        </div>
+      </div>
+
+      <!-- 2. Vibe Coding -->
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <div class="acc-toggle-left">
+            <div class="acc-project-label" data-en="AI · Web Development" data-it="IA · Sviluppo Web">AI · Web Development</div>
+            <div class="acc-title" data-en="Vibe Coding" data-it="Vibe Coding">Vibe Coding</div>
+          </div>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="content-placeholder"
+               data-en="Content coming soon — check back in a few weeks."
+               data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+        </div>
+      </div>
+
+      <!-- 3. FaceProj Webapp -->
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <div class="acc-toggle-left">
+            <div class="acc-project-label" data-en="Interactive · Museum Technology" data-it="Interattivo · Tecnologia Museale">Interactive · Museum Technology</div>
+            <div class="acc-title" data-en="FaceProj Webapp" data-it="FaceProj Webapp">FaceProj Webapp</div>
+          </div>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="content-placeholder"
+               data-en="Content coming soon — check back in a few weeks."
+               data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+        </div>
+      </div>
+
+      <!-- 4. SRGF Movie Trailer -->
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <div class="acc-toggle-left">
+            <div class="acc-project-label" data-en="Film · Animation" data-it="Cinema · Animazione">Film · Animation</div>
+            <div class="acc-title" data-en="SRGF Movie Trailer" data-it="Trailer del Film SRGF">SRGF Movie Trailer</div>
+          </div>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="content-placeholder"
+               data-en="Content coming soon — check back in a few weeks."
+               data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+        </div>
+      </div>
+
+      <!-- 5. SRGF Projection Mapping -->
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <div class="acc-toggle-left">
+            <div class="acc-project-label" data-en="Immersive · Sculpture Technology" data-it="Immersivo · Tecnologia Scultorea">Immersive · Sculpture Technology</div>
+            <div class="acc-title" data-en="SRGF Projection Mapping" data-it="Mappatura Proiettiva SRGF">SRGF Projection Mapping</div>
+          </div>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="content-placeholder"
+               data-en="Content coming soon — check back in a few weeks."
+               data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+        </div>
+      </div>
+
+      <!-- 6. Vizi Video -->
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <div class="acc-toggle-left">
+            <div class="acc-project-label" data-en="Video · AI Media" data-it="Video · Media IA">Video · AI Media</div>
+            <div class="acc-title" data-en="Vizi Video" data-it="Vizi Video">Vizi Video</div>
+          </div>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="content-placeholder"
+               data-en="Content coming soon — check back in a few weeks."
+               data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+        </div>
+      </div>
+
+      <!-- 7. SGK Genealogy -->
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <div class="acc-toggle-left">
+            <div class="acc-project-label" data-en="Family Heritage · Research" data-it="Eredità Familiare · Ricerca">Family Heritage · Research</div>
+            <div class="acc-title" data-en="SGK Genealogy" data-it="Genealogia SGK">SGK Genealogy</div>
+          </div>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="content-placeholder"
+               data-en="Content coming soon — check back in a few weeks."
+               data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+        </div>
+      </div>
+
+    </div><!-- end .accordion -->
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p class="footer-name">Steven G Kukla</p>
+  <p>Litchfield, CT USA &nbsp;·&nbsp; <a href="#" class="contact-trigger" data-en="✉ Contact Me" data-it="✉ Contattami">✉ Contact Me</a></p>
+  <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.6;">© <span class="copyright-year">2026</span> Steven G Kukla. All rights reserved.</p>
+</footer>
+
+<script src="lang.js"></script>
+<script src="nav.js"></script>
+<script>
+  // Accordion — one open at a time, all closed on load
+  document.querySelectorAll('.acc-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const item   = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('#projects-accordion .acc-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.acc-toggle').setAttribute('aria-expanded', 'false');
+      });
+      // Open this one if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        setTimeout(function() {
+          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    });
+  });
+</script>
+</body>
+</html>
