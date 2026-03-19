@@ -44,9 +44,10 @@ Claude Code, no command-line workflow.
 ├── sculpture.html         ← Sculpture gallery with filter bar + lightbox
 ├── poses.html             ← Figurative poses gallery with lightbox
 ├── writing.html           ← Writing / books page
-├── poems.html             ← Poems & stories page (loads from poems.json)
+├── poems.html             ← Poems & stories page (loads from poems.json); accessed via Writing page, not main nav
 ├── poems.json             ← All 32 poems, newest first, with HTML formatting
 ├── sgk-music.html         ← Music page with per-album track dropdowns + audio players
+├── sgkprojects.html       ← SGK Projects page with 7 collapsible project sections
 
 ├── index.html             ← La Leonessa webapp landing page (Italian-first)
 ├── music.html             ← La Leonessa webapp music player (31 tracks)
@@ -218,19 +219,6 @@ English when Italian is selected. Add `data-en` / `data-it` attributes to every
 
 ## 🟢 Ideas / Nice-to-Have
 
-### Music — Sticky "Now Playing" bar for Play All mode
-When Play All is active, the album cover image, album caption, and playback controls
-(▶ Play All / ⏭ Skip / ⏹ Stop / "Now playing: ...") should be **pinned to the top
-of the screen** as a persistent sticky bar. This solves the mobile UX problem where
-the user must scroll back up to see Skip/Stop as playback advances down the track list.
-
-Applies to both:
-- `sgk-music.html` — Vol 1 and Vol 2 track dropdowns (SGK website)
-- `music.html` — Vol 1 and Vol 2 track sections (La Leonessa webapp)
-
-Both languages (EN/IT) must be supported.
-The sticky bar should only appear when Play All is active and disappear when stopped.
-
 ### Blogspot retirement
 `sgkpoems.blogspot.com` is superseded by `poems.html`. Steve plans to keep it
 active for approximately one year then delete it. No action needed until then.
@@ -239,6 +227,31 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- `sgkprojects.html` created — new SGK Projects page:
+  - 7 collapsible accordion sections, all collapsed on load, one-at-a-time expand
+  - Projects: La Leonessa, Vibe Coding, FaceProj Webapp, SRGF Movie Trailer,
+    SRGF Projection Mapping, Vizi Video, SGK Genealogy
+  - La Leonessa section: lioness photo, bilingual summary, "Explore La Leonessa →"
+    button linking to `project.html?lang=` (language-aware handoff)
+  - Assunta Capobianco and Mayor/Sindaco Giovanni Campese bolded in La Leonessa text
+  - All other 6 sections: bilingual "Content coming soon" placeholder
+  - SGK site aesthetic (style.css, Playfair/Lora/Cormorant, terracotta palette)
+  - GA4 G-FSH461958Y, OG tags, standard nav + footer
+  - Fully bilingual EN/IT throughout
+- "SGK Projects" added to main nav on all 7 SGK pages (between Writing and Music):
+  - EN: "SGK Projects" / IT: "Progetti SGK"
+  - Nav now: Home · About · Sculpture · Poses · Writing · SGK Projects · Music
+- Music — Sticky volume header for Play All mode (`sgk-music.html` and `music.html`):
+  - Each volume has a persistent `.vol-sticky-header` pinned below the nav/back-bar
+  - Header contains: album cover thumbnail, volume label, title, and Play All/Skip/Stop/Now Playing controls
+  - `is-playing` CSS class adds coloured border and shadow when Play All is active
+  - Fully bilingual (EN/IT) on both pages
+- Poems moved from main nav to Writing sub-page:
+  - "Poems" nav item removed from all 7 SGK pages — nav is now Home · About · Sculpture · Poses · Writing · Music
+  - `writing.html`: poems banner enhanced with eyebrow label and "📜 Read the Poems →" button as clear entry point
+  - `poems.html`: "← Back to Writing" / "← Torna a Scritti" link added at top
+  - `poems.html` still accessible directly via URL and from Home page Poem of the Month card
+  - Nav slot freed for future SGK Projects item
 - Music — Play All bug fixes (v2):
   - `sgk.html` Track of the Month: restored missing `audioEl.src = t.url` assignment
   - `sgk-music.html` and `music.html`: fixed `style.display = ''` → explicit `'inline-flex'`
@@ -276,7 +289,7 @@ active for approximately one year then delete it. No action needed until then.
   - Webapp pages: `assets/lioness.jpg` as preview image for all 3 pages
 - Google Analytics (GA4) added to all pages — two separate properties under account **Steven G Kukla** (387635517):
   - **SGK Website** — property ID 528439226, Measurement ID G-FSH461958Y → all 7 SGK pages
-  - **La Leonessa Webapp** — property ID 528385271, Measurement ID G-H006E6GDXT → index.html, music.html, viewer.html
+  - **La Leonessa Webapp** — property ID 528385271, Measurement ID G-H006E6GDXT → index.html, music.html, viewer.html, project.html
 - Full static site built: `sgk.html`, `about.html`, `sculpture.html`, `poses.html`,
   `writing.html`, `sgk-music.html`, `style.css`, `nav.js`, `lang.js`
 - Shared `lang.js` utility created; all SGK pages updated to use it
