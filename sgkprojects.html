@@ -475,15 +475,30 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  // ── Top-level accordion — one open at a time, all collapsed on load ──
-  // No history manipulation needed — when the user navigates away and
-  // returns via the back button, the page reloads fresh with all accordions
-  // collapsed, which is the desired behaviour.
+  // ── Collapse all accordions helper ────────────────────────────────────
+  function collapseAll() {
+    document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
+      i.classList.remove('open');
+      i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
+    });
+    document.querySelectorAll('.sub-acc-item').forEach(function(i) {
+      i.classList.remove('open');
+      i.querySelector('.sub-acc-toggle').setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // ── Tag this history entry as the "all collapsed" state ───────────────
+  // replaceState tags the current entry so popstate can identify it.
+  // When the user navigates away (e.g. to project.html) and hits back,
+  // the browser returns to this entry and pageshow/popstate collapses all.
+  history.replaceState({ sgkCollapsed: true }, '');
+
+  // ── Top-level accordion — one open at a time ──────────────────────────
   document.querySelectorAll('#projects-accordion > .acc-item > .acc-toggle').forEach(function(btn) {
     btn.addEventListener('click', function() {
       const item   = btn.closest('.acc-item');
       const isOpen = item.classList.contains('open');
-      // Close all top-level items
+      // Close all
       document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
         i.classList.remove('open');
         i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
@@ -499,8 +514,7 @@
     });
   });
 
-  // ── Nested sub-accordions inside Vibe Coding ──
-  // These are independent — multiple can be open simultaneously.
+  // ── Nested sub-accordions (Vibe Coding) ───────────────────────────────
   document.querySelectorAll('.sub-acc-toggle').forEach(function(btn) {
     btn.addEventListener('click', function() {
       const item   = btn.closest('.sub-acc-item');
@@ -510,20 +524,20 @@
     });
   });
 
-  // ── Safari bfcache fix ──
-  // Safari restores the DOM from cache on back navigation, preserving open
-  // accordion state. Force-collapse everything when the page is restored
-  // from bfcache (persisted=true).
+  // ── Collapse on back-button (popstate) ────────────────────────────────
+  // Fires when the user presses back and lands on our replaceState entry.
+  window.addEventListener('popstate', function(e) {
+    if (e.state && e.state.sgkCollapsed) {
+      collapseAll();
+    }
+  });
+
+  // ── Collapse on bfcache restore (Safari iOS) ──────────────────────────
+  // Safari restores the DOM from cache on back navigation (e.persisted=true),
+  // preserving any open accordion state. Force-collapse in that case.
   window.addEventListener('pageshow', function(e) {
     if (e.persisted) {
-      document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
-        i.classList.remove('open');
-        i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
-      });
-      document.querySelectorAll('.sub-acc-item').forEach(function(i) {
-        i.classList.remove('open');
-        i.querySelector('.sub-acc-toggle').setAttribute('aria-expanded', 'false');
-      });
+      collapseAll();
     }
   });
 </script>
