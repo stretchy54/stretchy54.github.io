@@ -241,6 +241,15 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- `sgkprojects.html` accordion close button (Option 1):
+  - A "✕ Close" / "✕ Chiudi" button is injected via JS at the bottom of every
+    top-level accordion body (all 7 blocks) when the page loads
+  - Clicking it collapses the open block and scrolls its header back into view
+  - Works for all 7 blocks including Vibe Coding with its nested sub-accordions
+  - La Leonessa retains its "← Back to Projects" and "Explore La Leonessa →" buttons;
+    the Close button appears below them for consistency
+  - All browser history manipulation (pushState/popstate/pageshow) removed entirely
+  - Bilingual: EN "✕ Close" / IT "✕ Chiudi" via SGKLang
 - `sgkprojects.html` Vibe Coding section: inline SVG cycle diagram added below prose
   showing the 5-node manually-driven AI dev cycle (Backlog + codebase → Claude codes →
   Steve validates → GitHub commit → Request changes → back to context); styled using
