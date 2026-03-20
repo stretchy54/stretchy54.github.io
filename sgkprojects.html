@@ -475,11 +475,10 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  // ── Top-level accordion — one open at a time, all closed on load ──
-  // On first open, push a history entry so the back button returns here
-  // (all collapsed) rather than navigating away to the previous page.
-  var _historyPushed = false;
-
+  // ── Top-level accordion — one open at a time, all collapsed on load ──
+  // No history manipulation needed — when the user navigates away and
+  // returns via the back button, the page reloads fresh with all accordions
+  // collapsed, which is the desired behaviour.
   document.querySelectorAll('#projects-accordion > .acc-item > .acc-toggle').forEach(function(btn) {
     btn.addEventListener('click', function() {
       const item   = btn.closest('.acc-item');
@@ -493,28 +492,11 @@
       if (!isOpen) {
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
-        // Push a history entry the first time an accordion opens,
-        // so the back button returns to this page (all collapsed) rather than leaving it.
-        if (!_historyPushed) {
-          history.pushState({ sgkprojects: true }, '', window.location.href);
-          _historyPushed = true;
-        }
         setTimeout(function() {
           item.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 50);
       }
     });
-  });
-
-  // When back is pressed to this pushed state, close all accordions
-  window.addEventListener('popstate', function(e) {
-    if (e.state && e.state.sgkprojects) {
-      document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
-        i.classList.remove('open');
-        i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
-      });
-      _historyPushed = false;
-    }
   });
 
   // ── Nested sub-accordions inside Vibe Coding ──
@@ -526,6 +508,23 @@
       item.classList.toggle('open', !isOpen);
       btn.setAttribute('aria-expanded', String(!isOpen));
     });
+  });
+
+  // ── Safari bfcache fix ──
+  // Safari restores the DOM from cache on back navigation, preserving open
+  // accordion state. Force-collapse everything when the page is restored
+  // from bfcache (persisted=true).
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+      document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
+      });
+      document.querySelectorAll('.sub-acc-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.sub-acc-toggle').setAttribute('aria-expanded', 'false');
+      });
+    }
   });
 </script>
 </body>
