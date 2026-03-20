@@ -475,7 +475,7 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  // ── Collapse all accordions helper ────────────────────────────────────
+  // ── Collapse all accordions ───────────────────────────────────────────
   function collapseAll() {
     document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
       i.classList.remove('open');
@@ -485,13 +485,15 @@
       i.classList.remove('open');
       i.querySelector('.sub-acc-toggle').setAttribute('aria-expanded', 'false');
     });
+    _pushed = false;
   }
 
-  // ── Tag this history entry as the "all collapsed" state ───────────────
-  // replaceState tags the current entry so popstate can identify it.
-  // When the user navigates away (e.g. to project.html) and hits back,
-  // the browser returns to this entry and pageshow/popstate collapses all.
-  history.replaceState({ sgkCollapsed: true }, '');
+  // Push ONE history entry the first time any accordion opens.
+  // This means:
+  //   1st back press  → popstate fires → collapseAll() → stay on this page ✅
+  //   2nd back press  → browser leaves page → wherever user came from ✅
+  // We do NOT push on page load — only on first open.
+  var _pushed = false;
 
   // ── Top-level accordion — one open at a time ──────────────────────────
   document.querySelectorAll('#projects-accordion > .acc-item > .acc-toggle').forEach(function(btn) {
@@ -503,8 +505,12 @@
         i.classList.remove('open');
         i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
       });
-      // Open this one if it was closed
       if (!isOpen) {
+        // Push exactly once per "session" of open accordions
+        if (!_pushed) {
+          history.pushState({ sgkAccordion: true }, '', window.location.href);
+          _pushed = true;
+        }
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
         setTimeout(function() {
@@ -524,21 +530,16 @@
     });
   });
 
-  // ── Collapse on back-button (popstate) ────────────────────────────────
-  // Fires when the user presses back and lands on our replaceState entry.
+  // ── Back button → collapse and stay on page ───────────────────────────
   window.addEventListener('popstate', function(e) {
-    if (e.state && e.state.sgkCollapsed) {
+    if (e.state && e.state.sgkAccordion) {
       collapseAll();
     }
   });
 
-  // ── Collapse on bfcache restore (Safari iOS) ──────────────────────────
-  // Safari restores the DOM from cache on back navigation (e.persisted=true),
-  // preserving any open accordion state. Force-collapse in that case.
+  // ── bfcache safety net (Safari iOS) ──────────────────────────────────
   window.addEventListener('pageshow', function(e) {
-    if (e.persisted) {
-      collapseAll();
-    }
+    if (e.persisted) { collapseAll(); }
   });
 </script>
 </body>
