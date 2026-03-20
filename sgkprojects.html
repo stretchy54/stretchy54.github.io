@@ -135,6 +135,50 @@
       margin-top: 1.4rem;
     }
 
+    /* ── Nested sub-accordion (Vibe Coding sub-headings) ── */
+    .sub-accordion { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+
+    .sub-acc-item {
+      border: 1px solid var(--parchment);
+      border-radius: 4px;
+      background: var(--sand);
+      overflow: hidden;
+    }
+    .sub-acc-item.open { background: var(--warm-white); }
+
+    .sub-acc-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: transparent;
+      border: none;
+      padding: 0.85rem 1.2rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.18s;
+    }
+    .sub-acc-toggle:hover { background: var(--parchment); }
+    .sub-acc-item.open .sub-acc-toggle { background: var(--parchment); border-bottom: 1px solid var(--stone); }
+
+    .sub-acc-title {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--umber);
+    }
+    .sub-acc-chevron {
+      font-size: 0.72rem;
+      color: var(--terracotta);
+      transition: transform 0.22s;
+      flex-shrink: 0;
+    }
+    .sub-acc-item.open .sub-acc-chevron { transform: rotate(180deg); }
+
+    .sub-acc-body { display: none; padding: 1.2rem 1.4rem 1.4rem; }
+    .sub-acc-item.open .sub-acc-body { display: block; }
+
     @media (max-width: 580px) {
       .acc-toggle { padding: 1rem 1.1rem; }
       .acc-body   { padding: 1.4rem 1.2rem 1.6rem; }
@@ -163,8 +207,8 @@
       <li><a href="sculpture.html"    data-en="Sculpture"    data-it="Scultura">Sculpture</a></li>
       <li><a href="poses.html"        data-en="Poses"        data-it="Pose">Poses</a></li>
       <li><a href="writing.html"      data-en="Writing"      data-it="Scritti">Writing</a></li>
-      <li><a href="sgkprojects.html"  data-en="SGK Projects" data-it="Progetti SGK">SGK Projects</a></li>
       <li><a href="sgk-music.html"    data-en="Music"        data-it="Musica">Music</a></li>
+      <li><a href="sgkprojects.html"  data-en="SGK Projects" data-it="Progetti SGK">SGK Projects</a></li>
     </ul>
   </div>
 </nav>
@@ -219,28 +263,57 @@
           <span class="acc-chevron">▼</span>
         </button>
         <div class="acc-body">
-          <div class="acc-prose">
+          <div class="sub-accordion">
 
-            <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--umber);margin-bottom:0.6rem;"
-                data-en="My Projects" data-it="I Miei Progetti">My Projects</h3>
-            <p data-en="My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>."
-               data-it="I miei primi due progetti di vibe coding sono stati la <em>pagina di destinazione avviata da QR code</em> — creata per la cerimonia di inaugurazione della mia scultura La Leonessa — e questo <em>sito personale SGK</em>.">My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>.</p>
+            <!-- Sub 1: My Projects -->
+            <div class="sub-acc-item">
+              <button class="sub-acc-toggle" aria-expanded="false">
+                <span class="sub-acc-title" data-en="My Projects" data-it="I Miei Progetti">My Projects</span>
+                <span class="sub-acc-chevron">▼</span>
+              </button>
+              <div class="sub-acc-body">
+                <div class="acc-prose">
+                  <p data-en="My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>."
+                     data-it="I miei primi due progetti di vibe coding sono stati la <em>pagina di destinazione avviata da QR code</em> — creata per la cerimonia di inaugurazione della mia scultura La Leonessa — e questo <em>sito personale SGK</em>.">My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>.</p>
+                </div>
+              </div>
+            </div>
 
-            <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--umber);margin:1.4rem 0 0.6rem;"
-                data-en="My Approach" data-it="Il Mio Approccio">My Approach</h3>
-            <p data-en="My approach is somewhat atypical. I use a standards file (SGK-BACKLOG.md) containing coding conventions, color palette choices, rules, and a feature backlog. I work with Claude (Anthropic) on a Pro subscription, with a unified GitHub repository. At the start of each session I attach the latest code files and backlog, and ask Claude to be ready to begin."
-               data-it="Il mio approccio è piuttosto atipico. Utilizzo un file di standard (SGK-BACKLOG.md) contenente convenzioni di codifica, palette di colori, regole e un backlog di funzionalità. Lavoro con Claude (Anthropic) in abbonamento Pro, con un repository GitHub unificato. All'inizio di ogni sessione allego i file di codice più recenti e il backlog, e chiedo a Claude di essere pronto a iniziare.">My approach is somewhat atypical. I use a standards file (SGK-BACKLOG.md) containing coding conventions, color palette choices, rules, and a feature backlog. I work with Claude (Anthropic) on a Pro subscription, with a unified GitHub repository. At the start of each session I attach the latest code files and backlog, and ask Claude to be ready to begin.</p>
-            <p data-en="I proceed slowly and incrementally — not because I have to, but because it gives me time to test and think. The process is deliberately iterative and organic, converging toward my vision one session at a time. I keep Claude actively involved throughout but remain the orchestrator: I provide context, request changes, validate results, and commit to GitHub manually."
-               data-it="Procedo lentamente e in modo incrementale — non perché sia necessario, ma perché mi dà il tempo di testare e riflettere. Il processo è deliberatamente iterativo e organico, convergendo verso la mia visione una sessione alla volta. Mantengo Claude attivamente coinvolto ma resto l'orchestratore: fornisco il contesto, richiedo modifiche, valido i risultati e faccio commit su GitHub manualmente.">I proceed slowly and incrementally — not because I have to, but because it gives me time to test and think. The process is deliberately iterative and organic, converging toward my vision one session at a time. I keep Claude actively involved throughout but remain the orchestrator: I provide context, request changes, validate results, and commit to GitHub manually.</p>
-            <p data-en="It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control."
-               data-it="È una combinazione di <em>sviluppo con IA nel ciclo</em> e un ciclo di vita software guidato manualmente — pianificazione tramite il file backlog, implementazione tramite Claude, integrazione tramite commit GitHub e test tramite validazione manuale. Nessuno strato di automazione, nessun CI/CD — solo controllo conversazionale.">It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control.</p>
+            <!-- Sub 2: My Approach -->
+            <div class="sub-acc-item">
+              <button class="sub-acc-toggle" aria-expanded="false">
+                <span class="sub-acc-title" data-en="My Approach" data-it="Il Mio Approccio">My Approach</span>
+                <span class="sub-acc-chevron">▼</span>
+              </button>
+              <div class="sub-acc-body">
+                <div class="acc-prose">
+                  <p data-en="My approach is somewhat atypical. I use a standards file (SGK-BACKLOG.md) containing coding conventions, color palette choices, rules, and a feature backlog. I work with Claude (Anthropic) on a Pro subscription, with a unified GitHub repository. At the start of each session I attach the latest code files and backlog, and ask Claude to be ready to begin."
+                     data-it="Il mio approccio è piuttosto atipico. Utilizzo un file di standard (SGK-BACKLOG.md) contenente convenzioni di codifica, palette di colori, regole e un backlog di funzionalità. Lavoro con Claude (Anthropic) in abbonamento Pro, con un repository GitHub unificato. All'inizio di ogni sessione allego i file di codice più recenti e il backlog, e chiedo a Claude di essere pronto a iniziare.">My approach is somewhat atypical. I use a standards file (SGK-BACKLOG.md) containing coding conventions, color palette choices, rules, and a feature backlog. I work with Claude (Anthropic) on a Pro subscription, with a unified GitHub repository. At the start of each session I attach the latest code files and backlog, and ask Claude to be ready to begin.</p>
+                  <p data-en="I proceed slowly and incrementally — not because I have to, but because it gives me time to test and think. The process is deliberately iterative and organic, converging toward my vision one session at a time. I keep Claude actively involved throughout but remain the orchestrator: I provide context, request changes, validate results, and commit to GitHub manually."
+                     data-it="Procedo lentamente e in modo incrementale — non perché sia necessario, ma perché mi dà il tempo di testare e riflettere. Il processo è deliberatamente iterativo e organico, convergendo verso la mia visione una sessione alla volta. Mantengo Claude attivamente coinvolto ma resto l'orchestratore: fornisco il contesto, richiedo modifiche, valido i risultati e faccio commit su GitHub manualmente.">I proceed slowly and incrementally — not because I have to, but because it gives me time to test and think. The process is deliberately iterative and organic, converging toward my vision one session at a time. I keep Claude actively involved throughout but remain the orchestrator: I provide context, request changes, validate results, and commit to GitHub manually.</p>
+                  <p data-en="It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control."
+                     data-it="È una combinazione di <em>sviluppo con IA nel ciclo</em> e un ciclo di vita software guidato manualmente — pianificazione tramite il file backlog, implementazione tramite Claude, integrazione tramite commit GitHub e test tramite validazione manuale. Nessuno strato di automazione, nessun CI/CD — solo controllo conversazionale.">It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control.</p>
+                </div>
+              </div>
+            </div>
 
-            <h3 style="font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--umber);margin:1.4rem 0 0.6rem;"
-                data-en="Strengths &amp; Challenges" data-it="Punti di Forza e Sfide">Strengths &amp; Challenges</h3>
-            <p data-en="The approach offers <strong>high control, clarity, and reproducibility</strong> — deterministic context injection, tight GitHub integration, and deliberate pacing. But it also comes with real costs: it is error-prone due to manual syncing, slow, cognitively demanding, and vulnerable to stale context if I am careless about keeping Claude up to date."
-               data-it="L'approccio offre <strong>alto controllo, chiarezza e riproducibilità</strong> — iniezione deterministica del contesto, stretta integrazione con GitHub e ritmo deliberato. Ma comporta anche costi reali: è soggetto a errori dovuti alla sincronizzazione manuale, lento, cognitivamente impegnativo e vulnerabile a contesti obsoleti se non mantengo Claude aggiornato."  >The approach offers <strong>high control, clarity, and reproducibility</strong> — deterministic context injection, tight GitHub integration, and deliberate pacing. But it also comes with real costs: it is error-prone due to manual syncing, slow, cognitively demanding, and vulnerable to stale context if I am careless about keeping Claude up to date.</p>
-            <p data-en="When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in."
-               data-it="Quando gli strumenti di vibe coding offriranno contesto persistente, agenti consapevoli del repository e sincronizzazione automatica dei file — ho intenzione di adottarli.">When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in.</p>
+            <!-- Sub 3: Strengths & Challenges -->
+            <div class="sub-acc-item">
+              <button class="sub-acc-toggle" aria-expanded="false">
+                <span class="sub-acc-title" data-en="Strengths &amp; Challenges" data-it="Punti di Forza e Sfide">Strengths &amp; Challenges</span>
+                <span class="sub-acc-chevron">▼</span>
+              </button>
+              <div class="sub-acc-body">
+                <div class="acc-prose">
+                  <p data-en="The approach offers <strong>high control, clarity, and reproducibility</strong> — deterministic context injection, tight GitHub integration, and deliberate pacing. But it also comes with real costs: it is error-prone due to manual syncing, slow, cognitively demanding, and vulnerable to stale context if I am careless about keeping Claude up to date."
+                     data-it="L'approccio offre <strong>alto controllo, chiarezza e riproducibilità</strong> — iniezione deterministica del contesto, stretta integrazione con GitHub e ritmo deliberato. Ma comporta anche costi reali: è soggetto a errori dovuti alla sincronizzazione manuale, lento, cognitivamente impegnativo e vulnerabile a contesti obsoleti se non mantengo Claude aggiornato.">The approach offers <strong>high control, clarity, and reproducibility</strong> — deterministic context injection, tight GitHub integration, and deliberate pacing. But it also comes with real costs: it is error-prone due to manual syncing, slow, cognitively demanding, and vulnerable to stale context if I am careless about keeping Claude up to date.</p>
+                  <p data-en="When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in."
+                     data-it="Quando gli strumenti di vibe coding offriranno contesto persistente, agenti consapevoli del repository e sincronizzazione automatica dei file — ho intenzione di adottarli.">When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in.</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end .sub-accordion -->
 
             <!-- ── Vibe Coding cycle diagram ── -->
             <div style="margin-top:1.8rem;">
@@ -402,24 +475,56 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  // Accordion — one open at a time, all closed on load
-  document.querySelectorAll('.acc-toggle').forEach(function(btn) {
+  // ── Top-level accordion — one open at a time, all closed on load ──
+  // On first open, push a history entry so the back button returns here
+  // (all collapsed) rather than navigating away to the previous page.
+  var _historyPushed = false;
+
+  document.querySelectorAll('#projects-accordion > .acc-item > .acc-toggle').forEach(function(btn) {
     btn.addEventListener('click', function() {
       const item   = btn.closest('.acc-item');
       const isOpen = item.classList.contains('open');
-      // Close all
-      document.querySelectorAll('#projects-accordion .acc-item').forEach(function(i) {
+      // Close all top-level items
+      document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
         i.classList.remove('open');
-        i.querySelector('.acc-toggle').setAttribute('aria-expanded', 'false');
+        i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
       });
       // Open this one if it was closed
       if (!isOpen) {
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
+        // Push a history entry the first time an accordion opens,
+        // so the back button returns to this page (all collapsed) rather than leaving it.
+        if (!_historyPushed) {
+          history.pushState({ sgkprojects: true }, '', window.location.href);
+          _historyPushed = true;
+        }
         setTimeout(function() {
           item.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 50);
       }
+    });
+  });
+
+  // When back is pressed to this pushed state, close all accordions
+  window.addEventListener('popstate', function(e) {
+    if (e.state && e.state.sgkprojects) {
+      document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
+      });
+      _historyPushed = false;
+    }
+  });
+
+  // ── Nested sub-accordions inside Vibe Coding ──
+  // These are independent — multiple can be open simultaneously.
+  document.querySelectorAll('.sub-acc-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const item   = btn.closest('.sub-acc-item');
+      const isOpen = item.classList.contains('open');
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 </script>
