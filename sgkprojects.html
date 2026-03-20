@@ -185,20 +185,24 @@
     }
 
     /* ── Close button at bottom of each block ── */
+    /* Hidden by default — only visible when parent block is open */
     .acc-close-bar {
       margin-top: 1.6rem;
       padding-top: 1rem;
       border-top: 1px solid var(--parchment);
-      display: flex;
+      display: none;
       justify-content: flex-start;
     }
+    .acc-item.open .acc-close-bar { display: flex; }
+
     .sub-acc-close-bar {
       margin-top: 1rem;
       padding-top: 0.8rem;
       border-top: 1px solid var(--parchment);
-      display: flex;
+      display: none;
       justify-content: flex-start;
     }
+    .sub-acc-item.open .sub-acc-close-bar { display: flex; }
     .btn-close-block {
       font-family: var(--font-body);
       font-size: 0.75rem;
