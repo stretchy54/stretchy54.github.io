@@ -206,6 +206,18 @@ GA4 snippet (replace `G-XXXXXXXXXX` with correct ID for each page set):
 - When the GitHub project knowledge connection is lagging, upload the specific files
   being worked on directly — Claude will work from those.
 
+### ⚠️ File version rule — critical
+Within a session, Claude must **always work from the most recently edited version**
+of any file, not the original upload. Specifically:
+
+- Files uploaded by Steve land in `/mnt/user-data/uploads/` — these are the **session-start**
+  versions and must only be used as the source for the **first** edit of that file.
+- After any edit, the working version lives in `/home/claude/` — all subsequent edits
+  to that file **must** use this working copy, never re-copy from `/mnt/user-data/uploads/`.
+- Before editing any file, Claude must check: has this file already been edited this session?
+  If yes → read from `/home/claude/`. If no → copy fresh from `/mnt/user-data/uploads/`.
+- This prevents Claude from silently overwriting its own in-session work with a stale upload.
+
 ---
 
 ## 🟡 Deferred
