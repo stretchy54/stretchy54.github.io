@@ -478,6 +478,35 @@
 
 <script src="lang.js"></script>
 <script src="nav.js"></script>
+<script>
+  // ── Top-level accordion — one open at a time, all collapsed on load ──
+  document.querySelectorAll('#projects-accordion > .acc-item > .acc-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const item   = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        setTimeout(function() {
+          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    });
+  });
 
+  // ── Nested sub-accordions inside Vibe Coding ──
+  document.querySelectorAll('.sub-acc-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const item   = btn.closest('.sub-acc-item');
+      const isOpen = item.classList.contains('open');
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>
 </body>
 </html>
