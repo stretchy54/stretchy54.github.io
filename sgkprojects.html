@@ -183,6 +183,41 @@
       .acc-toggle { padding: 1rem 1.1rem; }
       .acc-body   { padding: 1.4rem 1.2rem 1.6rem; }
     }
+
+    /* ── Close button at bottom of each block ── */
+    .acc-close-bar {
+      margin-top: 1.6rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--parchment);
+      display: flex;
+      justify-content: flex-start;
+    }
+    .sub-acc-close-bar {
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--parchment);
+      display: flex;
+      justify-content: flex-start;
+    }
+    .btn-close-block {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--stone);
+      background: transparent;
+      color: var(--smoke);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .btn-close-block:hover {
+      border-color: var(--clay);
+      color: var(--umber);
+      background: var(--parchment);
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSH461958Y"></script>
@@ -249,10 +284,12 @@
                data-it="Il progetto comprende una novella grafica bilingue — &lt;em&gt;Radici Forti, Frutti Buoni&lt;/em&gt; (3ª edizione, 2026) — 31 canzoni originali composte con l'IA su due album, una webapp di accompagnamento e il prossimo viaggio di donazione di Steven in Italia per presentare la scultura al <strong>Sindaco Giovanni Campese</strong> e ai cittadini di Monteleone.">The project encompasses a bilingual graphic novella — <em>Strong Roots, Good Fruit</em> (3rd edition, 2026) — 31 original AI-composed songs across two albums, a companion webapp, and Steven's forthcoming donation trip to Italy to present the sculpture to <strong>Mayor Giovanni Campese</strong> and the citizens of Monteleone.</p>
           </div>
           <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.4rem;">
-            <a class="btn btn-outline" href="sgkprojects.html"
-               data-en="← Back to Projects" data-it="← Torna ai Progetti">← Back to Projects</a>
             <a class="btn btn-primary" href="project.html"
                data-en="Explore La Leonessa →" data-it="Scopri La Leonessa →">Explore La Leonessa →</a>
+          </div>
+          <div class="acc-close-bar">
+            <button class="btn-close-block acc-close-btn"
+                    data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
           </div>
         </div>
       </div>
@@ -280,6 +317,10 @@
                   <p data-en="My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>."
                      data-it="I miei primi due progetti di vibe coding sono stati la <em>pagina di destinazione avviata da QR code</em> — creata per la cerimonia di inaugurazione della mia scultura La Leonessa — e questo <em>sito personale SGK</em>.">My first two vibe coding projects were the <em>QR-code initiated landing page</em> — built for the unveiling ceremony of my La Leonessa marble sculpture — and this <em>SGK personal website</em>.</p>
                 </div>
+                <div class="sub-acc-close-bar">
+                  <button class="btn-close-block sub-acc-close-btn"
+                          data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+                </div>
               </div>
             </div>
 
@@ -298,6 +339,10 @@
                   <p data-en="It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control."
                      data-it="È una combinazione di <em>sviluppo con IA nel ciclo</em> e un ciclo di vita software guidato manualmente — pianificazione tramite il file backlog, implementazione tramite Claude, integrazione tramite commit GitHub e test tramite validazione manuale. Nessuno strato di automazione, nessun CI/CD — solo controllo conversazionale.">It's a blend of <em>AI-in-the-loop development</em> and a manually-driven software lifecycle — planning via the backlog file, implementation via Claude, integration via GitHub commits, and testing via manual validation. No automation layer, no CI/CD — just conversational control.</p>
                 </div>
+                <div class="sub-acc-close-bar">
+                  <button class="btn-close-block sub-acc-close-btn"
+                          data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+                </div>
               </div>
             </div>
 
@@ -313,6 +358,10 @@
                      data-it="L'approccio offre <strong>alto controllo, chiarezza e riproducibilità</strong> — iniezione deterministica del contesto, stretta integrazione con GitHub e ritmo deliberato. Ma comporta anche costi reali: è soggetto a errori dovuti alla sincronizzazione manuale, lento, cognitivamente impegnativo e vulnerabile a contesti obsoleti se non mantengo Claude aggiornato.">The approach offers <strong>high control, clarity, and reproducibility</strong> — deterministic context injection, tight GitHub integration, and deliberate pacing. But it also comes with real costs: it is error-prone due to manual syncing, slow, cognitively demanding, and vulnerable to stale context if I am careless about keeping Claude up to date.</p>
                   <p data-en="When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in."
                      data-it="Quando gli strumenti di vibe coding offriranno contesto persistente, agenti consapevoli del repository e sincronizzazione automatica dei file — ho intenzione di adottarli.">When vibe coding tools offer persistent context, repo-aware agents, and automated file syncing — I plan to jump in.</p>
+                </div>
+                <div class="sub-acc-close-bar">
+                  <button class="btn-close-block sub-acc-close-btn"
+                          data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
                 </div>
               </div>
             </div>
@@ -382,6 +431,10 @@
             </div>
 
           </div>
+          <div class="acc-close-bar">
+            <button class="btn-close-block acc-close-btn"
+                    data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+          </div>
         </div>
       </div>
 
@@ -398,6 +451,10 @@
           <div class="content-placeholder"
                data-en="Content coming soon — check back in a few weeks."
                data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+          <div class="acc-close-bar">
+            <button class="btn-close-block acc-close-btn"
+                    data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+          </div>
         </div>
       </div>
 
@@ -414,6 +471,10 @@
           <div class="content-placeholder"
                data-en="Content coming soon — check back in a few weeks."
                data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+          <div class="acc-close-bar">
+            <button class="btn-close-block acc-close-btn"
+                    data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+          </div>
         </div>
       </div>
 
@@ -430,6 +491,10 @@
           <div class="content-placeholder"
                data-en="Content coming soon — check back in a few weeks."
                data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+          <div class="acc-close-bar">
+            <button class="btn-close-block acc-close-btn"
+                    data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+          </div>
         </div>
       </div>
 
@@ -446,6 +511,10 @@
           <div class="content-placeholder"
                data-en="Content coming soon — check back in a few weeks."
                data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+          <div class="acc-close-bar">
+            <button class="btn-close-block acc-close-btn"
+                    data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+          </div>
         </div>
       </div>
 
@@ -462,6 +531,10 @@
           <div class="content-placeholder"
                data-en="Content coming soon — check back in a few weeks."
                data-it="Contenuto in arrivo — torna tra qualche settimana.">Content coming soon — check back in a few weeks.</div>
+          <div class="acc-close-bar">
+            <button class="btn-close-block acc-close-btn"
+                    data-en="✕ Close" data-it="✕ Chiudi">✕ Close</button>
+          </div>
         </div>
       </div>
 
@@ -498,6 +571,19 @@
     });
   });
 
+  // ── Close buttons on top-level accordion blocks ──
+  document.querySelectorAll('.acc-close-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const item = btn.closest('.acc-item');
+      item.classList.remove('open');
+      item.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
+      // Scroll the header back into view so user sees the collapsed state
+      setTimeout(function() {
+        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    });
+  });
+
   // ── Nested sub-accordions inside Vibe Coding ──
   document.querySelectorAll('.sub-acc-toggle').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -505,6 +591,18 @@
       const isOpen = item.classList.contains('open');
       item.classList.toggle('open', !isOpen);
       btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // ── Close buttons on sub-accordion blocks ──
+  document.querySelectorAll('.sub-acc-close-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const item = btn.closest('.sub-acc-item');
+      item.classList.remove('open');
+      item.querySelector('.sub-acc-toggle').setAttribute('aria-expanded', 'false');
+      setTimeout(function() {
+        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
     });
   });
 </script>
