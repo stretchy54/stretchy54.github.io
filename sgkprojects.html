@@ -248,8 +248,12 @@
             <p data-en="The project encompasses a bilingual graphic novella — &lt;em&gt;Strong Roots, Good Fruit&lt;/em&gt; (3rd edition, 2026) — 31 original AI-composed songs across two albums, a companion webapp, and Steven's forthcoming donation trip to Italy to present the sculpture to <strong>Mayor Giovanni Campese</strong> and the citizens of Monteleone."
                data-it="Il progetto comprende una novella grafica bilingue — &lt;em&gt;Radici Forti, Frutti Buoni&lt;/em&gt; (3ª edizione, 2026) — 31 canzoni originali composte con l'IA su due album, una webapp di accompagnamento e il prossimo viaggio di donazione di Steven in Italia per presentare la scultura al <strong>Sindaco Giovanni Campese</strong> e ai cittadini di Monteleone.">The project encompasses a bilingual graphic novella — <em>Strong Roots, Good Fruit</em> (3rd edition, 2026) — 31 original AI-composed songs across two albums, a companion webapp, and Steven's forthcoming donation trip to Italy to present the sculpture to <strong>Mayor Giovanni Campese</strong> and the citizens of Monteleone.</p>
           </div>
-          <a class="btn btn-primary acc-cta" href="project.html"
-             data-en="Explore La Leonessa →" data-it="Scopri La Leonessa →">Explore La Leonessa →</a>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.4rem;">
+            <a class="btn btn-outline" href="sgkprojects.html"
+               data-en="← Back to Projects" data-it="← Torna ai Progetti">← Back to Projects</a>
+            <a class="btn btn-primary" href="project.html"
+               data-en="Explore La Leonessa →" data-it="Scopri La Leonessa →">Explore La Leonessa →</a>
+          </div>
         </div>
       </div>
 
@@ -474,73 +478,6 @@
 
 <script src="lang.js"></script>
 <script src="nav.js"></script>
-<script>
-  // ── Collapse all accordions ───────────────────────────────────────────
-  function collapseAll() {
-    document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
-      i.classList.remove('open');
-      i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
-    });
-    document.querySelectorAll('.sub-acc-item').forEach(function(i) {
-      i.classList.remove('open');
-      i.querySelector('.sub-acc-toggle').setAttribute('aria-expanded', 'false');
-    });
-    _pushed = false;
-  }
 
-  // Push ONE history entry the first time any accordion opens.
-  // This means:
-  //   1st back press  → popstate fires → collapseAll() → stay on this page ✅
-  //   2nd back press  → browser leaves page → wherever user came from ✅
-  // We do NOT push on page load — only on first open.
-  var _pushed = false;
-
-  // ── Top-level accordion — one open at a time ──────────────────────────
-  document.querySelectorAll('#projects-accordion > .acc-item > .acc-toggle').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      const item   = btn.closest('.acc-item');
-      const isOpen = item.classList.contains('open');
-      // Close all
-      document.querySelectorAll('#projects-accordion > .acc-item').forEach(function(i) {
-        i.classList.remove('open');
-        i.querySelector(':scope > .acc-toggle').setAttribute('aria-expanded', 'false');
-      });
-      if (!isOpen) {
-        // Push exactly once per "session" of open accordions
-        if (!_pushed) {
-          history.pushState({ sgkAccordion: true }, '', window.location.href);
-          _pushed = true;
-        }
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-        setTimeout(function() {
-          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
-      }
-    });
-  });
-
-  // ── Nested sub-accordions (Vibe Coding) ───────────────────────────────
-  document.querySelectorAll('.sub-acc-toggle').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      const item   = btn.closest('.sub-acc-item');
-      const isOpen = item.classList.contains('open');
-      item.classList.toggle('open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  // ── Back button → collapse and stay on page ───────────────────────────
-  window.addEventListener('popstate', function(e) {
-    if (e.state && e.state.sgkAccordion) {
-      collapseAll();
-    }
-  });
-
-  // ── bfcache safety net (Safari iOS) ──────────────────────────────────
-  window.addEventListener('pageshow', function(e) {
-    if (e.persisted) { collapseAll(); }
-  });
-</script>
 </body>
 </html>
