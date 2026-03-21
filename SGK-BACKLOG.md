@@ -241,6 +241,10 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- `writing.html`: book description text updated for Strong Roots, Good Fruit:
+  - New bilingual `book-desc` paragraph honouring Monteleone's women, emigration,
+    La Leonessa legend, poems/songs per chapter, and dedication to grandmother
+    Maria Assunta Capobianco (born 1900); fully bilingual EN/IT
 - `writing.html`: book cover images updated to 3rd edition files:
   - English: `media/COVER_ENG_MdP_3rd_Edition.jpg` (replaces `MdP_Eng_8Aug2024.png`)
   - Italian: `media/COVER_ITA_MdP_3a_Edizione.jpg` (replaces `COVER_ITA_MdP_1Nov2025.png`)
