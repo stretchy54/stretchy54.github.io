@@ -241,6 +241,10 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
+- `writing.html`: book cover images updated to 3rd edition files:
+  - English: `media/COVER_ENG_MdP_3rd_Edition.jpg` (replaces `MdP_Eng_8Aug2024.png`)
+  - Italian: `media/COVER_ITA_MdP_3a_Edizione.jpg` (replaces `COVER_ITA_MdP_1Nov2025.png`)
+  - Both the default `src` on load and the `syncBookToLang()` swap logic updated
 - `sgkprojects.html` accordion close button (Option 1):
   - A "✕ Close" / "✕ Chiudi" button is injected via JS at the bottom of every
     top-level accordion body (all 7 blocks) when the page loads
