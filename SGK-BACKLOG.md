@@ -324,9 +324,10 @@ active for approximately one year then delete it. No action needed until then.
   "New to the music?" / How to Listen banner removed
 - `how-to-listen.html` deleted from site; all navigation links removed from all pages
 - Mobile whitespace tightened across all pages (Claude Desktop session)
+- `poems.json`: "Tomorrow" poem text corrected — broken single-word line splits from Blogspot source replaced with proper continuous stanza lines matching original intent
 - `poems.json` updated: "One Hertz" added as poem #33 (dated 2026-03-30), inserted at top of array as newest-first entry
 - `writing.html` poems banner: poem count is now dynamic — fetched live from `poems.json` at runtime; never needs manual updating when poems are added
-- `poems.json` created: all 33 poems from sgkpoems.blogspot.com, newest first, with
+- `poems.json` created: all 32 poems from sgkpoems.blogspot.com, newest first, with
   line breaks and inline HTML formatting (bold, italic) preserved
 - `poems.html` created: dedicated Poems page with collapsible panels, bilingual chrome,
   added to nav between Writing and Music on all 6 SGK pages
