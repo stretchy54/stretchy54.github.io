@@ -45,7 +45,7 @@ Claude Code, no command-line workflow.
 ├── poses.html             ← Figurative poses gallery with lightbox
 ├── writing.html           ← Writing / books page
 ├── poems.html             ← Poems & stories page (loads from poems.json); accessed via Writing page, not main nav
-├── poems.json             ← All 32 poems, newest first, with HTML formatting
+├── poems.json             ← All 33 poems, newest first, with HTML formatting
 ├── sgk-music.html         ← Music page with per-album track dropdowns + audio players
 ├── sgkprojects.html       ← SGK Projects page with 7 collapsible project sections
 
@@ -206,32 +206,20 @@ GA4 snippet (replace `G-XXXXXXXXXX` with correct ID for each page set):
 - When the GitHub project knowledge connection is lagging, upload the specific files
   being worked on directly — Claude will work from those.
 
-### ⚠️ File version rule — critical
-Within a session, Claude must **always work from the most recently edited version**
-of any file, not the original upload. Specifically:
-
-- Files uploaded by Steve land in `/mnt/user-data/uploads/` — these are the **session-start**
-  versions and must only be used as the source for the **first** edit of that file.
-- After any edit, the working version lives in `/home/claude/` — all subsequent edits
-  to that file **must** use this working copy, never re-copy from `/mnt/user-data/uploads/`.
-- Before editing any file, Claude must check: has this file already been edited this session?
-  If yes → read from `/home/claude/`. If no → copy fresh from `/mnt/user-data/uploads/`.
-- This prevents Claude from silently overwriting its own in-session work with a stale upload.
+- When a new poem is added to `poems.json`, update the poem count in `SGK-BACKLOG.md` (repository structure line and Completed entry). The count in `writing.html` is dynamic and never needs manual updating.
 
 ---
 
 ## 🟡 Deferred
 
-Nothing currently deferred.
+### Sculpture page — Italian translations of gallery captions
+All sculpture captions (material, date, inspiration notes) currently stay in
+English when Italian is selected. Add `data-en` / `data-it` attributes to every
+`gallery-meta` div with full Italian translations.
 
 ---
 
 ## 🟢 Ideas / Nice-to-Have
-
-### Wix website retirement
-`https://stretchy54.wixsite.com/sgk-stone-sculptures` is superseded by the SGK website.
-Steve plans to keep it active for approximately one year then delete it.
-No action needed until then.
 
 ### Blogspot retirement
 `sgkpoems.blogspot.com` is superseded by `poems.html`. Steve plans to keep it
@@ -241,37 +229,6 @@ active for approximately one year then delete it. No action needed until then.
 
 ## ✅ Completed (for reference)
 
-- `writing.html`: book description text updated for Strong Roots, Good Fruit:
-  - New bilingual `book-desc` paragraph honouring Monteleone's women, emigration,
-    La Leonessa legend, poems/songs per chapter, and dedication to grandmother
-    Maria Assunta Capobianco (born 1900); fully bilingual EN/IT
-- `writing.html`: book cover images updated to 3rd edition files:
-  - English: `media/COVER_ENG_MdP_3rd_Edition.jpg` (replaces `MdP_Eng_8Aug2024.png`)
-  - Italian: `media/COVER_ITA_MdP_3a_Edizione.jpg` (replaces `COVER_ITA_MdP_1Nov2025.png`)
-  - Both the default `src` on load and the `syncBookToLang()` swap logic updated
-- `sgkprojects.html` accordion close button (Option 1):
-  - A "✕ Close" / "✕ Chiudi" button is injected via JS at the bottom of every
-    top-level accordion body (all 7 blocks) when the page loads
-  - Clicking it collapses the open block and scrolls its header back into view
-  - Works for all 7 blocks including Vibe Coding with its nested sub-accordions
-  - La Leonessa retains its "← Back to Projects" and "Explore La Leonessa →" buttons;
-    the Close button appears below them for consistency
-  - All browser history manipulation (pushState/popstate/pageshow) removed entirely
-  - Bilingual: EN "✕ Close" / IT "✕ Chiudi" via SGKLang
-- `sgkprojects.html` Vibe Coding section: inline SVG cycle diagram added below prose
-  showing the 5-node manually-driven AI dev cycle (Backlog + codebase → Claude codes →
-  Steve validates → GitHub commit → Request changes → back to context); styled using
-  site CSS variables; strengths and challenges summarised below a divider line
-- `sgkprojects.html` Vibe Coding section: full content added from PDF source —
-  three headed sections (My Projects, My Approach, Strengths & Challenges);
-  condensed and restated; fully bilingual EN/IT
-- `sgk-music.html`: "Flag icons indicate Italian-language songs" line added below
-  hero subtitle; bilingual (IT: "Le icone bandiera indicano le canzoni in italiano")
-- `sgk-music.html`: "Ci scusiamo: solo tre canzoni" bolded in Italian apology note
-- `nav.js`: removed `#gallery` from `applyLang()` exclusion — fixes Italian sculpture
-  captions not translating; guard was intended only for `#poses-grid`
-- Sculpture page Italian captions: confirmed working — all `gallery-meta` divs already
-  had correct `data-en`/`data-it` attributes; root fix was in `nav.js`
 - `sgkprojects.html` created — new SGK Projects page:
   - 7 collapsible accordion sections, all collapsed on load, one-at-a-time expand
   - Projects: La Leonessa, Vibe Coding, FaceProj Webapp, SRGF Movie Trailer,
@@ -367,7 +324,9 @@ active for approximately one year then delete it. No action needed until then.
   "New to the music?" / How to Listen banner removed
 - `how-to-listen.html` deleted from site; all navigation links removed from all pages
 - Mobile whitespace tightened across all pages (Claude Desktop session)
-- `poems.json` created: all 32 poems from sgkpoems.blogspot.com, newest first, with
+- `poems.json` updated: "One Hertz" added as poem #33 (dated 2026-03-30), inserted at top of array as newest-first entry
+- `writing.html` poems banner: poem count is now dynamic — fetched live from `poems.json` at runtime; never needs manual updating when poems are added
+- `poems.json` created: all 33 poems from sgkpoems.blogspot.com, newest first, with
   line breaks and inline HTML formatting (bold, italic) preserved
 - `poems.html` created: dedicated Poems page with collapsible panels, bilingual chrome,
   added to nav between Writing and Music on all 6 SGK pages

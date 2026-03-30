@@ -61,7 +61,6 @@
   <header class="page-hero fade-up">
     <p style="font-family:var(--font-accent);font-style:italic;color:var(--terracotta);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;" data-en="Books · Poems · Stories" data-it="Libri · Poesie · Storie">Books · Poems · Stories</p>
     <h1 class="section-title" data-en="Books &amp; &lt;em&gt;Writings&lt;/em&gt;" data-it="Libri e &lt;em&gt;Scritti&lt;/em&gt;">Books &amp; <em>Writings</em></h1>
-    
   </header>
 
   <div class="writing-layout">
@@ -129,7 +128,8 @@
       <div class="poems-banner-text">
         <p style="font-family:var(--font-accent);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.4rem;" data-en="Poems &amp; Stories" data-it="Poesie e Storie">Poems &amp; Stories</p>
         <h3 data-en="SGK Poems &amp; Stories" data-it="Poesie e Storie SGK">SGK Poems &amp; Stories</h3>
-        <p data-en="32 original poems, short stories and meditations — spanning 2010 to 2024. Click any title to read." data-it="32 poesie originali, racconti brevi e meditazioni — dal 2010 al 2024. Clicca su un titolo per leggere.">32 original poems, short stories and meditations — spanning 2010 to 2024. Click any title to read.</p>
+        <!-- Poem count is populated dynamically from poems.json — never needs manual updating -->
+        <p id="poems-banner-desc" data-en-template="COUNT original poems, short stories and meditations — spanning 2010 to 2026. Click any title to read." data-it-template="COUNT poesie originali, racconti brevi e meditazioni — dal 2010 al 2026. Clicca su un titolo per leggere.">Loading…</p>
         <a href="poems.html" class="btn btn-primary" style="font-size:0.88rem;margin-top:0.8rem;display:inline-block;" data-en="📜 Read the Poems →" data-it="📜 Leggi le Poesie →">📜 Read the Poems →</a>
       </div>
     </div>
@@ -146,11 +146,34 @@
 <script src="lang.js"></script>
 <script src="nav.js"></script>
 <script>
-  // Sync book edition tabs and cover to the active language.
-  // Called by nav.js on init and on every language switch.
+  // ── Dynamic poem count from poems.json ──────────────────────────────
+  // Fetches poems.json and injects the live count into the poems banner.
+  // No manual update ever needed when poems are added.
+  (function() {
+    var descEl = document.getElementById('poems-banner-desc');
+    var lang   = window.SGKLang ? window.SGKLang.get('en') : 'en';
+
+    function applyCount(count) {
+      var template = lang === 'it'
+        ? descEl.getAttribute('data-it-template')
+        : descEl.getAttribute('data-en-template');
+      descEl.textContent = template.replace('COUNT', count);
+    }
+
+    fetch('poems.json')
+      .then(function(r) { return r.json(); })
+      .then(function(poems) { applyCount(poems.length); })
+      .catch(function() {
+        // Fallback if fetch fails — show a reasonable static string
+        descEl.textContent = lang === 'it'
+          ? 'Poesie originali, racconti brevi e meditazioni. Clicca su un titolo per leggere.'
+          : 'Original poems, short stories and meditations. Click any title to read.';
+      });
+  })();
+
+  // ── Sync book edition tabs and cover to the active language ─────────
   function syncBookToLang(lang) {
     var isIt = lang === 'it';
-    // Cover image
     var cover = document.getElementById('book-cover-img');
     if (cover) {
       cover.src = isIt
@@ -160,31 +183,37 @@
         ? 'Radici Forti, Frutti Buoni — copertina'
         : 'Strong Roots, Good Fruit — book cover';
     }
-    // Edition link panels
     var enLinks = document.getElementById('links-en');
     var itLinks = document.getElementById('links-it');
     if (enLinks) enLinks.style.display = isIt ? 'none' : '';
     if (itLinks) itLinks.style.display = isIt ? ''     : 'none';
-    // Tab button active state
     document.querySelectorAll('.lang-tab').forEach(function(tab) {
       var active = tab.dataset.lang === lang;
       tab.classList.toggle('active', active);
       tab.setAttribute('aria-selected', active ? 'true' : 'false');
     });
+    // Re-render the poem count in the correct language
+    var descEl = document.getElementById('poems-banner-desc');
+    if (descEl && descEl.textContent !== 'Loading…') {
+      var currentText = descEl.textContent;
+      var countMatch  = currentText.match(/\d+/);
+      if (countMatch) {
+        var template = lang === 'it'
+          ? descEl.getAttribute('data-it-template')
+          : descEl.getAttribute('data-en-template');
+        descEl.textContent = template.replace('COUNT', countMatch[0]);
+      }
+    }
   }
 
-  // Hook into nav.js language toggle clicks
   document.addEventListener('click', function(e) {
     var btn = e.target.closest('.nav-lang-btn');
     if (btn) syncBookToLang(btn.dataset.lang);
   });
 
-  // Also allow the on-card tab buttons to drive both the book panel
-  // AND the main site language (so they stay in sync)
   document.querySelectorAll('.lang-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
       var lang = tab.dataset.lang;
-      // Fire the main site language switch (nav.js listens via delegation)
       document.querySelectorAll('.nav-lang-btn').forEach(function(nb) {
         if (nb.dataset.lang === lang) nb.click();
       });
@@ -192,7 +221,6 @@
     });
   });
 
-  // Init: read lang from URL (via SGKLang, already loaded by lang.js)
   syncBookToLang(window.SGKLang.get('en'));
 </script>
 </body>
