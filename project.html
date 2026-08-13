@@ -74,6 +74,13 @@
     .gratitude .collab-label{font-style:italic;color:var(--muted);margin:1rem 0 0.6rem}
     .gratitude .collab-list{margin-left:1.2rem}
     .gratitude .collab-list li::before{content:'○';font-size:0.75em;top:0.2em}
+    .ceremony-menu{display:flex;flex-direction:column;gap:0.6rem}
+    .ceremony-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.85rem 1.1rem;border:1px solid var(--rule);border-radius:8px;background:rgba(255,255,255,0.5);color:var(--ink);text-decoration:none;transition:background 0.18s,transform 0.15s}
+    .ceremony-link:hover{background:rgba(181,148,64,0.12);transform:translateX(2px)}
+    .ceremony-link .cl-text{font-size:clamp(0.92rem,2vw,1.02rem);line-height:1.5}
+    .ceremony-link .cl-icon{margin-right:0.4rem}
+    .ceremony-link .cl-meta{display:block;color:var(--muted);font-style:italic;font-size:0.86em;margin-top:0.15rem}
+    .ceremony-link .cl-arrow{font-size:0.9rem;color:var(--gold);flex-shrink:0}
     .closing{font-size:clamp(0.95rem,2vw,1.05rem);line-height:1.8;color:var(--ink);margin-bottom:1.5rem}
     .closing a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
     .closing .thankyou{font-style:italic;font-weight:700;font-size:clamp(1rem,2.2vw,1.15rem);display:block;margin-bottom:1rem}
@@ -189,7 +196,7 @@
             <ul class="collab-list">
               <li><strong>Rosa Pollastrone</strong>, Monteleone di Puglia, Italia</li>
               <li><strong>Lina e Antonio Colangelo</strong>, Monteleone di Puglia, Italia</li>
-              <li><strong>Daniela Pucillo</strong>, Assessora alla Cultura del Comune di Monteleone di Puglia, Italia</li>
+              <li><strong>Daniela Pucillo</strong>, Assessora alla Cultura del Comune, Monteleone di Puglia, Italia</li>
               <li><strong>Cristina Capobianco</strong>, mia cugina, Toronto, Canada</li>
               <li><strong>Paolo Schiavone</strong>, Schiavone Fotografia, Stornara, Italia</li>
             </ul>
@@ -202,6 +209,49 @@
           <div class="portrait-block">
             <img src="media/Steven_Gerard_Kukla_2018.png" alt="Steven G Kukla" />
             <p class="img-caption">Steven G Kukla</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <span class="acc-title">Cerimonia del 9 Agosto 2026</span>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="ceremony-menu">
+            <a class="ceremony-link" href="ceremony/FINAL_speech_9August2026.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Testo del Discorso<span class="cl-meta">PDF, Bilingue</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/La_Leonessa_Speech_Pics.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Presentazione — Senza Audio<span class="cl-meta">PDF, solo versione italiana</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="https://youtu.be/m6Hko8RtZxU" target="_blank" rel="noopener">
+              <span class="cl-text"><span class="cl-icon">▶</span>Presentazione — con Audio<span class="cl-meta">Video YouTube, italiano generato da IA</span></span>
+              <span class="cl-arrow">↗</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/Thematic_Synthesis.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Sintesi Tematica del Progetto<span class="cl-meta">PDF, Bilingue</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="https://www.youtube.com/watch?v=p5uVTNdQZQQ" target="_blank" rel="noopener">
+              <span class="cl-text"><span class="cl-icon">▶</span>Registrazione della Cerimonia — Parte 1 (discorso)<span class="cl-meta">Video YouTube di 10 minuti, Inglese e Italiano</span></span>
+              <span class="cl-arrow">↗</span>
+            </a>
+            <a class="ceremony-link" href="https://youtu.be/_3Q9CQz54MM" target="_blank" rel="noopener">
+              <span class="cl-text"><span class="cl-icon">▶</span>Registrazione della Cerimonia — Parte 2 (discorso e scoprimento)<span class="cl-meta">Video YouTube di 8 minuti, Inglese e Italiano</span></span>
+              <span class="cl-arrow">↗</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/Flyer_ENG_2Apr2026.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Dépliant Trifold<span class="cl-meta">PDF, versione inglese</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/Flyer_ITA_7July2026.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Dépliant Trifold<span class="cl-meta">PDF, versione italiana</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
           </div>
         </div>
       </div>
@@ -307,7 +357,7 @@
             <ul class="collab-list">
               <li><strong>Rosa Pollastrone</strong>, Monteleone di Puglia, Italia</li>
               <li><strong>Lina and Antonio Colangelo</strong>, Monteleone di Puglia, Italia</li>
-              <li><strong>Daniela Pucillo</strong>, Assessora alla Cultura del Comune di Monteleone di Puglia, Italia</li>
+              <li><strong>Daniela Pucillo</strong>, Assessora alla Cultura del Comune, Monteleone di Puglia, Italia</li>
               <li><strong>Cristina Capobianco</strong>, my cousin, Toronto, Canada</li>
               <li><strong>Paolo Schiavone</strong>, Schiavone Fotografia, Stornara, Italy</li>
             </ul>
@@ -320,6 +370,49 @@
           <div class="portrait-block">
             <img src="media/Steven_Gerard_Kukla_2018.png" alt="Steven G Kukla" />
             <p class="img-caption">Steven G Kukla</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-toggle" aria-expanded="false">
+          <span class="acc-title">9 August, 2026 Ceremony</span>
+          <span class="acc-chevron">▼</span>
+        </button>
+        <div class="acc-body">
+          <div class="ceremony-menu">
+            <a class="ceremony-link" href="ceremony/FINAL_speech_9August2026.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Speech Text<span class="cl-meta">PDF, Bilingual</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/La_Leonessa_Speech_Pics.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Slide Show — No Audio<span class="cl-meta">PDF, Italian version only</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="https://youtu.be/m6Hko8RtZxU" target="_blank" rel="noopener">
+              <span class="cl-text"><span class="cl-icon">▶</span>Slide Show — With Audio<span class="cl-meta">YouTube Video, AI-generated Italian</span></span>
+              <span class="cl-arrow">↗</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/Thematic_Synthesis.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Thematic Synthesis of Project<span class="cl-meta">PDF, Bilingual</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="https://www.youtube.com/watch?v=p5uVTNdQZQQ" target="_blank" rel="noopener">
+              <span class="cl-text"><span class="cl-icon">▶</span>Ceremony Recording Part 1 (speech)<span class="cl-meta">10 minute YouTube Video, English &amp; Italian</span></span>
+              <span class="cl-arrow">↗</span>
+            </a>
+            <a class="ceremony-link" href="https://youtu.be/_3Q9CQz54MM" target="_blank" rel="noopener">
+              <span class="cl-text"><span class="cl-icon">▶</span>Ceremony Recording Part 2 (speech &amp; unveiling)<span class="cl-meta">8 minute YouTube Video, English &amp; Italian</span></span>
+              <span class="cl-arrow">↗</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/Flyer_ENG_2Apr2026.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Trifold Brochure<span class="cl-meta">PDF, English version</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
+            <a class="ceremony-link" href="ceremony/Flyer_ITA_7July2026.pdf" download>
+              <span class="cl-text"><span class="cl-icon">📄</span>Trifold Brochure<span class="cl-meta">PDF, Italian version</span></span>
+              <span class="cl-arrow">↓</span>
+            </a>
           </div>
         </div>
       </div>
