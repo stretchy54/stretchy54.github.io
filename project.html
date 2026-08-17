@@ -111,8 +111,6 @@
     .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin-top:0.5rem}
     .photo-thumb{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.12);transition:transform 0.15s;display:block;background:rgba(0,0,0,0.05)}
     .photo-thumb:hover{transform:scale(1.05)}
-    .photo-add-link{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.9rem;padding:0.55rem 1rem;border:1px dashed var(--gold);border-radius:6px;color:var(--ink);text-decoration:none;font-size:0.9em;background:rgba(181,148,64,0.06);transition:background 0.18s}
-    .photo-add-link:hover{background:rgba(181,148,64,0.15)}
     .lightbox-overlay{position:fixed;inset:0;background:rgba(10,8,4,0.92);z-index:200;display:none;align-items:center;justify-content:center;padding:2rem}
     .lightbox-overlay.open{display:flex}
     .lightbox-img{max-width:90vw;max-height:82vh;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
@@ -190,6 +188,10 @@
           <span class="acc-chevron">▼</span>
         </button>
         <div class="acc-body">
+          <div class="prose">
+            <p>La Leonessa rende omaggio soprattutto alle donne di Monteleone di Puglia, protagoniste della storica rivolta del 23 agosto 1942, uno dei primi e più significativi episodi di opposizione popolare al regime fascista durante la Seconda Guerra Mondiale.</p>
+            <p>Inoltre, il designer Steven G. Kukla l'ha offerta come dono culturale al popolo di Monteleone, in memoria di sua nonna materna italiana Maria Assunta Capobianco, nata qui nel 1900.</p>
+          </div>
           <div class="lioness-img">
             <img src="media/lioness_Full_Length.jpg" alt="La Leonessa — scultura in marmo Carrara" />
             <p class="img-caption"><em>La Leonessa</em> — marmo Carrara Bianco Venato</p>
@@ -200,6 +202,10 @@
             <p><strong>Zampa sinistra</strong> alta, artigli pronti a colpire —<br>segno di <strong>difesa</strong> e <strong>forza</strong>.</p>
             <p>Ma la <strong>zampa destra</strong> tesa, palmo aperto, artigli retratti —<br>segno di <strong>accoglienza, pace, compassione</strong> e <strong>carità</strong>.</p>
             <p>E un <strong>volto fiero</strong> e <strong>fauci ringhianti</strong> —<br>coraggiosa, per <strong>ruggire la verità</strong>.</p>
+          </div>
+          <div class="img-block">
+            <img src="media/Final_Plaque_photoConcept.png" alt="Targa commemorativa in bronzo della scultura La Leonessa" />
+            <p class="img-caption">La targa commemorativa in bronzo</p>
           </div>
         </div>
       </div>
@@ -467,6 +473,10 @@
           <span class="acc-chevron">▼</span>
         </button>
         <div class="acc-body">
+          <div class="prose">
+            <p>La Leonessa pays homage above all to the women of Monteleone di Puglia, protagonists of the historic revolt of 23 August 1942, one of the earliest and most significant episodes of popular opposition to the fascist regime during the Second World War.</p>
+            <p>Additionally, the designer Steven G. Kukla offered it as a cultural gift to the people of Monteleone, in memory of his maternal Italian grandmother Maria Assunta Capobianco who was born here in 1900.</p>
+          </div>
           <div class="lioness-img">
             <img src="media/lioness_Full_Length.jpg" alt="La Leonessa — Carrara marble sculpture" />
             <p class="img-caption"><em>La Leonessa</em> — Carrara Bianco Venato marble</p>
@@ -477,6 +487,10 @@
             <p><strong>Left</strong> arm high, claws ready to strike —<br>a sign of defense &amp; strength.</p>
             <p>But <strong>Right</strong> arm extended, open paw, claws retracted —<br>a welcome sign of acceptance, peace &amp; non-violence.</p>
             <p>And a fearsome <strong>Face &amp;</strong> snarling <strong>Jaws</strong> —<br>brave, to roar the truth.</p>
+          </div>
+          <div class="img-block">
+            <img src="media/Final_Plaque_photoConcept.png" alt="Bronze commemorative plaque of the La Leonessa sculpture" />
+            <p class="img-caption">The bronze commemorative plaque</p>
           </div>
         </div>
       </div>
@@ -738,11 +752,6 @@
     return 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO +
       '/contents/' + PHOTO_ROOT + '/' + encodeURIComponent(folder) + '?ref=' + GH_BRANCH;
   }
-  function uploadUrl(folder) {
-    return 'https://github.com/' + GH_OWNER + '/' + GH_REPO +
-      '/upload/' + GH_BRANCH + '/' + PHOTO_ROOT + '/' + encodeURIComponent(folder);
-  }
-
   const lb = document.createElement('div');
   lb.className = 'lightbox-overlay';
   lb.innerHTML =
@@ -792,22 +801,11 @@
 
   function loadPhotos(folder, panel) {
     const isIt = document.documentElement.lang === 'it';
-    const addLabel = isIt ? '＋ Aggiungi una Foto' : '＋ Add a Photo';
     const loadingLabel = isIt ? 'Caricamento foto…' : 'Loading photos…';
     const emptyLabel = isIt ? 'Nessuna foto qui ancora.' : 'No photos here yet.';
     const errorLabel = isIt ?
       'Foto non disponibili al momento. Riprova tra poco.' :
       'Photos are not available right now. Try again shortly.';
-
-    function addBtn() {
-      const a = document.createElement('a');
-      a.className = 'photo-add-link';
-      a.href = uploadUrl(folder);
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.textContent = addLabel;
-      return a;
-    }
 
     function render(images) {
       panel.innerHTML = '';
@@ -830,7 +828,6 @@
         });
         panel.appendChild(grid);
       }
-      panel.appendChild(addBtn());
     }
 
     if (photoCache[folder]) { render(photoCache[folder]); return; }
@@ -847,7 +844,6 @@
       })
       .catch(function() {
         panel.innerHTML = '<p class="photo-status">' + errorLabel + '</p>';
-        panel.appendChild(addBtn());
       });
   }
 
